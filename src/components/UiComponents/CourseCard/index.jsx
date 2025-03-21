@@ -2,7 +2,7 @@ import React from 'react';
 
 const CourseCard = ({ title, description, imageSrc }) => {
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)]">
+    <div className="flex flex-col bg-white rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] hover:shadow-xl hover:shadow-gray-300 transition-all duration-300">
       {/* Image Container */}
       <div className="relative">
         <img

@@ -5,6 +5,9 @@ import CourseCard from '../../../../components/UiComponents/CourseCard/index';
 import mbbsImg from '../../../../assets/Courses/mbbs.png';
 import ausbildungImg from '../../../../assets/Courses/ausbildung.png';
 import nursingImg from '../../../../assets/Courses/nursing.png';
+import bachelorImg from '../../../../assets/Courses/bachelors.png';
+import masterImg from '../../../../assets/Courses/masters.png';
+import healthcareImg from '../../../../assets/Courses/healthcare.png';
 
 const CourseSection = () => {
   const [activeTab, setActiveTab] = useState('All Courses');
@@ -33,7 +36,31 @@ const CourseSection = () => {
       imageSrc: nursingImg,
       category: 'All Courses',
     },
-  ];
+    {
+        title: "Bachelor's",
+        description:
+          'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+        imageSrc: bachelorImg,
+        category: 'All Courses',
+      },
+      {
+        title: "Master's",
+        description:
+          'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+        imageSrc: masterImg,
+        category: 'All Courses',
+      },
+      {
+        title: 'HealthCare Programs',
+        description:
+          'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+        imageSrc: healthcareImg,
+        category: 'All Courses',
+      },
+    ];
+    
+    
+  
 
   const filteredCourses =
     activeTab === 'All Courses'
@@ -41,7 +68,7 @@ const CourseSection = () => {
       : courses.filter((course) => course.category === activeTab);
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center">
@@ -71,7 +98,7 @@ const CourseSection = () => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 ">
           {filteredCourses.map((course, index) => (
             <CourseCard
               key={index}

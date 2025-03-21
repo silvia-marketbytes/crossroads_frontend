@@ -4,6 +4,7 @@ import ServicesSection from '../Services/UiComponents/SevicesSection';
 
 const AboutSection = lazy(() => import('../AboutUs/UiComponents/AboutSection'));
 const CourseSection = lazy(() => import('../Courses/UiComponents/CourseSection'));
+const FreeEducationSection = lazy(() => import('../FreeEducation/UiComponents/FreeEducationSection'));
 const Hero = lazy(() => import('./UiComponents/Hero'));
 
 const Home = () => {
@@ -23,6 +24,10 @@ const Home = () => {
       {/* Course Section */}
       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
         <CourseSection />
+      </Suspense>
+      {/* Free Education Section */}
+      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+        <FreeEducationSection />
       </Suspense>
       
     </div>
