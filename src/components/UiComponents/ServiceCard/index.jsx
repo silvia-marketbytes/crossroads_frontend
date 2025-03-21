@@ -1,5 +1,5 @@
+// components/UiComponents/ServiceCard/index.jsx
 import React from 'react';
-
 const ServiceCard = ({ title, description, imageSrc }) => {
   return (
     <div className="flex flex-col">
@@ -30,7 +30,7 @@ const ServiceCard = ({ title, description, imageSrc }) => {
       </div>
       {/* Text Content */}
       <h3 className="mt-4 text-xl font-semibold text-blue-950">{title}</h3>
-      <p className="mt-2 text-gray-500">{description}</p>
+      <p className="mt-2 text-white-500">{description}</p>
     </div>
   );
 };
