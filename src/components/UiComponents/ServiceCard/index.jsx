@@ -1,36 +1,22 @@
 // components/UiComponents/ServiceCard/index.jsx
 import React from 'react';
-const ServiceCard = ({ title, description, imageSrc }) => {
+
+const ServiceCard = ({ title, description, imageSrc, isCenter }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full max-w-sm mx-auto">
       {/* Image Container */}
-      <div className="relative ">
+      <div className="relative">
         <img
           src={imageSrc}
           alt={title}
-          className="w-full h- object-cover rounded-lg"
+          className={`w-full h-80 object-cover rounded-lg transition-all duration-300 ${
+            isCenter ? 'opacity-100' : 'opacity-80'
+          }`}
         />
-        {/* Orange Arrow Overlay */}
-        <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-          <svg
-            className="w-8 h-8 text-orange-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </div>
       </div>
       {/* Text Content */}
-      <h3 className="mt-4 text-xl font-semibold text-blue-950">{title}</h3>
-      <p className="mt-2 text-white-500">{description}</p>
+      <h3 className="mt-4 text-2xl font-semibold text-blue-950">{title}</h3>
+      <p className="mt-2 text-gray-500">{description}</p>
     </div>
   );
 };

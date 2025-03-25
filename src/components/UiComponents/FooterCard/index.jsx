@@ -4,7 +4,7 @@ import React from 'react';
 // Social media icons (using SVGs for simplicity; you can replace with react-icons)
 const SocialIcon = ({ iconPath, label, href }) => (
   <a href={href} aria-label={label} className="text-white hover:text-orange-500">
-    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d={iconPath} />
     </svg>
   </a>
@@ -13,10 +13,10 @@ const SocialIcon = ({ iconPath, label, href }) => (
 const FooterCard = ({ title, description, links, socialLinks, contactInfo }) => {
   return (
     <div className="text-white">
-      <h3 className="text-2xl font-semibold mb-4">{title}</h3>
-      {description && <p className="text-gray-300 mb-6">{description}</p>}
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      {description && <p className="text-gray-300 text-sm mb-4">{description}</p>}
       {links && (
-        <ul className="space-y-2 text-gray-300">
+        <ul className="space-y-2 text-gray-300 text-sm">
           {links.map((link, index) => (
             <li key={index}>
               <a href={link.href} className="hover:text-orange-500">
@@ -27,7 +27,7 @@ const FooterCard = ({ title, description, links, socialLinks, contactInfo }) => 
         </ul>
       )}
       {contactInfo && (
-        <div className="text-gray-300">
+        <div className="text-gray-300 text-sm">
           {contactInfo.address && (
             <p className="mb-2">
               {contactInfo.address.split('\n').map((line, index) => (
@@ -54,7 +54,7 @@ const FooterCard = ({ title, description, links, socialLinks, contactInfo }) => 
         </div>
       )}
       {socialLinks && (
-        <div className="flex space-x-4 mt-6">
+        <div className="flex space-x-4 mt-4">
           {socialLinks.map((social, index) => (
             <SocialIcon
               key={index}

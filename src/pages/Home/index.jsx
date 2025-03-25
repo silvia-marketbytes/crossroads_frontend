@@ -9,7 +9,7 @@ const FreeEducationSection = lazy(() => import('../FreeEducation/UiComponents/Fr
 const MBBSSection = lazy(() => import('../MBBS/UiComponents/MBBSSection'));
 const NewsEvents = lazy(() => import('../NewsEvents'));
 const ContactSection = lazy(() => import('../Contact/UiComponents/ContactSection'));
-const Footer = lazy(() => import('../Footer'));
+
 
 
 const Home = () => {
@@ -50,10 +50,10 @@ const Home = () => {
       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
         <ContactSection />
       </Suspense>
-      {/* Footer Section */}
+      {/* Footer Section
       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
         <Footer />
-      </Suspense>
+      </Suspense> */}
       
     </div>
   );

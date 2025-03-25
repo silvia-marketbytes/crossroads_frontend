@@ -1,3 +1,4 @@
+// src/pages/UiComponents/MBBSSection/index.jsx
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -57,7 +58,7 @@ const MBBSSection = () => {
 
   return (
     <section className="py-16 bg-white h-auto flex items-center">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 ">
         {/* Carousel */}
         <Slider ref={sliderRef} {...sliderSettings}>
           {cardsData.map((card, index) => (
@@ -75,10 +76,14 @@ const MBBSSection = () => {
                   />
                 </div>
 
-                {/* Right Side: Text Content */}
-                <div className="w-full md:w-1/2 h-1/2 md:h-full bg-blue-950 text-white pt-7 pb-7 sm:p-8 md:p-12 flex flex-col justify-between">
+                {/* Right Side: Text Content with Partial Borders */}
+                <div className="relative w-full md:w-1/2 h-1/2 md:h-full bg-blue-950 text-white pt-7 pb-7 sm:p-8 md:p-12 flex flex-col justify-between">
+                  {/* Top Border: Left to Center */}
+                  <div className="absolute top-0 left-0 w-1/2 h-12 bg-orange-500" />
+                  {/* Bottom Border: Right to Center */}
+                  <div className="absolute bottom-0 right-0 w-1/2 h-12 bg-orange-500" />
                   <div>
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-500 mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-500 mb-4 py-10">
                       {card.title}
                     </h2>
                     <p className="text-gray-200 text-sm sm:text-base md:text-lg mb-4 overflow-y-auto">
@@ -118,7 +123,7 @@ const MBBSSection = () => {
             className="text-blue-950 hover:text-orange-500 transition-all duration-300"
             aria-label="Previous Slide"
           >
-            <FaChevronLeft size={12} className="sm:w-7 sm:h-7 " />
+            <FaChevronLeft size={12} className="sm:w-7 sm:h-7" />
           </button>
           <button
             onClick={goToNext}
