@@ -19,6 +19,8 @@ const MBBSSection = () => {
     slidesToScroll: 1,
     arrows: false,
     adaptiveHeight: false,
+    autoplay:true,
+    autoplaySpeed: 1000, // Slide changes every 1 seconds (1000ms)
     responsive: [
       {
         breakpoint: 768, // Mobile

@@ -60,7 +60,7 @@ const FooterSection = () => {
       {/* Top Section: Call to Action */}
       <div className="bg-white rounded-3xl py-8 px-4 md:px-8 flex flex-col items-center justify-center relative z-10 -mb-8 max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 w-full">
-          <h2 className="text-2xl md:text-3xl font-semibold text-blue-950 text-center">
+          <h2 className="text-2xl md:text-2xl font-semibold text-blue-950 text-center">
             ANY QUESTION OR REMARKS?
           </h2>
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">

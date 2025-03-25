@@ -59,7 +59,7 @@ const TestimonialsSection = () => {
     speed: 500,
     slidesToShow: 2, // Show 2 testimonials at a time on the left
     slidesToScroll: 1, // Scroll 1 testimonial at a time
-    arrows: false, // Use custom arrows
+    arrows: false,// Use custom arrows 
     responsive: [
       {
         breakpoint: 768, // Mobile

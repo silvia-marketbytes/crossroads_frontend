@@ -1,3 +1,4 @@
+// F:\crossroads\crossroads\frontend\src\pages\Contact\UiComponents\ContactSection\index.jsx
 import React from 'react';
 
 const ContactSection = () => {
@@ -5,14 +6,14 @@ const ContactSection = () => {
     <section className="py-10 bg-white">
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative bg-blue-950 text-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center overflow-hidden">
-          {/* Cutout effect at top corners */}
+          {/* Semi-circle effect at top-left and bottom-right corners */}
           <div
-            className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full"
+            className="absolute top-0 left-50 w-40 h-30 bg-white rounded-full"
             style={{ transform: 'translate(-50%, -50%)' }}
           />
           <div
-            className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full"
-            style={{ transform: 'translate(50%, -50%)' }}
+            className="absolute bottom-0 right-50 w-40 h-30 bg-white rounded-full"
+            style={{ transform: 'translate(50%, 50%)' }}
           />
 
           {/* Left Side: Heading and Description */}
@@ -35,7 +36,7 @@ const ContactSection = () => {
                   type="text"
                   id="name"
                   className="p-2 rounded-lg bg-transparent border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  placeholder="Enter your name"
+                  placeholder=""
                 />
               </div>
               <div className="flex flex-col">
@@ -46,7 +47,7 @@ const ContactSection = () => {
                   type="email"
                   id="email"
                   className="p-2 rounded-lg bg-transparent border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  placeholder="Enter your email"
+                  placeholder=""
                 />
               </div>
 
@@ -59,7 +60,7 @@ const ContactSection = () => {
                   type="tel"
                   id="phone"
                   className="p-2 rounded-lg bg-transparent border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  placeholder="Enter your phone number"
+                  placeholder=""
                 />
               </div>
               <div className="flex flex-col">
@@ -70,53 +71,34 @@ const ContactSection = () => {
                   type="text"
                   id="location"
                   className="p-2 rounded-lg bg-transparent border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  placeholder="Enter your location"
+                  placeholder=""
                 />
               </div>
 
-              {/* Full Width: Dropdown and Buttons */}
+              {/* Full Width: Buttons (No Dropdown) */}
               <div className="md:col-span-2 flex flex-col">
-                <label htmlFor="help" className="text-white text-xs mb-1">
+                <label className="text-white text-xs mb-1">
                   How Can We Help You
                 </label>
                 <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
-                  <select
-                    id="help"
-                    className="p-2 rounded-lg bg-transparent border border-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 sm:w-1/3 text-sm"
+                  <button
+                    type="button"
+                    className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
                   >
-                    <option value="" disabled selected className="text-gray-400">
-                      Select an option
-                    </option>
-                    <option value="education" className="text-white">
-                      Education
-                    </option>
-                    <option value="job-assistance" className="text-white">
-                      Job Assistance
-                    </option>
-                    <option value="migration" className="text-white">
-                      Migration
-                    </option>
-                  </select>
-                  <div className="flex space-x-3 sm:w-2/3">
-                    <button
-                      type="button"
-                      className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
-                    >
-                      Education
-                    </button>
-                    <button
-                      type="button"
-                      className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
-                    >
-                      Job Assistance
-                    </button>
-                    <button
-                      type="button"
-                      className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
-                    >
-                      Migration
-                    </button>
-                  </div>
+                    Education
+                  </button>
+                  <button
+                    type="button"
+                    className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
+                  >
+                    Job Assistance
+                  </button>
+                  <button
+                    type="button"
+                    className="p-2 rounded-lg border border-gray-400 text-white hover:bg-orange-500 hover:border-orange-500 transition-colors text-sm"
+                  >
+                    Migration
+                  </button>
                 </div>
               </div>
 
@@ -129,7 +111,7 @@ const ContactSection = () => {
                   id="message"
                   rows="3"
                   className="p-2 rounded-lg bg-transparent border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  placeholder="Write your message here..."
+                  placeholder=""
                 />
               </div>
 
