@@ -3,7 +3,7 @@ import React from 'react';
 
 const NewsCard = ({ imageSrc, title, description }) => {
   return (
-    <div className="news-card bg-white rounded-lg  overflow-hidden">
+    <div className="news-card bg-white rounded-lg overflow-hidden">
       {/* Image Container */}
       <div className="relative">
         <img

@@ -1,6 +1,7 @@
 //src->pages->Home->index.jsx
 import React, { Suspense, lazy } from 'react';
 import ServicesSection from '../Services/UiComponents/SevicesSection';
+import TestimonialsSection from '../Testimonials/UiComponents/TestimonialsSection';
 const Hero = lazy(() => import('./UiComponents/Hero'));
 const AboutSection = lazy(() => import('../AboutUs/UiComponents/AboutSection'));
 const CourseSection = lazy(() => import('../Courses/UiComponents/CourseSection'));
@@ -41,7 +42,10 @@ const Home = () => {
       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
         <NewsEvents />
       </Suspense>
-      {/* Footer Section */}
+       {/* Testimonials Section */}
+       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+        <TestimonialsSection />
+      </Suspense>
       {/* Contact Section */}
       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
         <ContactSection />

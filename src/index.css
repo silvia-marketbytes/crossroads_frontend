@@ -11,24 +11,24 @@ body {
 .slick-slider {
   overflow: hidden;
   width: 100%;
-  position: relative; /* Ensure the slider is a positioning context */
+  position: relative;
 }
 
-/* Ensure consistent card size */
+/* Ensure consistent card size for News & Events */
 .news-card {
-  width: 100% !important; /* Ensure all cards take the full width allocated by the slider */
-  height: 100vh; /* Adjusted height for all cards */
+  width: 100% !important;
+  height: 720px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-/* Ensure images have a fixed height */
+/* Ensure images have a fixed height for News & Events */
 .news-card img {
   width: 100%;
-  height: 500px; /* Fixed height for images */
+  height: 500px;
   object-fit: cover;
-  transition: filter 0.3s ease; /* Smooth transition for filter only */
+  transition: filter 0.3s ease;
 }
 
 /* Style for the grayscale effect */
@@ -38,52 +38,84 @@ body {
 
 /* Hover effect: Remove grayscale only */
 .news-card:hover img.grayscale {
-  filter: grayscale(0%); /* Remove grayscale on hover */
+  filter: grayscale(0%);
 }
 
 /* Hover effect for buttons and links */
 .news-card .register-btn:hover {
-  background-color: #f97316; /* Darker orange on hover */
+  background-color: #f97316;
 }
 
 .news-card .read-more:hover {
-  color: #f97316; /* Orange on hover */
+  color: #f97316;
 }
 
-/* Add gap between cards */
+/* Add gap between cards for News & Events */
 .slick-slide {
-  padding: 0 8px; /* Gap between cards */
+  padding: 0 8px;
 }
 
 /* Ensure the slider track accounts for the padding */
 .slick-list {
-  margin: 0 -8px; /* Offset the padding to avoid cutting off cards */
+  margin: 0 -8px;
 }
 
 /* Remove default slick arrows since we're using custom arrows */
 .slick-prev,
 .slick-next {
-  display: none !important; /* Hide default arrows */
+  display: none !important;
 }
 
-/* Style the custom arrows */
+/* Style the custom arrows (shared between sections) */
 .custom-arrows {
-  padding-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; /* Space between the carousel and arrows */
+  margin-top: 20px;
 }
 
 .custom-prev,
 .custom-next {
   color: #1e3a8a; /* Blue-950 */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and size */
+  transition: color 0.3s ease, transform 0.3s ease;
   margin: 0 10px; /* Small gap between arrows */
 }
 
 .custom-prev:hover,
 .custom-next:hover {
   color: #f97316; /* Orange-500 on hover */
-  transform: scale(1.5); /* Increase size on hover (equivalent to font-size: 50px) */
+  transform: scale(1.5); /* Increase size on hover */
+}
+
+/* Styles for the Testimonials section */
+.testimonial-card {
+  width: 100%;
+  height: 500px; /* Adjusted height for testimonial cards */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.video-carousel {
+  width: 100%;
+  height: 100px;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CSS for flag images in both testimonial and video sections */
+.flag-image {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  border-radius: 50%; /* Optional: to make the flags circular */
+  object-fit: cover; /* Ensures the image covers the element */
 }
