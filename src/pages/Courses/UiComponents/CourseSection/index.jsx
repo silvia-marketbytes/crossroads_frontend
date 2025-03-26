@@ -79,10 +79,10 @@ const CourseSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center">
-          <p className="text-sm font-semibold text-blue-950 uppercase mb-2">
+          <p className="text-xl font-semibold text-blue-950 uppercase mb-2">
             Popular Courses
           </p>
-          <h2 className="text-3xl font-bold text-blue-950">
+          <h2 className="text-4xl font-bold text-blue-950">
             Academic <span className="text-orange-500">Courses</span>
           </h2>
         </div>

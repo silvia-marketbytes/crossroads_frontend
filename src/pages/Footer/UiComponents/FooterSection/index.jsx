@@ -70,7 +70,7 @@ const FooterSection = () => {
             </button>
             <a
               href="tel:+919539688800"
-              className="text-blue-950 text-lg flex items-center space-x-2 whitespace-nowrap"
+              className="text-blue-950 text-2xl font-semibold flex items-center space-x-2 whitespace-nowrap"
             >
               <svg
                 className="w-5 h-5"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaArrowRight } from 'react-icons/fa'; // Using FaArrowRight for the -> arrow
 
 const ServiceCard = ({ title, description, imageSrc }) => {
   return (
@@ -14,19 +13,47 @@ const ServiceCard = ({ title, description, imageSrc }) => {
         />
         {/* Light Blue Shade on Hover */}
         <div className="absolute inset-0 bg-black-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-        {/* Orange Cutout Effect with Single Right Arrow */}
+        {/* Orange Cutout Effect with Custom Right Arrow */}
         <div className="absolute bottom-0 left-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
           {/* Outer Orange Circle */}
           <div className="bg-orange-400 w-48 h-48 rounded-full absolute z-10 opacity-85"></div>
-          {/* Single Right Arrow Inside the Cutout */}
+          {/* Custom Right Arrow Inside the Cutout */}
           <div className="relative -top-10 left-10 flex items-center justify-center z-30">
-            <FaArrowRight className="text-white" size={24} />
+            <svg
+              width="50" // Increased from 48 to 72
+              height="36" // Increased from 24 to 36
+              viewBox="0 0 72 36" // Adjusted to match new dimensions
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 18H60M60 18L48 6M60 18L48 30" // Adjusted coordinates for larger size
+                stroke="white"
+                strokeWidth="3" // Increased stroke width for better visibility
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
         </div>
-        {/* Single Right Arrow on Hover (Without Orange Cutout) */}
+        {/* Custom Right Arrow on Hover (Without Orange Cutout) */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex items-center justify-center">
-            <FaArrowRight className="text-white" size={24} />
+            <svg
+              width="55" // Increased from 48 to 72
+              height="36" // Increased from 24 to 36
+              viewBox="0 0 72 36" // Adjusted to match new dimensions
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 18H60M60 18L48 6M60 18L48 30" // Adjusted coordinates for larger size
+                stroke="white"
+                strokeWidth="3" // Increased stroke width for better visibility
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
         </div>
       </div>

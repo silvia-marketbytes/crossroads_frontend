@@ -2,18 +2,16 @@ import React, { useState } from "react";
 
 const Card = ({ item }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // Determine if the description is long enough to need a "Show More" button
   const shouldShowButton = item.description.length > 50;
 
   return (
     <div className="px-2">
-      <div className="card bg-white rounded-lg overflow-hidden h-[500px] w-[350px] flex flex-col">
+      <div className="card bg-white rounded-lg overflow-hidden w-full max-w-[350px] mx-auto flex flex-col h-[450px] sm:h-[500px]">
         {item.type === "image" ? (
           <img
             src={item.imageSrc}
             alt={item.name}
-            className="w-[350px] h-[250px] object-cover"
+            className="w-full h-[200px] sm:h-[250px] object-cover"
             onError={(e) => {
               e.target.src =
                 "https://via.placeholder.com/350x250?text=Image+Not+Found";
@@ -23,7 +21,7 @@ const Card = ({ item }) => {
         ) : (
           <video
             controls
-            className="w-[350px] h-[250px] object-cover"
+            className="w-full h-[200px] sm:h-[250px] object-cover"
             src={item.videoSrc}
             onError={(e) => {
               console.error(`Failed to load video: ${item.videoSrc}`);
@@ -34,14 +32,16 @@ const Card = ({ item }) => {
         )}
         <div className="p-4 flex flex-col flex-1">
           <div className="flex justify-between items-center mb-2">
-            <h4 className="text-lg font-semibold text-blue-950">{item.name}</h4>
+            <h4 className="text-base sm:text-lg font-semibold text-blue-950">
+              {item.name}
+            </h4>
             <div className="flex items-center">
-              <img src={item.flag} alt="Flag" className="w-5 h-5 mr-2" />
+              <img src={item.flag} alt="Flag" className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               <div className="flex items-center">
                 {[...Array(item.rating)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-yellow-500"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,22 +54,14 @@ const Card = ({ item }) => {
           </div>
           <div className="flex-1">
             <p
-              className={`text-gray-600 text-sm text-justify ${
+              className={`text-gray-600 text-xs sm:text-sm text-justify ${
                 isExpanded ? "" : "line-clamp-3"
               }`}
             >
               {item.description}
             </p>
+            
           </div>
-          {shouldShowButton && (
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="text-black text-sm mt-2 text-left hover:underline uppercase hover:text-amber-600 flex items-center"
-            >
-              <span>{isExpanded ? "Show Less" : "Show More"}</span>
-              <span className="ml-1">{">"}</span>
-            </button>
-          )}
         </div>
       </div>
     </div>
