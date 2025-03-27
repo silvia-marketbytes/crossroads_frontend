@@ -18,21 +18,33 @@ const AboutCard = ({
 
   return (
     <div
-      className={`bg-white p-8 rounded-lg ${
+      className={`bg-white p-6 sm:p-8 rounded-lg ${
         hasShadow ? 'shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)]' : ''
       } flex items-start`}
     >
       {isHeadingCard && <div className="flex-grow"></div>}
       
-      <div className={`${isHeadingCard ? 'text-end space-y-6' : 'text-justify'}`}>
+      <div
+        className={`${
+          isHeadingCard ? 'text-left md:text-end space-y-4 sm:space-y-6' : 'text-justify'
+        } w-full`}
+      >
         {subheading && (
-          <p className={`font-semibold text-blue-950 uppercase mb-2 font-poppins ${isHeadingCard ? 'text-base' : 'text-sm'}`}>
+          <p
+            className={`font-semibold text-blue-950 uppercase mb-2 font-poppins ${
+              isHeadingCard ? 'text-sm sm:text-base' : 'text-sm'
+            }`}
+          >
             {subheading}
           </p>
         )}
         {heading && (
-          <h2 className={`font-bold font-poppins ${isHeadingCard ? 'text-4xl' : 'text-3xl'}`}>
-            <span className={isHeadingCard ? 'inline-block mb-4' : ''}>
+          <h2
+            className={`font-bold font-poppins ${
+              isHeadingCard ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-3xl'
+            }`}
+          >
+            <span className={isHeadingCard ? 'inline-block mb-2 sm:mb-4' : ''}>
               {firstPart.split(' ').map((word, index) => (
                 <span
                   key={index}
@@ -54,7 +66,9 @@ const AboutCard = ({
         )}
         {description && (
           <>
-            <p className="text-gray-500 mt-4 font-poppins text-start">{description}</p>
+            <p className="text-gray-500 mt-4 font-poppins text-start">
+              {description}
+            </p>
             {linkText && (
               <a
                 href={linkHref}
@@ -62,7 +76,7 @@ const AboutCard = ({
               >
                 {linkText}
                 <svg
-                  className="w-5 h-5 ml-2 ]"
+                  className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

@@ -34,7 +34,7 @@ const FreeEducationSection = () => {
 
         {/* Country Flags Below with Increased Gap */}
         <div
-          className="flex justify-center space-x-10 flex-wrap py-8"
+          className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-10 flex-wrap py-8"
           style={{ backgroundImage: `url(${worldMapBg})`, width: '100%' }}
         >
           {countries.map((country, index) => (
