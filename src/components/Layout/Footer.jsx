@@ -1,6 +1,6 @@
 // src/components/Layout/Footer.jsx
 import React from 'react';
-import FooterSection from '../../pages/Footer/UiComponents/FooterSection';
+import FooterSection from '../../pages/home/UiComponents/FooterSection';
 
 const Footer = () => {
   return <FooterSection />;

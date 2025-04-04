@@ -32,7 +32,10 @@ const Card = ({ item }) => {
         )}
         <div className="p-4 flex flex-col flex-1">
           <div className="flex justify-between items-center mb-2">
-            <h4 className="text-base sm:text-lg font-semibold text-blue-950">
+            <h4 
+              className="text-base sm:text-lg font-semibold"
+              style={{ color: '#00334D' }} // Blue for name
+            >
               {item.name}
             </h4>
             <div className="flex items-center">
@@ -60,7 +63,6 @@ const Card = ({ item }) => {
             >
               {item.description}
             </p>
-            
           </div>
         </div>
       </div>

@@ -1,66 +1,62 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-const ServiceCard = ({ title, description, imageSrc }) => {
+const ServiceCard = ({ title, description, imageSrc, url }) => {
   return (
-    <div className="flex flex-col w-full max-w-sm mx-auto relative group">
-      {/* Image Container with Cutout, Hover Effect, and Shadow */}
+    <Link to={url} className="flex flex-col w-full max-w-[300px] mx-auto relative group">
       <div className="relative overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-[10px_10px_15px_rgba(0,0,0,0.2)]">
-        {/* Image */}
         <img
           src={imageSrc}
           alt={title}
-          className="w-full h-85 object-cover transition-all duration-300 opacity-80 group-hover:opacity-100"
+          className="w-full object-cover transition-all duration-300 opacity-80 group-hover:opacity-100"
         />
-        {/* Light Blue Shade on Hover */}
         <div className="absolute inset-0 bg-black-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-        {/* Orange Cutout Effect with Custom Right Arrow */}
-        <div className="absolute bottom-0 left-0 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-          {/* Outer Orange Circle */}
-          <div className="bg-orange-400 w-48 h-48 rounded-full absolute z-10 opacity-85"></div>
-          {/* Custom Right Arrow Inside the Cutout */}
-          <div className="relative -top-10 left-10 flex items-center justify-center z-30">
+        <div className="absolute -bottom-4 -left-4 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+          <div className="bg-orange-400 w-44 h-44 rounded-full absolute z-10 opacity-60"></div>
+          <div className="relative -top-10 left-9 flex items-center justify-center z-30">
             <svg
-              width="50" // Increased from 48 to 72
-              height="36" // Increased from 24 to 36
-              viewBox="0 0 72 36" // Adjusted to match new dimensions
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              width="31.967"
+              height="23.249"
+              viewBox="0 0 31.967 23.249"
+              opacity="0.5"
             >
               <path
-                d="M0 18H60M60 18L48 6M60 18L48 30" // Adjusted coordinates for larger size
-                stroke="white"
-                strokeWidth="3" // Increased stroke width for better visibility
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                id="next"
+                d="M32.541,14.6,22.37,4.426A1.453,1.453,0,1,0,20.315,6.48l7.691,7.691H2.453a1.453,1.453,0,1,0,0,2.906H28.006l-7.691,7.691a1.453,1.453,0,1,0,2.055,2.055L32.541,16.652a1.453,1.453,0,0,0,0-2.055Z"
+                transform="translate(-1 -4)"
+                fill="#fff"
               />
             </svg>
           </div>
         </div>
-        {/* Custom Right Arrow on Hover (Without Orange Cutout) */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex items-center justify-center">
             <svg
-              width="55" // Increased from 48 to 72
-              height="36" // Increased from 24 to 36
-              viewBox="0 0 72 36" // Adjusted to match new dimensions
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              width="31.967"
+              height="23.249"
+              viewBox="0 0 31.967 23.249"
             >
               <path
-                d="M0 18H60M60 18L48 6M60 18L48 30" // Adjusted coordinates for larger size
-                stroke="white"
-                strokeWidth="3" // Increased stroke width for better visibility
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                id="next"
+                d="M32.541,14.6,22.37,4.426A1.453,1.453,0,1,0,20.315,6.48l7.691,7.691H2.453a1.453,1.453,0,1,0,0,2.906H28.006l-7.691,7.691a1.453,1.453,0,1,0,2.055,2.055L32.541,16.652a1.453,1.453,0,0,0,0-2.055Z"
+                transform="translate(-1 -4)"
+                fill="#fff"
               />
             </svg>
           </div>
         </div>
       </div>
-      {/* Text Content */}
-      <h3 className="mt-4 text-xl font-semibold text-blue-950">{title}</h3>
-      <p className="mt-2 text-gray-500 text-sm">{description}</p>
-    </div>
+      <div
+        className="mt-4"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
+      <div
+        className="mt-2"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+    </Link>
   );
 };
 

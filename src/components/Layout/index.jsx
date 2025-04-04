@@ -6,13 +6,13 @@ import Footer from './Footer'
 
 function Layout() {
   return (
-    <div>
+    <>
       <Navbar />
       <main className='main-content'>
         <Outlet/>
       </main>
       <Footer />
-    </div>
+    </>
 
   )
 }

@@ -13,9 +13,19 @@ const CourseCard = ({ title, description, imageSrc }) => {
       </div>
       {/* Text Content */}
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-blue-950">{title}</h3>
+        <h3 
+          className="text-xl font-semibold"
+          style={{ color: '#00334D' }} // Blue for title
+        >
+          {title}
+        </h3>
         <p className="mt-2 text-gray-500">{description}</p>
-        <button className="mt-4 px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition">
+        <button 
+          className="mt-4 px-4 py-2 text-white rounded-full transition"
+          style={{ backgroundColor: '#F9920A' }} // Orange for button
+          onMouseEnter={(e) => (e.target.style.backgroundColor = '#E08200')} // Darker orange on hover
+          onMouseLeave={(e) => (e.target.style.backgroundColor = '#F9920A')} // Back to orange
+        >
           More Details
         </button>
       </div>

@@ -1,60 +1,48 @@
-//src->pages->Home->index.jsx
-import React, { Suspense, lazy } from 'react';
-import ServicesSection from '../Services/UiComponents/SevicesSection';
-import TestimonialsSection from '../Testimonials/UiComponents/TestimonialsSection';
-const Hero = lazy(() => import('./UiComponents/Hero'));
-const AboutSection = lazy(() => import('../AboutUs/UiComponents/AboutSection'));
-const CourseSection = lazy(() => import('../Courses/UiComponents/CourseSection'));
-const FreeEducationSection = lazy(() => import('../FreeEducation/UiComponents/FreeEducationSection'));
-const MBBSSection = lazy(() => import('../MBBS/UiComponents/MBBSSection'));
-const NewsEvents = lazy(() => import('../NewsEvents'));
-const ContactSection = lazy(() => import('../Contact/UiComponents/ContactSection'));
-
-
+import React, { useState, Suspense, lazy } from 'react';
+import Hero from './UiComponents/Hero';
+import ServicesSection from './UiComponents/SevicesSection';
+import AboutSection from './UiComponents/AboutSection';
+import CourseSection from './UiComponents/CourseSection';
+import FreeEducationSection from './UiComponents/FreeEducationSection';
+import MBBSSection from './UiComponents/MBBSSection';
+import NewsEventsSection from './UiComponents/NewsEventsSection';
+import TestimonialsSection from './UiComponents/TestimonialsSection';
+import ContactSection from './UiComponents/ContactSection';
 
 const Home = () => {
+  const [slides, setSlides] = useState([]);
+  const [error, setError] = useState(null);
+
   return (
     <div>
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
-        <Hero />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Hero slides={slides} setSlides={setSlides} setError={setError} />
       </Suspense>
-       {/* Service Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <ServicesSection />
       </Suspense>
-      {/* About Us Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <AboutSection />
       </Suspense>
-      {/* Course Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <CourseSection />
       </Suspense>
-      {/* Free Education Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <FreeEducationSection />
       </Suspense>
-      {/* MBBS Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <MBBSSection />
       </Suspense>
-      {/* News & Events Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
-        <NewsEvents />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewsEventsSection />
       </Suspense>
-       {/* Testimonials Section */}
-       <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <TestimonialsSection />
       </Suspense>
-      {/* Contact Section */}
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
-      {/* Footer Section
-      <Suspense fallback={<div className="text-center py-10">Loading...</div>}>
-        <Footer />
-      </Suspense> */}
-      
+      {error && <div>Error: {error}</div>}
     </div>
   );
 };

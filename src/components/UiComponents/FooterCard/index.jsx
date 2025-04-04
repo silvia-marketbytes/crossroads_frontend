@@ -1,9 +1,7 @@
-// src/components/UiComponents/FooterCard/index.jsx
 import React from 'react';
 
-// Social media icons (using SVGs for simplicity; you can replace with react-icons)
 const SocialIcon = ({ iconPath, label, href }) => (
-  <a href={href} aria-label={label} className="text-white hover:text-orange-500">
+  <a href={href} aria-label={label} className="text-white hover:text-[#F9920A]">
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d={iconPath} />
     </svg>
@@ -19,7 +17,7 @@ const FooterCard = ({ title, description, links, socialLinks, contactInfo }) => 
         <ul className="space-y-2 text-gray-300 text-sm">
           {links.map((link, index) => (
             <li key={index}>
-              <a href={link.href} className="hover:text-orange-500">
+              <a href={link.href} className="hover:text-[#F9920A]">
                 {link.label}
               </a>
             </li>
@@ -39,14 +37,14 @@ const FooterCard = ({ title, description, links, socialLinks, contactInfo }) => 
           )}
           {contactInfo.phone && (
             <p className="mb-2">
-              <a href={`tel:${contactInfo.phone}`} className="hover:text-orange-500">
+              <a href={`tel:${contactInfo.phone}`} className="hover:text-[#F9920A]">
                 {contactInfo.phone}
               </a>
             </p>
           )}
           {contactInfo.email && (
             <p>
-              <a href={`mailto:${contactInfo.email}`} className="hover:text-orange-500">
+              <a href={`mailto:${contactInfo.email}`} className="hover:text-[#F9920A]">
                 {contactInfo.email}
               </a>
             </p>

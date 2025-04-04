@@ -33,7 +33,7 @@ const CountryCard = ({ name, flagSrc, borderOrientation = 'to bottom' }) => {
             <div
               className="absolute inset-0 rounded-full animate-border-rotate"
               style={{
-                background: `linear-gradient(${borderOrientation}, #F5A623 50%, #1E3A8A 50%)`,
+                background: `linear-gradient(${borderOrientation}, #F9920A 50%, #00334D 50%)`, // Orange and Blue border
                 padding: '2px', // Reduced border width
                 WebkitMask:
                   'radial-gradient(circle at center, transparent 60%, black 60%)',
@@ -42,7 +42,12 @@ const CountryCard = ({ name, flagSrc, borderOrientation = 'to bottom' }) => {
             />
           </div>
         </div>
-        <p className="mt-3 text-blue-950 font-semibold text-lg">{name}</p>
+        <p 
+          className="mt-3 font-semibold text-lg"
+          style={{ color: '#00334D' }} // Blue for country name
+        >
+          {name}
+        </p>
       </div>
     </>
   );
