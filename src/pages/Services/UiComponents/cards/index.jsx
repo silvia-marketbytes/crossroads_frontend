@@ -39,28 +39,27 @@ const documentationItems = [
   },
 ];
 
-// New Travel Assistance items (you can replace images with appropriate ones)
 const travelItems = [
   {
     id: 1,
     title: "Transportation Support",
     description:
       "We offer reliable transportation assistance to ensure students and professionals reach their destinations safely and on time. Our services include arranging airport transfers, local transport, and travel itineraries tailored to your schedule.",
-    image: travelImage, // Replace with a specific image if available
+    image: travelImage,
   },
   {
     id: 2,
     title: "Accommodation Assistance",
     description:
       "Finding a comfortable and safe place to stay is made easy with our accommodation support. We assist in booking hotels, hostels, or student housing, ensuring your needs and budget are met during your travel.",
-    image: travelImage, // Replace with a specific image if available
+    image: travelImage,
   },
   {
     id: 3,
     title: "Travel Guidance & Planning",
     description:
       "Our team provides comprehensive travel guidance, from itinerary planning to essential travel tips. We ensure you have all the information needed for a stress-free journey, including visa requirements, local customs, and safety advice.",
-    image: travelImage, // Replace with a specific image if available
+    image: travelImage,
   },
 ];
 
@@ -77,8 +76,7 @@ const Cards = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    afterChange: (current) =>
-      setSelectedItem(activeTab === 1 ? documentationItems[current] : travelItems[current]),
+    afterChange: (current) => setSelectedItem(documentationItems[current]),
     arrows: false,
   };
 
@@ -112,7 +110,6 @@ const Cards = () => {
               onClick={() => {
                 setActiveTab(2);
                 setSelectedItem(travelItems[0]);
-                if (sliderRef.current) sliderRef.current.slickGoTo(0);
               }}
             >
               Travel Assistance
@@ -120,59 +117,73 @@ const Cards = () => {
           </div>
 
           <div className="p-4 sm:p-6 lg:p-8 rounded-lg flex-1 flex flex-col justify-center">
-            <Slider ref={sliderRef} {...sliderSettings}>
-              {(activeTab === 1 ? documentationItems : travelItems).map((item) => (
-                <div key={item.id} className="p-2 sm:p-4">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 text-[#00334D]">
-                    {item.title}
-                  </h2>
-                  <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </Slider>
+            {activeTab === 1 ? (
+              <Slider ref={sliderRef} {...sliderSettings}>
+                {documentationItems.map((item) => (
+                  <div key={item.id} className="p-2 sm:p-4">
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 text-[#00334D]">
+                      {item.title}
+                    </h2>
+                    <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </Slider>
+            ) : (
+              <div className="p-2 sm:p-4">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 text-[#00334D]">
+                  {selectedItem.title}
+                </h2>
+                <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
+                  {selectedItem.description}
+                </p>
+              </div>
+            )}
           </div>
 
-          <div className="pb-4 flex justify-center space-x-2">
-            <button
-              className="text-[#00334D] w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center hover:text-[#F9920A] transition-colors duration-300"
-              onClick={() => sliderRef.current.slickPrev()}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-5 sm:w-6"
+          {/* Show navigation buttons only for Documentation tab */}
+          {activeTab === 1 && (
+            <div className="pb-4 flex justify-center space-x-2">
+              <button
+                className="text-[#00334D] w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center hover:text-[#F9920A] transition-colors duration-300"
+                onClick={() => sliderRef.current.slickPrev()}
               >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 sm:w-6"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
 
-            <button
-              className="text-[#00334D] w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center hover:text-[#F9920A] transition-colors duration-300"
-              onClick={() => sliderRef.current.slickNext()}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-5 sm:w-6"
+              <button
+                className="text-[#00334D] w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center hover:text-[#F9920A] transition-colors duration-300"
+                onClick={() => sliderRef.current.slickNext()}
               >
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
-          </div>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 sm:w-6"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Right Side */}

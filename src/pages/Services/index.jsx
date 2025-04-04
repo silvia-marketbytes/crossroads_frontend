@@ -24,7 +24,7 @@ const Services = () => {
         <div className="w-full">
           <p
             className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
-            style={{ textAlign: 'justify' }} 
+            style={{ textAlign: 'justify' }} // Inline CSS for text justification
           >
             We provide comprehensive Travel & Documentation Assistance to ensure a smooth and hassle-free experience. From certificate attestation and visa document preparation to certified translations and appointment scheduling, our expert team handles every detail with efficiency and accuracy. Additionally, we offer reliable travel support, including transportation, accommodation, and essential guidance, ensuring a safe and stress-free journey. With our dedicated services, students and professionals can confidently navigate their travel and documentation needs with ease.
           </p>
