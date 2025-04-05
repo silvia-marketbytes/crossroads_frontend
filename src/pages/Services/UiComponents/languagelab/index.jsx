@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
+import Banner from "../../../../components/Banner";
+import bannerImg from "../../../../assets/Services/languagelabbanner.webp";
+import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
+
+
 
 const languageLabItems = [
   {
@@ -27,61 +32,93 @@ const languageLabItems = [
   },
 ];
 
-const Language = () => {
+const Languagelab = () => {
   const [selectedItem, setSelectedItem] = useState(
     languageLabItems.length > 0 ? languageLabItems[0] : null
   );
 
-  return (
-    <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-10">
-      <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
-        {/* Left Navigation Panel */}
-        <div className="w-full md:w-1/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col rounded-xl overflow-hidden">
-          <div className="flex flex-col p-3 sm:p-4 lg:p-6">
-            {languageLabItems.map((item, index) => (
-              <div
-                key={item.id}
-                className={index !== languageLabItems.length - 1 ? "border-b border-gray-800" : ""}
-              >
-                <button
-                  className={`w-full text-left px-4 py-4 sm:px-5 sm:py-6 lg:py-8 text-xs sm:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ${
-                    selectedItem?.id === item.id
-                      ? "bg-[#00334D] text-white shadow-md"
-                      : "text-gray-600 hover:bg-gray-50"
-                  }`}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  {item.title}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+  const bannerProps = {
+    backgroundImage: bannerImg,
+    title: "Language Lab",
+    className: "px-10 relative bg-gradient-to-r from-black/70 via-black/50 to-transparent",
+    classNameTitle: "text-services-title",
+    showDateTime: false,
+    showSocialMedia: false,
+  };
 
-        {/* Right Content Panel */}
-        <div className="w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col bg-gray-100 rounded-xl overflow-hidden">
-          <div className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col justify-start overflow-y-auto">
-            {selectedItem ? (
-              <>
-                <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold mb-2 sm:mb-3 lg:mb-4 text-[#00334D] font-poppins">
-                  {selectedItem.title}
-                </h2>
-                <p className="text-xs sm:text-sm lg:text-lg leading-relaxed text-gray-700">
-                  {selectedItem.description}
-                </p>
-              </>
-            ) : (
-              <div className="flex items-center justify-center h-full">
-                <p className="text-gray-500 text-xs sm:text-sm lg:text-base">
-                  Select a language test to view details
-                </p>
-              </div>
-            )}
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Banner {...bannerProps} />
+      </Suspense>
+
+      <section className="py-6 sm:py-8 lg:py-12 px-10 sm:px-12 lg:px-16 flex justify-center">
+        <div className="w-full">
+          <p
+            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
+            style={{ textAlign: "justify" }}
+          >
+            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communities. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-10">
+        <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
+          <div className="w-full md:w-1/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col rounded-xl overflow-hidden">
+            <div className="flex flex-col p-3 sm:p-4 lg:p-6">
+              {languageLabItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  className={
+                    index !== languageLabItems.length - 1
+                      ? "border-b border-gray-800"
+                      : ""
+                  }
+                >
+                  <button
+                    className={`w-full text-left px-4 py-4 sm:px-5 sm:py-6 lg:py-8 text-xs sm:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ${
+                      selectedItem?.id === item.id
+                        ? "bg-[#00334D] text-white shadow-md"
+                        : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                    onClick={() => setSelectedItem(item)}
+                  >
+                    {item.title}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col bg-gray-100 rounded-xl overflow-hidden">
+            <div className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col justify-start overflow-y-auto">
+              {selectedItem ? (
+                <>
+                  <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold mb-2 sm:mb-3 lg:mb-4 text-[#00334D] font-poppins">
+                    {selectedItem.title}
+                  </h2>
+                  <p className="text-xs sm:text-sm lg:text-lg leading-relaxed text-gray-700">
+                    {selectedItem.description}
+                  </p>
+                </>
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-gray-500 text-xs sm:text-sm lg:text-base">
+                    Select a language test to view details
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <ContactSection />
+      </Suspense>
     </div>
   );
 };
 
-export default Language;
+export default Languagelab;

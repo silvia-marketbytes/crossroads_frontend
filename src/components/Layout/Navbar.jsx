@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Call, Hamburger, Mail } from '../Icons';
-import Button from '../Button';
-import logo from '/src/assets/logo.png';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Call, Hamburger, Mail } from "../Icons";
+import Button from "../Button";
+import logo from "/src/assets/logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isEducationHover, setIsEducationHover] = useState(false); // Changed to hover state
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,20 +18,6 @@ const Navbar = () => {
   const toggleServices = () => {
     setIsServicesOpen(!isServicesOpen);
   };
-
-  const navLinkDropdownStyles = ({ isActive }) => ({
-    color: isActive ? '#F9920A' : '#00334D',
-    fontSize: '14px',
-    fontWeight: 'normal',
-    textDecoration: 'none',
-  });
-
-  const navLinkStyles = ({ isActive }) => ({
-    color: isActive ? '#F9920A' : '#fcfcfc',
-    fontSize: '14px',
-    fontWeight: 'normal',
-    textDecoration: 'none',
-  });
 
   const dropdownVariants = {
     hidden: {
@@ -51,6 +38,20 @@ const Navbar = () => {
     },
   };
 
+  const navLinkDropdownStyles = ({ isActive }) => ({
+    color: isActive ? "#F9920A" : "#00334D",
+    fontSize: "14px",
+    fontWeight: "normal",
+    textDecoration: "none",
+  });
+
+  const navLinkStyles = ({ isActive }) => ({
+    color: isActive ? "#F9920A" : "#fcfcfc",
+    fontSize: "14px",
+    fontWeight: "normal",
+    textDecoration: "none",
+  });
+
   return (
     <>
       <nav className="flex items-center justify-end p-1 text-black w-full">
@@ -58,14 +59,18 @@ const Navbar = () => {
           <div className="flex items-center space-x-2">
             <Mail className="bg-[#00334D] p-[4px] rounded-full" />
             <div>
-              <span className="block font-bold text-xs" style={{ color: '#00334D' }}>Email</span>
+              <span className="block font-bold text-xs" style={{ color: "#00334D" }}>
+                Email
+              </span>
               <span className="text-[#00334D] text-xs">info@crossroadsge.com</span>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <Call className="bg-[#00334D] p-[4px] rounded-full" />
             <div>
-              <span className="block font-bold text-xs" style={{ color: '#00334D' }}>Call</span>
+              <span className="block font-bold text-xs" style={{ color: "#00334D" }}>
+                Call
+              </span>
               <span className="text-[#00334D] text-xs">+91 9539888001</span>
             </div>
           </div>
@@ -76,7 +81,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <nav className="flex items-center w-full" style={{ backgroundColor: '#00334D' }}>
+      <nav className="flex items-center w-full" style={{ backgroundColor: "#00334D" }}>
         <div className="flex w-full items-center justify-between px-4 sm:px-6 md:px-10">
           {/* Left Side Navigation */}
           <div className="hidden md:flex w-1/2 items-center justify-end space-x-4 lg:space-x-24">
@@ -94,13 +99,20 @@ const Navbar = () => {
               >
                 Services
                 <svg
-                  className={`w-4 h-4 ml-1 transform transition-transform ${isServicesOpen ? 'rotate-180' : 'rotate-0'}`}
+                  className={`w-4 h-4 ml-1 transform transition-transform ${
+                    isServicesOpen ? "rotate-180" : "rotate-0"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </motion.button>
               <AnimatePresence>
@@ -111,28 +123,55 @@ const Navbar = () => {
                     animate="visible"
                     exit="hidden"
                     className="absolute left-0 mt-2 rounded shadow-md min-w-[200px] z-10 bg-[#fcfcfc]"
+                    onMouseLeave={() => setIsServicesOpen(false)} // Close on mouse leave
                   >
                     <NavLink
                       to="/services/education"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
+                      onMouseEnter={() => setIsEducationHover(true)} // Open sub-menu on hover
                     >
-                     Education
+                      Education
                     </NavLink>
                     <NavLink
                       to="/services/documentation-assistance"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                     >
-                    Documentation Assistance
+                      Documentation Assistance
                     </NavLink>
                     <NavLink
                       to="/services/language-lab"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                     >
-                     Language Lab
+                      Language Lab
                     </NavLink>
+                    {isEducationHover && (
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        className="absolute left-full top-0 mt-[-8px] w-[200px] bg-[#fcfcfc] rounded shadow-md"
+                        onMouseLeave={() => setIsEducationHover(false)} // Close sub-menu on mouse leave
+                      >
+                        <NavLink
+                          to="/services/education/country"
+                          style={navLinkDropdownStyles}
+                          className="block px-4 py-2 hover:text-[#F9920A]"
+                        >
+                          Country
+                        </NavLink>
+                        <NavLink
+                          to="/services/eduacation/course"
+                          style={navLinkDropdownStyles}
+                          className="block px-4 py-2 hover:text-[#F9920A]"
+                        >
+                          Course
+                        </NavLink>
+                      </motion.div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -153,7 +192,7 @@ const Navbar = () => {
             <NavLink to="/testimonials" style={navLinkStyles} className="hover:text-[#F9920A]">
               Testimonials
             </NavLink>
-            <NavLink to="/blogs" style={navLinkStyles} className="hover:text-[#F9920A]"> {/* Fixed duplicate testimonials link */}
+            <NavLink to="/blogs" style={navLinkStyles} className="hover:text-[#F9920A]">
               Blogs
             </NavLink>
             <div className="flex items-center">
@@ -161,7 +200,7 @@ const Navbar = () => {
                 type="text"
                 placeholder="Search"
                 className="px-2 py-1.5 rounded-full border border-[#fcfcfc] focus:outline-none text-[#fcfcfc] placeholder-[#fcfcfc] placeholder:px-2 placeholder:text-sm text-sm sm:text-base"
-                style={{ backgroundColor: '#00334D' }}
+                style={{ backgroundColor: "#00334D" }}
               />
               <button className="text-[#fcfcfc] px-2 py-4 rounded-full relative right-12 hover:text-[#F9920A]">
                 <svg
@@ -171,7 +210,12 @@ const Navbar = () => {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
               </button>
             </div>
@@ -190,10 +234,10 @@ const Navbar = () => {
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="grid items-center justify-start space-y-4 p-4 text-gray-100 w-full md:hidden"
-            style={{ backgroundColor: '#00334D' }}
+            style={{ backgroundColor: "#00334D" }}
           >
             <NavLink
               to="/"
@@ -218,13 +262,20 @@ const Navbar = () => {
               >
                 Services
                 <svg
-                  className={`w-4 h-4 ml-1 transform transition-transform ${isServicesOpen ? 'rotate-180' : 'rotate-0'}`}
+                  className={`w-4 h-4 ml-1 transform transition-transform ${
+                    isServicesOpen ? "rotate-180" : "rotate-0"
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
               <AnimatePresence>
@@ -237,28 +288,28 @@ const Navbar = () => {
                     className="w-full ml-10 mt-2 rounded shadow-md bg-[#fcfcfc]"
                   >
                     <NavLink
-                      to="/services/1"
+                      to="/services/education"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                       onClick={toggleMenu}
                     >
-                      Service 1
+                      Education
                     </NavLink>
                     <NavLink
-                      to="/services/2"
+                      to="/services/documentation-assistance"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                       onClick={toggleMenu}
                     >
-                      Service 2
+                      Documentation Assistance
                     </NavLink>
                     <NavLink
-                      to="/services/3"
+                      to="/services/language-lab"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                       onClick={toggleMenu}
                     >
-                      Service 3
+                      Language Lab
                     </NavLink>
                   </motion.div>
                 )}
@@ -275,7 +326,7 @@ const Navbar = () => {
             <NavLink
               to="/blogs"
               style={navLinkStyles}
-              className="px-10 py-2 w-full text-left text-md hover:text-[#F9920A]"
+              className="block px-10 py-2 w-full text-left text-md hover:text-[#F9920A]"
               onClick={toggleMenu}
             >
               Blogs
