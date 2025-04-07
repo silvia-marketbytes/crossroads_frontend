@@ -250,7 +250,7 @@ const Country = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="">
       <Banner {...bannerProps} />
       <CountrySection />
       <ContactSection />
