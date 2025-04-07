@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/country/banner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
@@ -11,7 +12,6 @@ import ukFlag from "../../../../assets/country/UK.webp";
 import usaFlag from "../../../../assets/country/austria.webp";
 import netherlandsFlag from "../../../../assets/country/netherlands.webp";
 import swedenFlag from "../../../../assets/country/sweden.webp";
-
 import newZealandFlag from "../../../../assets/country/newzealand.webp";
 import switzerlandFlag from "../../../../assets/country/switzerland.webp";
 import finlandlandFlag from "../../../../assets/country/finland.webp";
@@ -38,23 +38,23 @@ const CountrySection = () => {
   const [cardsPerSlide, setCardsPerSlide] = useState(getCardsPerSlide());
 
   const countryData = [
-    { name: "France", flag: franceFlag, description: "Experience world-class education in France, home to prestigious universities and rich cultural heritage." },
-    { name: "Germany", flag: germanyFlag, description: "Study in Germany with tuition-free education at public universities. Excellent programs in engineering." },
-    { name: "Australia", flag: australiaFlag, description: "Australia offers high-quality education with globally recognized degrees." },
-    { name: "Canada", flag: canadaFlag, description: "Canada provides excellent post-study work opportunities with welcoming immigration policies." },
-    { name: "UK", flag: ukFlag, description: "The UK boasts some of the world's oldest universities with short-duration programs." },
-    { name: "USA", flag: usaFlag, description: "The United States has the largest number of top-ranked universities." },
-    { name: "Netherlands", flag: netherlandsFlag, description: "The Netherlands offers many English-taught programs with international classrooms." },
-    { name: "Sweden", flag: swedenFlag, description: "Sweden is known for its innovative education system and focus on sustainability." },
-    { name: "New Zealand", flag: newZealandFlag, description: "New Zealand offers safe study environments with accredited qualifications." },
-    { name: "Switzerland", flag: switzerlandFlag, description: "Switzerland is renowned for hospitality management programs." },
-    { name: "Finland", flag: finlandlandFlag, description: "Finland is known for its high-quality education and beautiful landscapes." },
-    { name: "Italy", flag: italyFlag, description: "Italy offers a rich cultural experience with renowned universities." },
-    { name: "Latvia", flag: latviaFlag, description: "Latvia provides affordable education with a mix of traditional and modern influences." },
-    { name: "Malta", flag: maltaFlag, description: "Malta offers a unique blend of cultures and high-quality education." },
-    { name: "Poland", flag: polandFlag, description: "Poland is known for its strong academic traditions and vibrant student life." },
-    { name: "Slovakia", flag: slovakiaFlag, description: "Slovakia offers a diverse range of study programs with a rich cultural heritage." },
-    { name: "Spain", flag: spainFlag, description: "Spain is famous for its vibrant culture and high-quality education." },
+    { name: "France", flag: franceFlag, description: "Experience world-class education in France, home to prestigious universities and rich cultural heritage.", path: "/france" },
+    { name: "Germany", flag: germanyFlag, description: "Study in Germany with tuition-free education at public universities. Excellent programs in engineering.", path: "/germany" },
+    { name: "Australia", flag: australiaFlag, description: "Australia offers high-quality education with globally recognized degrees.", path: "/australia" },
+    { name: "Canada", flag: canadaFlag, description: "Canada provides excellent post-study work opportunities with welcoming immigration policies.", path: "/canada" },
+    { name: "UK", flag: ukFlag, description: "The UK boasts some of the world's oldest universities with short-duration programs.", path: "/uk" },
+    { name: "USA", flag: usaFlag, description: "The United States has the largest number of top-ranked universities.", path: "/usa" },
+    { name: "Netherlands", flag: netherlandsFlag, description: "The Netherlands offers many English-taught programs with international classrooms.", path: "/netherlands" },
+    { name: "Sweden", flag: swedenFlag, description: "Sweden is known for its innovative education system and focus on sustainability.", path: "/sweden" },
+    { name: "New Zealand", flag: newZealandFlag, description: "New Zealand offers safe study environments with accredited qualifications.", path: "/new-zealand" },
+    { name: "Switzerland", flag: switzerlandFlag, description: "Switzerland is renowned for hospitality management programs.", path: "/switzerland" },
+    { name: "Finland", flag: finlandlandFlag, description: "Finland is known for its high-quality education and beautiful landscapes.", path: "/finland" },
+    { name: "Italy", flag: italyFlag, description: "Italy offers a rich cultural experience with renowned universities.", path: "/italy" },
+    { name: "Latvia", flag: latviaFlag, description: "Latvia provides affordable education with a mix of traditional and modern influences.", path: "/latvia" },
+    { name: "Malta", flag: maltaFlag, description: "Malta offers a unique blend of cultures and high-quality education.", path: "/malta" },
+    { name: "Poland", flag: polandFlag, description: "Poland is known for its strong academic traditions and vibrant student life.", path: "/poland" },
+    { name: "Slovakia", flag: slovakiaFlag, description: "Slovakia offers a diverse range of study programs with a rich cultural heritage.", path: "/slovakia" },
+    { name: "Spain", flag: spainFlag, description: "Spain is famous for its vibrant culture and high-quality education.", path: "/spain" },
   ];
 
   const totalSlides = Math.ceil(countryData.length / cardsPerSlide);
@@ -185,9 +185,9 @@ const CountrySection = () => {
                           </div>
                           <p className="text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-4">{country.description}</p>
                           <div className="mt-auto">
-                            <a href="#" className="text-[#F9920A] font-medium flex items-center hover:underline text-sm sm:text-base">
+                            <Link to={country.path} className="text-[#F9920A] font-medium flex items-center hover:underline text-sm sm:text-base">
                               Know more <span className="ml-2">→</span>
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -199,40 +199,39 @@ const CountrySection = () => {
         </div>
 
         <div className="flex justify-center mt-8 space-x-4">
-  <button
-    onClick={handlePrev}
-    disabled={currentIndex === 0 && !isForward}
-    className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
-    aria-label="Previous slide"
-  >
-    <svg
-      width="40" // Reduced width
-      height="40" // Reduced height
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-    >
-      <path d="M15 18l-6-6 6-6" />
-    </svg>
-  </button>
-  <button
-    onClick={handleNext}
-    disabled={currentIndex === totalSlides - 1 && isForward}
-    className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
-    aria-label="Next slide"
-  >
-    <svg
-      width="40" // Reduced width
-      height="40" // Reduced height
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-    >
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  </button>
-</div>
-
+          <button
+            onClick={handlePrev}
+            disabled={currentIndex === 0 && !isForward}
+            className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
+            aria-label="Previous slide"
+          >
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={currentIndex === totalSlides - 1 && isForward}
+            className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
+            aria-label="Next slide"
+          >
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -13,7 +13,8 @@ const Banner = ({
   showSocialMedia = false,
   date,
   time,
-  showApplyButton = false, // Enabled by default
+  showApplyButton = false,
+  buttonText = "Apply Now", // Default button text
 }) => {
   const handleCopyUrl = () => {
     const url = window.location.href;
@@ -41,11 +42,11 @@ const Banner = ({
   return (
     <header
       className={`relative w-full h-[350px] sm:h-[350px] md:h-[450px] lg:h-[450px] xl:h-[450px] flex items-center justify-center ${className}`}
-      style={{ 
-        backgroundImage: `url(${backgroundImage})`, 
-        backgroundSize: "cover", 
-        backgroundPosition: "center", 
-        backgroundRepeat: "no-repeat" 
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
       }}
     >
       <div className="absolute inset-0 -z-0 bg-gradient-to-r from-black via-black opacity-60"></div>
@@ -61,12 +62,12 @@ const Banner = ({
           />
         )}
         {showApplyButton && (
-          <div className="mt-6"> {/* Added margin-top for spacing */}
+          <div className="mt-6">
             <button
               className="bg-[#F9920A] hover:bg-[#e68209] text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F9920A] focus:ring-opacity-50 shadow-lg"
-              onClick={() => alert("Apply Now clicked!")}
+              onClick={() => alert(`${buttonText} clicked!`)}
             >
-              Apply Now
+              {buttonText}
             </button>
           </div>
         )}

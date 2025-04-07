@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services/UiComponents/DocumentationAssistance";
 import Languagelab from "./pages/Services/UiComponents/languagelab";
 import Country from "./pages/Services/UiComponents/country";
+import Germany from "./pages/Services/UiComponents/country/Redirected_country/germany";
  
 function App() {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ function App() {
           <Route path="/services/documentation-assistance" element={<Services />} />
           <Route path="/services/language-lab" element={<Languagelab />} />
           <Route path="/services/education/country" element={<Country/>} />
+          <Route path="/germany" element={<Germany/>} />
 
         </Route>
       </>
