@@ -44,10 +44,8 @@ const CountrySection = () => {
     { name: "Canada", flag: canadaFlag, description: "Canada provides excellent post-study work opportunities with welcoming immigration policies." },
     { name: "UK", flag: ukFlag, description: "The UK boasts some of the world's oldest universities with short-duration programs." },
     { name: "USA", flag: usaFlag, description: "The United States has the largest number of top-ranked universities." },
-    
     { name: "Netherlands", flag: netherlandsFlag, description: "The Netherlands offers many English-taught programs with international classrooms." },
     { name: "Sweden", flag: swedenFlag, description: "Sweden is known for its innovative education system and focus on sustainability." },
-    
     { name: "New Zealand", flag: newZealandFlag, description: "New Zealand offers safe study environments with accredited qualifications." },
     { name: "Switzerland", flag: switzerlandFlag, description: "Switzerland is renowned for hospitality management programs." },
     { name: "Finland", flag: finlandlandFlag, description: "Finland is known for its high-quality education and beautiful landscapes." },
@@ -101,7 +99,7 @@ const CountrySection = () => {
   };
 
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
@@ -146,8 +144,8 @@ const CountrySection = () => {
                         {/* Arrow SVG */}
                         <div className="absolute top-4 right-4 z-10">
                           <svg
-                            width="23"
-                            height="23"
+                            width="15"
+                            height="16"
                             viewBox="0 0 23 23"
                             fill="none"
                             className="transition-all duration-300 group-hover:fill-white fill-[#00334D] group-hover:rotate-180"
@@ -201,27 +199,40 @@ const CountrySection = () => {
         </div>
 
         <div className="flex justify-center mt-8 space-x-4">
-          <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0 && !isForward}
-            className="bg-[#00334D] text-white p-2 sm:p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
-            aria-label="Previous slide"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentIndex === totalSlides - 1 && isForward}
-            className="bg-[#00334D] text-white p-2 sm:p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
-            aria-label="Next slide"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        </div>
+  <button
+    onClick={handlePrev}
+    disabled={currentIndex === 0 && !isForward}
+    className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
+    aria-label="Previous slide"
+  >
+    <svg
+      width="40" // Reduced width
+      height="40" // Reduced height
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+    >
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  </button>
+  <button
+    onClick={handleNext}
+    disabled={currentIndex === totalSlides - 1 && isForward}
+    className="text-[#00334D] hover:text-[#F9920A] transition duration-300 disabled:opacity-50"
+    aria-label="Next slide"
+  >
+    <svg
+      width="40" // Reduced width
+      height="40" // Reduced height
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+    >
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  </button>
+</div>
+
       </div>
     </section>
   );
