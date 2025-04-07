@@ -2,174 +2,138 @@ import React, { useState, useEffect, useRef } from "react";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/country/banner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
+
 import franceFlag from "../../../../assets/country/france.webp";
 import germanyFlag from "../../../../assets/country/Germany.webp";
 import australiaFlag from "../../../../assets/country/Australia.webp";
+import canadaFlag from "../../../../assets/country/canada.webp";
+import ukFlag from "../../../../assets/country/UK.webp";
+import usaFlag from "../../../../assets/country/austria.webp";
+import netherlandsFlag from "../../../../assets/country/netherlands.webp";
+import swedenFlag from "../../../../assets/country/sweden.webp";
+
+import newZealandFlag from "../../../../assets/country/newzealand.webp";
+import switzerlandFlag from "../../../../assets/country/switzerland.webp";
+import finlandlandFlag from "../../../../assets/country/finland.webp";
+import italyFlag from "../../../../assets/country/italy.webp";
+import latviaFlag from "../../../../assets/country/latvia.webp";
+import maltaFlag from "../../../../assets/country/malta.webp";
+import polandFlag from "../../../../assets/country/poland.webp";
+import slovakiaFlag from "../../../../assets/country/slovakia.webp";
+import spainFlag from "../../../../assets/country/spain.webp";
 
 const CountrySection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const cardsPerSlide = 8;
+  const [isForward, setIsForward] = useState(true);
   const sliderRef = useRef(null);
 
+  const getCardsPerSlide = () => {
+    if (window.innerWidth < 640) return 2; // Mobile
+    if (window.innerWidth < 1024) return 4; // Tablet
+    return 8; // Desktop
+  };
+
+  const [cardsPerSlide, setCardsPerSlide] = useState(getCardsPerSlide());
+
   const countryData = [
-    { 
-      name: "France", 
-      flag: franceFlag, 
-      description: "Experience world-class education in France, home to prestigious universities and rich cultural heritage. Perfect for students pursuing arts, business, and engineering." 
-    },
-    { 
-      name: "Germany", 
-      flag: germanyFlag, 
-      description: "Study in Germany with tuition-free education at public universities. Excellent programs in engineering, technology, and sciences with strong industry connections." 
-    },
-    { 
-      name: "Australia", 
-      flag: australiaFlag, 
-      description: "Australia offers high-quality education with globally recognized degrees. Ideal for students interested in research, marine biology, and environmental sciences." 
-    },
-    { 
-      name: "Canada", 
-      flag: franceFlag, 
-      description: "Canada provides excellent post-study work opportunities with its welcoming immigration policies. Top choice for computer science and healthcare programs." 
-    },
-    { 
-      name: "UK", 
-      flag: germanyFlag, 
-      description: "The UK boasts some of the world's oldest universities with short-duration programs. Best for literature, law, and finance studies." 
-    },
-    { 
-      name: "USA", 
-      flag: australiaFlag, 
-      description: "The United States has the largest number of top-ranked universities offering flexible education systems and cutting-edge research facilities." 
-    },
-    { 
-      name: "Japan", 
-      flag: franceFlag, 
-      description: "Japan combines advanced technology with traditional culture. Excellent for robotics, automotive engineering, and East Asian studies." 
-    },
-    { 
-      name: "Netherlands", 
-      flag: germanyFlag, 
-      description: "The Netherlands offers many English-taught programs with a focus on practical learning and international classroom environments." 
-    },
-    { 
-      name: "Sweden", 
-      flag: australiaFlag, 
-      description: "Sweden is known for its innovative education system and focus on sustainability. Great for environmental engineering and design programs." 
-    },
-    { 
-      name: "Singapore", 
-      flag: franceFlag, 
-      description: "Singapore provides a global education hub with strong connections to Asian markets. Ideal for business and technology students." 
-    },
-    { 
-      name: "New Zealand", 
-      flag: germanyFlag, 
-      description: "New Zealand offers safe study environments with globally accredited qualifications and stunning natural landscapes." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
-    { 
-      name: "Switzerland", 
-      flag: australiaFlag, 
-      description: "Switzerland is renowned for hospitality management and international relations programs with multilingual learning opportunities." 
-    },
+    { name: "France", flag: franceFlag, description: "Experience world-class education in France, home to prestigious universities and rich cultural heritage." },
+    { name: "Germany", flag: germanyFlag, description: "Study in Germany with tuition-free education at public universities. Excellent programs in engineering." },
+    { name: "Australia", flag: australiaFlag, description: "Australia offers high-quality education with globally recognized degrees." },
+    { name: "Canada", flag: canadaFlag, description: "Canada provides excellent post-study work opportunities with welcoming immigration policies." },
+    { name: "UK", flag: ukFlag, description: "The UK boasts some of the world's oldest universities with short-duration programs." },
+    { name: "USA", flag: usaFlag, description: "The United States has the largest number of top-ranked universities." },
+    
+    { name: "Netherlands", flag: netherlandsFlag, description: "The Netherlands offers many English-taught programs with international classrooms." },
+    { name: "Sweden", flag: swedenFlag, description: "Sweden is known for its innovative education system and focus on sustainability." },
+    
+    { name: "New Zealand", flag: newZealandFlag, description: "New Zealand offers safe study environments with accredited qualifications." },
+    { name: "Switzerland", flag: switzerlandFlag, description: "Switzerland is renowned for hospitality management programs." },
+    { name: "Finland", flag: finlandlandFlag, description: "Finland is known for its high-quality education and beautiful landscapes." },
+    { name: "Italy", flag: italyFlag, description: "Italy offers a rich cultural experience with renowned universities." },
+    { name: "Latvia", flag: latviaFlag, description: "Latvia provides affordable education with a mix of traditional and modern influences." },
+    { name: "Malta", flag: maltaFlag, description: "Malta offers a unique blend of cultures and high-quality education." },
+    { name: "Poland", flag: polandFlag, description: "Poland is known for its strong academic traditions and vibrant student life." },
+    { name: "Slovakia", flag: slovakiaFlag, description: "Slovakia offers a diverse range of study programs with a rich cultural heritage." },
+    { name: "Spain", flag: spainFlag, description: "Spain is famous for its vibrant culture and high-quality education." },
   ];
 
   const totalSlides = Math.ceil(countryData.length / cardsPerSlide);
 
-  // Auto-scroll effect with 2 second interval
+  useEffect(() => {
+    const handleResize = () => setCardsPerSlide(getCardsPerSlide());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isPaused) {
-        setCurrentIndex(prev => (prev + 1) % totalSlides);
+        setCurrentIndex((prev) => {
+          if (isForward) {
+            if (prev === totalSlides - 1) {
+              setIsForward(false);
+              return prev - 1;
+            }
+            return prev + 1;
+          } else {
+            if (prev === 0) {
+              setIsForward(true);
+              return prev + 1;
+            }
+            return prev - 1;
+          }
+        });
       }
-    }, 3000);
-    
+    }, 2000);
     return () => clearInterval(interval);
-  }, [totalSlides, isPaused]);
+  }, [totalSlides, isPaused, isForward]);
 
   const handleNext = () => {
-    setCurrentIndex(prev => (prev + 1) % totalSlides);
+    setIsForward(true);
+    setCurrentIndex((prev) => Math.min(prev + 1, totalSlides - 1));
   };
 
   const handlePrev = () => {
-    setCurrentIndex(prev => (prev - 1 + totalSlides) % totalSlides);
+    setIsForward(false);
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   return (
-    <section 
-      className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"
-      ref={sliderRef}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
+    <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold mb-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
             <span className="text-[#00334D]">Know</span>
             <span className="text-[#F9920A]"> your destination</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Begin your academic journey in these welcoming study destinations. Explore top universities,
-            discover vibrant cultures, and unlock global career opportunities.
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+            Begin your academic journey in these welcoming study destinations.
           </p>
         </div>
 
-        {/* Country Cards Slider */}
         <div className="relative overflow-hidden">
-          <div 
+          <div
             className="flex transition-transform duration-500 ease-in-out"
-            style={{ 
-              width: `${totalSlides * 100}%`, 
+            style={{
+              width: `${totalSlides * 100}%`,
               transform: `translateX(-${currentIndex * (100 / totalSlides)}%)`,
-              willChange: 'transform'
             }}
           >
             {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-              <div 
-                key={slideIndex} 
+              <div
+                key={slideIndex}
                 className="w-full flex-shrink-0"
                 style={{ width: `${100 / totalSlides}%` }}
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 px-2">
                   {countryData
                     .slice(slideIndex * cardsPerSlide, (slideIndex + 1) * cardsPerSlide)
                     .map((country, index) => (
                       <div
                         key={`${slideIndex}-${index}`}
-                        className="relative h-80 bg-white rounded-xl shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-xl"
+                        className="relative h-64 sm:h-72 lg:h-80 bg-gray-100 rounded-xl shadow-lg overflow-hidden group transition-all duration-300"
                         onMouseEnter={() => {
                           setHoveredCard(slideIndex * cardsPerSlide + index);
                           setIsPaused(true);
@@ -179,31 +143,54 @@ const CountrySection = () => {
                           setIsPaused(false);
                         }}
                       >
+                        {/* Arrow SVG */}
+                        <div className="absolute top-4 right-4 z-10">
+                          <svg
+                            width="23"
+                            height="23"
+                            viewBox="0 0 23 23"
+                            fill="none"
+                            className="transition-all duration-300 group-hover:fill-white fill-[#00334D] group-hover:rotate-180"
+                          >
+                            <path d="M17.3249 22.9103L17.3458 6.13748L0.572996 6.15845L0.58507 1.00038L22.5343 0.949003L22.4829 22.8982L17.3249 22.9103Z" />
+                          </svg>
+                        </div>
+
                         {/* Default View */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 transition-all duration-300 group-hover:opacity-0 group-hover:scale-95">
+                        <div
+                          className={`absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ${
+                            hoveredCard === slideIndex * cardsPerSlide + index ? "opacity-0" : "opacity-100"
+                          }`}
+                        >
                           <img
                             src={country.flag}
                             alt={`${country.name} flag`}
-                            className="w-24 h-24 object-cover rounded-full mb-4 border-4 border-[#00334D]/10"
+                            className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-full mb-4 border-4 border-[#00334D]/10"
                             loading="lazy"
                           />
-                          <h3 className="text-2xl font-bold text-[#00334D]">{country.name}</h3>
+                          <h3 className="text-xl sm:text-2xl font-bold text-[#00334D]">{country.name}</h3>
                         </div>
 
                         {/* Hover View */}
-                        <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-b from-[#00334D]/95 to-[#00334D] text-white transition-all duration-300 ${hoveredCard === slideIndex * cardsPerSlide + index ? 'opacity-100' : 'opacity-0'}`}>
-                          <img
-                            src={country.flag}
-                            alt={`${country.name} flag`}
-                            className="w-16 h-16 object-cover rounded-full mb-3 border-2 border-white"
-                          />
-                          <h3 className="text-xl font-bold mb-2">{country.name}</h3>
-                          <p className="text-sm text-center mb-4 line-clamp-3 px-2">
-                            {country.description}
-                          </p>
-                          <button className="bg-[#F9920A] hover:bg-[#e68209] text-white font-medium px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F9920A] focus:ring-opacity-50">
-                            Read More
-                          </button>
+                        <div
+                          className={`absolute inset-0 flex flex-col p-4 sm:p-6 bg-[#00334D] text-white transition-opacity duration-300 ${
+                            hoveredCard === slideIndex * cardsPerSlide + index ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          <div className="flex items-center mb-4">
+                            <img
+                              src={country.flag}
+                              alt={`${country.name} flag`}
+                              className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full mr-2 sm:mr-3 border-2 border-white"
+                            />
+                            <h3 className="text-lg sm:text-xl font-bold">{country.name}</h3>
+                          </div>
+                          <p className="text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-4">{country.description}</p>
+                          <div className="mt-auto">
+                            <a href="#" className="text-[#F9920A] font-medium flex items-center hover:underline text-sm sm:text-base">
+                              Know more <span className="ml-2">→</span>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -213,43 +200,24 @@ const CountrySection = () => {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="flex justify-center mt-10 space-x-4">
+        <div className="flex justify-center mt-8 space-x-4">
           <button
             onClick={handlePrev}
-            disabled={currentIndex === 0}
-            className="bg-[#00334D] text-white p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
+            disabled={currentIndex === 0 && !isForward}
+            className="bg-[#00334D] text-white p-2 sm:p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
             aria-label="Previous slide"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
           <button
             onClick={handleNext}
-            disabled={currentIndex === totalSlides - 1}
-            className="bg-[#00334D] text-white p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
+            disabled={currentIndex === totalSlides - 1 && isForward}
+            className="bg-[#00334D] text-white p-2 sm:p-3 rounded-full hover:bg-[#F9920A] transition duration-300 disabled:opacity-50"
             aria-label="Next slide"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
@@ -263,10 +231,11 @@ const Country = () => {
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Choose.Apply.Study",
-    className: "bg-gradient-to-r from-black/10 via-black/5 to-transparent",
-    classNameTitle: "text-white text-4xl sm:text-5xl font-bold",
+    className: "",
+    classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
     showDateTime: false,
     showSocialMedia: false,
+    showApplyButton: true,
   };
 
   return (

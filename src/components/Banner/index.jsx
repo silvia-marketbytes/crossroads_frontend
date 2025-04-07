@@ -6,13 +6,14 @@ import SocialMedia from "../UiComponents/SocialMedia";
 const Banner = ({
   backgroundImage,
   title,
-  description = "", 
+  description = "",
   className = "",
   classNameTitle = "",
   showDateTime = false,
   showSocialMedia = false,
   date,
   time,
+  showApplyButton = false, // Enabled by default
 }) => {
   const handleCopyUrl = () => {
     const url = window.location.href;
@@ -40,10 +41,15 @@ const Banner = ({
   return (
     <header
       className={`relative w-full h-[350px] sm:h-[350px] md:h-[450px] lg:h-[450px] xl:h-[450px] flex items-center justify-center ${className}`}
-      style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+      style={{ 
+        backgroundImage: `url(${backgroundImage})`, 
+        backgroundSize: "cover", 
+        backgroundPosition: "center", 
+        backgroundRepeat: "no-repeat" 
+      }}
     >
       <div className="absolute inset-0 -z-0 bg-gradient-to-r from-black via-black opacity-60"></div>
-      <div className="z-10 text-center space-y-4">
+      <div className="z-10 text-center space-y-6">
         <h1
           className={`font-two text-xl md:text-3xl lg:text-5xl font-medium text-white mb-4 ${classNameTitle}`}
           dangerouslySetInnerHTML={{ __html: title || "" }}
@@ -53,6 +59,16 @@ const Banner = ({
             className="w-3/5 mx-auto font-one text-sm md:text-base lg:text-lg font-light text-white leading-relaxed"
             dangerouslySetInnerHTML={{ __html: description }}
           />
+        )}
+        {showApplyButton && (
+          <div className="mt-6"> {/* Added margin-top for spacing */}
+            <button
+              className="bg-[#F9920A] hover:bg-[#e68209] text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F9920A] focus:ring-opacity-50 shadow-lg"
+              onClick={() => alert("Apply Now clicked!")}
+            >
+              Apply Now
+            </button>
+          </div>
         )}
       </div>
 
