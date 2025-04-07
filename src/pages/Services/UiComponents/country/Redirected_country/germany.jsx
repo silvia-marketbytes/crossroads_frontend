@@ -82,10 +82,10 @@ const Germany = () => {
           <div className="mt-12">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
               {countryDetails.map((detail, index) => (
-                <div key={index} className="relative p-5 rounded-lg shadow-md text-center bg-gray-200">
+                <div key={index} className="relative p-5 rounded-lg shadow-md text-center bg-gray-100">
                   <h3 className="text-lg text-gray-600">{detail.label}</h3>
                   <p className="text-gray-800 font-bold mt-2">{detail.value}</p>
-                  <div className="absolute bottom-0 left-0 right-0 h-1" style={{ backgroundColor: "#F9920A" }}></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-2" style={{ backgroundColor: "#F9920A" }}></div>
                 </div>
               ))}
             </div>
@@ -95,18 +95,27 @@ const Germany = () => {
 
       {/* Why Choose Germany Section - Full Width with No Padding */}
       <section className="mt-16 w-full py-8">
-        <div className="flex flex-col lg:flex-row w-full" style={{ height: '100%' }}>
+        <div className="flex flex-col lg:flex-row w-full" style={{ height: "800px" }}>
           {/* Left Side - Full Blue Background */}
-          <div className="lg:w-1/2 flex-1" style={{ backgroundColor: "#00334D", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div className="p-6 ml-12 flex-1">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-white">
-                Why choose <span className="text-[#F9920A]">Germany</span>?
+          <div
+            className="lg:w-1/2"
+            style={{
+              backgroundColor: "#00334D",
+              height: "100%", // Matches parent height
+            }}
+          >
+            <div
+              className="p-6 ml-12 overflow-y-auto"
+              style={{ height: "100%" }} // Ensures content area matches container height
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-16 text-white">
+                Why choose <span className="text-[#F9920A]">Germany?</span>
               </h2>
               <p className="text-white mb-8">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
               </p>
 
-              <div className="space-y-4 flex-1">
+              <div className="space-y-4">
                 {dropdownSections.map((section, index) => (
                   <div key={index} className="rounded-lg overflow-hidden w-full">
                     <button
@@ -132,7 +141,9 @@ const Germany = () => {
                       </svg>
                       <span className="text-lg font-semibold text-[#F9920A]">{section.title}</span>
                       <svg
-                        className={`w-5 h-5 text-[#F9920A] transition-transform duration-300 ml-auto ${activeDropdown === index ? 'transform rotate-180' : ''}`}
+                        className={`w-5 h-5 text-[#F9920A] transition-transform duration-300 ml-auto ${
+                          activeDropdown === index ? "transform rotate-180" : ""
+                        }`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -141,7 +152,7 @@ const Germany = () => {
                       </svg>
                     </button>
                     {activeDropdown === index && (
-                      <div className="pt-2 pb-4 text-white" style={{ paddingLeft: '50px' }}> 
+                      <div className="pt-2 pb-4 text-white" style={{ paddingLeft: "50px" }}>
                         {section.content}
                       </div>
                     )}
@@ -152,13 +163,9 @@ const Germany = () => {
           </div>
 
           {/* Right Side - Image */}
-          <div className="lg:w-1/2 flex-1" style={{ display: 'flex', alignItems: 'center' }}>
-            <div className="h-full overflow-hidden flex-1">
-              <img
-                src={germanyImage}
-                alt="Study in Germany"
-                className="w-full h-full object-cover"
-              />
+          <div className="lg:w-1/2" style={{ height: "100%" }}>
+            <div className="h-full overflow-hidden">
+              <img src={germanyImage} alt="Study in Germany" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
