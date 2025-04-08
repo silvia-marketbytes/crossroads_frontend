@@ -95,9 +95,9 @@ const CoursesOffered = ({ title }) => {
   };
 
   return (
-    <section className="w-full py-12 bg-white text-center">
+    <section className="w-full py-20 bg-white text-center">
       <div className="w-full">
-        <h2 className="text-xl sm:text-3xl mb-8 font-semibold">
+        <h2 className="text-l sm:text-3xl mb-8 ">
           <span className="text-[#F9920A]">Courses</span>{" "}
           <span className="text-[#00334D]">offered</span>
         </h2>
@@ -125,7 +125,7 @@ const CoursesOffered = ({ title }) => {
                   </div>
                 ))}
               </Slider>
-              <div className="mt-6 flex justify-center space-x-4">
+              <div className="mt-20 flex justify-center space-x-4">
                 <button
                   onClick={goToPrev}
                   className="text-2xl text-[#00334D] cursor-pointer hover:text-[#F9920A] transition-colors"
