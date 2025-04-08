@@ -111,23 +111,23 @@ const Germany = () => {
         </div>
       </section>
 
-
-      <section className="mt-16 w-full py-8 relative">
+      {/* Why Choose Germany Section - Full Width with No Padding */}
+      <section className="mt-16 w-full py-16 relative">
         <div
           className="flex flex-col lg:flex-row w-full"
           style={{ height: "800px" }}
         >
-          
+          {/* Left Side - Full Blue Background */}
           <div
             className="lg:w-1/2"
             style={{
               backgroundColor: "#00334D",
-              height: "100%", 
+              height: "100%",
             }}
           >
             <div
-              className="p-6 ml-12"
-              style={{ height: "100%" }} 
+              className="p-6 ml-12 overflow-hidden"
+              style={{ height: "100%" }}
             >
               <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-16 text-white">
                 Why choose <span className="text-[#F9920A]">Germany?</span>
@@ -295,6 +295,24 @@ const Germany = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* New Virtual Assistance Section */}
+      <section className="w-full pt-12 pb-12 bg-[#00334D] text-center" style={{ minHeight: "250px" }}>
+        <div className="mx-auto max-w-6xl flex flex-col items-center justify-center h-full">
+          <h2 className="text-2xl sm:text-2xl mb-4">
+            <span className="text-[#F9920A]">Virtual Assistance</span>{" "}
+            <span className="text-white">for Your Study Abroad Journey</span>
+          </h2>
+          <p className="text-white text-base sm:text-lg mx-auto max-w-2xl text-center mb-6">
+            If you can't come to our office, we can come to you virtually! Get
+            expert counselling services from the comfort of your home or
+            anywhere you are.
+          </p>
+          <button className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors">
+            Enquire now
+          </button>
         </div>
       </section>
 
