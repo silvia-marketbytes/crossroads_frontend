@@ -8,7 +8,7 @@ import logo from "/src/assets/logo.png";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isEducationHover, setIsEducationHover] = useState(false); // Changed to hover state
+  const [isEducationHover, setIsEducationHover] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -93,7 +93,8 @@ const Navbar = () => {
             </NavLink>
             <div className="relative">
               <motion.button
-                onClick={toggleServices}
+                onMouseEnter={() => setIsServicesOpen(true)} // Open on hover
+                onMouseLeave={() => setIsServicesOpen(false)} // Close on leave
                 className="text-[#fcfcfc] text-sm font-normal flex items-center hover:text-[#F9920A]"
                 whileTap={{ scale: 0.95 }}
               >
@@ -122,14 +123,16 @@ const Navbar = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="absolute left-0 mt-2 rounded shadow-md min-w-[200px] z-10 bg-[#fcfcfc]"
-                    onMouseLeave={() => setIsServicesOpen(false)} // Close on mouse leave
+                    className="absolute left-0 mt-2 rounded shadow-md w-[200px] z-10 bg-[#fcfcfc]" // Fixed width
+                    onMouseEnter={() => setIsServicesOpen(true)} // Keep open on hover
+                    onMouseLeave={() => setIsServicesOpen(false)} // Close on leave
                   >
                     <NavLink
                       to="/services/education"
                       style={navLinkDropdownStyles}
                       className="block px-4 py-2 hover:text-[#F9920A]"
                       onMouseEnter={() => setIsEducationHover(true)} // Open sub-menu on hover
+                      onMouseLeave={() => setIsEducationHover(false)} // Close sub-menu on leave
                     >
                       Education
                     </NavLink>
@@ -153,8 +156,9 @@ const Navbar = () => {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="absolute left-full top-0 mt-[-8px] w-[200px] bg-[#fcfcfc] rounded shadow-md"
-                        onMouseLeave={() => setIsEducationHover(false)} // Close sub-menu on mouse leave
+                        className="absolute left-full top-0 mt-0 w-[200px] bg-[#fcfcfc] rounded shadow-md" // Fixed width, aligned with parent
+                        onMouseEnter={() => setIsEducationHover(true)} // Keep open on hover
+                        onMouseLeave={() => setIsEducationHover(false)} // Close on leave
                       >
                         <NavLink
                           to="/services/education/country"
@@ -164,7 +168,7 @@ const Navbar = () => {
                           Country
                         </NavLink>
                         <NavLink
-                          to="/services/eduacation/course"
+                          to="/services/education/course"
                           style={navLinkDropdownStyles}
                           className="block px-4 py-2 hover:text-[#F9920A]"
                         >
