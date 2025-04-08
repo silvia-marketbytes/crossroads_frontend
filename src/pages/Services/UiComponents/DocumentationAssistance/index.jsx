@@ -8,7 +8,7 @@ import docSlide3 from "../../../../assets/Services/slide3.webp";
 import docSlide4 from "../../../../assets/Services/slide4.webp";
 import travelImage from "../../../../assets/Services/slide5.webp";
 import bannerImg from "../../../../assets/Services/banner png.webp";
-import Banner from "../../../../components/Banner"; // Keep the import
+import Banner from "../../../../components/Banner"; 
 
 const ContactSection = lazy(() => import("../../../Home/UiComponents/ContactSection"));
 
@@ -87,18 +87,15 @@ const Services = () => {
 
       <section className="py-6 sm:py-8 lg:py-12 px-10 sm:px-12 lg:px-16 flex justify-center">
         <div className="w-full">
-          <p
-            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
-            style={{ textAlign: 'justify' }}
-          >
+          <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed" style={{ textAlign: 'justify' }}>
             We provide comprehensive Travel & Documentation Assistance to ensure a smooth and hassle-free experience. From certificate attestation and visa document preparation to certified translations and appointment scheduling, our expert team handles every detail with efficiency and accuracy. Additionally, we offer reliable travel support, including transportation, accommodation, and essential guidance, ensuring a safe and stress-free journey. With our dedicated services, students and professionals can confidently navigate their travel and documentation needs with ease.
           </p>
         </div>
       </section>
 
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
-        <div className="w-full flex flex-col md:flex-row md:h-[600px] lg:h-[700px]">
-          <div className="w-full md:w-1/2 h-full bg-gray-100 relative flex flex-col">
+        <div className="w-full flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 bg-gray-100 flex flex-col">
             <div className="bg-white flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 py-4 sm:py-6">
               <button
                 className={`w-full sm:w-48 md:w-56 lg:w-64 h-12 rounded-full border font-medium transition-colors duration-300 ${
@@ -129,26 +126,26 @@ const Services = () => {
               </button>
             </div>
 
-            <div className="p-4 sm:p-6 lg:p-8 rounded-lg flex-1 flex flex-col justify-center">
+            <div className="flex-1 flex flex-col justify-start">
               {activeTab === 1 ? (
                 <Slider ref={sliderRef} {...sliderSettings}>
                   {documentationItems.map((item) => (
-                    <div key={item.id} className="p-2 sm:p-4">
-                      <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 text-[#00334D]">
+                    <div key={item.id} className="px-4">
+                      <h2 className="text-lg sm:text-xl lg:text-2xl font-bold pt-13 mb-2 text-[#00334D]">
                         {item.title}
                       </h2>
-                      <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
+                      <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[400px]" style={{ textAlign: 'justify' }}>
                         {item.description}
                       </p>
                     </div>
                   ))}
                 </Slider>
               ) : (
-                <div className="p-2 sm:p-4 pt-0 sm:pt-2">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 text-[#00334D]">
+                <div className="px-4">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold pt-13 mb-2 text-[#00334D]">
                     {selectedItem.title}
                   </h2>
-                  <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
+                  <p className="text-sm sm:text-base lg:text-base leading-relaxed text-[#00334D] overflow-y-auto max-h-[400px]" style={{ textAlign: 'justify' }}>
                     {selectedItem.description}
                   </p>
                 </div>
@@ -197,12 +194,12 @@ const Services = () => {
             )}
           </div>
 
-          <div className="w-full md:w-1/2 h-[300px] md:h-full flex flex-col justify-end">
-            <div className="bg-white rounded-lg flex items-center justify-center h-full">
+          <div className="w-full md:w-1/2 flex flex-col justify-center">
+            <div className="bg-white flex items-center justify-center h-full">
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
-                className="max-w-full h-auto rounded-lg object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

@@ -1,16 +1,15 @@
-// src/pages/NewsEvents/UiComponents/NewsEventsSection/index.jsx
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import NewsCard from '../../../../components/UiComponents/NewsCard';
 
-// Import images from src/assets/News using relative paths
+
 import news1 from '/src/assets/News/News1.png';
 import news2 from '/src/assets/News/News2.png';
 import news3 from '/src/assets/News/News3.png';
 import news4 from '/src/assets/News/News4.png';
 import news5 from '/src/assets/News/News3.png';
 
-// Import icons for custom arrows
+
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const newsData = [
@@ -47,7 +46,7 @@ const newsData = [
 ];
 
 const NewsEventsSection = () => {
-  const sliderRef = useRef(null); // Create a ref to control the slider
+  const sliderRef = useRef(null);
 
   const sliderSettings = {
     dots: false,
@@ -55,10 +54,10 @@ const NewsEventsSection = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false, // Disable default arrows
+    arrows: false, 
     responsive: [
       {
-        breakpoint: 768, // Mobile
+        breakpoint: 768, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -67,7 +66,7 @@ const NewsEventsSection = () => {
     ],
   };
 
-  // Functions to handle custom arrow clicks
+
   const goToPrev = () => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
@@ -82,11 +81,11 @@ const NewsEventsSection = () => {
 
   return (
     <section className="py-10 px-4 md:px-20 bg-white">
-      {/* Header (Centered) */}
+  
       <div className="mb-8 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold">
-          <span style={{ color: '#00334D' }}>NEWS & </span> {/* Blue for "NEWS &" */}
-          <span style={{ color: '#F9920A' }}>EVENTS</span> {/* Orange for "EVENTS" */}
+          <span style={{ color: '#00334D' }}>NEWS & </span> 
+          <span style={{ color: '#F9920A' }}>EVENTS</span> 
         </h2>
         <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
           We are a team of seasoned professionals who provide comprehensive
@@ -95,7 +94,7 @@ const NewsEventsSection = () => {
         </p>
       </div>
 
-      {/* Slider (with custom arrows) */}
+      
       <div className="bottom-arrows">
         {newsData.length > 0 ? (
           <>
@@ -110,11 +109,11 @@ const NewsEventsSection = () => {
                 </div>
               ))}
             </Slider>
-            {/* Custom Arrows */}
+            
             <div className="custom-arrows flex justify-center mt-4">
               <button
                 className="custom-prev transition-all duration-300"
-                style={{ color: '#00334D' }} // Blue for arrow
+                style={{ color: '#00334D' }} 
                 onClick={goToPrev}
                 aria-label="Previous Slide"
               >
@@ -122,8 +121,7 @@ const NewsEventsSection = () => {
               </button>
               <button
                 className="custom-next transition-all duration-300"
-                style={{ color: '#00334D' }} // Blue for arrow
-                onClick={goToNext}
+                style={{ color: '#00334D' }} 
                 aria-label="Next Slide"
               >
                 <FaChevronRight size={24} />

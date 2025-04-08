@@ -1,15 +1,13 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-// Placeholder images
 import medicalStudentsImg from "../../../../assets/medical-students.png";
 import placeholderImg from "../../../../assets/medical-students.png";
 
 const MBBSSection = () => {
   const sliderRef = useRef(null);
 
-  // Carousel settings
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -17,18 +15,18 @@ const MBBSSection = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    adaptiveHeight: true, // Allow height to adjust dynamically
+    adaptiveHeight: true, 
     autoplay: true,
-    autoplaySpeed: 3000, // Changed to 3 seconds for better readability
+    autoplaySpeed: 3000, 
     responsive: [
       {
-        breakpoint: 1024, // Tablet
+        breakpoint: 1024,
         settings: {
           adaptiveHeight: true,
         },
       },
       {
-        breakpoint: 768, // Mobile
+        breakpoint: 768,
         settings: {
           adaptiveHeight: true,
         },
@@ -36,7 +34,7 @@ const MBBSSection = () => {
     ],
   };
 
-  // Data for the carousel cards
+  
   const cardsData = [
     {
       imageSrc: medicalStudentsImg,
@@ -54,7 +52,7 @@ const MBBSSection = () => {
     },
   ];
 
-  // Functions to control the carousel
+  
   const goToPrev = () => {
     sliderRef.current?.slickPrev();
   };
@@ -66,12 +64,12 @@ const MBBSSection = () => {
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-white flex items-center min-h-[auto] md:min-h-[600px]">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        {/* Carousel */}
+      
         <Slider ref={sliderRef} {...sliderSettings}>
           {cardsData.map((card, index) => (
             <div key={index} className="px-2">
               <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[500px] lg:h-[600px] bg-white rounded-lg overflow-hidden mx-auto max-w-[90rem]">
-                {/* Left Side: Image */}
+               
                 <div className="w-full md:w-1/2 h-[200px] sm:h-[300px] md:h-full">
                   <img
                     src={card.imageSrc}
