@@ -111,23 +111,23 @@ const Germany = () => {
         </div>
       </section>
 
-      {/* Why Choose Germany Section - Full Width with No Padding */}
+
       <section className="mt-16 w-full py-8 relative">
         <div
           className="flex flex-col lg:flex-row w-full"
           style={{ height: "800px" }}
         >
-          {/* Left Side - Full Blue Background */}
+          
           <div
             className="lg:w-1/2"
             style={{
               backgroundColor: "#00334D",
-              height: "100%", // Matches parent height
+              height: "100%", 
             }}
           >
             <div
-              className="p-6 ml-12 overflow-y-auto"
-              style={{ height: "100%" }} // Ensures content area matches container height
+              className="p-6 ml-12"
+              style={{ height: "100%" }} 
             >
               <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-16 text-white">
                 Why choose <span className="text-[#F9920A]">Germany?</span>
@@ -139,13 +139,12 @@ const Germany = () => {
 
               <div className="space-y-4">
                 {dropdownSections.map((section, index) => (
-                  <div
-                    key={index}
-                    className="rounded-lg overflow-hidden w-full"
-                  >
+                  <div key={index} className="w-full">
                     <button
                       onClick={() => toggleDropdown(index)}
-                      className="w-full text-left p-4 flex items-center"
+                      className={`w-full text-left p-4 flex items-center ${
+                        activeDropdown === index ? "bg-gray-800 rounded-t-lg" : ""
+                      }`}
                     >
                       <svg
                         width="20"
@@ -185,10 +184,14 @@ const Germany = () => {
                     </button>
                     {activeDropdown === index && (
                       <div
-                        className="pt-2 pb-4 text-white"
-                        style={{ paddingLeft: "50px" }}
+                        className="bg-gray-800 rounded-b-lg hover:text-white transition-colors duration-200"
+                        style={{
+                          paddingLeft: "50px",
+                          paddingRight: "20px",
+                          paddingBottom: "16px",
+                        }}
                       >
-                        {section.content}
+                        <p className="text-gray-200">{section.content}</p>
                       </div>
                     )}
                   </div>
@@ -207,7 +210,6 @@ const Germany = () => {
               />
             </div>
 
-           
             {/* Intake Section Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-transparent">
               <div className="bg-[#00334D]/30 p-6 w-[500px] rounded-lg shadow-md border border-white/20">
@@ -235,7 +237,6 @@ const Germany = () => {
                     </div>
                     <label className="text-white">Winter-Sept/Oct</label>
                   </div>
-                    
 
                   {/* Summer Intake - Checked */}
                   <div className="flex items-start">
@@ -299,7 +300,7 @@ const Germany = () => {
 
       <ContactSection />
     </div>
-  )
+  );
 };
 
 export default Germany;
