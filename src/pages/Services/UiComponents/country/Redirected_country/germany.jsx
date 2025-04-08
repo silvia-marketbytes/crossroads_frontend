@@ -3,6 +3,7 @@ import Banner from "../../../../../components/Banner";
 import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
 import germanyImage from "../../../../../assets/country/germany-education.webp";
+import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
 
 const Germany = () => {
   const bannerProps = {
@@ -22,7 +23,6 @@ const Germany = () => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
-  // Country data
   const countryDetails = [
     { label: "Capital", value: "Berlin" },
     { label: "Population", value: "83 Million" },
@@ -72,6 +72,34 @@ const Germany = () => {
     "Additional intakes (Feb/May/June) at some private universities.",
   ];
 
+  const courses = [
+    {
+      image: "https://via.placeholder.com/150",
+      title: "Nursing",
+      description: "Lorem ipsum is simply dummy text of the printing.",
+    },
+    {
+      image: "https://via.placeholder.com/150",
+      title: "Ausbildung",
+      description: "Lorem ipsum is simply dummy text of the printing.",
+    },
+    {
+      image: "https://via.placeholder.com/150",
+      title: "Bachelor's",
+      description: "Lorem ipsum is simply dummy text of the printing.",
+    },
+    {
+      image: "https://via.placeholder.com/150",
+      title: "Masters",
+      description: "Lorem ipsum is simply dummy text of the printing.",
+    },
+    {
+      image: "https://via.placeholder.com/150",
+      title: "Health Programs",
+      description: "Lorem ipsum is simply dummy text of the printing.",
+    },
+  ];
+
   return (
     <div className="">
       <Banner {...bannerProps} />
@@ -90,9 +118,8 @@ const Germany = () => {
             </p>
           </div>
 
-          {/* Country Details Section */}
           <div className="mt-12">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {countryDetails.map((detail, index) => (
                 <div
                   key={index}
@@ -111,7 +138,6 @@ const Germany = () => {
         </div>
       </section>
 
-      {/* Why Choose Germany Section - Full Width with No Padding */}
       <section className="mt-16 w-full py-16 relative">
         <div
           className="flex flex-col lg:flex-row w-full"
@@ -119,7 +145,7 @@ const Germany = () => {
         >
           {/* Left Side - Full Blue Background */}
           <div
-            className="lg:w-1/2"
+            className="lg:w-1/2 w-full"
             style={{
               backgroundColor: "#00334D",
               height: "100%",
@@ -143,7 +169,9 @@ const Germany = () => {
                     <button
                       onClick={() => toggleDropdown(index)}
                       className={`w-full text-left p-4 flex items-center ${
-                        activeDropdown === index ? "bg-gray-800 rounded-t-lg" : ""
+                        activeDropdown === index
+                          ? "bg-gray-800 rounded-t-lg"
+                          : ""
                       }`}
                     >
                       <svg
@@ -201,7 +229,7 @@ const Germany = () => {
           </div>
 
           {/* Right Side - Image */}
-          <div className="lg:w-1/2 relative" style={{ height: "100%" }}>
+          <div className="lg:w-1/2 w-full relative" style={{ height: "100%" }}>
             <div className="h-full overflow-hidden">
               <img
                 src={germanyImage}
@@ -210,82 +238,33 @@ const Germany = () => {
               />
             </div>
 
-            {/* Intake Section Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-              <div className="bg-[#00334D]/30 p-6 w-[500px] rounded-lg shadow-md border border-white/20">
+              <div className="bg-[#00334D]/30 p-6 w-full max-w-md rounded-lg shadow-md border border-white/20">
                 <h2 className="text-xl font-bold mb-4 text-white">Intake</h2>
                 <div className="space-y-3">
-                  {/* Winter Intake - checked */}
-                  <div className="flex items-start">
-                    <div className="mr-3 mt-1 flex-shrink-0">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle cx="10" cy="10" r="10" fill="white" />
-                        <path
-                          d="M6 10L9 13L14 8"
-                          stroke="#00334D"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                  {intakes.map((intake, index) => (
+                    <div key={index} className="flex items-start">
+                      <div className="mr-3 mt-1 flex-shrink-0">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle cx="10" cy="10" r="10" fill="white" />
+                          <path
+                            d="M6 10L9 13L14 8"
+                            stroke="#00334D"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <label className="text-white">{intake}</label>
                     </div>
-                    <label className="text-white">Winter-Sept/Oct</label>
-                  </div>
-
-                  {/* Summer Intake - Checked */}
-                  <div className="flex items-start">
-                    <div className="mr-3 mt-1 flex-shrink-0">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle cx="10" cy="10" r="10" fill="white" />
-                        <path
-                          d="M6 10L9 13L14 8"
-                          stroke="#00334D"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <label className="text-white">Summer-March/April</label>
-                  </div>
-
-                  {/* Additional Intakes - Checked */}
-                  <div className="flex items-start">
-                    <div className="mr-3 mt-1 flex-shrink-0">
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle cx="10" cy="10" r="10" fill="white" />
-                        <path
-                          d="M6 10L9 13L14 8"
-                          stroke="#00334D"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <label className="text-white">
-                      Additional intakes (Feb/May/June) at some private
-                      universities.
-                    </label>
-                  </div>
+                  ))}
                 </div>
                 <div className="mt-4">
                   <button className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors">
@@ -298,10 +277,12 @@ const Germany = () => {
         </div>
       </section>
 
-      {/* New Virtual Assistance Section */}
-      <section className="w-full pt-12 pb-12 bg-[#00334D] text-center" style={{ minHeight: "250px" }}>
+      <section
+        className="w-full pt-12 pb-12 bg-[#00334D] text-center"
+        style={{ minHeight: "250px" }}
+      >
         <div className="mx-auto max-w-6xl flex flex-col items-center justify-center h-full">
-          <h2 className="text-2xl sm:text-2xl mb-4">
+          <h2 className="text-2xl sm:text-3xl mb-4">
             <span className="text-[#F9920A]">Virtual Assistance</span>{" "}
             <span className="text-white">for Your Study Abroad Journey</span>
           </h2>
@@ -315,6 +296,8 @@ const Germany = () => {
           </button>
         </div>
       </section>
+
+      <CoursesOffered title="Courses offered" courses={courses} />
 
       <ContactSection />
     </div>
