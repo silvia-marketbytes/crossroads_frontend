@@ -88,14 +88,14 @@ const Banner = ({
             <div className="container mx-auto border border-white m-12">
               <div className="grid grid-cols-1 md:grid-cols-4 divide-x divide-white">
                 {counterData.map((item, index) => (
-                  <div key={index} className="px-12 py-4 text-center"> {/* Increased padding for width */}
-                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-4"> {/* Larger text size */}
+                  <div key={index} className="px-12 py-4 text-center"> 
+                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
                       {item.number}
                     </h3>
-                    <p className="text-lg md:text-xl text-white font-medium"> {/* Larger text size */}
+                    <p className="text-lg md:text-xl text-white font-medium"> 
                       {item.text}
                     </p>
-                    <p className="text-base md:text-lg text-white mt-4 opacity-80"> {/* Larger text size and margin */}
+                    <p className="text-base md:text-lg text-white mt-4 opacity-80"> 
                       {item.description}
                     </p>
                   </div>
@@ -142,20 +142,20 @@ const Banner = ({
         </div>
       </header>
 
-      {/* Below Banner Counter Section (optional) */}
+      
       {showCounter && counterPosition === "below" && (
         <div className="bg-white py-8 px-4 border-t border-white">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 divide-x divide-white">
               {counterData.map((item, index) => (
                 <div key={index} className="px-12 py-6 text-center"> 
-                  <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4"> {/* Larger text size */}
+                  <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                     {item.number}
                   </h3>
-                  <p className="text-lg md:text-xl text-gray-600 font-medium"> {/* Larger text size */}
+                  <p className="text-lg md:text-xl text-gray-600 font-medium"> 
                     {item.text}
                   </p>
-                  <p className="text-base md:text-lg text-gray-500 mt-4"> {/* Larger text size and margin */}
+                  <p className="text-base md:text-lg text-gray-500 mt-4"> 
                     {item.description}
                   </p>
                 </div>

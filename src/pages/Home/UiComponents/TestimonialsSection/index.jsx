@@ -3,16 +3,16 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Card from "/src/components/uicomponents/TestimonialCards/index";
 
-// Import images and videos (replace with actual paths)
+
 import student1 from "/src/assets/Students/Student1.png";
 import student2 from "/src/assets/Students/Student2.png";
 import video1 from "/src/assets/Students/Videos/Video1.mp4";
 import video2 from "/src/assets/Students/Videos/Video2.mp4";
 
-// Import flag images (replace with actual paths)
-import flag1 from "/src/assets/Flags/austria.png"; // Austria
-import flag2 from "/src/assets/Flags/germany.png"; // Germany
-import flag3 from "/src/assets/Flags/italy.png"; // Italy
+
+import flag1 from "/src/assets/Flags/austria.png"; 
+import flag2 from "/src/assets/Flags/germany.png"; 
+import flag3 from "/src/assets/Flags/italy.png";
 
 const testimonialsData = [
   {

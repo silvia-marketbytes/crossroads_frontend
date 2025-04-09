@@ -2,7 +2,9 @@ import React, { Suspense } from "react";
 import Banner from "../../components/Banner";
 import bannerImg from "../../assets/aboutus/aboutbg.webp";
 import ContactSection from "../../pages/Home/UiComponents/ContactSection";
-
+import CoursesOffered from "../../components/UiComponents/CoursesOffered"
+import NewsEventsSection from "../Home/UiComponents/NewsEventsSection"
+import TestimonialsSection from "../Home/UiComponents/TestimonialsSection"
 
 const Aboutus = () => {
   const bannerProps = {
@@ -13,8 +15,8 @@ const Aboutus = () => {
     backgroundPosition:"center",
     showDateTime: false,
     showSocialMedia: false,
-    showCounter: true, // Enable the counter overlay
-    counterPosition: "overlay", // Position the counter as overlay
+    showCounter: true,
+    counterPosition: "overlay", 
   };
 
   return (
@@ -22,11 +24,20 @@ const Aboutus = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Banner {...bannerProps} />
       </Suspense>
-
-      {/* Other content */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <CoursesOffered/>
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewsEventsSection/>
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <TestimonialsSection/>
+      </Suspense>
+      
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
+      
 
       
     </div>
