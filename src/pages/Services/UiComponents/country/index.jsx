@@ -4,8 +4,6 @@ import Slider from "react-slick";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/country/banner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
-
-// Import country flags
 import franceFlag from "../../../../assets/country/france.webp";
 import germanyFlag from "../../../../assets/country/Germany.webp";
 import australiaFlag from "../../../../assets/country/Australia.webp";
@@ -24,7 +22,7 @@ import polandFlag from "../../../../assets/country/poland.webp";
 import slovakiaFlag from "../../../../assets/country/slovakia.webp";
 import spainFlag from "../../../../assets/country/spain.webp";
 
-// Import icons for custom arrows
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const countryData = [
@@ -33,118 +31,118 @@ const countryData = [
     flag: franceFlag,
     description:
       "Experience world-class education in France, home to prestigious universities and rich cultural heritage.",
-    path: "/france",
+    path: "/services/education/country/france",
   },
   {
     name: "Germany",
     flag: germanyFlag,
     description:
       "Study in Germany with tuition-free education at public universities. Excellent programs in engineering.",
-    path: "/germany",
+    path: "/services/education/country/germany",
   },
   {
     name: "Australia",
     flag: australiaFlag,
     description:
       "Australia offers high-quality education with globally recognized degrees.",
-    path: "/australia",
+    path: "/services/education/country/australia",
   },
   {
     name: "Canada",
     flag: canadaFlag,
     description:
       "Canada provides excellent post-study work opportunities with welcoming immigration policies.",
-    path: "/canada",
+    path: "/services/education/country/canada",
   },
   {
     name: "UK",
     flag: ukFlag,
     description:
       "The UK boasts some of the world's oldest universities with short-duration programs.",
-    path: "/uk",
+    path: "/services/education/country/uk",
   },
   {
     name: "USA",
     flag: usaFlag,
     description:
       "The United States has the largest number of top-ranked universities.",
-    path: "/usa",
+    path: "/services/education/country/usa",
   },
   {
     name: "Netherlands",
     flag: netherlandsFlag,
     description:
       "The Netherlands offers many English-taught programs with international classrooms.",
-    path: "/netherlands",
+    path: "/services/education/country/netherlands",
   },
   {
     name: "Sweden",
     flag: swedenFlag,
     description:
       "Sweden is known for its innovative education system and focus on sustainability.",
-    path: "/sweden",
+    path: "/services/education/country/sweden",
   },
   {
     name: "New Zealand",
     flag: newZealandFlag,
     description:
       "New Zealand offers safe study environments with accredited qualifications.",
-    path: "/new-zealand",
+    path: "/services/education/country/new-zealand",
   },
   {
     name: "Switzerland",
     flag: switzerlandFlag,
     description: "Switzerland is renowned for hospitality management programs.",
-    path: "/switzerland",
+    path: "/services/education/country/switzerland",
   },
   {
     name: "Finland",
     flag: finlandFlag,
     description:
       "Finland is known for its high-quality education and beautiful landscapes.",
-    path: "/finland",
+    path: "/services/education/country/finland",
   },
   {
     name: "Italy",
     flag: italyFlag,
     description:
       "Italy offers a rich cultural experience with renowned universities.",
-    path: "/italy",
+    path: "/services/education/country/italy",
   },
   {
     name: "Latvia",
     flag: latviaFlag,
     description:
       "Latvia provides affordable education with a mix of traditional and modern influences.",
-    path: "/latvia",
+    path: "/services/education/country/latvia",
   },
   {
     name: "Malta",
     flag: maltaFlag,
     description:
       "Malta offers a unique blend of cultures and high-quality education.",
-    path: "/malta",
+    path: "/services/education/country/malta",
   },
   {
     name: "Poland",
     flag: polandFlag,
     description:
       "Poland is known for its strong academic traditions and vibrant student life.",
-    path: "/poland",
+    path: "/services/education/country/poland",
   },
   {
     name: "Slovakia",
     flag: slovakiaFlag,
     description:
       "Slovakia offers a diverse range of study programs with a rich cultural heritage.",
-    path: "/slovakia",
+    path: "/services/education/country/slovakia",
   },
   {
     name: "Spain",
     flag: spainFlag,
     description:
       "Spain is famous for its vibrant culture and high-quality education.",
-    path: "/spain",
+    path: "/services/education/country/spain",
   },
 ];
 

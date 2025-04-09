@@ -83,18 +83,18 @@ const Navbar = () => {
 
       <nav className="flex items-center w-full" style={{ backgroundColor: "#00334D" }}>
         <div className="flex w-full items-center justify-between px-4 sm:px-6 md:px-10">
-          {/* Left Side Navigation */}
+          
           <div className="hidden md:flex w-1/2 items-center justify-end space-x-4 lg:space-x-24">
             <NavLink to="/" style={navLinkStyles} className="hover:text-[#F9920A]">
               Home
             </NavLink>
-            <NavLink to="/about" style={navLinkStyles} className="hover:text-[#F9920A]">
+            <NavLink to="/Aboutus" style={navLinkStyles} className="hover:text-[#F9920A]">
               About Us
             </NavLink>
             <div className="relative">
               <motion.button
-                onMouseEnter={() => setIsServicesOpen(true)} // Open on hover
-                onMouseLeave={() => setIsServicesOpen(false)} // Close on leave
+                onMouseEnter={() => setIsServicesOpen(true)} 
+                onMouseLeave={() => setIsServicesOpen(false)} 
                 className="text-[#fcfcfc] text-sm font-normal flex items-center hover:text-[#F9920A]"
                 whileTap={{ scale: 0.95 }}
               >
@@ -123,19 +123,17 @@ const Navbar = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="absolute left-0 mt-2 rounded shadow-md w-[200px] z-10 bg-[#fcfcfc]" // Fixed width
-                    onMouseEnter={() => setIsServicesOpen(true)} // Keep open on hover
-                    onMouseLeave={() => setIsServicesOpen(false)} // Close on leave
+                    className="absolute left-0 mt-2 shadow-md w-[200px] z-10 bg-[#fcfcfc]"
+                    onMouseEnter={() => setIsServicesOpen(true)} 
+                    onMouseLeave={() => setIsServicesOpen(false)} 
                   >
-                    <NavLink
-                      to="/services/education"
-                      style={navLinkDropdownStyles}
-                      className="block px-4 py-2 hover:text-[#F9920A]"
-                      onMouseEnter={() => setIsEducationHover(true)} // Open sub-menu on hover
-                      onMouseLeave={() => setIsEducationHover(false)} // Close sub-menu on leave
+                    <button 
+                      onMouseEnter={() => setIsEducationHover(true)}
+                      onMouseLeave={() => setIsEducationHover(false)} 
+                      className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] w-full text-left"
                     >
                       Education
-                    </NavLink>
+                    </button>
                     <NavLink
                       to="/services/documentation-assistance"
                       style={navLinkDropdownStyles}
@@ -156,9 +154,9 @@ const Navbar = () => {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="absolute left-full top-0 mt-0 w-[200px] bg-[#fcfcfc] rounded shadow-md" // Fixed width, aligned with parent
-                        onMouseEnter={() => setIsEducationHover(true)} // Keep open on hover
-                        onMouseLeave={() => setIsEducationHover(false)} // Close on leave
+                        className="absolute left-full top-0 mt-0 w-[200px] bg-[#fcfcfc] shadow-md" 
+                        onMouseEnter={() => setIsEducationHover(true)} 
+                        onMouseLeave={() => setIsEducationHover(false)} 
                       >
                         <NavLink
                           to="/services/education/country"
@@ -182,7 +180,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Logo */}
+          
           <div className="w-1/3 flex justify-center">
             <img
               src={logo}
@@ -191,7 +189,7 @@ const Navbar = () => {
             />
           </div>
 
-          {/* Right Side Navigation */}
+          
           <div className="hidden md:flex w-1/2 items-center justify-start space-x-4 lg:space-x-22">
             <NavLink to="/testimonials" style={navLinkStyles} className="hover:text-[#F9920A]">
               Testimonials
@@ -233,7 +231,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -252,7 +250,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/about"
+              to="/Aboutus"
               style={navLinkStyles}
               className="px-10 py-2 w-full text-left text-md hover:text-[#F9920A]"
               onClick={toggleMenu}
@@ -289,16 +287,14 @@ const Navbar = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="w-full ml-10 mt-2 rounded shadow-md bg-[#fcfcfc]"
+                    className="w-full ml-10 mt-2 shadow-md bg-[#fcfcfc]" 
                   >
-                    <NavLink
-                      to="/services/education"
-                      style={navLinkDropdownStyles}
-                      className="block px-4 py-2 hover:text-[#F9920A]"
-                      onClick={toggleMenu}
+                    <button 
+                      onClick={() => setIsEducationHover(!isEducationHover)} 
+                      className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] w-full text-left"
                     >
                       Education
-                    </NavLink>
+                    </button>
                     <NavLink
                       to="/services/documentation-assistance"
                       style={navLinkDropdownStyles}
@@ -315,6 +311,32 @@ const Navbar = () => {
                     >
                       Language Lab
                     </NavLink>
+                    {isEducationHover && (
+                      <motion.div
+                        variants={dropdownVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        className="ml-10 mt-2 w-[200px] bg-[#fcfcfc] shadow-md"
+                      >
+                        <NavLink
+                          to="/services/education/country"
+                          style={navLinkDropdownStyles}
+                          className="block px-4 py-2 hover:text-[#F9920A]"
+                          onClick={toggleMenu}
+                        >
+                          Country
+                        </NavLink>
+                        <NavLink
+                          to="/services/education/course"
+                          style={navLinkDropdownStyles}
+                          className="block px-4 py-2 hover:text-[#F9920A]"
+                          onClick={toggleMenu}
+                        >
+                          Course
+                        </NavLink>
+                      </motion.div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

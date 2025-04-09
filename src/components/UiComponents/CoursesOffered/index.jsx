@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-// Import images
 import course1 from "../../../assets/Courses/ausbilung.webp";
 import course2 from "../../../assets/courses/Bachelors.webp";
 import course3 from "../../../assets/courses/Masters.webp";
@@ -48,7 +46,7 @@ const CoursesOffered = ({ title }) => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 1000,
     rtl: true,
     responsive: [
       {

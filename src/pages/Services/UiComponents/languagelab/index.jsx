@@ -2,8 +2,7 @@ import React, { useState, Suspense, lazy } from "react";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/Services/languagelabbanner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
-
-
+import rightSectionBg from "../../../../assets/Services/language-lab-bg.webp";
 
 const languageLabItems = [
   {
@@ -16,7 +15,7 @@ const languageLabItems = [
     id: 2,
     title: "IELTS - The International English Language Testing System",
     description:
-      "The IELTS is the world’s most recognized English language proficiency test, essential for non-native speakers seeking higher education or migration opportunities in English-speaking countries. IELTS is widely accepted by academic institutions and employers across the globe as valid proof of English proficiency. With two main versions—IELTS Academic and IELTS General Training—this test ensures that candidates are well-prepared for the linguistic demands of a globalized world.",
+      "The IELTS is the world's most recognized English language proficiency test, essential for non-native speakers seeking higher education or migration opportunities in English-speaking countries. IELTS is widely accepted by academic institutions and employers across the globe as valid proof of English proficiency. With two main versions—IELTS Academic and IELTS General Training—this test ensures that candidates are well-prepared for the linguistic demands of a globalized world.",
   },
   {
     id: 3,
@@ -28,7 +27,7 @@ const languageLabItems = [
     id: 4,
     title: "PTE - Pearson Test of English",
     description:
-      "The PTE is a computer-based academic English language test ideal for non-native English speakers planning to study abroad. PTE offers a range of tests each designed to assess proficiency in reading, writing, listening, and speaking. These scenario-based exams provide a comprehensive evaluation of English language skills. PTE’s rigorous assessment is recognized by universities and employers worldwide, making it a valuable credential for students seeking international opportunities.",
+      "The PTE is a computer-based academic English language test ideal for non-native English speakers planning to study abroad. PTE offers a range of tests each designed to assess proficiency in reading, writing, listening, and speaking. These scenario-based exams provide a comprehensive evaluation of English language skills. PTE's rigorous assessment is recognized by universities and employers worldwide, making it a value credential for students seeking international opportunities.",
   },
 ];
 
@@ -52,13 +51,13 @@ const Languagelab = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className="py-6 sm:py-8 lg:py-12 px-10 sm:px-12 lg:px-16 flex justify-center">
+      <section className="py-6 sm:py-8 lg:py-12 sm:px-12 lg:px-25 flex justify-center">
         <div className="w-full">
           <p
             className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
             style={{ textAlign: "justify" }}
           >
-            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communities. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
+            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communauties. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
           </p>
         </div>
       </section>
@@ -91,20 +90,41 @@ const Languagelab = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col bg-gray-100 rounded-xl overflow-hidden">
-            <div className="p-4 sm:p-6 lg:p-8 flex-1 flex flex-col justify-start overflow-y-auto">
+          <div 
+            className="w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col rounded-xl overflow-hidden"
+            style={{
+              backgroundImage: `url(${rightSectionBg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="p-4 flex-1 flex flex-col justify-between overflow-y-auto mx-10 my-10 bg-[#00334D]/70 border border-white/20"> 
               {selectedItem ? (
-                <>
-                  <h2 className="text-xl sm:text-2xl lg:text-[32px] font-bold mb-2 sm:mb-3 lg:mb-4 text-[#00334D] font-poppins">
-                    {selectedItem.title}
-                  </h2>
-                  <p className="text-xs sm:text-sm lg:text-lg leading-relaxed text-gray-700">
-                    {selectedItem.description}
-                  </p>
-                </>
+                <div>
+                  <div className="mb-6">
+                    <h2 
+                      className="font-semibold text-white font-['Poppins'] mb-4"
+                      style={{ fontSize: '30px' }}
+                    >
+                      {selectedItem.title}
+                    </h2>
+                    <p 
+                      className=" mt-5 leading-relaxed text-white font-['Poppins']"
+                      style={{ fontSize: '15px' }}
+                    >
+                      {selectedItem.description}
+                    </p>
+                  </div>
+                  <button 
+                    className="bg-[#F9920A] text-white mt-8 px-6 py-2 rounded-full font-medium hover:bg-[#F9920A] transition-colors duration-300"
+                  >
+                    Enquire Now
+                  </button>
+                </div>
               ) : (
                 <div className="flex items-center justify-center h-full">
-                  <p className="text-gray-500 text-xs sm:text-sm lg:text-base">
+                  <p className="text-white text-sm">
                     Select a language test to view details
                   </p>
                 </div>

@@ -22,6 +22,7 @@ import Malta from "./pages/Services/UiComponents/country/Redirected_country/malt
 import Poland from "./pages/Services/UiComponents/country/Redirected_country/poland";
 import Slovakia from "./pages/Services/UiComponents/country/Redirected_country/slovakia";
 import Spain from "./pages/Services/UiComponents/country/Redirected_country/spain";
+import Aboutus from "./pages/Aboutus";
  
 function App() {
   const router = createBrowserRouter(
@@ -32,26 +33,27 @@ function App() {
           element={<Layout />}
         >
           <Route index element={<Home />} />
+          <Route path="/Aboutus" element={<Aboutus />} />
           <Route path="/services/documentation-assistance" element={<Services />} />
           <Route path="/services/language-lab" element={<Languagelab />} />
           <Route path="/services/education/country" element={<Country/>} />
-          <Route path="/germany" element={<Germany/>} />
-          <Route path="/france" element={<France/>} />
-          <Route path="/australia" element={<Australia/>} />
-          <Route path="/canada" element={<Canada/>} />
-          <Route path="/uk" element={<Uk/>} />
-          <Route path="/usa" element={<USA/>} />
-          <Route path="/netherlands" element={<Netherlands/>} />
-          <Route path="/new-zealand" element={<NewZealand/>} />
-          <Route path="/switzerland" element={<Switzerland/>} />
-          <Route path="/finland" element={<Finland/>} />
-          <Route path="/sweden" element={<Sweden/>} />
-          <Route path="/italy" element={<Italy/>} />
-          <Route path="/latvia" element={<Latvia/>} />
-          <Route path="/malta" element={<Malta/>} />
-          <Route path="/poland" element={<Poland/>} />
-          <Route path="/slovakia" element={<Slovakia/>} />
-          <Route path="/spain" element={<Spain/>} />
+          <Route path="/services/education/country/germany" element={<Germany/>} />
+          <Route path="/services/education/country/france" element={<France/>} />
+          <Route path="/services/education/country/australia" element={<Australia/>} />
+          <Route path="/services/education/country/canada" element={<Canada/>} />
+          <Route path="/services/education/country/uk" element={<Uk/>} />
+          <Route path="/services/education/country/usa" element={<USA/>} />
+          <Route path="/services/education/country/netherlands" element={<Netherlands/>} />
+          <Route path="/services/education/country/new-zealand" element={<NewZealand/>} />
+          <Route path="/services/education/country/switzerland" element={<Switzerland/>} />
+          <Route path="/services/education/country/finland" element={<Finland/>} />
+          <Route path="/services/education/country/sweden" element={<Sweden/>} />
+          <Route path="/services/education/country/italy" element={<Italy/>} />
+          <Route path="/services/education/country/latvia" element={<Latvia/>} />
+          <Route path="/services/education/country/malta" element={<Malta/>} />
+          <Route path="/services/education/country/poland" element={<Poland/>} />
+          <Route path="/services/education/country/slovakia" element={<Slovakia/>} />
+          <Route path="/services/education/country/spain" element={<Spain/>} />
 
 
         </Route>
