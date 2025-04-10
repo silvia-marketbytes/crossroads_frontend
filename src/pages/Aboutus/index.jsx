@@ -54,23 +54,63 @@ const AboutMission = () => {
 };
 
 const VisionMissionSection = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+
   return (
     <div className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20">
       <div className="relative w-full md:w-1/2 h-[600px]">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="189.524" height="189.524" viewBox="0 0 189.524 189.524">
-  <g id="play" opacity="0.46">
-    <g id="Group_564" data-name="Group 564">
-      <path id="Path_6387" data-name="Path 6387" d="M94.762,180.048A85.286,85.286,0,1,0,9.476,94.762,85.286,85.286,0,0,0,94.762,180.048Zm0,9.476A94.762,94.762,0,1,0,0,94.762,94.763,94.763,0,0,0,94.762,189.524Z" fill="#fff" fill-rule="evenodd"/>
-    </g>
-    <g id="Group_565" data-name="Group 565">
-      <path id="Path_6388" data-name="Path 6388" d="M119.386,94.762,75.809,65.711v58.1Zm8.8-5.519a6.633,6.633,0,0,1,0,11.039L76.645,134.646a6.634,6.634,0,0,1-10.313-5.52V60.4A6.633,6.633,0,0,1,76.645,54.88Z" fill="#fff" fill-rule="evenodd"/>
-    </g>
-  </g>
-</svg>
-
-      </div>
-        <img src={leftImage} className="w-full h-auto object-cover" alt="Students in discussion" />
+        {!isPlaying && (
+          <div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+            onClick={handlePlayClick}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="189.524"
+              height="189.524"
+              viewBox="0 0 189.524 189.524"
+            >
+              <g id="play" opacity="0.46">
+                <g id="Group_564" data-name="Group 564">
+                  <path
+                    id="Path_6387"
+                    data-name="Path 6387"
+                    d="M94.762,180.048A85.286,85.286,0,1,0,9.476,94.762,85.286,85.286,0,0,0,94.762,180.048Zm0,9.476A94.762,94.762,0,1,0,0,94.762,94.763,94.763,0,0,0,94.762,189.524Z"
+                    fill="#fff"
+                    fillRule="evenodd"
+                  />
+                </g>
+                <g id="Group_565" data-name="Group 565">
+                  <path
+                    id="Path_6388"
+                    data-name="Path 6388"
+                    d="M119.386,94.762,75.809,65.711v58.1Zm8.8-5.519a6.633,6.633,0,0,1,0,11.039L76.645,134.646a6.634,6.634,0,0,1-10.313-5.52V60.4A6.633,6.633,0,0,1,76.645,54.88Z"
+                    fill="#fff"
+                    fillRule="evenodd"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+        )}
+        {isPlaying ? (
+          <video
+            src={videoFile}
+            controls
+            autoPlay
+            className="w-full h-auto object-cover"
+          />
+        ) : (
+          <img
+            src={leftImage}
+            className="w-full h-auto object-cover"
+            alt="Students in discussion"
+          />
+        )}
       </div>
       <div className="w-full md:w-1/2 flex flex-col justify-center bg-gray-100">
         <div className="flex flex-col md:flex-row">
@@ -103,6 +143,7 @@ const VisionMissionSection = () => {
     </div>
   );
 };
+
 
 const Aboutus = () => {
   const bannerProps = {
@@ -191,7 +232,7 @@ const Aboutus = () => {
 
       <section className=" bg-white text-center">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-0">
+          <h2 className="text-4xl md:text-5xl font-semibold mt-10">
             <span style={{ color: "#00334D" }}>At </span>
             <span style={{ color: "#F9920A" }}>Crossroads</span>
           </h2>
