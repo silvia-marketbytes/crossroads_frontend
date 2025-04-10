@@ -69,14 +69,14 @@ const TestimonialsSection = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024, // Tablet
+        breakpoint: 1024, 
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 768, // Mobile
+        breakpoint: 768, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -94,7 +94,7 @@ const TestimonialsSection = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 768, // Mobile
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -116,7 +116,6 @@ const TestimonialsSection = () => {
   return (
     <section className="py-6 sm:py-10 px-4 bg-white">
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mb-8 sm:mb-16">
           <div className="bg-white p-4 sm:p-8 text-center md:text-end rounded-lg shadow-[4px_4px_10px_0px_rgba(0,0,0,0.1)] w-full">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-blue-950">
@@ -131,10 +130,7 @@ const TestimonialsSection = () => {
             </p>
           </div>
         </div>
-
-        {/* Carousel Section */}
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 items-start">
-          {/* Testimonials Carousel */}
           <div className="w-full lg:w-2/3">
             {testimonialsData.length > 0 ? (
               <Slider ref={testimonialSliderRef} {...testimonialSliderSettings}>
@@ -148,8 +144,6 @@ const TestimonialsSection = () => {
               </div>
             )}
           </div>
-
-          {/* Video Carousel */}
           <div className="w-full lg:w-1/3 mt-4 lg:mt-0">
             {videosData.length > 0 ? (
               <Slider ref={videoSliderRef} {...videoSliderSettings}>
@@ -164,8 +158,6 @@ const TestimonialsSection = () => {
             )}
           </div>
         </div>
-
-        {/* Navigation Arrows */}
         <div className="flex justify-center mt-4 space-x-4">
           <button
             className="text-blue-950 hover:text-orange-500 transition-all duration-300"
@@ -186,5 +178,4 @@ const TestimonialsSection = () => {
     </section>
   );
 };
-
 export default TestimonialsSection;
