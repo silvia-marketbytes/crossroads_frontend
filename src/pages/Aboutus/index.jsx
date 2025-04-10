@@ -10,7 +10,7 @@ import rightSideImg from "../../assets/aboutus/about_whychooseus.webp";
 // Reusable TickSVG component with smaller, fixed size
 const TickSVG = () => (
   <svg
-    className="w-6 h-6 text-[#F9920A] mr-2 inline-block shrink-0"
+    className="w-6 h-6 text-[#F9920A] mr-2 inline-block shrink-0" // Changed to 24px x 24px
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ const Aboutus = () => {
       </Suspense>
 
       <section className="py-12 bg-white text-center">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-semibold mb-0">
             <span style={{ color: "#00334D" }}>At </span>
             <span style={{ color: "#F9920A" }}>Crossroads</span>
@@ -137,7 +137,7 @@ const Aboutus = () => {
       <section className="py-12 bg-white">
         <div className="relative mx-auto px-4 md:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full h-full">
-            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left p-6 md:pl-20 md:pr-10">
+            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left pl-40 pr-20">
               <h2 className="text-3xl md:text-4xl font-semibold mb-4">
                 <span>Why </span>
                 <span style={{ color: "#F9920A" }}>Crossroads?</span>
