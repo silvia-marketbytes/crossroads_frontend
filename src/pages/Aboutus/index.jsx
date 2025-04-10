@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { Suspense, useRef, useEffect, useState } from "react";
 import Banner from "../../components/Banner";
 import bannerImg from "../../assets/aboutus/aboutbg.webp";
 import ContactSection from "../../pages/Home/UiComponents/ContactSection";
@@ -6,11 +6,15 @@ import CoursesOffered from "../../components/UiComponents/CoursesOffered";
 import NewsEventsSection from "../Home/UiComponents/NewsEventsSection";
 import TestimonialsSection from "../Home/UiComponents/TestimonialsSection";
 import rightSideImg from "../../assets/aboutus/about_whychooseus.webp";
+import visionImage from "../../assets/aboutus/ourvision.webp";
+import missionImage from "../../assets/aboutus/ourmision.webp";
+import videoFile from "../../assets/aboutus/dummyvideo.mp4";
+import videoThumbnail from "../../assets/aboutus/videothumpnail.webp";
+import leftImage from "../../assets/aboutus/videothumpnail.webp";
 
-// Reusable TickSVG component with smaller, fixed size
 const TickSVG = () => (
   <svg
-    className="w-6 h-6 text-[#F9920A] mr-2 inline-block shrink-0" // Changed to 24px x 24px
+    className="w-6 h-6 text-[#F9920A] mr-2 inline-block shrink-0"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +29,80 @@ const TickSVG = () => (
     />
   </svg>
 );
+
+const AboutMission = () => {
+  return (
+    <section className=" bg-white text-center">
+      <div className="container mx-auto">
+        <p className="text-lg md:text-xl text-gray-600 max-w-7xl mx-auto">
+          At Crossroads, we’ve been passionately committed to shaping the
+          futures of students since our establishment in 2008. With over a
+          decade of experience, we’ve remained steadfast in our mission to
+          provide quality education that acknowledges the unique potential of
+          each student, empowering them to achieve their dreams. Our team is
+          dedicated to staying ahead of the curve, consistently offering the
+          latest and most promising educational opportunities in partnership
+          with our esteemed associates. We recognize that every student is
+          unique, with individual strengths and aspirations. At Crossroads, we
+          tailor our guidance to help each student unlock their full potential
+          and pursue their ambitions through carefully selected courses in
+          prestigious institutions around the world.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+const VisionMissionSection = () => {
+  return (
+    <div className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20">
+      <div className="relative w-full md:w-1/2 h-[600px]">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="189.524" height="189.524" viewBox="0 0 189.524 189.524">
+  <g id="play" opacity="0.46">
+    <g id="Group_564" data-name="Group 564">
+      <path id="Path_6387" data-name="Path 6387" d="M94.762,180.048A85.286,85.286,0,1,0,9.476,94.762,85.286,85.286,0,0,0,94.762,180.048Zm0,9.476A94.762,94.762,0,1,0,0,94.762,94.763,94.763,0,0,0,94.762,189.524Z" fill="#fff" fill-rule="evenodd"/>
+    </g>
+    <g id="Group_565" data-name="Group 565">
+      <path id="Path_6388" data-name="Path 6388" d="M119.386,94.762,75.809,65.711v58.1Zm8.8-5.519a6.633,6.633,0,0,1,0,11.039L76.645,134.646a6.634,6.634,0,0,1-10.313-5.52V60.4A6.633,6.633,0,0,1,76.645,54.88Z" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>
+
+      </div>
+        <img src={leftImage} className="w-full h-auto object-cover" alt="Students in discussion" />
+      </div>
+      <div className="w-full md:w-1/2 flex flex-col justify-center bg-gray-100">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/2 text-center md:text-center flex flex-col items-center justify-center p-4">
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
+              Our Vision
+            </h3>
+            <p className="text-lg text-gray-600">
+              To be a world leader in empowering students to achieve their academic and career aspirations by providing unparalleled guidance and access to world-class education opportunities across the globe.
+            </p>
+          </div>
+          <div className="md:w-1/2">
+            <img src={visionImage} className="w-full h-auto" alt="Graduation ceremony" />
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/2">
+            <img src={missionImage} className="w-full h-auto" alt="Students together" />
+          </div>
+          <div className="md:w-1/2 text-center md:text-center flex flex-col items-center justify-center p-4">
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
+              Our Mission
+            </h3>
+            <p className="text-lg text-gray-600">
+              Our mission is to inspire and support students in their pursuit of international education, offering personalized guidance, comprehensive & dedicated services, thereby ensuring they are well-prepared for success in a globalized world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Aboutus = () => {
   const bannerProps = {
@@ -46,7 +124,7 @@ const Aboutus = () => {
     {
       heading: "Wide Range of Courses:",
       description:
-        "Explore a diverse selection of programs, including MBBS, Bachelor’s, Master’s, and Diplomas across various fields such as Nursing, Engineering, and Management, available in multiple countries.",
+        "Explore a diverse selection of programs, including MBBS, Bachelor's, Master's, and Diplomas across various fields such as Nursing, Engineering, and Management, available in multiple countries.",
     },
     {
       heading: "Global Study Destinations",
@@ -111,7 +189,7 @@ const Aboutus = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className="py-12 bg-white text-center">
+      <section className=" bg-white text-center">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-semibold mb-0">
             <span style={{ color: "#00334D" }}>At </span>
@@ -190,6 +268,9 @@ const Aboutus = () => {
           </div>
         </div>
       </section>
+
+      <AboutMission />
+      <VisionMissionSection />
 
       <Suspense fallback={<div>Loading...</div>}>
         <CoursesOffered />
