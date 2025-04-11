@@ -342,7 +342,7 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
             <NavLink
-              to="/testimonials"
+              to="/Testimonials"
               style={navLinkStyles}
               className="px-10 py-2 w-full text-left text-md hover:text-[#F9920A]"
               onClick={toggleMenu}
