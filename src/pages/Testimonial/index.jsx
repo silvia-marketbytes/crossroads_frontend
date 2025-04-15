@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
 import bannerImg from "../../assets/testimonials/our_sucess_story.webp";
@@ -11,14 +11,14 @@ import flag2 from "../../assets/Flags/germany.png";
 import flag3 from "../../assets/Flags/italy.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-// Testimonials Data (unchanged)
 const TESTIMONIALS_DATA = [
   {
     imageSrc: student1,
     name: "Anjali Krishnan",
     flag: flag1,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     type: "image",
   },
   {
@@ -26,7 +26,8 @@ const TESTIMONIALS_DATA = [
     name: "Harikumar V.",
     flag: flag2,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
     type: "image",
   },
   {
@@ -34,7 +35,8 @@ const TESTIMONIALS_DATA = [
     name: "Priya Sharma",
     flag: flag3,
     rating: 4,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software.",
     type: "image",
   },
   {
@@ -42,7 +44,8 @@ const TESTIMONIALS_DATA = [
     name: "Rahul Patel",
     flag: flag1,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.",
     type: "image",
   },
   {
@@ -50,7 +53,8 @@ const TESTIMONIALS_DATA = [
     name: "Sneha Gupta",
     flag: flag2,
     rating: 4,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
     type: "image",
   },
   {
@@ -58,7 +62,8 @@ const TESTIMONIALS_DATA = [
     name: "Amit Singh",
     flag: flag3,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.",
     type: "image",
   },
   {
@@ -66,7 +71,8 @@ const TESTIMONIALS_DATA = [
     name: "Vikram Rao",
     flag: flag1,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
     type: "image",
   },
   {
@@ -74,19 +80,20 @@ const TESTIMONIALS_DATA = [
     name: "Neha Verma",
     flag: flag2,
     rating: 4,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
     type: "image",
   },
 ];
 
-// Video Testimonials Data (unchanged)
 const VIDEO_TESTIMONIALS = [
   {
     videoSrc: video1,
     name: "Divya Ajith",
     flag: flag3,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
     type: "video",
   },
   {
@@ -94,7 +101,8 @@ const VIDEO_TESTIMONIALS = [
     name: "Rohan Mehta",
     flag: flag1,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
     type: "video",
   },
   {
@@ -102,7 +110,8 @@ const VIDEO_TESTIMONIALS = [
     name: "Ananya Nair",
     flag: flag2,
     rating: 4,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.",
     type: "video",
   },
   {
@@ -110,7 +119,8 @@ const VIDEO_TESTIMONIALS = [
     name: "Kiran Desai",
     flag: flag3,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     type: "video",
   },
   {
@@ -118,7 +128,8 @@ const VIDEO_TESTIMONIALS = [
     name: "Meera Kapoor",
     flag: flag1,
     rating: 4,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "It has survived not only five centuries, but also the leap into electronic typesetting.",
     type: "video",
   },
   {
@@ -126,103 +137,99 @@ const VIDEO_TESTIMONIALS = [
     name: "Arjun Reddy",
     flag: flag2,
     rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    type: "video",
-  },
-  {
-    videoSrc: video2,
-    name: "Arjun Reddy",
-    flag: flag2,
-    rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    type: "video",
-  },
-  {
-    videoSrc: video2,
-    name: "Arjun Reddy",
-    flag: flag2,
-    rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    type: "video",
-  },
-  {
-    videoSrc: video2,
-    name: "Arjun Reddy",
-    flag: flag2,
-    rating: 5,
-    description: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description:
+      "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets.",
     type: "video",
   },
 ];
 
 const TestimonialCard = ({ item }) => {
-    return (
-      <div className="w-full h-[450px] bg-white overflow-hidden flex flex-col shadow-md rounded-lg hover:bg-gray-100 transition-colors duration-300">
-        {item.type === "image" ? (
-          <img
-            src={item.imageSrc}
-            alt={item.name}
-            className="w-full h-[250px] object-cover object-top"
-          />
-        ) : (
-          <video
-            src={item.videoSrc}
-            controls
-            className="w-full h-[250px] object-cover"
-          />
-        )}
-        <div className="flex flex-col p-4">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="text-xl font-semibold text-gray-800">{item.name}</h3>
-            <div className="flex items-center space-x-2">
-              <div className="text-yellow-500 text-lg">
-                {"★".repeat(item.rating)}
-                {"☆".repeat(5 - item.rating)}
-              </div>
-              <img src={item.flag} alt="Country flag" className="w-5 h-5" />
+  return (
+    <div className="w-[90%] h-[450px] sm:h-[500px] lg:h-[550px] bg-white overflow-hidden flex flex-col shadow-md rounded-lg hover:bg-gray-100 transition-colors duration-300 mx-auto">
+      {item.type === "image" ? (
+        <img
+          src={item.imageSrc}
+          alt={item.name}
+          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover object-top"
+        />
+      ) : (
+        <video
+          src={item.videoSrc}
+          controls
+          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover"
+        />
+      )}
+      <div className="flex flex-col p-4 flex-grow">
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-800">
+            {item.name}
+          </h3>
+          <div className="flex items-center space-x-2">
+            <div className="text-yellow-500 text-sm sm:text-base lg:text-lg">
+              {"★".repeat(item.rating)}
+              {"☆".repeat(5 - item.rating)}
             </div>
-          </div>
-          <div className="h-[120px] overflow-y-auto text-sm text-gray-600 pr-1 scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-100 custom-scrollbar">
-            <p>{item.description}</p>
+            <img src={item.flag} alt="Country flag" className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
         </div>
+        <div className="h-[110px] sm:h-[120px] lg:h-[140px] overflow-y-auto text-xs sm:text-sm lg:text-sm text-gray-600 pr-1 scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-100 custom-scrollbar">
+          <p>{item.description}</p>
+        </div>
       </div>
-    );
-  };
-  
-  // Add this CSS to your global styles or a CSS file imported into your component
-  const customScrollbarCSS = `
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 4px;
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: #F97316; /* Orange color */
-      border-radius: 10px;
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background-color: #E67E22; /* Darker orange on hover */
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
-    }
-  `;
-  
-  // Inject the CSS into the document head
-  if (typeof window !== 'undefined') {
-    const style = document.createElement('style');
-    style.innerHTML = customScrollbarCSS;
-    document.head.appendChild(style);
+    </div>
+  );
+};
+
+const customScrollbarCSS = `
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
   }
-  
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #F97316;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #E67E22;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+`;
+
+if (typeof window !== "undefined") {
+  const style = document.createElement("style");
+  style.innerHTML = customScrollbarCSS;
+  document.head.appendChild(style);
+}
 
 const Testimonials = () => {
   const [activeTab, setActiveTab] = useState("testimonials");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [cardsPerSlide, setCardsPerSlide] = useState(6);
+
+  // Update cards per slide based on window size
+  useEffect(() => {
+    const updateCardsPerSlide = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setCardsPerSlide(1); // Mobile: 1 card
+      } else if (width < 1024) {
+        setCardsPerSlide(2); // Tablet: 2 cards
+      } else {
+        setCardsPerSlide(6); // Desktop: 6 cards (3x2 grid)
+      }
+    };
+
+    updateCardsPerSlide();
+    window.addEventListener("resize", updateCardsPerSlide);
+    return () => window.removeEventListener("resize", updateCardsPerSlide);
+  }, []);
 
   const chunkArray = (array, size) => {
+    if (!array || array.length === 0) return [];
     const result = [];
     for (let i = 0; i < array.length; i += size) {
       result.push(array.slice(i, i + size));
@@ -230,9 +237,8 @@ const Testimonials = () => {
     return result;
   };
 
-  // Chunk both testimonials and video testimonials into groups of 6
-  const testimonialSlides = chunkArray(TESTIMONIALS_DATA, 6);
-  const videoTestimonialSlides = chunkArray(VIDEO_TESTIMONIALS, 6);
+  const testimonialSlides = chunkArray(TESTIMONIALS_DATA, cardsPerSlide);
+  const videoTestimonialSlides = chunkArray(VIDEO_TESTIMONIALS, cardsPerSlide);
 
   const slides = activeTab === "testimonials" ? testimonialSlides : videoTestimonialSlides;
 
@@ -275,29 +281,29 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="flex justify-center mb-8 gap-8">
+          <div className="flex justify-center mb-8 gap-4 sm:gap-8">
             <button
-              className={`px-4 py-2 rounded-full text-base sm:text-lg font-medium transition-all duration-300 ${
+              className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
                 activeTab === "testimonials"
                   ? "bg-[#F9920A] text-white"
                   : "bg-gray-200 text-[#00334D] hover:bg-gray-300"
               }`}
               onClick={() => {
                 setActiveTab("testimonials");
-                setCurrentSlide(0); // Reset slide when switching tabs
+                setCurrentSlide(0);
               }}
             >
               Testimonials
             </button>
             <button
-              className={`px-4 py-2 rounded-full text-base sm:text-lg font-medium transition-all duration-300 ${
+              className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
                 activeTab === "videoTestimonials"
                   ? "bg-[#F9920A] text-white"
                   : "bg-gray-200 text-[#00334D] hover:bg-gray-300"
               }`}
               onClick={() => {
                 setActiveTab("videoTestimonials");
-                setCurrentSlide(0); // Reset slide when switching tabs
+                setCurrentSlide(0);
               }}
             >
               Video Testimonials
@@ -313,43 +319,45 @@ const Testimonials = () => {
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                   >
                     {slides.map((slide, slideIndex) => (
-                      <div
-                        key={slideIndex}
-                        className="min-w-full px-2"
-                      >
-                        <div className="grid grid-cols-3 gap-4 auto-rows-fr">
+                      <div key={slideIndex} className="min-w-full px-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
                           {slide.map((item, index) => (
-                            <TestimonialCard key={`${slideIndex}-${index}`} item={item} />
+                            <TestimonialCard
+                              key={`${slideIndex}-${item.name}-${index}`}
+                              item={item}
+                            />
                           ))}
-                          {slide.length < 6 &&
-                            Array.from({ length: 6 - slide.length }).map((_, idx) => (
-                              <div
-                                key={`placeholder-${slideIndex}-${idx}`}
-                                className="w-full h-[450px] invisible"
-                              ></div>
-                            ))}
+                          {slide.length < cardsPerSlide &&
+                            Array.from({ length: cardsPerSlide - slide.length }).map(
+                              (_, idx) => (
+                                <div
+                                  key={`placeholder-${slideIndex}-${idx}`}
+                                  className="w-full h-[450px] sm:h-[500px] lg:h-[550px] invisible"
+                                ></div>
+                              )
+                            )}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex justify-center mt-8 space-x-4">
+                <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
                   <button
-                    className="transition-all duration-300"
+                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
                     style={{ color: "#00334D" }}
                     onClick={goToPrev}
                     aria-label="Previous Slide"
                   >
-                    <FaChevronLeft size={24} />
+                    <FaChevronLeft size={20} className="sm:w-6 sm:h-6" />
                   </button>
                   <button
-                    className="transition-all duration-300"
+                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
                     style={{ color: "#00334D" }}
                     onClick={goToNext}
                     aria-label="Next Slide"
                   >
-                    <FaChevronRight size={24} />
+                    <FaChevronRight size={20} className="sm:w-6 sm:h-6" />
                   </button>
                 </div>
               </>
