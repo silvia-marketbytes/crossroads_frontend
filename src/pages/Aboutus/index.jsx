@@ -9,7 +9,6 @@ import rightSideImg from "../../assets/aboutus/about_whychooseus.webp";
 import visionImage from "../../assets/aboutus/ourvision.webp";
 import missionImage from "../../assets/aboutus/ourmision.webp";
 import videoFile from "../../assets/aboutus/dummyvideo.mp4";
-import videoThumbnail from "../../assets/aboutus/videothumpnail.webp";
 import leftImage from "../../assets/aboutus/videothumpnail.webp";
 
 const TickSVG = () => (

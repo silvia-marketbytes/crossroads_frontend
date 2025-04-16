@@ -194,7 +194,7 @@ const Navbar = () => {
             <NavLink to="/testimonials" style={navLinkStyles} className="hover:text-[#F9920A]">
               Testimonials
             </NavLink>
-            <NavLink to="/blogs" style={navLinkStyles} className="hover:text-[#F9920A]">
+            <NavLink to="/Blogs" style={navLinkStyles} className="hover:text-[#F9920A]">
               Blogs
             </NavLink>
             <div className="flex items-center">
@@ -350,7 +350,7 @@ const Navbar = () => {
               Testimonials
             </NavLink>
             <NavLink
-              to="/blogs"
+              to="/Blogs"
               style={navLinkStyles}
               className="block px-10 py-2 w-full text-left text-md hover:text-[#F9920A]"
               onClick={toggleMenu}

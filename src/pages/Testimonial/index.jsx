@@ -210,16 +210,16 @@ const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [cardsPerSlide, setCardsPerSlide] = useState(6);
 
-  // Update cards per slide based on window size
+  
   useEffect(() => {
     const updateCardsPerSlide = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setCardsPerSlide(1); // Mobile: 1 card
+        setCardsPerSlide(1); 
       } else if (width < 1024) {
-        setCardsPerSlide(2); // Tablet: 2 cards
+        setCardsPerSlide(2); 
       } else {
-        setCardsPerSlide(6); // Desktop: 6 cards (3x2 grid)
+        setCardsPerSlide(6);
       }
     };
 
