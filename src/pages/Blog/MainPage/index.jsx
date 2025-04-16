@@ -117,7 +117,7 @@ const BlogPostHeadCard = ({ post }) => {
         alt={post.imageAlt}
         className="w-full h-[340px] object-cover"
       />
-      <div className="p-6">
+      <div className="p-4">
         <h3 className="text-2xl font-bold mb-3 text-gray-800">{post.title}</h3>
         <p className="text-gray-500 text-sm mb-4">{post.date}</p>
         <p className="text-gray-700 mb-6">{post.excerpt}</p>
@@ -245,7 +245,7 @@ const Blog = () => {
     backgroundImage: bannerImg,
     title: '<div style="margin-bottom: 1rem;">Blog Education News &</div>Study Abroad Updates',
     className: "px-1 relative",
-    classNameTitle: "relative -top-24 text-services-title",
+    classNameTitle: "relative -top-15 text-services-title",
     backgroundPosition: "center",
     showDateTime: false,
     showSocialMedia: false,
