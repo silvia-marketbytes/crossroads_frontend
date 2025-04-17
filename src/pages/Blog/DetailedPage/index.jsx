@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
-import bannerImg from "../../../assets/blog/banner png_result.webp";
+import bannerImg from "../../../assets/blog/detailedpagebanner.webp";
 import ContactSection from "../../../pages/Home/UiComponents/ContactSection";
 import postImage1 from "../../../assets/blog/Heading.webp";
 import postImage2 from "../../../assets/blog/I_result.webp";
@@ -194,11 +194,10 @@ const BlogDetail = () => {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  
   const recentPosts = allPosts
     .filter((p) => p.id !== post.id)
-    .sort((a, b) => new Date(b.date) - new Date(a.date)) 
-    .slice(0, 3); 
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
 
   const bannerProps = {
     backgroundImage: bannerImg,
@@ -218,12 +217,11 @@ const BlogDetail = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className="px-4 sm:px-4 lg:px-20 my-6 mx-auto"> 
-        <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6 max-w-6xl mx-auto h-screen">
-          {/* Sticky Left Sidebar */}
-          <div className="w-full lg:w-1/4 h-full bg-white shadow-md p-6 rounded-lg overflow-y-auto"> 
+      <section className="px-4 sm:px-4 lg:px-20 my-6 mx-auto">
+        <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6 max-w-6xl mx-auto">
+          <div className="w-full lg:w-1/4 h-full bg-white p-6 rounded-lg flex-shrink-0">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Contents</h3>
-            <ul className="space-y-4"> 
+            <ul className="space-y-4">
               {Object.keys(checklistContent).map((sectionTitle, index) => (
                 <li key={index}>
                   <a
@@ -247,20 +245,15 @@ const BlogDetail = () => {
             </ul>
           </div>
 
-          
           <div
             ref={contentRef}
-            className="w-full lg:w-3/4 h-full overflow-y-auto bg-white p-6 rounded-lg shadow-md" 
+            className="w-full lg:w-3/4 h-[400vh] overflow-y-auto bg-white p-3 rounded-lg flex-grow"
+            style={{ maxHeight: "calc(100vh - 100px)" }} // Adjust the value as needed
           >
-            <img
-              src={post.image}
-              alt={post.imageAlt}
-              className="w-full h-[300px] object-cover mb-6 rounded-lg"
-            />
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">{post.title}</h1>
-            <p className="text-gray-500 text-sm mb-8">{post.date}</p>
+            <p className="text-gray-700 mb-8">
+            Are you dreaming of studying abroad but feeling overwhelmed with the choices and processes? Choosing the right university is the first step. Here’s a friendly guide to help you choose the best consultants to match your unique needs.
+            </p>
 
-            
             {Object.entries(checklistContent).map(([sectionTitle, items], index) => (
               <div
                 ref={(el) => (sectionRefs.current[index] = el)}
@@ -268,7 +261,7 @@ const BlogDetail = () => {
                 id={slugify(sectionTitle, { lower: true, strict: true })}
                 className="mb-8"
               >
-                <h2 className="text-2xl font-semibold text-gray-800 mb-4">{sectionTitle}</h2>
+                <h2 className="text-2xl font-semibold text-[#00334D] mb-4">{sectionTitle}</h2>
                 <ul className="list-disc pl-5 space-y-2 text-gray-700">
                   {items.map((item, itemIndex) => (
                     <li key={itemIndex} className="leading-relaxed">
@@ -279,7 +272,6 @@ const BlogDetail = () => {
               </div>
             ))}
 
-            
             <a
               href="#"
               className="inline-block bg-[#F9920A] text-white font-medium py-3 px-6 rounded-lg hover:bg-[#e07a00] transition-colors mb-4"
@@ -297,8 +289,7 @@ const BlogDetail = () => {
         </div>
       </section>
 
-      
-      <section className="py-10 bg-[#1A2A44] text-white">
+      <section className="py-10 bg-[#00334D] text-white">
         <div className="px-4 sm:px-4 lg:px-20 mx-auto max-w-8xl">
           <h2 className="text-xl font-bold mb-6">You Might Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
