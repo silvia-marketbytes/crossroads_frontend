@@ -25,6 +25,7 @@ import Spain from "./pages/Services/UiComponents/country/Redirected_country/spai
 import Aboutus from "./pages/Aboutus";
 import Testimonials from "./pages/Testimonial";
 import Blog from "./pages/Blog/MainPage";
+import BlogDetailed from "./pages/Blog/DetailedPage";
  
 function App() {
   const router = createBrowserRouter(
@@ -58,6 +59,8 @@ function App() {
           <Route path="/services/education/country/spain" element={<Spain/>} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/Blogs" element={<Blog/>} />
+          <Route path="/Blogs/:slug" element={<BlogDetailed/>} />
+
 
         </Route>
       </>

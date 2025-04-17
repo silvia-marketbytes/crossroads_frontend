@@ -122,7 +122,7 @@ const BlogPostHeadCard = ({ post }) => {
         <p className="text-gray-500 text-sm mb-4">{post.date}</p>
         <p className="text-gray-700 mb-6">{post.excerpt}</p>
         <a
-          href={`/blog/${slug}`}
+          href={`/Blogs/${slug}`} // Updated to match your route /Blogs/:slug
           className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
         >
           Continue Reading →
@@ -147,7 +147,7 @@ const BlogPostCard = ({ post }) => {
         <p className="text-gray-500 text-sm mb-3">{post.date}</p>
         <p className="text-gray-700 mb-4">{post.excerpt}</p>
         <a
-          href={`/blog/${slug}`}
+          href={`/Blogs/${slug}`} // Updated to match your route /Blogs/:slug
           className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
         >
           Continue Reading →
