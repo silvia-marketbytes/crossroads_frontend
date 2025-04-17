@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
+import ContactSection from "../Home/UiComponents/ContactSection";("../Home/UiComponents/ContactSection");
 import bannerImg from "../../assets/testimonials/our_sucess_story.webp";
 import student1 from "../../assets/Students/Student1.png";
 import student2 from "../../assets/Students/Student2.png";
@@ -369,10 +370,15 @@ const Testimonials = () => {
           </div>
         </div>
       </section>
+      
+              <ContactSection />
+          
     </div>
   );
 };
 
+
+      
 TestimonialCard.propTypes = {
   item: PropTypes.shape({
     imageSrc: PropTypes.string,
@@ -386,3 +392,6 @@ TestimonialCard.propTypes = {
 };
 
 export default Testimonials;
+
+
+<ContactSection />

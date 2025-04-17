@@ -9,6 +9,7 @@ const ContactSection = () => {
     location: "",
     helpOption: "",
     message: "",
+    acceptPrivacyPolicy: true, // Default to checked
   });
 
   const [errors, setErrors] = useState({});
@@ -28,6 +29,14 @@ const ContactSection = () => {
     }));
   };
 
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: checked,
+    }));
+  };
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
@@ -36,9 +45,11 @@ const ContactSection = () => {
       newErrors.email = "Email is invalid";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.location.trim()) newErrors.location = "Location is required";
-    
+
     if (!formData.helpOption) newErrors.helpOption = "Please select an option";
     if (!formData.message.trim()) newErrors.message = "Message is required";
+    if (!formData.acceptPrivacyPolicy)
+      newErrors.acceptPrivacyPolicy = "You must accept the privacy policy";
     return newErrors;
   };
 
@@ -59,6 +70,7 @@ const ContactSection = () => {
       location: "",
       helpOption: "",
       message: "",
+      acceptPrivacyPolicy: true, // Reset to checked
     });
     alert("Form submitted successfully!");
   };
@@ -228,6 +240,33 @@ const ContactSection = () => {
                 />
                 {errors.message && (
                   <p className="text-red-400 text-xs mt-1">{errors.message}</p>
+                )}
+              </div>
+
+              {/* Privacy Policy Checkbox */}
+              <div className="md:col-span-2 flex items-center">
+                <input
+                  type="checkbox"
+                  id="acceptPrivacyPolicy"
+                  name="acceptPrivacyPolicy"
+                  checked={formData.acceptPrivacyPolicy}
+                  onChange={handleCheckboxChange}
+                  className="mr-2 p-2 rounded-lg border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F9920A] text-sm"
+                />
+                <label htmlFor="acceptPrivacyPolicy" className="text-white text-xs">
+                  I agree to the{" "}
+                  <a href="/terms-and-conditions" className="text-blue-500 underline">
+                    Terms and Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a href="/privacy-policy" className="text-blue-500 underline">
+                    Privacy Policy
+                  </a>
+                </label>
+                {errors.acceptPrivacyPolicy && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.acceptPrivacyPolicy}
+                  </p>
                 )}
               </div>
 

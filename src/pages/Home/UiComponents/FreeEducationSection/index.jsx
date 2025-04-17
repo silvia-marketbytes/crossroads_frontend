@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CountryCard from '../../../../components/UiComponents/CountryCard';
 
 // Placeholder for the world map background image
@@ -6,11 +7,11 @@ import worldMapBg from '../../../../assets/world-map-bg.png';
 
 const FreeEducationSection = () => {
   const countries = [
-    { name: 'Austria', flagSrc: '/src/assets/flags/austria.png', borderOrientation: 'to bottom' }, // Orange top, blue bottom
-    { name: 'Germany', flagSrc: '/src/assets/flags/germany.png', borderOrientation: 'to right' }, // Orange left, blue right
-    { name: 'Slovakia', flagSrc: '/src/assets/flags/slovakia.png', borderOrientation: 'to top' }, // Orange bottom, blue top
-    { name: 'Slovenia', flagSrc: '/src/assets/flags/slovenia.png', borderOrientation: '45deg' }, // Orange top-left, blue bottom-right
-    { name: 'Italy', flagSrc: '/src/assets/flags/italy.png', borderOrientation: '135deg' }, // Orange top-right, blue bottom-left
+    { name: 'Austria', flagSrc: '/src/assets/flags/austria.png', borderOrientation: 'to bottom', path: '/services/education/country/australia' },
+    { name: 'Germany', flagSrc: '/src/assets/flags/germany.png', borderOrientation: 'to right', path: '/services/education/country/germany' },
+    { name: 'Slovakia', flagSrc: '/src/assets/flags/slovakia.png', borderOrientation: 'to top', path: '/services/education/country/slovakia' }, 
+    { name: 'Slovenia', flagSrc: '/src/assets/flags/slovenia.png', borderOrientation: '45deg', path: '/services/education/country/slovakia' }, 
+    { name: 'Italy', flagSrc: '/src/assets/flags/italy.png', borderOrientation: '135deg', path: '/services/education/country/italy' }, 
   ];
 
   return (
@@ -39,12 +40,13 @@ const FreeEducationSection = () => {
           style={{ backgroundImage: `url(${worldMapBg})`, width: '100%' }}
         >
           {countries.map((country, index) => (
-            <CountryCard
-              key={index}
-              name={country.name}
-              flagSrc={country.flagSrc}
-              borderOrientation={country.borderOrientation}
-            />
+            <Link to={country.path} key={index}>
+              <CountryCard
+                name={country.name}
+                flagSrc={country.flagSrc}
+                borderOrientation={country.borderOrientation}
+              />
+            </Link>
           ))}
         </div>
       </div>

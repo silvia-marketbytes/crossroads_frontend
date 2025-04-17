@@ -42,11 +42,11 @@ const Hero = () => {
       </div>
 
       {/* Get in Touch Button (Vertical) */}
-      <Button
+      {/* <Button
         label="Get in Touch"
         variant="secondary"
         className="fixed hidden md:block -right-14 top-1/2 transform -translate-y-1/4 text-white px-6 py-3 rounded-none rotate-270 bg-[#F9920A]"
-      />
+      /> */}
 
       {/* CSS for hover effects */}
       <style jsx>{`
