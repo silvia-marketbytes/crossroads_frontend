@@ -5,10 +5,21 @@ import { Call, Hamburger, Mail } from "../Icons";
 import Button from "../Button";
 import logo from "/src/assets/logo.png";
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isEducationHover, setIsEducationHover] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    console.log("Modal opening"); // Debugging
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -54,6 +65,7 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Top Contact Bar */}
       <nav className="flex items-center justify-end p-1 text-black w-full">
         <div className="flex sm:flex-row items-center sm:space-y-0 space-x-3 sm:space-x-3 mr-1 sm:mr-10">
           <div className="flex items-center space-x-2">
@@ -77,13 +89,15 @@ const Navbar = () => {
           <Button
             label="Contact Us"
             className="text-[#fcfcfc] text-xs font-normal bg-[#00334D] hover:bg-[#00334D] rounded-full"
+            onClick={openModal}
           />
         </div>
       </nav>
 
+      {/* Main Navigation Bar */}
       <nav className="flex items-center w-full" style={{ backgroundColor: "#00334D" }}>
         <div className="flex w-full items-center justify-between px-4 sm:px-6 md:px-10">
-          
+          {/* Left Navigation Links */}
           <div className="hidden md:flex w-1/2 items-center justify-end space-x-4 lg:space-x-24">
             <NavLink to="/" style={navLinkStyles} className="hover:text-[#F9920A]">
               Home
@@ -91,10 +105,12 @@ const Navbar = () => {
             <NavLink to="/Aboutus" style={navLinkStyles} className="hover:text-[#F9920A]">
               About Us
             </NavLink>
+            
+            {/* Services Dropdown */}
             <div className="relative">
               <motion.button
-                onMouseEnter={() => setIsServicesOpen(true)} 
-                onMouseLeave={() => setIsServicesOpen(false)} 
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
                 className="text-[#fcfcfc] text-sm font-normal flex items-center hover:text-[#F9920A]"
                 whileTap={{ scale: 0.95 }}
               >
@@ -124,12 +140,12 @@ const Navbar = () => {
                     animate="visible"
                     exit="hidden"
                     className="absolute left-0 mt-2 shadow-md w-[200px] z-10 bg-[#fcfcfc]"
-                    onMouseEnter={() => setIsServicesOpen(true)} 
-                    onMouseLeave={() => setIsServicesOpen(false)} 
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <button 
+                    <button
                       onMouseEnter={() => setIsEducationHover(true)}
-                      onMouseLeave={() => setIsEducationHover(false)} 
+                      onMouseLeave={() => setIsEducationHover(false)}
                       className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] w-full text-left"
                     >
                       Education
@@ -154,9 +170,9 @@ const Navbar = () => {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="absolute left-full top-0 mt-0 w-[200px] bg-[#fcfcfc] shadow-md" 
-                        onMouseEnter={() => setIsEducationHover(true)} 
-                        onMouseLeave={() => setIsEducationHover(false)} 
+                        className="absolute left-full top-0 mt-0 w-[200px] bg-[#fcfcfc] shadow-md"
+                        onMouseEnter={() => setIsEducationHover(true)}
+                        onMouseLeave={() => setIsEducationHover(false)}
                       >
                         <NavLink
                           to="/services/education/country"
@@ -180,7 +196,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          
+          {/* Logo */}
           <div className="w-1/3 flex justify-center">
             <img
               src={logo}
@@ -189,7 +205,7 @@ const Navbar = () => {
             />
           </div>
 
-          
+          {/* Right Navigation Links */}
           <div className="hidden md:flex w-1/2 items-center justify-start space-x-4 lg:space-x-22">
             <NavLink to="/testimonials" style={navLinkStyles} className="hover:text-[#F9920A]">
               Testimonials
@@ -223,6 +239,7 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button onClick={toggleMenu}>
               <Hamburger />
@@ -231,7 +248,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -287,10 +304,10 @@ const Navbar = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="w-full ml-10 mt-2 shadow-md bg-[#fcfcfc]" 
+                    className="w-full ml-10 mt-2 shadow-md bg-[#fcfcfc]"
                   >
-                    <button 
-                      onClick={() => setIsEducationHover(!isEducationHover)} 
+                    <button
+                      onClick={() => setIsEducationHover(!isEducationHover)}
                       className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] w-full text-left"
                     >
                       Education
@@ -361,10 +378,17 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
+      {/* Get in Touch Button */}
       <Button
         label="Get in Touch"
-        className="z-50 fixed top-1/2 -right-12 transform -translate-y-1/2 text-[#fcfcfc] text-md font-normal bg-[#F9920A] hover:bg-[#F9920D] px-6 py-4 rotate-270 shadow-lg"
+        className="fixed top-1/2 -right-12 transform -translate-y-1/2 text-white text-md font-medium bg-amber-500 hover:bg-amber-500/80 transition-colors duration-300 -rotate-90 px-6 py-4 shadow-lg z-50"
+        onClick={openModal}
       />
+
+      {/* Modal */}
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </>
   );
 };

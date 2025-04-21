@@ -39,8 +39,9 @@ const FooterSection = () => {
     links: [
       { label: 'Education', href: '#' },
       { label: 'Job Assistance', href: '#' },
-      { label: 'Documentation & Travel Assistance', href: '#' },
+      { label: 'Documentation & Travel Assistance', href: '/services/documentation-assistance' },
       { label: 'Immigration', href: '#' },
+      { label: 'Gallery', href: '/Gallery' },
     ],
   };
 

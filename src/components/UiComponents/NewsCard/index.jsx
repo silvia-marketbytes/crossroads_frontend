@@ -1,4 +1,4 @@
-// src/components/UiComponents/NewsCard/index.jsx
+
 import React from 'react';
 
 const NewsCard = ({ imageSrc, title, description }) => {
@@ -22,11 +22,11 @@ const NewsCard = ({ imageSrc, title, description }) => {
           Register Now
         </button>
       </div>
-      {/* Text Content */}
+      
       <div className="p-4 flex flex-col flex-grow">
         <h3 
           className="text-lg font-semibold"
-          style={{ color: '#00334D' }} // Blue for title
+          style={{ color: '#00334D' }} 
         >
           {title}
         </h3>
@@ -34,7 +34,7 @@ const NewsCard = ({ imageSrc, title, description }) => {
         <a
           href="#"
           className="read-more mt-4 inline-flex items-center"
-          style={{ color: '#00334D' }} // Blue for link
+          style={{ color: '#00334D' }} 
         >
           Read More
           <svg
