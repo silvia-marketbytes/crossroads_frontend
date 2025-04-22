@@ -10,17 +10,17 @@ import news1 from '/src/assets/News/News1.png';
 import news2 from '/src/assets/News/News2.png';
 import news3 from '/src/assets/News/News3.png';
 import news4 from '/src/assets/News/News4.png';
-import news5 from '/src/assets/News/News3.png';
-import news6 from '/src/assets/News/News4.png'; // Additional dummy image
-import news7 from '/src/assets/News/News3.png'; // Additional dummy image
-import news8 from '/src/assets/News/News4.png'; // Additional dummy image
+import news5 from '/src/assets/News/News5.webp';
+import news6 from '/src/assets/News/News6.webp'; 
+import news7 from '/src/assets/News/News7.webp'; 
+import news8 from '/src/assets/News/News4.png';
 
-import pastEvent1 from '/src/assets/News/News3.png'; // Sample image for past event
-import pastEvent2 from '/src/assets/News/News4.png'; // Sample image for past event
-import pastEvent3 from '/src/assets/News/News3.png'; // Additional dummy image for past event
-import pastEvent4 from '/src/assets/News/News4.png'; // Additional dummy image for past event
-import pastEvent5 from '/src/assets/News/News3.png'; // Additional dummy image for past event
-import pastEvent6 from '/src/assets/News/News4.png'; // Additional dummy image for past event
+import pastEvent1 from '/src/assets/News/News3.png'; 
+import pastEvent2 from '/src/assets/News/News4.png';
+import pastEvent3 from '/src/assets/News/News3.png';
+import pastEvent4 from '/src/assets/News/News4.png';
+import pastEvent5 from '/src/assets/News/News3.png';
+import pastEvent6 from '/src/assets/News/News4.png';
 
 const newsData = [
   {

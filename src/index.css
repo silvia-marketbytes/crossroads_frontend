@@ -190,3 +190,7 @@ p {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.scrollbar-visible-custom::-webkit-scrollbar{
+  display: none!important;
+}

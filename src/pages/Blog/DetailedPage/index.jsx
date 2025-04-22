@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect, useState } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
@@ -12,7 +12,6 @@ import postImage5 from "../../../assets/blog/E_result.webp";
 import postImage6 from "../../../assets/blog/F_result.webp";
 import postImage7 from "../../../assets/blog/G_result.webp";
 
-// Combine blogPostsHead and blogPosts for lookup
 const blogPostsHead = [
   {
     id: 1,
@@ -109,18 +108,96 @@ const blogPosts = [
   },
 ];
 
-// Combine all posts for lookup
 const allPosts = [...blogPostsHead, ...blogPosts];
 
 const BlogDetail = () => {
   const { slug } = useParams();
-
-  // Find the blog post by slug
   const post = allPosts.find(
     (p) => slugify(p.title, { lower: true, strict: true }) === slug
   );
 
-  // Handle case where post is not found
+  const scrollRef = useRef(null);
+  const contentRef = useRef(null);
+  const sectionRefs = useRef([]);
+  const [thumbTop, setThumbTop] = useState(0);
+  const [thumbHeight, setThumbHeight] = useState(20);
+  const [activeSection, setActiveSection] = useState(null); // New state for active section
+
+  const checklistContent = {
+    "Start with Research": [
+      "Google search for 'overseas education consultants in [your location]'.",
+      "Read reviews: Check out Google reviews, testimonials, and student success stories.",
+      "Visit websites: Look at their services, success rates, and partnerships with universities."
+    ],
+    "Check Their Credentials": [
+      "Accreditation: Ensure they're accredited by relevant educational bodies.",
+      "Experience: Look for a proven track record of accomplishments.",
+      "Certifications: Verify their certifications and affiliations."
+    ],
+    "Evaluate Their Services": [
+      "Personalized counseling to understand your aspirations.",
+      "University Selection: Guidance in choosing the right university based on your profile.",
+      "Application Assistance: Help with documentation and submission."
+    ],
+    "Consider Their Network": [
+      "University Connections: Consultants with a wide network can offer more options.",
+      "Alumni Network: A strong alumni network means better support and insights."
+    ],
+    "Transparency Is Key": [
+      "Fee Structure: Ensure there are no hidden charges.",
+      "Process Clarity: Clear explanation of each step in the process.",
+      "Success Rate: Ask for their success rate and track record."
+    ],
+    "Location and Accessibility": [
+      "Local Office: Having a local office makes it easier for face-to-face consultations.",
+      "Online Presence: A strong online presence indicates they're up-to-date."
+    ],
+    "Ask the Right Questions": [
+      "Experience: How long has the company been in the market?",
+      "Success Stories: Can they provide references from past students?",
+      "Services Offered: What's included in their package?"
+    ],
+    "Student Support Services": [
+      "Visa Assistance: Help with visa applications and interview preparation.",
+      "Pre-Departure Briefing: Guidance on what to expect before leaving."
+    ]
+  };
+
+  const updateThumbPosition = (activeIndex) => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const totalItems = Object.keys(checklistContent).length;
+    const clientHeight = 300; // Matches max-h-[300px]
+    const thumbSize = Math.max(clientHeight / totalItems, 20);
+    const thumbOffset = (activeIndex / (totalItems - 1)) * (clientHeight - thumbSize);
+
+    setThumbTop(thumbOffset);
+    setThumbHeight(thumbSize);
+  };
+
+  useEffect(() => {
+    const observers = sectionRefs.current.map((section, index) => {
+      if (section) {
+        const sectionTitle = Object.keys(checklistContent)[index];
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setActiveSection(sectionTitle); // Update active section
+              updateThumbPosition(index);
+            }
+          },
+          { threshold: 0.5, root: contentRef.current }
+        );
+        observer.observe(section);
+        return observer;
+      }
+      return null;
+    });
+
+    return () => observers.forEach((observer) => observer && observer.disconnect());
+  }, []);
+
   if (!post) {
     return (
       <div className="px-4 sm:px-4 lg:px-20 my-14 mx-auto">
@@ -132,67 +209,6 @@ const BlogDetail = () => {
       </div>
     );
   }
-
-  // Checklist content
-  const checklistContent = {
-    "Start with Research": [
-      "Are you dreaming of studying abroad but feeling overwhelmed with the choices and process?",
-      "Choosing the right step-by-step process is key to help you choose the consultants to fit your unique needs.",
-      "Evaluate services."
-    ],
-    "Check Their Credentials": [
-      "Start with research, educational consultants, and student success stories.",
-      "Read reviews, check Google reviews, testimonials.",
-      "Check their credentials and ensure success rates and partnerships with accredited universities.",
-      "Accreditation ensures they are accredited by relevant educational bodies.",
-      "Certifications: Verify their certifications and affiliations."
-    ],
-    "Evaluate Their Success": [
-      "Evaluate their success rate to understand your expectations.",
-      "University Selection: Guidance in choosing the right university based on your profile.",
-      "Consider Their Network: A wide network of universities can offer more options.",
-      "Alumni Success: Ask for alumni success stories and testimonials from past students.",
-      "Transparency is Key: Ensure they share the success rate and track records."
-    ],
-    "Location and Accessibility": [
-      "Location makes it easier for you to have consultations.",
-      "Online Presence: A strong online presence indicates they are up-to-date with the latest trends."
-    ],
-    "Student Support Services": [
-      "Ask the right questions about company services.",
-      "Success Stories: Can they share success stories and connect with past students?",
-      "Student Support: Ensure they provide visa applications and interview preparation.",
-      "Visa Assistance: Help with visa applications and preparation."
-    ],
-    "Why Choose This Consultant?": [
-      "Overseas Education: Guidance on overseas education and preparation.",
-      "Why Choose: Understand what experts expect and how they prepare you for leaving."
-    ],
-  };
-
-  const contentRef = useRef(null);
-  const sectionRefs = useRef([]);
-  const [activeSection, setActiveSection] = useState(null);
-
-  useEffect(() => {
-    const observers = [];
-    sectionRefs.current.forEach((section, index) => {
-      if (section) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setActiveSection(Object.keys(checklistContent)[index]);
-            }
-          },
-          { threshold: 0.5 }
-        );
-        observer.observe(section);
-        observers.push(observer);
-      }
-    });
-
-    return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
 
   const recentPosts = allPosts
     .filter((p) => p.id !== post.id)
@@ -219,76 +235,104 @@ const BlogDetail = () => {
 
       <section className="px-4 sm:px-4 lg:px-20 my-6 mx-auto">
         <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6 max-w-6xl mx-auto">
-          <div className="w-full lg:w-1/4 h-full bg-white p-6 rounded-lg flex-shrink-0">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Contents</h3>
-            <ul className="space-y-4">
-              {Object.keys(checklistContent).map((sectionTitle, index) => (
-                <li key={index}>
-                  <a
-                    href={`#${slugify(sectionTitle, { lower: true, strict: true })}`}
-                    className={`text-sm ${activeSection === sectionTitle ? "text-[#F9920A]" : "text-gray-600 hover:text-[#e07a00]"}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const element = document.getElementById(
-                        slugify(sectionTitle, { lower: true, strict: true })
-                      );
-                      if (element && contentRef.current) {
-                        const offsetTop = element.offsetTop - contentRef.current.offsetTop;
-                        contentRef.current.scrollTo({ top: offsetTop, behavior: "smooth" });
-                      }
-                    }}
-                  >
-                    {sectionTitle}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Left Side Navigation - Fixed Position */}
+          <div className="w-full lg:w-1/4 h-full relative top-6 self-start">
+            <div className="bg-white p-6">
+              
+              <div className="relative">
+                <div className="absolute top-0 left-0 h-[300px] w-[4px] bg-[#fbe3c3] rounded-full z-10" />
+                <div
+                  className="absolute left-0 w-[4px] bg-[#F9920A] rounded-full z-20 transition-all duration-100"
+                  style={{ top: `${thumbTop}px`, height: `${thumbHeight}px` }}
+                />
+                <div
+                  ref={scrollRef}
+                  className="scrollbar-hidden max-h-[300px] pl-6"
+                >
+                  <ul className="space-y-4">
+                    {Object.keys(checklistContent).map((sectionTitle, index) => (
+                      <li key={index}>
+                        <a
+                          href={`#${slugify(sectionTitle, { lower: true, strict: true })}`}
+                          className={`block text-sm pl-3 -ml-1px py-1 transition-colors ${
+                            activeSection === sectionTitle
+                              ? "text-[#F9920A] font-semibold"
+                              : "border-transparent text-gray-600 hover:text-[#e07a00]"
+                          }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const element = document.getElementById(
+                              slugify(sectionTitle, { lower: true, strict: true })
+                            );
+                            if (element && contentRef.current) {
+                              const offsetTop = element.offsetTop - contentRef.current.offsetTop;
+                              contentRef.current.scrollTo({ top: offsetTop, behavior: "smooth" });
+                              setActiveSection(sectionTitle); // Update active section on click
+                            }
+                          }}
+                        >
+                          {sectionTitle}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div
-            ref={contentRef}
-            className="w-full lg:w-3/4 h-[400vh] overflow-y-auto bg-white p-3 rounded-lg flex-grow"
-            style={{ maxHeight: "calc(100vh - 100px)" }} // Adjust the value as needed
-          >
-            <p className="text-gray-700 mb-8">
-            Are you dreaming of studying abroad but feeling overwhelmed with the choices and processes? Choosing the right university is the first step. Here’s a friendly guide to help you choose the best consultants to match your unique needs.
-            </p>
-
-            {Object.entries(checklistContent).map(([sectionTitle, items], index) => (
+          {/* Right Side Content - Non-Scrollable */}
+          <div className="w-full lg:w-3/4">
+            <div className="bg-white p-6 h-full">
+              {/* Inner Scrollable Content Container */}
               <div
-                ref={(el) => (sectionRefs.current[index] = el)}
-                key={sectionTitle}
-                id={slugify(sectionTitle, { lower: true, strict: true })}
-                className="mb-8"
+                ref={contentRef}
+                className="h-[60vh] pr-4 mb-8 overflow-y-auto scrollbar-visible-custom"
               >
-                <h2 className="text-2xl font-semibold text-[#00334D] mb-4">{sectionTitle}</h2>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  {items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="leading-relaxed">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-gray-700 mb-8">
+                  Are you dreaming of studying abroad but feeling overwhelmed with the choices and process?
+                  Choosing the right overseas education consultant can make or break your plans. Here's a
+                  user-friendly guide to help you choose the best consultants for your unique needs.
+                </p>
+                {Object.entries(checklistContent).map(([sectionTitle, items], index) => (
+                  <div
+                    key={sectionTitle}
+                    id={slugify(sectionTitle, { lower: true, strict: true })}
+                    className="mb-12 last:mb-0"
+                    ref={(el) => (sectionRefs.current[index] = el)}
+                  >
+                    <h2 className="text-2xl font-semibold text-[#00334D] mb-4">{sectionTitle}</h2>
+                    <ul className="list-disc pl-5 space-y-3 text-gray-700">
+                      {items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="leading-relaxed">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
 
-            <a
-              href="#"
-              className="inline-block bg-[#F9920A] text-white font-medium py-3 px-6 rounded-lg hover:bg-[#e07a00] transition-colors mb-4"
-            >
-              Explore Now
-            </a>
-
-            <Link
-              to="/Blogs"
-              className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-block"
-            >
-              ← Back to Blog
-            </Link>
+              <div className="flex justify-between">
+                <Link
+                  to="/Blogs"
+                  className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
+                >
+                  ← Back to Blog
+                </Link>
+                <a
+                  href="#"
+                  className="inline-block bg-[#F9920A] text-white font-medium py-2 px-6 rounded-lg hover:bg-[#e07a00] transition-colors"
+                >
+                  Explore Now
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* "You Might Also Like" Section */}
       <section className="py-10 bg-[#00334D] text-white">
         <div className="px-4 sm:px-4 lg:px-20 mx-auto max-w-8xl">
           <h2 className="text-xl font-bold mb-6">You Might Also Like</h2>
