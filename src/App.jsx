@@ -26,8 +26,10 @@ import Aboutus from "./pages/Aboutus";
 import Testimonials from "./pages/Testimonial";
 import Blog from "./pages/Blog/MainPage";
 import BlogDetailed from "./pages/Blog/DetailedPage";
-import Gallery from "./pages/Gallery";
+import Gallery from "./pages/Gallery-1";
 import NewsAndEvents from "./pages/NewsAndEvents";
+import GalleryGermanyIntake from "./pages/Gallery-1/DedicatedGalleryPage/GalleryGermanyIntake";
+import GalleryFranceIntake from "./pages/Gallery-1/DedicatedGalleryPage/GalleryFranceIntake";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -69,6 +71,8 @@ function App() {
         <Route path="/Blogs" element={<Blog />} />
         <Route path="/Blogs/:slug" element={<BlogDetailed />} />
         <Route path="/Gallery" element={<Gallery />} />
+        <Route path="/Gallery/Germany" element={<GalleryGermanyIntake/>} />
+        <Route path="/Gallery/France" element={<GalleryFranceIntake/>} />
         <Route path="/news" element={<NewsAndEvents />} />
       </Route>
     )
