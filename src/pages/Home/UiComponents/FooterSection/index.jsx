@@ -42,6 +42,7 @@ const FooterSection = () => {
       { label: 'Documentation & Travel Assistance', href: '/services/documentation-assistance' },
       { label: 'Immigration', href: '#' },
       { label: 'Gallery', href: '/Gallery' },
+      { label: 'Contactus', href: '/Contact-Us' },
     ],
   };
 
