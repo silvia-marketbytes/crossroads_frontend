@@ -14,7 +14,7 @@ const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => 
         <div className="lg:w-1/2 w-full" style={{ backgroundColor: "#00334D", height: "100%" }}>
           <div className="p-6 ml-12 overflow-hidden" style={{ height: "100%" }}>
             <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-16 text-white">
-              Why choose <span className="text-[#F9920A]">{countryName}?</span>
+              Want Free Education in Germany?Here Whats to need to <span className="text-[#F9920A]">Qualify ?</span>
             </h2>
             <p className="text-white mb-8">
               Lorem Ipsum is simply dummy text of the printing and typesetting

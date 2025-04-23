@@ -31,6 +31,7 @@ import NewsAndEvents from "./pages/NewsAndEvents";
 import GalleryGermanyIntake from "./pages/Gallery-1/DedicatedGalleryPage/GalleryGermanyIntake";
 import GalleryFranceIntake from "./pages/Gallery-1/DedicatedGalleryPage/GalleryFranceIntake";
 import ContactUs from "./pages/Contactus";
+import FreeEducationGermany from "./pages/FreeEducation/Germany";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -76,6 +77,7 @@ function App() {
         <Route path="/Gallery/France" element={<GalleryFranceIntake/>} />
         <Route path="/news" element={<NewsAndEvents />} />
         <Route path="/Contact-Us" element={<ContactUs/>} />
+        <Route path="/Freeeducation/Germany" element={<FreeEducationGermany/>} />
 
       </Route>
     )
