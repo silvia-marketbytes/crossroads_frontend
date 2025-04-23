@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import Banner from "../../../components/Banner";
 import bannerImg from "../../../assets/FreeEducation/BANNER_result.webp";
 import ContactSection from "../../../pages/Home/UiComponents/ContactSection";
-import WhyChooseSection from "../../../components/CountryListing/WhyChooseSection";
+
 import germanyImage from "../../../assets/FreeEducation/BANNER PNG_result.webp";
 import FeatureHighlightSection from "../../../components/FreeEducation/FeatureHighlightSection";
 import AffordableEducationOptions from "../../../components/FreeEducation/AffordableEducationOptions";
@@ -43,7 +43,7 @@ const FreeEducationGermany = () => {
     );
   };
 
-  const WhyChooseGermanySection = () => {
+  const WhyChooseSection = () => {
     const [activeDropdown, setActiveDropdown] = React.useState(null);
 
     const toggleDropdown = (index) => {
@@ -84,7 +84,7 @@ const FreeEducationGermany = () => {
       // Add more sections here if needed
     ];
 
-    // Sort dropdown sections alphabetically by title
+  
     dropdownSections.sort((a, b) => a.title.localeCompare(b.title));
 
     const shouldScroll = dropdownSections.length > 6;
@@ -95,7 +95,7 @@ const FreeEducationGermany = () => {
           <div className="lg:w-1/2 w-full flex flex-col" style={{ backgroundColor: "#00334D" }}>
             <div
               className={`p-6 ml-24 flex-grow ${shouldScroll ? 'overflow-y-auto' : ''}`}
-              style={{ maxHeight: "calc(100vh - 100px)", paddingBottom: "50px" }} // Added padding at the bottom
+              style={{ maxHeight: "calc(100vh - 100px)", paddingBottom: "50px" }}
             >
               <h3 className="text-2xl sm:text-3xl font-l mt-16 mb-1 text-white">
                 Want Free Education in Germany?
@@ -243,7 +243,7 @@ const FreeEducationGermany = () => {
         features={features}
       />
 
-      <WhyChooseGermanySection />
+      <WhyChooseSection />
 
       <AffordableEducationOptions
         title={educationOptions.title}

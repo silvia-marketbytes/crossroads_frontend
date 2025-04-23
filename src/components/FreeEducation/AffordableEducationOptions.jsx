@@ -21,7 +21,7 @@ const AffordableEducationOptions = ({ title, sections }) => {
               <ul className="space-y-3 list-disc pl-5">
                 {section.points.map((point, pointIndex) => (
                   <li key={pointIndex} className="text-[#00334D]">
-                    {point}
+                    {point}z
                   </li>
                 ))}
               </ul>
