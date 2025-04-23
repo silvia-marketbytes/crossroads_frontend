@@ -10,17 +10,16 @@ const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => 
 
   return (
     <section className="mt-16 w-full py-16 relative">
-      <div className="flex flex-col lg:flex-row w-full" style={{ height: "800px" }}>
-        <div className="lg:w-1/2 w-full" style={{ backgroundColor: "#00334D", height: "100%" }}>
-          <div className="p-6 ml-12 overflow-hidden" style={{ height: "100%" }}>
+      <div className="flex flex-col lg:flex-row w-full h-full">
+        <div className="lg:w-1/2 w-full flex flex-col" style={{ backgroundColor: "#00334D" }}>
+          <div className="p-6 ml-12 flex-grow overflow-y-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mt-16 mb-16 text-white">
-              Want Free Education in Germany?Here Whats to need to <span className="text-[#F9920A]">Qualify ?</span>
+              Want Free Education in Germany? Here's What You Need to <span className="text-[#F9920A]">Qualify</span>
             </h2>
             <p className="text-white mb-8">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's
+              Germany offers world-class education with no tuition fees at public universities for international students.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-4 flex-grow">
               {dropdownSections.map((section, index) => (
                 <div key={index} className="w-full">
                   <button
@@ -81,11 +80,14 @@ const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => 
               ))}
             </div>
           </div>
+          <div className="p-6 mb-8">
+            {/* Adding padding at the bottom */}
+          </div>
         </div>
 
-        {/* Right Side - Image with Intake Overlay */}
         <div className="lg:w-1/2 w-full relative" style={{ height: "100%" }}>
           <div className="h-full overflow-hidden">
+            <div className="absolute inset-0 bg-black/50 z-10"></div>
             <img src={image} alt={`Study in ${countryName}`} className="w-full h-full object-cover" />
           </div>
           <IntakeSection intakes={intakes} />
