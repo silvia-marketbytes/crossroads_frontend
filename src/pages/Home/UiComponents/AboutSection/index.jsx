@@ -7,7 +7,7 @@ const AboutSection = () => {
       <div className="flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className='relative w-1/2 grid justify-end text-end shadow-[8px_0_15px_-3px_rgba(0,0,0,0.1)] p-8'>
           <div className='absolute w-full h-6 bg-white -top-2'></div>
-          <h2 className="text-xs font-semibold text-[#00334D] uppercase mb-2">About Us</h2>
+          <h3 className="text-2xl font-semibold text-[#00334D] uppercase mb-2">About Us</h3>
           <h3 className="text-3xl font-bold text-end mb-2">
             <span style={{ color: '#00334D' }}>At </span>
             <span style={{ color: '#F9920A' }}>Crossroads</span>

@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CountryCard from '../../../../components/UiComponents/CountryCard';
-
-// Placeholder for the world map background image
 import worldMapBg from '../../../../assets/world-map-bg.png';
 
 const FreeEducationSection = () => {
   const countries = [
-    { name: 'Austria', flagSrc: '/src/assets/flags/austria.png', borderOrientation: 'to bottom', path: '/services/education/country/australia' },
+    { name: 'Austria', flagSrc: '/src/assets/flags/austria.png', borderOrientation: 'to bottom', path: '/Freeeducation/Austria' },
     { name: 'Germany', flagSrc: '/src/assets/flags/germany.png', borderOrientation: 'to right', path: '/Freeeducation/Germany'},
-    { name: 'Slovakia', flagSrc: '/src/assets/flags/slovakia.png', borderOrientation: 'to top', path: '/services/education/country/slovakia' }, 
-    { name: 'Slovenia', flagSrc: '/src/assets/flags/slovenia.png', borderOrientation: '45deg', path: '/services/education/country/slovakia' }, 
-    { name: 'Italy', flagSrc: '/src/assets/flags/italy.png', borderOrientation: '135deg', path: '/services/education/country/italy' }, 
+    { name: 'Slovakia', flagSrc: '/src/assets/flags/slovakia.png', borderOrientation: 'to top', path: '/Freeeducation/Slovakia' }, 
+    { name: 'Slovenia', flagSrc: '/src/assets/flags/slovenia.png', borderOrientation: '45deg', path: '/Freeeducation/Slovania' }, 
+    { name: 'Italy', flagSrc: '/src/assets/flags/italy.png', borderOrientation: '135deg', path: '/Freeeducation/Italy' }, 
   ];
 
   return (

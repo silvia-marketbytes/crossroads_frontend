@@ -32,6 +32,10 @@ import GalleryGermanyIntake from "./pages/Gallery-1/DedicatedGalleryPage/Gallery
 import GalleryFranceIntake from "./pages/Gallery-1/DedicatedGalleryPage/GalleryFranceIntake";
 import ContactUs from "./pages/Contactus";
 import FreeEducationGermany from "./pages/FreeEducation/Germany";
+import FreeEducationAustria from "./pages/FreeEducation/Austria";
+import FreeEducationSlovakia from "./pages/FreeEducation/Slovakia";
+import FreeEducationSlovania from "./pages/FreeEducation/Slovania";
+import FreeEducationItaly from "./pages/FreeEducation/Italy";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -78,6 +82,10 @@ function App() {
         <Route path="/news" element={<NewsAndEvents />} />
         <Route path="/Contact-Us" element={<ContactUs/>} />
         <Route path="/Freeeducation/Germany" element={<FreeEducationGermany/>} />
+        <Route path="/Freeeducation/Austria" element={<FreeEducationAustria/>} />
+        <Route path="/Freeeducation/Slovakia" element={<FreeEducationSlovakia/>} />
+        <Route path="/Freeeducation/Slovania" element={<FreeEducationSlovania/>} />
+        <Route path="/Freeeducation/Italy" element={<FreeEducationItaly/>} />
 
       </Route>
     )
