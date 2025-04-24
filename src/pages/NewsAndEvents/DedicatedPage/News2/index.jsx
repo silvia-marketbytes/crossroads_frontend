@@ -1,10 +1,13 @@
 import React, { Suspense } from "react";
 import Banner from "../../../../components/Banner";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
+import NewsCard from "../../../../components/UiComponents/NewsCard"; 
 import bannerImg from "../../../../assets/News/news2_result.webp";
-import eventImage2 from "../../../../assets/News/news3_result.webp"; 
+import eventImage2 from "../../../../assets/News/news3_result.webp";
 import EventDetailsSection from "../../EventDetailedSection";
 
+
+import { newsData } from "../../../../pages/NewsAndEvents/index"; 
 
 const News2 = () => {
   const bannerProps = {
@@ -23,6 +26,14 @@ const News2 = () => {
   const handleJoinEvent = () => {
     alert("Event registration submitted!");
   };
+
+  // Filter out the current event (News2: "International Education Fair - Delhi")
+  const otherEvents = newsData.filter(
+    (event) => event.title !== "International Education Fair - Delhi"
+  );
+
+  // Limit to 4 events for display (as per the reference image)
+  const displayedEvents = otherEvents.slice(0, 4);
 
   return (
     <div className="relative">
@@ -45,6 +56,24 @@ const News2 = () => {
         lng={77.2192} // Longitude for India Habitat Centre
         onJoinEvent={handleJoinEvent}
       />
+
+      {/* Other Events Section */}
+      <section className="py-16 px-4 sm:px-8 lg:px-12 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-[#00334D] mb-8">Other Events</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {displayedEvents.map((event, index) => (
+              <NewsCard
+                key={index}
+                imageSrc={event.imageSrc}
+                title={event.title}
+                description={event.description}
+                link={event.link}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       <ContactSection />
     </div>

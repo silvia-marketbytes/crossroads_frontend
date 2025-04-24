@@ -21,18 +21,19 @@ import pastEvent4 from '/src/assets/News/News4.png';
 import pastEvent5 from '/src/assets/News/News3.png';
 import pastEvent6 from '/src/assets/News/News4.png';
 
-const newsData = [
+// Export newsData and pastEventsData
+export const newsData = [
   {
     imageSrc: news1,
-    title: 'Medical colleges abroad are renowned',
+    title: 'UK Admission Day - Kochi', // Updated title to match News1
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-1"
+    link: "/news/News-And-Events-1"
   },
   {
     imageSrc: news2,
     title: 'Positions such as medical officers',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-2"
+    link: "/news/News-And-Events-2"
   },
   {
     imageSrc: news3,
@@ -66,7 +67,7 @@ const newsData = [
   },
 ];
 
-const pastEventsData = [
+export const pastEventsData = [
   {
     imageSrc: pastEvent1,
     title: 'Past Event 1 Title',

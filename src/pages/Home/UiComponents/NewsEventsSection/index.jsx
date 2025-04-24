@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import NewsCard from '../../../../components/UiComponents/NewsCard';
 
@@ -11,9 +11,9 @@ import news5 from '/src/assets/News/News3.png';
 const newsData = [
   {
     imageSrc: news1,
-    title: 'Medical colleges abroad are renowned',
-    description:
-      'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+        title: 'UK Admission Day - Kochi', // Updated title to match News1
+        description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+        link: "/news/News-And-Events-1"
   },
   {
     imageSrc: news2,
@@ -69,6 +69,7 @@ const NewsEventsSection = () => {
             imageSrc={item.imageSrc}
             title={item.title}
             description={item.description}
+            link={item.link}
           />
         ))}
       </div>

@@ -104,9 +104,16 @@ const ContactUs = () => {
           title="Crossroads Career Consultants Location"
           className="filter grayscale-0 hover:grayscale-0 transition-all duration-300"
         ></iframe>
+        {/* Clickable Overlay for Google Maps Redirect */}
+        <a
+          href="https://www.google.com/maps/place/Oberon+Mall/@10.0144552,76.3096647,17z/data=!3m1!4b1!4m5!3m4!1s0x3b080d2040ea1321:0x882574aff9e3e896!8m2!3d10.0144552!4d76.3118534"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-10"
+        ></a>
 
         {/* Address Overlay Box */}
-        <div className="absolute top-4 left-4 bg-white bg-opacity-90 p-4 rounded-lg max-w-xs shadow-lg">
+        <div className="absolute top-4 left-4 bg-white bg-opacity-90 p-4 rounded-lg max-w-xs shadow-lg z-20">
           <div className="flex items-start">
             <FaMapMarkerAlt className="text-[#F9920A] text-2xl mr-2" />
             <div>
