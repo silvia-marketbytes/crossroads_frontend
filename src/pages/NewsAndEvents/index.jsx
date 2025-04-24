@@ -1,15 +1,14 @@
 import React, { Suspense, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
 import ContactSection from "../Home/UiComponents/ContactSection";
 import NewsCard from "../../components/UiComponents/NewsCard";
 import bannerImg from "../../assets/News/banner.webp";
 
-import news1 from '/src/assets/News/News1.png';
-import news2 from '/src/assets/News/News2.png';
-import news3 from '/src/assets/News/News3.png';
-import news4 from '/src/assets/News/News4.png';
+import news1 from '/src/assets/News/News1_result.webp';
+import news2 from '/src/assets/News/News2_result.webp';
+import news3 from '/src/assets/News/News3_result.webp';
+import news4 from '/src/assets/News/News4_result.webp';
 import news5 from '/src/assets/News/News5.webp';
 import news6 from '/src/assets/News/News6.webp'; 
 import news7 from '/src/assets/News/News7.webp'; 
@@ -27,11 +26,13 @@ const newsData = [
     imageSrc: news1,
     title: 'Medical colleges abroad are renowned',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-1"
   },
   {
     imageSrc: news2,
     title: 'Positions such as medical officers',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-2"
   },
   {
     imageSrc: news3,
@@ -131,6 +132,7 @@ const NewsAndEvents = () => {
               imageSrc={item.imageSrc}
               title={item.title}
               description={item.description}
+              link={item.link}
             />
           ))}
         </div>

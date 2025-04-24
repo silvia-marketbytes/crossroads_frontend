@@ -36,6 +36,8 @@ import FreeEducationAustria from "./pages/FreeEducation/Austria";
 import FreeEducationSlovakia from "./pages/FreeEducation/Slovakia";
 import FreeEducationSlovania from "./pages/FreeEducation/Slovania";
 import FreeEducationItaly from "./pages/FreeEducation/Italy";
+import News1 from "./pages/NewsAndEvents/DedicatedPage/News1";
+import News2 from "./pages/NewsAndEvents/DedicatedPage/News2";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -86,6 +88,9 @@ function App() {
         <Route path="/Freeeducation/Slovakia" element={<FreeEducationSlovakia/>} />
         <Route path="/Freeeducation/Slovania" element={<FreeEducationSlovania/>} />
         <Route path="/Freeeducation/Italy" element={<FreeEducationItaly/>} />
+        <Route path="/news/News-And-Events-1" element={<News1/>} />
+        <Route path="/news/News-And-Events-2" element={<News2/>} />
+
 
       </Route>
     )

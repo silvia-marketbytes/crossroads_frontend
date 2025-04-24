@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-const Button = ({ label, className }) => {
+const Button = ({ label, className, onClick }) => {
   return (
     <motion.button 
       className={`${className} px-4 py-2`}
@@ -11,6 +11,7 @@ const Button = ({ label, className }) => {
         stiffness: 400, 
         damping: 10 
       }}
+      onClick={onClick}
     >
       {label}
     </motion.button>

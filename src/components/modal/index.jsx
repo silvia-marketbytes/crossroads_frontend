@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "../../components/form/ContactForm";
 
@@ -38,9 +38,19 @@ const Modal = ({ onClose }) => {
     exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3 } },
   };
 
+  useEffect(() => {
+    // Disable background scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Cleanup: Restore scrolling when modal is closed
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
     <motion.div
-      className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 backdrop-brightness-50 z-[100] flex items-center justify-center p-4"
       variants={backdropVariants}
       initial="hidden"
       animate="visible"
@@ -48,7 +58,7 @@ const Modal = ({ onClose }) => {
       onClick={onClose}
     >
       <motion.div
-        className="bg-[#00334D] rounded-lg p-6 w-full max-w-2xl shadow-xl relative"
+        className="scale-[0.80] bg-[#00334D] rounded-lg p-4 w-full max-w-lg shadow-xl relative"
         variants={modalVariants}
         initial="hidden"
         animate="visible"
@@ -56,13 +66,13 @@ const Modal = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-4 right-4 text-gray-200 hover:text-gray-400"
+          className="absolute top-3 right-3 text-gray-200 hover:text-gray-400"
           onClick={onClose}
         >
-          <CloseIcon className="w-6 h-6" />
+          <CloseIcon className="w-5 h-5" />
         </button>
-        <h2 className="text-2xl font-bold text-gray-200 mb-4">Get in Touch</h2>
-        <ContactForm/>
+        <h2 className="text-xl font-bold text-gray-200 mb-3">Get in Touch</h2>
+        <ContactForm />
       </motion.div>
     </motion.div>
   );

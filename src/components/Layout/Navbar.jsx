@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Call, Hamburger, Mail } from "../Icons";
 import Button from "../Button";
 import logo from "/src/assets/logo.png";
+import Modal from "../modal";
 
 
 const Navbar = () => {
@@ -13,7 +14,7 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    console.log("Modal opening"); // Debugging
+    console.log("isModalOpen:", isModalOpen);
     setIsModalOpen(true);
   };
 
@@ -65,8 +66,8 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <nav className="flex items-center justify-end p-1 text-black w-full">
+      <div className="sticky top-0 z-50">
+      <nav className="flex items-center justify-end p-1 text-black w-full bg-white">
         <div className="flex sm:flex-row items-center sm:space-y-0 space-x-3 sm:space-x-3 mr-1 sm:mr-10">
           <div className="flex items-center space-x-2">
             <Mail className="bg-[#00334D] p-[4px] rounded-full" />
@@ -247,6 +248,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -380,10 +382,10 @@ const Navbar = () => {
 
       {/* Get in Touch Button */}
       <Button
-        label="Get in Touch"
-        className="fixed top-1/2 -right-12 transform -translate-y-1/2 text-white text-md font-medium bg-amber-500 hover:bg-amber-500/80 transition-colors duration-300 -rotate-90 px-6 py-4 shadow-lg z-50"
-        onClick={openModal}
-      />
+  label="Get in Touch"
+  className="fixed top-1/2 -right-12 transform -translate-y-1/2 text-white text-md font-medium bg-amber-500 hover:bg-amber-500/80 transition-colors duration-300 -rotate-90 px-6 py-4 shadow-lg z-50"
+  onClick={openModal}
+/>
 
       {/* Modal */}
       <AnimatePresence>
