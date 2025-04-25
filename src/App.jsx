@@ -38,6 +38,12 @@ import FreeEducationSlovania from "./pages/FreeEducation/Slovania";
 import FreeEducationItaly from "./pages/FreeEducation/Italy";
 import News1 from "./pages/NewsAndEvents/DedicatedPage/News1";
 import News2 from "./pages/NewsAndEvents/DedicatedPage/News2";
+import News3 from "./pages/NewsAndEvents/DedicatedPage/News3";
+import News4 from "./pages/NewsAndEvents/DedicatedPage/News4";
+import News5 from "./pages/NewsAndEvents/DedicatedPage/News5";
+import News6 from "./pages/NewsAndEvents/DedicatedPage/News6";
+import News7 from "./pages/NewsAndEvents/DedicatedPage/News7";
+import News8 from "./pages/NewsAndEvents/DedicatedPage/News8";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -90,6 +96,14 @@ function App() {
         <Route path="/Freeeducation/Italy" element={<FreeEducationItaly/>} />
         <Route path="/news/News-And-Events-1" element={<News1/>} />
         <Route path="/news/News-And-Events-2" element={<News2/>} />
+        <Route path="/news/News-And-Events-3" element={<News3/>} />
+        <Route path="/news/News-And-Events-4" element={<News4/>} />
+        <Route path="/news/News-And-Events-5" element={<News5/>} />
+        <Route path="/news/News-And-Events-6" element={<News6/>} />
+        <Route path="/news/News-And-Events-7" element={<News7/>} />
+        <Route path="/news/News-And-Events-8" element={<News8/>} />
+
+
 
 
       </Route>

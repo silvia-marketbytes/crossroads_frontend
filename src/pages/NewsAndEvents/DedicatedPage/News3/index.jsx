@@ -2,15 +2,15 @@ import React, { Suspense } from "react";
 import Banner from "../../../../components/Banner";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
 import NewsCard from "../../../../components/UiComponents/NewsCard";
-import bannerImg from "../../../../assets/News/news1_result.webp";
-import eventImage from "../../../../assets/News/news1_result.webp";
+import bannerImg from "../../../../assets/News/news2_result.webp";
+import eventImage2 from "../../../../assets/News/news3_result.webp";
 import EventDetailsSection from "../../EventDetailedSection";
 import { newsData } from "../../../../pages/NewsAndEvents/index";
 
-const News1 = () => {
+const News3 = () => {
   const bannerProps = {
     backgroundImage: bannerImg,
-    title: "UK Admission Day - Kochi",
+    title: "International Education Fair - Trivandrum",
     className: "px-1 relative",
     classNameTitle: "relative center text-services-title",
     backgroundPosition: "center",
@@ -26,7 +26,7 @@ const News1 = () => {
   };
 
   const otherEvents = newsData.filter(
-    (event) => event.title !== "UK Admission Day - Kochi"
+    (event) => event.title !== "International Education Fair - Delhi"
   );
 
   const displayedEvents = otherEvents.slice(0, 4);
@@ -41,21 +41,21 @@ const News1 = () => {
       </Suspense>
 
       <EventDetailsSection
-        imageSrc={eventImage}
-        title="UK Admission Day - Kochi"
-        description="Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum is simply dummy text of the printing and typesetting industry."
-        date="Oct 24, 2024"
-        time="10:00 Am - 01:00 Pm"
-        location="Oberon Mall Parking, NH Bye Pass, Padivattom, Edappally, Ernakulam, Kerala 682024"
-        category="Events"
-        lat={9.9907}
-        lng={76.3169} 
+        imageSrc={eventImage2}
+        title="International Education Fair - Delhi"
+        description="Explore opportunities with top universities. Join us for an exciting event!"
+        date="Nov 15, 2024"
+        time="09:00 Am - 12:00 Pm"
+        location="India Habitat Centre, Lodhi Road, New Delhi, Delhi 110003"
+        category="Education Fair"
+        lat={28.5880}
+        lng={77.2192}
         onJoinEvent={handleJoinEvent}
       />
 
       <section className="py-16 px-4 sm:px-8 lg:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#00334D] mb-8">Other Events</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#00334D] mb-8">Other Events</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayedEvents.map((event, index) => (
               <NewsCard
@@ -75,4 +75,4 @@ const News1 = () => {
   );
 };
 
-export default News1;
+export default News3;

@@ -39,31 +39,37 @@ export const newsData = [
     imageSrc: news3,
     title: 'Additionally, MBBS graduates',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-3"
   },
   {
     imageSrc: news4,
     title: 'Positions such as medical officers',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-4"
   },
   {
     imageSrc: news5,
     title: 'Medical colleges abroad are renowned',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-5"
   },
   {
     imageSrc: news6,
     title: 'New Dummy News 6',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-6"
   },
   {
     imageSrc: news7,
     title: 'New Dummy News 7',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-7"
   },
   {
     imageSrc: news8,
     title: 'New Dummy News 8',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+    link:"/news/News-And-Events-8"
   },
 ];
 

@@ -11,7 +11,7 @@ import news5 from '/src/assets/News/News3.png';
 const newsData = [
   {
     imageSrc: news1,
-        title: 'UK Admission Day - Kochi', // Updated title to match News1
+        title: 'UK Admission Day - Kochi',
         description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
         link: "/news/News-And-Events-1"
   },
@@ -20,24 +20,28 @@ const newsData = [
     title: 'Positions such as medical officers',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      link: "/news/News-And-Events-2"
   },
   {
     imageSrc: news3,
     title: 'Additionally, MBBS graduates',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      link: "/news/News-And-Events-3"
   },
   {
     imageSrc: news4,
     title: 'Positions such as medical officers',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      link: "/news/News-And-Events-4"
   },
   {
     imageSrc: news5,
     title: 'Medical colleges abroad are renowned',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
+      link: "/news/News-And-Events-5"
   },
 ];
 

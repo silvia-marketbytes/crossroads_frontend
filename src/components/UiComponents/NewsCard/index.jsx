@@ -17,7 +17,7 @@ const NewsCard = ({ imageSrc, title, description, link }) => {
 
   return (
     <>
-      <div className="news-card bg-white rounded-lg overflow-hidden">
+      <div className="news-card bg-white rounded-lg overflow-hidden ">
         <div className="relative mx-4">
           <img
             src={imageSrc}

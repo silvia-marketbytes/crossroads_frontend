@@ -380,7 +380,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Get in Touch Button */}
       <Button
   label="Get in Touch"
   className="fixed top-1/2 -right-12 transform -translate-y-1/2 text-white text-md font-medium bg-amber-500 hover:bg-amber-500/80 transition-colors duration-300 -rotate-90 px-6 py-4 shadow-lg z-50"
