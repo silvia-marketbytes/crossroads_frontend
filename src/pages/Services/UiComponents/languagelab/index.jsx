@@ -3,6 +3,8 @@ import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/Services/languagelabbanner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
 import rightSectionBg from "../../../../assets/Services/language-lab-bg.webp";
+import Modal from '../../../../components/modal'; 
+import { AnimatePresence } from 'framer-motion';
 
 const languageLabItems = [
   {
@@ -35,6 +37,15 @@ const Languagelab = () => {
   const [selectedItem, setSelectedItem] = useState(
     languageLabItems.length > 0 ? languageLabItems[0] : null
   );
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const bannerProps = {
     backgroundImage: bannerImg,
@@ -47,7 +58,7 @@ const Languagelab = () => {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <Banner {...bannerProps} />
       </Suspense>
 
@@ -57,7 +68,7 @@ const Languagelab = () => {
             className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
             style={{ textAlign: "justify" }}
           >
-            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communauties. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
+            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communities. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
           </p>
         </div>
       </section>
@@ -110,7 +121,7 @@ const Languagelab = () => {
                       {selectedItem.title}
                     </h2>
                     <p 
-                      className=" mt-5 leading-relaxed text-white font-['Poppins']"
+                      className="mt-5 leading-relaxed text-white font-['Poppins']"
                       style={{ fontSize: '15px' }}
                     >
                       {selectedItem.description}
@@ -118,6 +129,7 @@ const Languagelab = () => {
                   </div>
                   <button 
                     className="bg-[#F9920A] text-white mt-8 px-6 py-2 rounded-full font-medium hover:bg-[#F9920A] transition-colors duration-300"
+                    onClick={openModal} // Trigger modal on click
                   >
                     Enquire Now
                   </button>
@@ -137,6 +149,11 @@ const Languagelab = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

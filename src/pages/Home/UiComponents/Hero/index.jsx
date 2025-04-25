@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../../../components/Button';
+import Modal from '../../../../components/modal';
 import heroBg from '/src/assets/hero-bg.png';
 import useWindowSize from '/src/Hooks/useWindowSize';
-
+import { AnimatePresence } from 'framer-motion';
+ 
 const Hero = () => {
   const { width } = useWindowSize();
   const heroHeight = width < 768 ? '60vh' : '80vh';
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+ 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+ 
   return (
     <div
       className="relative bg-cover bg-center flex items-center"
       style={{ backgroundImage: `url(${heroBg})`, height: heroHeight }}
     >
-      {/* Overlay for better text visibility */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
-
-      {/* Hero Content */}
-      <div className="relative z-10 px-4 md:px-20 ml-6 text-white w-full">
+      <div className="relative z-10 px-8 md:px-42 ml-6 text-white w-full">
         <div className="text-left">
           <h1 className="text-3xl md:text-[56px] font-light leading-tight">
             Let your <span style={{ color: '#F9920A' }} className="font-bold text-7xl">MBBS</span>{' '}
@@ -26,29 +35,27 @@ const Hero = () => {
           <p className="mt-4 text-lg md:text-xl max-w-lg">
             Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the
           </p>
-          <div className="mt-6 flex space-x-4">
+          <div className="mt-6 block lg:flex items-center justify-start space-x-4 w-full">
             <Button
               label="Apply Now"
               variant="primary"
-              className="px-6 py-3 rounded-full text-white bg-[#00334D]"
+              className="px-6 py-2 rounded-full text-white text-sm bg-[#00334D] hover:bg-[#00334D]/80 transition-all duration-300"
+              onClick={openModal}
             />
-            <Button
-              label="Contact Us"
-              variant="secondary"
-              className="px-6 py-3 rounded-full text-white bg-[#F9920A]"
-            />
+            <Link to="/Contact-Us">
+              <Button
+                label="Contact Us"
+                variant="secondary"
+                className="px-6 py-2 rounded-full text-white text-sm bg-[#F9920A] hover:bg-[#F9920A]/80 transition-all duration-300"
+              />
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Get in Touch Button (Vertical) */}
-      {/* <Button
-        label="Get in Touch"
-        variant="secondary"
-        className="fixed hidden md:block -right-14 top-1/2 transform -translate-y-1/4 text-white px-6 py-3 rounded-none rotate-270 bg-[#F9920A]"
-      /> */}
-
-      {/* CSS for hover effects */}
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
+ 
       <style jsx>{`
         .px-6.py-3.rounded-full.text-white.bg-\\[#00334D\\]:hover {
           background-color: #00283A;
@@ -56,10 +63,7 @@ const Hero = () => {
         .px-6.py-3.rounded-full.text-white.bg-\\[#F9920A\\]:hover {
           background-color: #E08200;
         }
-        .fixed.-right-14.top-1\\/2.bg-\\[#F9920A\\]:hover {
-          background-color: #E08200;
-        }
-
+ 
         @media (max-width: 767px) {
           .relative.z-10 {
             padding-left: 1rem;
@@ -112,5 +116,5 @@ const Hero = () => {
     </div>
   );
 };
-
+ 
 export default Hero;

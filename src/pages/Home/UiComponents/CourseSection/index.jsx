@@ -14,55 +14,48 @@ const CourseSection = () => {
   const [showAll, setShowAll] = useState(false);
   const COURSES_PER_PAGE = 6;
  
-  const tabs = ['All Courses', 'Professional', "Bachelor's", 'PhD', "Master's"];
+  const tabs = ['All Courses', 'Professional', "Bachelor's", "Master's"];
  
   const courses = [
     {
       title: 'MBBS',
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Comprehensive educational support for medical studies.',
       imageSrc: mbbsImg,
       category: 'Professional',
     },
     {
       title: 'Ausbildung',
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Vocational training programs with expert guidance.',
       imageSrc: ausbildungImg,
       category: 'Professional',
     },
     {
       title: 'Nursing',
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Training for nursing professionals with job placement support.',
       imageSrc: nursingImg,
       category: 'Professional',
     },
     {
       title: "Bachelor's",
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Undergraduate programs tailored to your career goals.',
       imageSrc: bachelorImg,
       category: "Bachelor's",
     },
     {
       title: "Master's",
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Advanced degrees with comprehensive support.',
       imageSrc: masterImg,
       category: "Master's",
     },
     {
       title: 'HealthCare Programs',
-      description:
-        'We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs.',
+      description: 'Specialized healthcare training programs.',
       imageSrc: healthcareImg,
       category: 'Professional',
     },
     {
       title: 'Advanced Nursing',
-      description:
-        'Specialized nursing programs for advanced healthcare roles.',
+      description: 'Specialized nursing programs for advanced healthcare roles.',
       imageSrc: nursingImg,
       category: 'Professional',
     },
@@ -71,13 +64,8 @@ const CourseSection = () => {
   const filteredCourses = () => {
     if (activeTab === 'All Courses') {
       return courses;
-    } else if (activeTab === 'Professional') {
-      return courses.filter((course) =>
-        ['Professional', "Bachelor's", "Master's"].includes(course.category)
-      );
-    } else {
-      return courses.filter((course) => course.category === activeTab);
     }
+    return courses.filter((course) => course.category === activeTab);
   };
  
   const displayedCourses = showAll
@@ -89,14 +77,11 @@ const CourseSection = () => {
   };
  
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-14 sm:py-14 lg:py-20 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center">
-          <p
-            className="text-xl font-semibold uppercase mb-2"
-            style={{ color: '#00334D' }}
-          >
+          <p className="text-xl font-semibold uppercase mb-2" style={{ color: '#00334D' }}>
             Popular Courses
           </p>
           <h2 className="text-4xl font-bold">
@@ -112,24 +97,13 @@ const CourseSection = () => {
               key={tab}
               onClick={() => {
                 setActiveTab(tab);
-                setShowAll(false);
+                setShowAll(false); // Reset pagination when switching tabs
               }}
-              className={`px-6 py-2 rounded-full font-semibold transition ${
-                activeTab === tab ? 'text-white' : 'text-[#F9920A] border border-[#F9920A]'
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-200 ${
+                activeTab === tab
+                  ? 'bg-[#F9920A] text-white'
+                  : 'bg-transparent text-[#F9920A] border border-[#F9920A] hover:bg-[#F9920A] hover:text-white'
               }`}
-              style={{
-                backgroundColor: activeTab === tab ? '#F9920A' : 'transparent',
-              }}
-              onMouseEnter={(e) =>
-                activeTab !== tab &&
-                ((e.target.style.backgroundColor = '#F9920A'),
-                (e.target.style.color = 'white'))
-              }
-              onMouseLeave={(e) =>
-                activeTab !== tab &&
-                ((e.target.style.backgroundColor = 'transparent'),
-                (e.target.style.color = '#F9920A'))
-              }
             >
               {tab}
             </button>
@@ -137,7 +111,7 @@ const CourseSection = () => {
         </div>
  
         {/* Course Cards or No Data Message */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
           {displayedCourses.length > 0 ? (
             displayedCourses.map((course, index) => (
               <CourseCard
@@ -157,18 +131,10 @@ const CourseSection = () => {
  
         {/* View More Button */}
         {filteredCourses().length > COURSES_PER_PAGE && !showAll && (
-          <div className="flex justify-center mt-25">
+          <div className="flex justify-center mt-12 sm:mt-12">
             <button
               onClick={handleViewMore}
-              className="px-6 py-2 rounded-full font-semibold transition border border-[#F9920A] text-[#F9920A]"
-              onMouseEnter={(e) => (
-                (e.target.style.backgroundColor = '#F9920A'),
-                (e.target.style.color = 'white')
-              )}
-              onMouseLeave={(e) => (
-                (e.target.style.backgroundColor = 'transparent'),
-                (e.target.style.color = '#F9920A')
-              )}
+              className="px-6 py-2 rounded-full font-semibold transition-all duration-200 bg-transparent border border-[#F9920A] text-[#F9920A] hover:bg-[#F9920A] hover:text-white"
             >
               View More
             </button>
@@ -180,3 +146,4 @@ const CourseSection = () => {
 };
  
 export default CourseSection;
+ 

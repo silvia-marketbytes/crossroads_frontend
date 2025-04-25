@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Banner from "../../../../components/Banner";
@@ -21,9 +21,9 @@ import maltaFlag from "../../../../assets/country/malta.webp";
 import polandFlag from "../../../../assets/country/poland.webp";
 import slovakiaFlag from "../../../../assets/country/slovakia.webp";
 import spainFlag from "../../../../assets/country/spain.webp";
-
-
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Modal from '../../../../components/modal';
+import { AnimatePresence } from 'framer-motion';
 
 const countryData = [
   {
@@ -149,6 +149,28 @@ const countryData = [
 const CountrySection = () => {
   const sliderRef = useRef(null);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [chunkSize, setChunkSize] = useState(8);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setChunkSize(8); // Desktop
+      } else if (window.innerWidth >= 768) {
+        setChunkSize(6); // Tablet
+      } else {
+        setChunkSize(4); // Mobile
+      }
+    };
+
+    // Set initial size
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const sliderSettings = {
     dots: false,
@@ -185,7 +207,7 @@ const CountrySection = () => {
     return result;
   };
 
-  const slides = chunkArray(countryData, 8);
+  const slides = chunkArray(countryData, chunkSize);
 
   const goToPrev = () => {
     if (sliderRef.current) {
@@ -203,7 +225,7 @@ const CountrySection = () => {
     <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
             <span className="text-[#00334D]">Know</span>
             <span className="text-[#F9920A]"> your destination</span>
           </h2>
@@ -218,17 +240,17 @@ const CountrySection = () => {
               <Slider ref={sliderRef} {...sliderSettings}>
                 {slides.map((slide, slideIndex) => (
                   <div key={slideIndex} className="px-2">
-                    <div className="grid grid-cols-4 gap-4 sm:gap-6 lg:grid-rows-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
                       {slide.map((country, index) => (
                         <div
                           key={`${slideIndex}-${index}`}
-                          className="relative h-64 sm:h-72 lg:h-80 bg-gray-100 rounded-xl shadow-lg overflow-hidden group transition-all duration-300"
+                          className="relative h-48 sm:h-56 md:h-60 lg:h-64 xl:h-72 bg-gray-100 rounded-lg md:rounded-xl shadow-md hover:shadow-lg overflow-hidden group transition-all duration-300"
                           onMouseEnter={() =>
-                            setHoveredCard(slideIndex * 8 + index)
+                            setHoveredCard(slideIndex * chunkSize + index)
                           }
                           onMouseLeave={() => setHoveredCard(null)}
                         >
-                          <div className="absolute top-4 right-4 z-10">
+                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
                             <svg
                               width="15"
                               height="16"
@@ -241,8 +263,8 @@ const CountrySection = () => {
                           </div>
 
                           <div
-                            className={`absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ${
-                              hoveredCard === slideIndex * 8 + index
+                            className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${
+                              hoveredCard === slideIndex * chunkSize + index
                                 ? "opacity-0"
                                 : "opacity-100"
                             }`}
@@ -250,40 +272,40 @@ const CountrySection = () => {
                             <img
                               src={country.flag}
                               alt={`${country.name} flag`}
-                              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-full mb-4 border-4 border-[#00334D]/10"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 object-cover rounded-full mb-3 sm:mb-4 border-4 border-[#00334D]/10"
                               loading="lazy"
                             />
-                            <h3 className="text-xl sm:text-2xl font-bold text-[#00334D]">
+                            <h3 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-bold text-[#00334D] text-center">
                               {country.name}
                             </h3>
                           </div>
 
                           <div
-                            className={`absolute inset-0 flex flex-col p-4 sm:p-6 bg-[#00334D] text-white transition-opacity duration-300 ${
-                              hoveredCard === slideIndex * 8 + index
+                            className={`absolute inset-0 flex flex-col p-4 sm:p-5 bg-[#00334D] text-white transition-opacity duration-300 ${
+                              hoveredCard === slideIndex * chunkSize + index
                                 ? "opacity-100"
                                 : "opacity-0"
                             }`}
                           >
-                            <div className="flex items-center mb-4">
+                            <div className="flex items-center mb-3 sm:mb-4">
                               <img
                                 src={country.flag}
                                 alt={`${country.name} flag`}
                                 className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full mr-2 sm:mr-3 border-2 border-white"
                               />
-                              <h3 className="text-lg sm:text-xl font-bold">
+                              <h3 className="text-base sm:text-lg md:text-xl font-bold">
                                 {country.name}
                               </h3>
                             </div>
-                            <p className="text-xs sm:text-sm mb-4 sm:mb-6 line-clamp-4">
+                            <p className="text-xs sm:text-sm md:text-sm mb-3 sm:mb-4 line-clamp-4">
                               {country.description}
                             </p>
                             <div className="mt-auto">
                               <Link
                                 to={country.path}
-                                className="text-[#F9920A] font-medium flex items-center hover:underline text-sm sm:text-base"
+                                className="text-[#F9920A] font-medium flex items-center hover:underline text-xs sm:text-sm md:text-base"
                               >
-                                Know more <span className="ml-2">→</span>
+                                Know more <span className="ml-1 sm:ml-2">→</span>
                               </Link>
                             </div>
                           </div>
@@ -294,22 +316,22 @@ const CountrySection = () => {
                 ))}
               </Slider>
 
-              <div className="flex justify-center mt-8 space-x-4">
+              <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
                 <button
-                  className="transition-all duration-300"
+                  className="p-1 sm:p-2 transition-all duration-300 hover:bg-gray-100 rounded-full"
                   style={{ color: "#00334D" }}
                   onClick={goToPrev}
                   aria-label="Previous Slide"
                 >
-                  <FaChevronLeft size={24} />
+                  <FaChevronLeft className="text-xl sm:text-2xl" />
                 </button>
                 <button
-                  className="transition-all duration-300"
+                  className="p-1 sm:p-2 transition-all duration-300 hover:bg-gray-100 rounded-full"
                   style={{ color: "#00334D" }}
                   onClick={goToNext}
                   aria-label="Next Slide"
                 >
-                  <FaChevronRight size={24} />
+                  <FaChevronRight className="text-xl sm:text-2xl" />
                 </button>
               </div>
             </>
@@ -325,6 +347,16 @@ const CountrySection = () => {
 };
 
 const Country = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Choose.Apply.Study",
@@ -333,13 +365,18 @@ const Country = () => {
     showDateTime: false,
     showSocialMedia: false,
     showApplyButton: true,
+    buttonText: "Apply Now",
+    onButtonClick: openModal,
   };
 
   return (
-    <div className="">
+    <div>
       <Banner {...bannerProps} />
       <CountrySection />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

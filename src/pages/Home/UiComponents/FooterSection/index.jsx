@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from "react-router-dom"; // Updated import to use react-router-dom
+import { useLocation, Link } from "react-router-dom"; 
 import logo from "../../../../assets/logo-footer.webp";
 import SocialMedia from '../../../../components/UiComponents/SocialMedia';
 import shadow from "../../../../assets/shadow.webp";
 import { Like, Telephone } from '../../../../components/Icons';
 
-// Define the services data
+
 const servicesData = {
   title: 'SERVICES',
   links: [

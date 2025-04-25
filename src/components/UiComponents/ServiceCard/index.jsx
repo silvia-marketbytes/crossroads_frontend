@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+ 
 const ServiceCard = ({ title, description, imageSrc, url }) => {
   return (
-    <Link to={url} className="flex flex-col w-full max-w-[300px] mx-auto relative group">
+    <Link to={url} className="flex flex-col max-w-full lg:max-w-[280px] mx-auto relative group">
       <div className="relative overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-[10px_10px_15px_rgba(0,0,0,0.2)]">
         <img
           src={imageSrc}
@@ -49,15 +49,15 @@ const ServiceCard = ({ title, description, imageSrc, url }) => {
         </div>
       </div>
       <div
-        className="mt-4"
+        className="mt-4 text-lg font-medium text-[#00334D]"
         dangerouslySetInnerHTML={{ __html: title }}
       />
       <div
-        className="mt-2"
+        className="mt-2 text-md font-normal text-gray-600"
         dangerouslySetInnerHTML={{ __html: description }}
       />
     </Link>
   );
 };
-
+ 
 export default ServiceCard;

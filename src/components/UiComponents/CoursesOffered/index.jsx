@@ -93,7 +93,7 @@ const CoursesOffered = ({ title }) => {
   };
 
   return (
-    <section className="w-full py-20 bg-white text-center">
+    <section className="w-full pb-2 mt-12 bg-white text-center">
       <div className="w-full">
         <h2 className="text-l sm:text-3xl mb-8 ">
           <span className="text-[#F9920A]">Courses</span>{" "}

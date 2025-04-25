@@ -1,13 +1,13 @@
 import React, { Suspense, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import NewsCard from '../../../../components/UiComponents/NewsCard';
-
+ 
 import news1 from '/src/assets/News/News1.png';
 import news2 from '/src/assets/News/News2.png';
 import news3 from '/src/assets/News/News3.png';
 import news4 from '/src/assets/News/News4.png';
 import news5 from '/src/assets/News/News3.png';
-
+ 
 const newsData = [
   {
     imageSrc: news1,
@@ -44,16 +44,16 @@ const newsData = [
       link: "/news/News-And-Events-5"
   },
 ];
-
+ 
 const NewsEventsSection = () => {
   const navigate = useNavigate();
-
+ 
   const showMoreCards = () => {
     navigate('/news');
   };
-
+ 
   return (
-    <section className="py-10 px-4 md:px-20 bg-white">
+    <section className="py-1 px-4 md:px-12 bg-white">
       <div className="mb-8 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold">
           <span style={{ color: '#00334D' }}>NEWS & </span>
@@ -65,7 +65,7 @@ const NewsEventsSection = () => {
           assisting with job placements, both in India and internationally.
         </p>
       </div>
-
+ 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {newsData.slice(0, 4).map((item, index) => (
           <NewsCard
@@ -77,7 +77,7 @@ const NewsEventsSection = () => {
           />
         ))}
       </div>
-
+ 
       <div className="text-center mt-8">
         <button
           onClick={showMoreCards}
@@ -85,11 +85,11 @@ const NewsEventsSection = () => {
           style={{ backgroundColor: '#F9920A' }}
         >
           Show More
-          
+         
         </button>
       </div>
     </section>
   );
 };
-
+ 
 export default NewsEventsSection;

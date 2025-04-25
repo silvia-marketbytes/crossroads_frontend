@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Banner from "../../../../../components/Banner";
 import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
@@ -9,8 +10,14 @@ import WhyChooseSection from "../../../../../components/CountryListing/WhyChoose
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
 
 const Australia = () => {
+  const navigate = useNavigate();
+
+  const goToContact = () => {
+    navigate("/Contact-Us"); 
+  };
+
   const bannerProps = {
-    backgroundImage: bannerImg, 
+    backgroundImage: bannerImg,
     title: "Study in Australia",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
@@ -18,6 +25,7 @@ const Australia = () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: goToContact, 
   };
 
   const countryDescription = `
@@ -39,28 +47,23 @@ const Australia = () => {
   const dropdownSections = [
     {
       title: "Prestigious education system",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
     {
-      title: "One of the world’s leading economies",
-      content:
-        "Choose from a wide range of programs in various fields of study.",
+      title: "One of the world's leading economies",
+      content: "Choose from a wide range of programs in various fields of study.",
     },
     {
       title: "Extensive range of academic programs",
-      content:
-        "Many public universities offer scholarships to international students.",
+      content: "Many public universities offer scholarships to international students.",
     },
     {
       title: "Affordable tuition fees",
-      content:
-        "France offers affordable education with a high standard of living.",
+      content: "France offers affordable education with a high standard of living.",
     },
     {
       title: "Quality higher education",
-      content:
-        "Enjoy high living standards and excellent career opportunities.",
+      content: "Enjoy high living standards and excellent career opportunities.",
     },
     {
       title: "Research and development opportunities",
@@ -103,11 +106,11 @@ const Australia = () => {
   ];
 
   return (
-    <div className="">
+    <div>
       <Banner {...bannerProps} />
       <CountryDetails details={countryDetails} description={countryDescription} />
       <WhyChooseSection
-        image={germanyImage} 
+        image={germanyImage}
         dropdownSections={dropdownSections}
         intakes={intakes}
         countryName="Australia"

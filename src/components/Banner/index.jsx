@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import SocialMedia from "../UiComponents/SocialMedia";
@@ -17,7 +17,10 @@ const Banner = ({
   buttonText = "Apply Now",
   showCounter = false,
   counterPosition = "below",
+  onButtonClick,
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const handleCopyUrl = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url).then(() => {
@@ -48,6 +51,14 @@ const Banner = ({
     { number: "+5k", text: "Lorem ipsum", description: "Lorem ipsum is simply dummy text of the printing and" },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % counterData.length);
+    }, 3000); // Change the interval duration as needed
+
+    return () => clearInterval(interval);
+  }, [counterData.length]);
+
   return (
     <div className="relative">
       <header
@@ -75,7 +86,7 @@ const Banner = ({
             <div className="mt-6">
               <button
                 className="bg-[#F9920A] hover:bg-[#e68209] text-white font-medium px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F9920A] focus:ring-opacity-50 shadow-lg"
-                onClick={() => alert(`${buttonText} clicked!`)}
+                onClick={onButtonClick}
               >
                 {buttonText}
               </button>
@@ -84,18 +95,23 @@ const Banner = ({
         </div>
 
         {showCounter && counterPosition === "overlay" && (
-          <div className="absolute bottom-0 left-0 right-0 px-40">
-            <div className="container mx-auto border border-white m-12">
-              <div className="grid grid-cols-1 md:grid-cols-4 divide-x divide-white">
+          <div className="absolute bottom-0 left-0 right-0 px-4 md:px-40">
+            <div className="container mx-auto border border-white m-4 md:m-12 overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-4 divide-x divide-white relative">
                 {counterData.map((item, index) => (
-                  <div key={index} className="px-12 py-4 text-center"> 
+                  <div
+                    key={index}
+                    className={`px-4 md:px-12 py-4 text-center transition-opacity duration-1000 md:opacity-100 ${
+                      index === currentIndex ? "opacity-100" : "opacity-0 hidden md:block"
+                    }`}
+                  >
                     <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
                       {item.number}
                     </h3>
-                    <p className="text-lg md:text-xl text-white font-medium"> 
+                    <p className="text-lg md:text-xl text-white font-medium">
                       {item.text}
                     </p>
-                    <p className="text-base md:text-lg text-white mt-4 opacity-80"> 
+                    <p className="text-base md:text-lg text-white mt-4 opacity-80">
                       {item.description}
                     </p>
                   </div>
@@ -142,20 +158,19 @@ const Banner = ({
         </div>
       </header>
 
-      
       {showCounter && counterPosition === "below" && (
         <div className="bg-white py-8 px-4 border-t border-white">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 divide-x divide-white">
               {counterData.map((item, index) => (
-                <div key={index} className="px-12 py-6 text-center"> 
+                <div key={index} className="px-12 py-6 text-center">
                   <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                     {item.number}
                   </h3>
-                  <p className="text-lg md:text-xl text-gray-600 font-medium"> 
+                  <p className="text-lg md:text-xl text-gray-600 font-medium">
                     {item.text}
                   </p>
-                  <p className="text-base md:text-lg text-gray-500 mt-4"> 
+                  <p className="text-base md:text-lg text-gray-500 mt-4">
                     {item.description}
                   </p>
                 </div>

@@ -31,7 +31,7 @@ const TickSVG = () => (
 
 const AboutMission = () => {
   return (
-    <section className=" bg-white text-center">
+    <section className="bg-white text-center">
       <div className="container mx-auto">
         <p className="text-lg md:text-xl text-gray-600 max-w-7xl mx-auto">
           At Crossroads, we’ve been passionately committed to shaping the
@@ -60,8 +60,8 @@ const VisionMissionSection = () => {
   };
 
   return (
-    <div className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20">
-      <div className="relative w-full md:w-1/2 h-[600px]">
+    <div className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20 md:pt-20">
+      <div className="relative w-full md:w-1/2 h-[600px] md:h-[600px]">
         {!isPlaying && (
           <div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
@@ -111,13 +111,13 @@ const VisionMissionSection = () => {
           />
         )}
       </div>
-      <div className="w-full md:w-1/2 flex flex-col justify-center bg-gray-100">
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/2 text-center md:text-center flex flex-col items-center justify-center p-4">
+      <div className="w-full md:w-1/2 flex flex-col justify-center bg-gray-100 md:mt-0 mt-4">
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+          <div className="md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start justify-center p-4">
             <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
               Our Vision
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 text-center md:text-left">
               To be a world leader in empowering students to achieve their academic and career aspirations by providing unparalleled guidance and access to world-class education opportunities across the globe.
             </p>
           </div>
@@ -125,15 +125,15 @@ const VisionMissionSection = () => {
             <img src={visionImage} className="w-full h-auto" alt="Graduation ceremony" />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-6">
           <div className="md:w-1/2">
             <img src={missionImage} className="w-full h-auto" alt="Students together" />
           </div>
-          <div className="md:w-1/2 text-center md:text-center flex flex-col items-center justify-center p-4">
+          <div className="md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start justify-center p-4">
             <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
               Our Mission
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 text-center md:text-left">
               Our mission is to inspire and support students in their pursuit of international education, offering personalized guidance, comprehensive & dedicated services, thereby ensuring they are well-prepared for success in a globalized world.
             </p>
           </div>
@@ -229,7 +229,7 @@ const Aboutus = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className=" bg-white text-center">
+      <section className="bg-white text-center">
         <div className="container mx-auto">
           <h2 className="text-4xl md:text-5xl font-semibold mt-10">
             <span style={{ color: "#00334D" }}>At </span>
@@ -255,12 +255,12 @@ const Aboutus = () => {
       <section className="py-12 bg-white">
         <div className="relative mx-auto px-4 md:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full h-full">
-            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left pl-40 pr-20">
-              <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left p-4 md:pl-40 md:pr-20">
+              <h2 className="text-2xl md:text-4xl font-semibold mb-4">
                 <span>Why </span>
                 <span style={{ color: "#F9920A" }}>Crossroads?</span>
               </h2>
-              <p className="text-lg mb-10">
+              <p className="text-base md:text-lg mb-6 md:mb-10">
                 At Crossroads, we are committed to guiding students toward their
                 dreams with personalized support and expert advice. Our mission
                 is to simplify the complex journey of education and career
@@ -268,7 +268,7 @@ const Aboutus = () => {
               </p>
 
               <div className="relative">
-                <div className="absolute left-0 top-0 h-full w-1 bg-white overflow-hidden">
+                <div className="absolute left-0 top-0 h-full w-1 bg-white overflow-hidden md:block hidden">
                   <div
                     ref={lineRef}
                     className="w-full bg-orange-500 transition-transform duration-200 ease-out"
@@ -276,21 +276,21 @@ const Aboutus = () => {
                 </div>
                 <div
                   ref={listRef}
-                  className="pl-8 ml-4 overflow-y-auto scrollbar-hide"
+                  className="pl-4 md:pl-8 ml-4 overflow-y-auto scrollbar-hide"
                   style={{ maxHeight: "300px" }}
                 >
-                  <ul className="space-y-6 pr-4">
+                  <ul className="space-y-4 md:space-y-6 pr-4">
                     {scrollableContents.map((item, index) => (
                       <li key={index} className="flex items-start space-x-2">
                         <TickSVG />
                         <div>
                           <h4
-                            className="font-bold"
+                            className="font-bold text-base md:text-lg"
                             style={{ color: "#F9920A" }}
                           >
                             {item.heading}
                           </h4>
-                          <p className="mt-1">{item.description}</p>
+                          <p className="mt-1 text-sm md:text-base">{item.description}</p>
                         </div>
                       </li>
                     ))}
@@ -298,7 +298,7 @@ const Aboutus = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center w-full">
+            <div className="flex justify-center items-center w-full mt-6 md:mt-0">
               <img
                 src={rightSideImg}
                 alt="Crossroads Illustration"
