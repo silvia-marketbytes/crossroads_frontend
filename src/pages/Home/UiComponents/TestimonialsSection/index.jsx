@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
- 
+
 import student1 from "/src/assets/Students/Student1.png";
 import student2 from "/src/assets/Students/Student2.png";
 import video1 from "/src/assets/Students/Videos/Video1.mp4";
 import video2 from "/src/assets/Students/Videos/Video2.mp4";
- 
+
 import flag1 from "/src/assets/Flags/austria.png";
 import flag2 from "/src/assets/Flags/germany.png";
 import flag3 from "/src/assets/Flags/italy.png";
- 
+
 const testimonialsData = [
   {
     imageSrc: student1,
@@ -31,7 +31,7 @@ const testimonialsData = [
     type: "image",
   },
 ];
- 
+
 const videosData = [
   {
     videoSrc: video1,
@@ -52,11 +52,11 @@ const videosData = [
     type: "video",
   },
 ];
- 
+
 const Card = ({ item }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const shouldShowButton = item.description.length > 50;
- 
+
   return (
     <div className="px-2">
       <div className="card bg-white rounded-lg overflow-hidden w-full max-w-[380px] mx-auto flex flex-col h-auto">
@@ -64,7 +64,7 @@ const Card = ({ item }) => {
           <img
             src={item.imageSrc}
             alt={item.name}
-            className="w-full h-[200px] sm:h-[250px] object-cover"
+            className="w-full h-[200px] sm:h-[250px] object-cover rounded-2xl"
             onError={(e) => {
               e.target.src = "https://via.placeholder.com/350x250?text=Image+Not+Found";
               console.error(`Failed to load image: ${item.imageSrc}`);
@@ -73,7 +73,7 @@ const Card = ({ item }) => {
         ) : (
           <video
             controls
-            className="w-full h-[200px] sm:h-[250px] object-cover"
+            className="w-full h-[200px] sm:h-[250px] object-cover rounded-2xl"
             src={item.videoSrc}
             onError={(e) => {
               console.error(`Failed to load video: ${item.videoSrc}`);
@@ -129,11 +129,11 @@ const Card = ({ item }) => {
     </div>
   );
 };
- 
+
 const TestimonialsSection = () => {
   const testimonialSliderRef = useRef(null);
   const videoSliderRef = useRef(null);
- 
+
   const testimonialSliderSettings = {
     dots: false,
     infinite: true,
@@ -158,7 +158,7 @@ const TestimonialsSection = () => {
       },
     ],
   };
- 
+
   const videoSliderSettings = {
     dots: false,
     infinite: true,
@@ -189,17 +189,17 @@ const TestimonialsSection = () => {
       },
     ],
   };
- 
+
   const goToPrev = () => {
     testimonialSliderRef.current?.slickPrev();
     videoSliderRef.current?.slickPrev();
   };
- 
+
   const goToNext = () => {
     testimonialSliderRef.current?.slickNext();
     videoSliderRef.current?.slickNext();
   };
- 
+
   return (
     <section className="py-6 sm:py-10 bg-white mt-10 w-full">
       <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -220,7 +220,7 @@ const TestimonialsSection = () => {
               </p>
             </div>
           </div>
- 
+
           <div className="grid lg:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
             <div className="w-full flex flex-col items-center justify-center px-8">
               <h3 className="text-[20px] font-normal text-center text-[#00334D] pb-4">
@@ -232,7 +232,7 @@ const TestimonialsSection = () => {
             </div>
           </div>
         </section>
- 
+
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 items-start w-full">
           <div className="w-full lg:w-2/3">
             {testimonialsData.length > 0 ? (
@@ -257,7 +257,7 @@ const TestimonialsSection = () => {
             )}
           </div>
         </div>
- 
+
         <div className="flex justify-center mt-4 space-x-4">
           <button
             className="text-blue-950 hover:text-orange-500 transition-all duration-300"
@@ -278,5 +278,5 @@ const TestimonialsSection = () => {
     </section>
   );
 };
- 
+
 export default TestimonialsSection;
