@@ -1,19 +1,26 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Banner from "../../../../../components/Banner";
 import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
 import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
+import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../../../components/modal";
 
 const Australia = () => {
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const goToContact = () => {
-    navigate("/Contact-Us"); 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const bannerProps = {
@@ -25,83 +32,85 @@ const Australia = () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
-    onButtonClick: goToContact, 
+    onButtonClick: openModal, // Changed to trigger modal
   };
 
   const countryDescription = `
-    France, officially known as the French Republic, is a country predominantly situated in Western Europe.
-    Its capital, Paris, is famous for its high-end fashion, iconic landmarks such as the Eiffel Tower,
+    Australia, officially known as the Commonwealth of Australia, is a country in the Southern Hemisphere 
+    comprising the mainland of the Australian continent, the island of Tasmania, and numerous smaller islands. 
+    Its capital, Canberra, is known for its planned design, while cities like Sydney and Melbourne are famous 
+    for their vibrant culture, iconic landmarks such as the Sydney Opera House, and world-class education systems.
   `;
 
   const countryDetails = [
-    { label: "Capital", value: "Paris" },
-    { label: "Population", value: "67 Million" },
-    { label: "Language", value: "French" },
-    { label: "International Students", value: "343,400" },
-    { label: "Currency", value: "Euro" },
-    { label: "GDP", value: "$2.9 Trillion" },
-    { label: "Universities", value: "250+" },
-    { label: "International Students", value: "343,400" },
+    { label: "Capital", value: "Canberra" },
+    { label: "Population", value: "26 Million" },
+    { label: "Language", value: "English" },
+    { label: "International Students", value: "700,000+" },
+    { label: "Currency", value: "Australian Dollar (AUD)" },
+    { label: "GDP", value: "$1.7 Trillion" },
+    { label: "Universities", value: "40+" },
+    { label: "International Students", value: "700,000+" },
   ];
 
   const dropdownSections = [
     {
       title: "Prestigious education system",
-      content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      content: "Australia is home to world-renowned universities offering high-quality education.",
     },
     {
       title: "One of the world's leading economies",
-      content: "Choose from a wide range of programs in various fields of study.",
+      content: "A strong economy provides excellent career opportunities for graduates.",
     },
     {
       title: "Extensive range of academic programs",
-      content: "Many public universities offer scholarships to international students.",
+      content: "Choose from a wide range of programs in various fields of study.",
     },
     {
       title: "Affordable tuition fees",
-      content: "France offers affordable education with a high standard of living.",
+      content: "Competitive tuition fees compared to other English-speaking countries.",
     },
     {
       title: "Quality higher education",
-      content: "Enjoy high living standards and excellent career opportunities.",
+      content: "Enjoy high living standards and a multicultural environment.",
     },
     {
       title: "Research and development opportunities",
-      content: "Benefit from excellent healthcare and working conditions.",
+      content: "Australia is a leader in innovation and research-driven education.",
     },
   ];
 
   const intakes = [
-    "Winter-Sept/Oct",
-    "Summer-March/April",
-    "Additional intakes (Feb/May/June) at some private universities.",
+    "February/March",
+    "July/August",
+    "Some institutions offer additional intakes in November.",
   ];
 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
       title: "Nursing",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Prepare for a rewarding career in healthcare with world-class training.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Ausbildung",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Business",
+      description: "Gain skills in management, finance, and entrepreneurship.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Bachelor's",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Pursue undergraduate degrees in diverse fields.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Masters",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Advance your career with postgraduate qualifications.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Health Programs",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Engineering",
+      description: "Study cutting-edge engineering programs with practical focus.",
     },
   ];
 
@@ -118,6 +127,9 @@ const Australia = () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

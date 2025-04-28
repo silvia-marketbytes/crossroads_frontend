@@ -134,8 +134,6 @@ const MBBSSection = () => {
             </div>
           ))}
         </Slider>
- 
-        {/* Navigation Buttons - centered */}
         <div className="flex justify-center mt-4 sm:mt-6 gap-4 sm:gap-6 px-4">
           <button
             onClick={goToPrev}

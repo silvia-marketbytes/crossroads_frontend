@@ -123,7 +123,7 @@ const CoursesOffered = ({ title }) => {
                   </div>
                 ))}
               </Slider>
-              <div className="mt-20 flex justify-center space-x-4">
+              <div className="mt-10 mb-10 flex justify-center space-x-4">
                 <button
                   onClick={goToPrev}
                   className="text-2xl text-[#00334D] cursor-pointer hover:text-[#F9920A] transition-colors"

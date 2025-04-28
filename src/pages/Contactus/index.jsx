@@ -1,3 +1,4 @@
+
 import React, { Suspense } from "react";
 import Banner from "../../components/Banner";
 import bannerImg from "../../assets/ContactUs/CONTACTBANNER_result.webp";
@@ -25,11 +26,10 @@ const ContactUs = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-6 justify-center">
-         
-          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300">
+          {/* Address Card */}
+          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300 relative">
             <div className="flex flex-col items-center text-center">
               <div className="bg-white p-4 rounded-full mb-4">
                 <FaMapMarkerAlt className="text-[#00334D] text-2xl" />
@@ -40,10 +40,14 @@ const ContactUs = () => {
                 Edapally, Kochi, Kerala 682024
               </p>
             </div>
+            <div
+              className="absolute bottom-0 left-0 right-0 h-2"
+              style={{ backgroundColor: "#F9920A" }}
+            ></div>
           </div>
 
-         
-          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300">
+          {/* Call Us Card */}
+          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300 relative">
             <div className="flex flex-col items-center text-center">
               <div className="bg-white p-4 rounded-full mb-4">
                 <FaPhone className="text-[#00334D] text-2xl" />
@@ -64,10 +68,14 @@ const ContactUs = () => {
                 </a>
               </p>
             </div>
+            <div
+              className="absolute bottom-0 left-0 right-0 h-2"
+              style={{ backgroundColor: "#F9920A" }}
+            ></div>
           </div>
 
-       
-          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300">
+          {/* Email Us Card */}
+          <div className="bg-gray-100 rounded-lg p-6 flex-1 max-w-md group hover:shadow-md transition-all duration-300 relative">
             <div className="flex flex-col items-center text-center">
               <div className="bg-white p-4 rounded-full mb-4">
                 <FaEnvelope className="text-[#00334D] text-2xl" />
@@ -82,6 +90,10 @@ const ContactUs = () => {
                 </a>
               </p>
             </div>
+            <div
+              className="absolute bottom-0 left-0 right-0 h-2"
+              style={{ backgroundColor: "#F9920A" }}
+            ></div>
           </div>
         </div>
       </div>
@@ -90,7 +102,6 @@ const ContactUs = () => {
         <ContactSection />
       </Suspense>
 
-    
       <div className="w-full h-[500px] mt-12 relative">
         <iframe
           src={mapLocation}

@@ -1,113 +1,123 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Banner from "../../../../../components/Banner";
-import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
+import bannerImg from "../../../../../assets/country/Germany-Banner.webp"; 
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
-import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import ukImage from "../../../../../assets/country/Germany-education.webp";
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
+import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../../../components/modal";
 
-const Uk= () => {
+const Uk = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const bannerProps = {
-    backgroundImage: bannerImg, 
-    title: "Study in Uk",
+    backgroundImage: bannerImg,
+    title: "Study in the UK",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
     showDateTime: false,
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
 
   const countryDescription = `
-    France, officially known as the French Republic, is a country predominantly situated in Western Europe.
-    Its capital, Paris, is famous for its high-end fashion, iconic landmarks such as the Eiffel Tower,
+    The United Kingdom, officially known as the United Kingdom of Great Britain and Northern Ireland, 
+    is a country in Western Europe known for its rich history, cultural diversity, and world-renowned 
+    education system. Its capital, London, is a global hub for finance, culture, and education, while 
+    cities like Oxford, Cambridge, and Edinburgh are famous for their prestigious universities.
   `;
 
   const countryDetails = [
-    { label: "Capital", value: "Paris" },
+    { label: "Capital", value: "London" },
     { label: "Population", value: "67 Million" },
-    { label: "Language", value: "French" },
-    { label: "International Students", value: "343,400" },
-    { label: "Currency", value: "Euro" },
-    { label: "GDP", value: "$2.9 Trillion" },
-    { label: "Universities", value: "250+" },
-    { label: "International Students", value: "343,400" },
+    { label: "Language", value: "English" },
+    { label: "International Students", value: "605,130" },
+    { label: "Currency", value: "Pound Sterling (GBP)" },
+    { label: "GDP", value: "$3.2 Trillion" },
+    { label: "Universities", value: "130+" },
   ];
 
   const dropdownSections = [
     {
       title: "Prestigious education system",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      content: "The UK is home to world-class universities like Oxford and Cambridge.",
     },
     {
-      title: "One of the world’s leading economies",
-      content:
-        "Choose from a wide range of programs in various fields of study.",
+      title: "Global career opportunities",
+      content: "A UK degree is highly valued by employers worldwide.",
     },
     {
-      title: "Extensive range of academic programs",
-      content:
-        "Many public universities offer scholarships to international students.",
+      title: "Diverse academic programs",
+      content: "Choose from a wide range of programs in various disciplines.",
     },
     {
-      title: "Affordable tuition fees",
-      content:
-        "France offers affordable education with a high standard of living.",
+      title: "Cultural and historical richness",
+      content: "Experience a vibrant culture with a rich historical heritage.",
     },
     {
-      title: "Quality higher education",
-      content:
-        "Enjoy high living standards and excellent career opportunities.",
+      title: "High quality of life",
+      content: "Enjoy modern cities, excellent healthcare, and a dynamic lifestyle.",
     },
     {
-      title: "Research and development opportunities",
-      content: "Benefit from excellent healthcare and working conditions.",
+      title: "Research and innovation hub",
+      content: "Access cutting-edge research opportunities in top institutions.",
     },
   ];
 
   const intakes = [
-    "Winter-Sept/Oct",
-    "Summer-March/April",
-    "Additional intakes (Feb/May/June) at some private universities.",
+    "September/October (Fall)",
+    "January/February (Spring)",
+    "Some universities offer additional intakes in May/June.",
   ];
 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
       title: "Nursing",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Train for a rewarding career in healthcare with practical focus.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Ausbildung",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Computer Science",
+      description: "Study cutting-edge technology and software development.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Bachelor's",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Pursue undergraduate degrees in diverse disciplines.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Masters",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Advance your career with postgraduate qualifications.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Health Programs",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Business Administration",
+      description: "Develop skills in management, finance, and leadership.",
     },
   ];
 
   return (
-    <div className="">
+    <div>
       <Banner {...bannerProps} />
       <CountryDetails details={countryDetails} description={countryDescription} />
       <WhyChooseSection
-        image={germanyImage} 
+        image={ukImage}
         dropdownSections={dropdownSections}
         intakes={intakes}
         countryName="UK"
@@ -115,6 +125,9 @@ const Uk= () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

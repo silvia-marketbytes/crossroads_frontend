@@ -1,7 +1,8 @@
+
 import React, { Suspense, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
-import ContactSection from "../Home/UiComponents/ContactSection";("../Home/UiComponents/ContactSection");
+import ContactSection from "../Home/UiComponents/ContactSection";
 import bannerImg from "../../assets/testimonials/our_sucess_story.webp";
 import student1 from "../../assets/Students/Student1.png";
 import student2 from "../../assets/Students/Student2.png";
@@ -146,18 +147,18 @@ const VIDEO_TESTIMONIALS = [
 
 const TestimonialCard = ({ item }) => {
   return (
-    <div className="w-[90%] h-[450px] sm:h-[500px] lg:h-[550px] bg-white overflow-hidden flex flex-col shadow-md rounded-lg hover:bg-gray-100 transition-colors duration-300 mx-auto">
+    <div className="w-[90%] h-[450px] sm:h-[500px] lg:h-[550px] bg-white overflow-hidden flex flex-col  hover:bg-gray-100 transition-colors duration-300 mx-auto">
       {item.type === "image" ? (
         <img
           src={item.imageSrc}
           alt={item.name}
-          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover object-top"
+          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover object-top "
         />
       ) : (
         <video
           src={item.videoSrc}
           controls
-          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover"
+          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover rounded-2xl"
         />
       )}
       <div className="flex flex-col p-4 flex-grow">
@@ -211,14 +212,13 @@ const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [cardsPerSlide, setCardsPerSlide] = useState(6);
 
-  
   useEffect(() => {
     const updateCardsPerSlide = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setCardsPerSlide(1); 
+        setCardsPerSlide(1);
       } else if (width < 1024) {
-        setCardsPerSlide(2); 
+        setCardsPerSlide(2);
       } else {
         setCardsPerSlide(6);
       }
@@ -370,15 +370,12 @@ const Testimonials = () => {
           </div>
         </div>
       </section>
-      
-              <ContactSection />
-          
+
+      <ContactSection />
     </div>
   );
 };
 
-
-      
 TestimonialCard.propTypes = {
   item: PropTypes.shape({
     imageSrc: PropTypes.string,
@@ -392,6 +389,3 @@ TestimonialCard.propTypes = {
 };
 
 export default Testimonials;
-
-
-<ContactSection />

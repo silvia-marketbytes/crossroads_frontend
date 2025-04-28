@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState, useEffect } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
@@ -11,6 +11,8 @@ import postImage4 from "../../../assets/blog/D_result.webp";
 import postImage5 from "../../../assets/blog/E_result.webp";
 import postImage6 from "../../../assets/blog/F_result.webp";
 import postImage7 from "../../../assets/blog/G_result.webp";
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../components/modal";
 
 const blogPostsHead = [
   {
@@ -19,8 +21,8 @@ const blogPostsHead = [
     imageAlt: "Overseas education consultation",
     title: "What to Expect from Overseas Education Consultants in Kochi: A Step-by-Step Process",
     date: "Feb 28, 2025",
-    excerpt: "We share a wealth of resources, including study guides, practice questions, and sample papers. These materials are curated to match the exam...",
-    fullContent: "We share a wealth of resources, including study guides, practice questions, and sample papers. These materials are curated to match the exam patterns and difficulty levels of various tests. Our consultants provide personalized guidance to help you navigate the complex process of studying abroad, from selecting the right university to visa application assistance"
+    excerpt: "We share a wealth of resources, including study guides, practice questions, and sample papers...",
+    fullContent: "We share a wealth of resources, including study guides, practice questions, and sample papers. Our consultants provide personalized guidance to help you navigate the complex process of studying abroad, from selecting the right university to visa application assistance"
   },
 ];
 
@@ -28,10 +30,10 @@ const blogPosts = [
   {
     id: 1,
     image: postImage2,
-    imageAlt: "Overseas education consultation",
+    imageAlt: "Over RESPONSIVE education consultation",
     title: "How Overseas Education Consultants in Kochi Can Transform Your Future",
     date: "Feb 21, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and realization can be bridged with the right guidance. Our consultants in Kochi offer personalized support to help you achieve your goals."
   },
   {
@@ -40,7 +42,7 @@ const blogPosts = [
     imageAlt: "Choosing the best consultant",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
   {
@@ -49,7 +51,7 @@ const blogPosts = [
     imageAlt: "Education consultation",
     title: "How Overseas Education Consultants in Kochi Can Transform Your Future",
     date: "Feb 21, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and realization can be bridged with the right guidance. Our consultants in Kochi offer personalized support to help you achieve your goals."
   },
   {
@@ -58,7 +60,7 @@ const blogPosts = [
     imageAlt: "Job and education",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
   {
@@ -67,7 +69,7 @@ const blogPosts = [
     imageAlt: "Graduation success",
     title: "How Overseas Education Consultants in Kochi Can Transform Your Future",
     date: "Feb 21, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and realization can be bridged with the right guidance. Our consultants in Kochi offer personalized support to help you achieve your goals."
   },
   {
@@ -76,7 +78,7 @@ const blogPosts = [
     imageAlt: "Education consultation group",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
   {
@@ -85,7 +87,7 @@ const blogPosts = [
     imageAlt: "Education consultation group",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
   {
@@ -94,7 +96,7 @@ const blogPosts = [
     imageAlt: "Education consultation group",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
   {
@@ -103,7 +105,7 @@ const blogPosts = [
     imageAlt: "Education consultation group",
     title: "How to Choose the Best Overseas Education Consultants in Kochi",
     date: "Feb 20, 2025",
-    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever. But the gap between aspiration and...",
+    excerpt: "In today's globalized world, the dream of pursuing higher education abroad is more attainable than ever...",
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
 ];
@@ -115,6 +117,16 @@ const BlogDetail = () => {
   const post = allPosts.find(
     (p) => slugify(p.title, { lower: true, strict: true }) === slug
   );
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const checklistContent = {
     "Start with Research": [
@@ -158,19 +170,19 @@ const BlogDetail = () => {
 
   const scrollRef = useRef(null);
   const contentRef = useRef(null);
-  const sectionRefs = useRef(new Array(Object.keys(checklistContent).length).fill(null));
+  const sectionRefs = useRef([]);
   const [thumbTop, setThumbTop] = useState(0);
   const [thumbHeight, setThumbHeight] = useState(20);
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState(Object.keys(checklistContent)[0]);
 
   const updateThumbPosition = (activeIndex) => {
     const container = scrollRef.current;
     if (!container) return;
 
     const totalItems = Object.keys(checklistContent).length;
-    const trackHeight = 400; // Match the h-[400px] track height in the UI
-    const thumbSize = Math.max(trackHeight / totalItems, 20); // Minimum thumb size of 20px
-    const maxScroll = trackHeight - thumbSize; // Maximum scrollable distance
+    const trackHeight = 400;
+    const thumbSize = Math.max(trackHeight / totalItems, 20);
+    const maxScroll = trackHeight - thumbSize;
     const thumbOffset = (activeIndex / (totalItems - 1)) * maxScroll;
 
     setThumbTop(thumbOffset);
@@ -178,9 +190,11 @@ const BlogDetail = () => {
   };
 
   useEffect(() => {
-    const observers = sectionRefs.current.map((section, index) => {
+    sectionRefs.current = Array(Object.keys(checklistContent).length).fill().map((_, i) => sectionRefs.current[i] || null);
+
+    const observers = Object.keys(checklistContent).map((sectionTitle, index) => {
+      const section = sectionRefs.current[index];
       if (section) {
-        const sectionTitle = Object.keys(checklistContent)[index];
         const observer = new IntersectionObserver(
           ([entry]) => {
             if (entry.isIntersecting) {
@@ -190,8 +204,8 @@ const BlogDetail = () => {
           },
           {
             root: contentRef.current,
-            threshold: 0.1, // Trigger when 10% of section is visible
-            rootMargin: "0px"
+            threshold: 0.5,
+            rootMargin: "-100px 0px 0px 0px"
           }
         );
         observer.observe(section);
@@ -200,14 +214,10 @@ const BlogDetail = () => {
       return null;
     });
 
-    return () => observers.forEach((observer) => observer && observer.disconnect());
-  }, [checklistContent]);
+    updateThumbPosition(0);
 
-  // Debugging logs (remove in production)
-  useEffect(() => {
-    console.log("Active Section:", activeSection);
-    console.log("Thumb Top:", thumbTop, "Thumb Height:", thumbHeight);
-  }, [activeSection, thumbTop, thumbHeight]);
+    return () => observers.forEach((observer) => observer?.disconnect());
+  }, []);
 
   if (!post) {
     return (
@@ -246,18 +256,17 @@ const BlogDetail = () => {
 
       <section className="px-4 sm:px-4 lg:px-20 my-6 mx-auto">
         <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6 max-w-6xl mx-auto">
-         
           <div className="w-full lg:w-1/4 h-full relative top-6 self-start">
             <div className="bg-white p-4 md:p-6">
               <div className="relative">
                 <div className="absolute top-0 left-0 h-[400px] w-[4px] bg-[#fbe3c3] rounded-full z-10" />
                 <div
-                  className="absolute left-0 w-[4px] bg-[#F9920A] rounded-full z-20 transition-all duration-100"
+                  className="absolute left-0 w-[4px] bg-[#F9920A] rounded-full z-20 transition-all duration-300"
                   style={{ top: `${thumbTop}px`, height: `${thumbHeight}px` }}
                 />
                 <div
                   ref={scrollRef}
-                  className="scrollbar-hidden max-h-[300px] pl-4 md:pl-6"
+                  className="max-h-[400px] pl-4 md:pl-6"
                 >
                   <ul className="space-y-4">
                     {Object.keys(checklistContent).map((sectionTitle, index) => (
@@ -288,19 +297,18 @@ const BlogDetail = () => {
                   </ul>
                 </div>
               </div>
-              {/* SVG Icons Container */}
-              <div className="flex flex-col items-center space-y-2 mt-30 mb-12">
+              <div className="flex flex-col items-center space-y-2 mt-10 mb-12">
                 <h3 className="text-lg font-semibold text-gray-800">Share This Article</h3>
                 <div className="flex space-x-4">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black"/>
                     <path d="M29 20.5C29.8284 20.5 30.5 19.8284 30.5 19C30.5 18.1716 29.8284 17.5 29 17.5C28.1716 17.5 27.5 18.1716 27.5 19C27.5 19.8284 28.1716 20.5 29 20.5Z" fill="#F9920A"/>
                     <path d="M28 15C30.76 15 33 17.24 33 20V28C33 30.76 30.76 33 28 33H20C17.24 33 15 30.76 15 28V20C15 17.24 17.24 15 20 15H24H28Z" stroke="#F9920A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M24 20C26.21 20 28 21.79 28 24C28 26.21 26.21 28 24 28C21.79 28 20 26. avalanche21 20 24C20 21.79 21.79 20 24 20Z" stroke="#F9920A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24 20C26.21 20 28 21.79 28 24C28 26.21 26.21 28 24 28C21.79 28 20 26.21 20 24C20 21.79 21.79 20 24 20Z" stroke="#F9920A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black"/>
-                    <path d="M21.1724 26.829L26.8294 21.172M19.0504 23.293L17.6364 24.707C17.265 25.0784 16.9704 25.5194 16.7693 26.0047C16.5683 26.49 16.4648 27.0102 16.4648 27.5355C16.4648 28.0608 16.5683 28.5809 16.7693 29.0662C16.9704 29.5515 17.265 29.9925 17.6364 30.364C18.0079 30.7354 18.4489 31.03 18.9342 31.2311C19.4195 31.4321 19.9396 31.5356 20.4649 31.5356C20.9902 31.5356 21.5104 31.4321 21.9957 31.2311C22.481 31.03 22.922 30.7354 23.2934 30.364L24.7054 28.95M23.2924 19.05L24.7064 17.636C25.0779 17.2645 25.5189 16.9699 26.0042 16.7688C26.4895 16.5678 27.0096 16.4644 27.5349 16.4644C28.0602 16.4644 28.5804 16.5678 29.0657 16.7688C29.551 16.9699 29.992 17.2645 30.3634 17.636C30.7349 18.0074 31.0295 18.4484 31.2306 18.9337C31.4316 19.419 31.535 19.9392 31.535 20.4645C31.535 20.9898 31.4316 21.5099 31.2306 21.9952C31.0295 22.4805 30.7349 22.9215 30.3634 23.293L28.9494 24.707" stroke="#F9920A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21.1724 26.829L26.8294 21.172M19.0504 23.293L17.6364 24.707C17.265 25.0784 16.9704 25.5194 16.7693 26.0047C16.5683 26.49 16.4648 27.0102 16.4648 27.5355C16.4648 28.0608 16.5683 28.5809 16.7693 29.0662C16.9704 29.5515 17.265 29.9925 17.6364 30.364C18.0079 30.7354 18.4489 31.03 18.9342 31.2311C19.4195 31.4321 19.9396 31.5356 20.4649 31.5356C20.9902 31.5356 21.5104 31.4321 21.9957 31.2311C22.481 31.03 22.922 30.7354 23.2934 30.364L24.7054 28.95M23.2924 19.05L24.7064 17.636C25.0779 17.2645 25.5189 16.9699 26.0042 16.7688C26.4895 16.5678 27.0096 16.4644 27.5349 16.4644C28.0602 16.4644 28.5804 16.5678 29.0657 16.7688C29.551 16.9699 29.992 17.2645 30.3634 17.636C30.7349 18.0074 31 Creator: .0295 18.4484 31.2306 18.9337C31.4316 19.419 31.535 19.9392 31.535 20.4645C31.535 20.9898 31.4316 21.5099 31.2306 21.9952C31.0295 22.4805 30.7349 22.9215 30.3634 23.293L28.9494 24.707" stroke="#F9920A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black"/>
@@ -315,18 +323,14 @@ const BlogDetail = () => {
             </div>
           </div>
 
-          {/* Right Side Content - Non-Scrollable */}
           <div className="w-full lg:w-3/4">
             <div className="bg-white p-4 md:p-6 h-full">
-              {/* Inner Scrollable Content Container */}
               <div
                 ref={contentRef}
                 className="h-[100vh] pr-4 mb-8 overflow-y-auto scrollbar-visible-custom relative pb-16"
               >
                 <p className="text-gray-700 mb-8 mt-5 text-base md:text-lg">
-                  Are you dreaming of studying abroad but feeling overwhelmed with the choices and process?
-                  Choosing the right overseas education consultant can make or break your plans. Here's a
-                  user-friendly guide to help you choose the best consultants for your unique needs.
+                  Are you dreaming of studying abroad but feeling overwhelmed with the choices and process? Choosing the right overseas education consultant can make or break your plans. Here's a user-friendly guide to help you choose the best consultants for your unique needs.
                 </p>
                 {Object.entries(checklistContent).map(([sectionTitle, items], index) => (
                   <div
@@ -348,25 +352,24 @@ const BlogDetail = () => {
               </div>
 
               <div className="flex justify-between items-center">
+                <button
+                  onClick={openModal}
+                  className="inline-block bg-[#F9920A] text-white font-medium py-2 px-6 rounded-lg hover:bg-[#e07a00] transition-colors"
+                >
+                  Enquire Now
+                </button>
                 <Link
                   to="/Blogs"
                   className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
                 >
                   ← Back to Blog
                 </Link>
-                <a
-                  href="#"
-                  className="inline-block bg-[#F9920A] text-white font-medium py-2 px-6 rounded-lg hover:bg-[#e07a00] transition-colors"
-                >
-                  Explore Now
-                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* "You Might Also Like" Section */}
       <section className="py-10 bg-[#00334D] text-white">
         <div className="px-4 sm:px-4 lg:px-20 mx-auto max-w-8xl">
           <h2 className="text-xl font-bold mb-6">You Might Also Like</h2>
@@ -401,6 +404,10 @@ const BlogDetail = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
+
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

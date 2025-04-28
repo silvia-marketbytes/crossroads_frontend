@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Banner from "../../../../../components/Banner";
 import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
 import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
 import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
-
-
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../../../components/modal";
 
 const Germany = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Study in Germany",
@@ -21,6 +31,7 @@ const Germany = () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal, // Added to trigger modal
   };
 
   const countryDetails = [
@@ -113,6 +124,9 @@ const Germany = () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

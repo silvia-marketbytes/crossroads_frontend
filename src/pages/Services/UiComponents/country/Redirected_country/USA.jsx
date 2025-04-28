@@ -1,113 +1,123 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Banner from "../../../../../components/Banner";
 import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
-import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import usaImage from "../../../../../assets/country/Germany-education.webp"; 
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
+import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../../../components/modal";
 
-const USA= () => {
+const USA = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const bannerProps = {
-    backgroundImage: bannerImg, 
-    title: "Study in USA",
+    backgroundImage: bannerImg,
+    title: "Study in the USA",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
     showDateTime: false,
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
 
   const countryDescription = `
-    France, officially known as the French Republic, is a country predominantly situated in Western Europe.
-    Its capital, Paris, is famous for its high-end fashion, iconic landmarks such as the Eiffel Tower,
+    The United States of America, commonly known as the USA, is a country in North America renowned for its 
+    world-leading education system, diverse culture, and economic opportunities. Its capital, Washington, D.C., 
+    is a hub for politics and history, while cities like New York, Boston, and San Francisco are famous for their 
+    prestigious universities and vibrant innovation ecosystems.
   `;
 
   const countryDetails = [
-    { label: "Capital", value: "Paris" },
-    { label: "Population", value: "67 Million" },
-    { label: "Language", value: "French" },
-    { label: "International Students", value: "343,400" },
-    { label: "Currency", value: "Euro" },
-    { label: "GDP", value: "$2.9 Trillion" },
-    { label: "Universities", value: "250+" },
-    { label: "International Students", value: "343,400" },
+    { label: "Capital", value: "Washington, D.C." },
+    { label: "Population", value: "331 Million" },
+    { label: "Language", value: "English" },
+    { label: "International Students", value: "1,075,496" },
+    { label: "Currency", value: "United States Dollar (USD)" },
+    { label: "GDP", value: "$25.5 Trillion" },
+    { label: "Universities", value: "4,000+" },
   ];
 
   const dropdownSections = [
     {
-      title: "Prestigious education system",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      title: "World-class education system",
+      content: "The USA is home to top-ranked universities like Harvard and MIT.",
     },
     {
-      title: "One of the world’s leading economies",
-      content:
-        "Choose from a wide range of programs in various fields of study.",
+      title: "Global career opportunities",
+      content: "A US degree opens doors to international job markets.",
     },
     {
-      title: "Extensive range of academic programs",
-      content:
-        "Many public universities offer scholarships to international students.",
+      title: "Diverse academic programs",
+      content: "Choose from thousands of programs across various disciplines.",
     },
     {
-      title: "Affordable tuition fees",
-      content:
-        "France offers affordable education with a high standard of living.",
+      title: "Innovation and entrepreneurship",
+      content: "Study in a hub for technology and startup culture.",
     },
     {
-      title: "Quality higher education",
-      content:
-        "Enjoy high living standards and excellent career opportunities.",
+      title: "High quality of life",
+      content: "Enjoy dynamic cities, diverse communities, and modern amenities.",
     },
     {
-      title: "Research and development opportunities",
-      content: "Benefit from excellent healthcare and working conditions.",
+      title: "Research and development hub",
+      content: "Access cutting-edge research opportunities in leading institutions.",
     },
   ];
 
   const intakes = [
-    "Winter-Sept/Oct",
-    "Summer-March/April",
-    "Additional intakes (Feb/May/June) at some private universities.",
+    "August/September (Fall)",
+    "January/February (Spring)",
+    "Some universities offer Summer intakes in May/June.",
   ];
 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
       title: "Nursing",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Train for a rewarding career in healthcare with practical focus.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Ausbildung",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Computer Science",
+      description: "Study cutting-edge technology and software development.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Bachelor's",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Pursue undergraduate degrees in diverse disciplines.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Masters",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Advance your career with postgraduate qualifications.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Health Programs",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Business Administration",
+      description: "Develop skills in management, finance, and leadership.",
     },
   ];
 
   return (
-    <div className="">
+    <div>
       <Banner {...bannerProps} />
       <CountryDetails details={countryDetails} description={countryDescription} />
       <WhyChooseSection
-        image={germanyImage} 
+        image={usaImage}
         dropdownSections={dropdownSections}
         intakes={intakes}
         countryName="USA"
@@ -115,6 +125,9 @@ const USA= () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

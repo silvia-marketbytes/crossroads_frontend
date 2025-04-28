@@ -111,13 +111,13 @@ const VisionMissionSection = () => {
           />
         )}
       </div>
-      <div className="w-full md:w-1/2 flex flex-col justify-center bg-gray-100 md:mt-0 mt-4">
-        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-          <div className="md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start justify-center p-4">
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-center bg-gray-100 md:mt-0 mt-4">
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full">
+          <div className="md:w-1/2 text-center flex flex-col items-center justify-center p-4">
             <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
               Our Vision
             </h3>
-            <p className="text-lg text-gray-600 text-center md:text-left">
+            <p className="text-lg text-gray-600">
               To be a world leader in empowering students to achieve their academic and career aspirations by providing unparalleled guidance and access to world-class education opportunities across the globe.
             </p>
           </div>
@@ -125,15 +125,15 @@ const VisionMissionSection = () => {
             <img src={visionImage} className="w-full h-auto" alt="Graduation ceremony" />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-6">
+        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-4 md:mt-6 w-full">
           <div className="md:w-1/2">
             <img src={missionImage} className="w-full h-auto" alt="Students together" />
           </div>
-          <div className="md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start justify-center p-4">
+          <div className="md:w-1/2 text-center flex flex-col items-center justify-center p-4">
             <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
               Our Mission
             </h3>
-            <p className="text-lg text-gray-600 text-center md:text-left">
+            <p className="text-lg pr-15 text-gray-600">
               Our mission is to inspire and support students in their pursuit of international education, offering personalized guidance, comprehensive & dedicated services, thereby ensuring they are well-prepared for success in a globalized world.
             </p>
           </div>

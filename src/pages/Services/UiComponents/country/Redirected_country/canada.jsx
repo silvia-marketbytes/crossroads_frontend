@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Banner from "../../../../../components/Banner";
-import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
+import bannerImg from "../../../../../assets/country/Germany-Banner.webp"; 
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
-import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import canadaImage from "../../../../../assets/country/Germany-education.webp";
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
+import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import { motion, AnimatePresence } from "framer-motion";
+import Modal from "../../../../../components/modal";
 
 const Canada = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const bannerProps = {
-    backgroundImage: bannerImg, 
+    backgroundImage: bannerImg,
     title: "Study in Canada",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
@@ -18,96 +31,93 @@ const Canada = () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
 
   const countryDescription = `
-    France, officially known as the French Republic, is a country predominantly situated in Western Europe.
-    Its capital, Paris, is famous for its high-end fashion, iconic landmarks such as the Eiffel Tower,
+    Canada is a country in North America known for its stunning natural landscapes, 
+    multicultural cities, and high-quality education system. Its capital, Ottawa, is a hub for 
+    government and culture, while cities like Toronto, Vancouver, and Montreal are renowned for 
+    their diversity and world-class universities.
   `;
 
   const countryDetails = [
-    { label: "Capital", value: "Paris" },
-    { label: "Population", value: "67 Million" },
-    { label: "Language", value: "French" },
-    { label: "International Students", value: "343,400" },
-    { label: "Currency", value: "Euro" },
-    { label: "GDP", value: "$2.9 Trillion" },
-    { label: "Universities", value: "250+" },
-    { label: "International Students", value: "343,400" },
+    { label: "Capital", value: "Ottawa" },
+    { label: "Population", value: "40 Million" },
+    { label: "Language", value: "English, French" },
+    { label: "International Students", value: "807,750" },
+    { label: "Currency", value: "Canadian Dollar (CAD)" },
+    { label: "GDP", value: "$2.1 Trillion" },
+    { label: "Universities", value: "100+" },
   ];
 
   const dropdownSections = [
     {
-      title: "Prestigious education system",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      title: "World-class education system",
+      content: "Canada is home to top-ranked universities offering diverse programs.",
     },
     {
-      title: "One of the world’s leading economies",
-      content:
-        "Choose from a wide range of programs in various fields of study.",
+      title: "Multicultural and inclusive society",
+      content: "Experience a welcoming environment for international students.",
     },
     {
-      title: "Extensive range of academic programs",
-      content:
-        "Many public universities offer scholarships to international students.",
+      title: "Post-graduation work opportunities",
+      content: "Benefit from post-graduation work permits to gain experience.",
     },
     {
-      title: "Affordable tuition fees",
-      content:
-        "France offers affordable education with a high standard of living.",
+      title: "Affordable tuition and living costs",
+      content: "Competitive costs compared to other English-speaking countries.",
     },
     {
-      title: "Quality higher education",
-      content:
-        "Enjoy high living standards and excellent career opportunities.",
+      title: "High quality of life",
+      content: "Enjoy safe cities, excellent healthcare, and vibrant culture.",
     },
     {
-      title: "Research and development opportunities",
-      content: "Benefit from excellent healthcare and working conditions.",
+      title: "Research and innovation hub",
+      content: "Access cutting-edge research opportunities in various fields.",
     },
   ];
 
   const intakes = [
-    "Winter-Sept/Oct",
-    "Summer-March/April",
-    "Additional intakes (Feb/May/June) at some private universities.",
+    "September (Fall)",
+    "January (Winter)",
+    "May (Summer, limited programs)",
   ];
 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
       title: "Nursing",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Train for a rewarding career in healthcare with practical focus.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Ausbildung",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Computer Science",
+      description: "Study cutting-edge technology and software development.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Bachelor's",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Pursue undergraduate degrees in diverse disciplines.",
     },
     {
       image: "https://via.placeholder.com/150",
       title: "Masters",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      description: "Advance your career with postgraduate qualifications.",
     },
     {
       image: "https://via.placeholder.com/150",
-      title: "Health Programs",
-      description: "Lorem ipsum is simply dummy text of the printing.",
+      title: "Business Administration",
+      description: "Develop skills in management, finance, and leadership.",
     },
   ];
 
   return (
-    <div className="">
+    <div>
       <Banner {...bannerProps} />
       <CountryDetails details={countryDetails} description={countryDescription} />
       <WhyChooseSection
-        image={germanyImage} 
+        image={canadaImage}
         dropdownSections={dropdownSections}
         intakes={intakes}
         countryName="Canada"
@@ -115,6 +125,9 @@ const Canada = () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

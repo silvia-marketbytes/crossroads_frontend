@@ -39,10 +39,10 @@ const Modal = ({ onClose }) => {
   };
 
   useEffect(() => {
-    // Disable background scrolling when modal is open
+   
     document.body.style.overflow = 'hidden';
     
-    // Cleanup: Restore scrolling when modal is closed
+    
     return () => {
       document.body.style.overflow = '';
     };
