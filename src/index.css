@@ -194,3 +194,28 @@ p {
 .scrollbar-visible-custom::-webkit-scrollbar{
   display: none!important;
 }
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+ 
+.gradient-button {
+  background: linear-gradient(45deg, #F9920A, #a0a0a0, #F9920A);
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+  transition: background 0.3s ease;
+}
+ 
+.gradient-button:hover {
+  background: linear-gradient(45deg, #F9920A);
+  background-size: 200% 200%;
+  animation: none;
+  transition: background 0.3s ease;
+}

@@ -10,7 +10,7 @@ const ServiceCard = ({ title, description, imageSrc, url }) => {
           alt={title}
           className="w-full object-cover transition-all duration-300 opacity-80 group-hover:opacity-100"
         />
-        <div className="absolute inset-0 bg-black-200 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-black-200 opacity-0 group-hover:opacity-30 group-hover:bg-[#00334D]/60 transition-opacity duration-300"></div>
         <div className="absolute -bottom-4 -left-4 flex items-center justify-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
           <div className="bg-orange-400 w-44 h-44 rounded-full absolute z-10 opacity-60"></div>
           <div className="relative -top-10 left-9 flex items-center justify-center z-30">

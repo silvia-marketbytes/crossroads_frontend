@@ -42,7 +42,7 @@ const Germany = () => {
     { label: "Currency", value: "Euro" },
     { label: "GDP", value: "$ 4.5 Trillion" },
     { label: "Universities", value: "400+" },
-    { label: "International Students", value: "458210" },
+    { label: "Scholarships Upto", value: "$2000/Month" },
   ];
 
   const dropdownSections = [

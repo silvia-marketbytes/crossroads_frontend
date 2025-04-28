@@ -3,7 +3,7 @@ import educationImg from '../../../../assets/Services/education.png';
 import jobAssistanceImg from '../../../../assets/Services/job-assistance.jpeg';
 import migrationImg from '../../../../assets/Services/migration.png';
 import ServiceCard from '../../../../components/UiComponents/ServiceCard';
-
+ 
 const ServicesSection = () => {
   const services = [
     {
@@ -25,7 +25,7 @@ const ServicesSection = () => {
       imageSrc: migrationImg,
     },
   ];
-
+ 
   return (
     <section className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
@@ -49,5 +49,5 @@ const ServicesSection = () => {
     </section>
   );
 };
-
+ 
 export default ServicesSection;

@@ -4,7 +4,7 @@ import logo from "../../../../assets/logo-footer.webp";
 import SocialMedia from '../../../../components/UiComponents/SocialMedia';
 import shadow from "../../../../assets/shadow.webp";
 import { Like, Telephone } from '../../../../components/Icons';
-
+import Modal from '../../../../components/modal'; // Import the Modal component
 
 const servicesData = {
   title: 'SERVICES',
@@ -14,15 +14,18 @@ const servicesData = {
     { label: 'Documentation & Travel Assistance', href: '/services/documentation-assistance' },
     { label: 'Immigration', href: '#' },
     { label: 'Gallery', href: '/Gallery' },
-    { label: 'Contactus', href: '/Contact-Us' },
+    { label: 'Contact Us', href: '/Contact-Us' },
   ],
 };
 
 const FooterSection = () => {
   const location = useLocation();
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
+      {showModal && <Modal onClose={() => setShowModal(false)} />}
+      
       <footer className="bg-[#00334D] mt-8 sm:mt-8 lg:mt-20">
         <div className="relative -top-14 bg-white mx-0 md:mx-20 lg:mx-28 rounded-none sm:rounded-none md:rounded-full lg:md:rounded-full xl:md:rounded-full shadow-xl">
           <div className="py-8 px-4 md:px-20">
@@ -33,6 +36,7 @@ const FooterSection = () => {
               <div className="flex items-center space-x-4 mt-4 md:mt-4 lg:mt-0">
                 <button
                   className="bg-[#F9920A] hover:bg-[#F9920A]/80 text-gray-100 py-3 px-8 rounded-full transition-all duration-300 shadow-xl shadow-gray-400"
+                  onClick={() => setShowModal(true)}
                 >
                   <span className='flex items-center justify-between'>
                     <span className='text-md font-one'>
@@ -50,7 +54,7 @@ const FooterSection = () => {
                     <Telephone />
                   </span>
                   <span className='ml-4 text-[#00334D] group-hover:text-[#F9920A] transition-colors duration-300'>
-                    <a href="tel:+63 985 295 4444">+63 985 295 4444</a>
+                    <a href="tel:+91 9539688800">+91 9539688800</a>
                   </span>
                 </span>
               </div>
@@ -100,16 +104,38 @@ const FooterSection = () => {
                 <p className="text-center md:text-center lg:text-left text-lg lg:text-[16px]">
                   <span className='block text-lg lg:text-[16px]'>Crossroads Career Consultants Pvt. Ltd</span>
                   <span className='block text-lg lg:text-[16px]'>Level 3, Oberon Mall,</span>
-                  <span className='text-lg lg:text-[16px]'>Edapally, Kochi – 6820 24, Kerala</span>
+                  <span className='text-lg lg:text-[16px]'>Edapally, Kochi – 682 024, Kerala</span>
                 </p>
                 <div className='pt-4 text-center md:text-center lg:text-left'>
-                  <a className="hover:text-[#F9920A]" href="tel:+91 95396 88800">+91 95396 88800</a>
+                  <a className="hover:text-[#F9920A]" href="tel:+91 9539688800">+91 9539688800</a>
                 </div>
                 <div className='text-center md:text-center lg:text-left'>
                   <a href="mailto:info@crossroadsgce.com" className="text-center md:text-center lg:text-left hover:text-[#F9920A] transition-all duration-300">
-                    info@crossroadsgce.com
+                    info@crossroadsge.com
                   </a>
                 </div>
+                <div className="flex justify-center space-x-10  mt-10">
+                <Link
+                  to="/terms-and-conditions"
+                  className={`text-white hover:text-[#F9920A] transition-colors duration-300 ${
+                    location.pathname === "/terms-and-conditions"
+                      ? "text-[#F9920A]"
+                      : ""
+                  }`}
+                >
+                  Terms and Conditions
+                </Link>
+                <Link
+                  to="/privacy-policy"
+                  className={`text-white hover:text-[#F9920A] transition-colors duration-300 ${
+                    location.pathname === "/privacy-policy"
+                      ? "text-[#F9920A]"
+                      : ""
+                  }`}
+                >
+                  Privacy Policy
+                </Link>
+              </div>
               </div>
             </div>
           </div>
@@ -120,33 +146,12 @@ const FooterSection = () => {
           <div className="block md:flex items-center justify-center text-center text-md text-gray-100 font-one py-6 mx-4">
             <div>
               <p className='text-lg lg:text-[16px]'>
-                © {new Date().getFullYear()} All Rights Reserved by Crossroads. Made With Passion By{' '}
+                © {new Date().getFullYear()} All Rights Reserved by Crossroads Career Consultants Pvt Ltd. Made With Passion By{' '}
                 <a href="https://www.marketbytes.in/" className='hover:text-[#F9920A] transition-colors duration-300' target='_blank'>
                   MarketBytes WebWorks Pvt. Ltd.
                 </a>
               </p>
             </div>
-            {/* Uncomment if you want to include Terms and Conditions and Privacy Policy links */}
-            {/*
-            <div className="flex justify-center space-x-4">
-              <Link
-                to="/terms-and-conditions"
-                className={`hover:text-[#F9920A] transition-colors duration-300 ${
-                  location.pathname === '/terms-and-conditions' ? 'text-[#F9920A]' : ''
-                }`}
-              >
-                Terms and Conditions
-              </Link>
-              <Link
-                to="/privacy-policy"
-                className={`hover:text-[#F9920A] transition-colors duration-300 ${
-                  location.pathname === '/privacy-policy' ? 'text-[#F9920A]' : ''
-                }`}
-              >
-                Privacy Policy
-              </Link>
-            </div>
-            */}
           </div>
         </div>
       </footer>
