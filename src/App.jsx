@@ -8,9 +8,9 @@ import Country from "./pages/Services/UiComponents/country";
 import Germany from "./pages/Services/UiComponents/country/Redirected_country/germany";
 import France from "./pages/Services/UiComponents/country/Redirected_country/france";
 import Australia from "./pages/Services/UiComponents/country/Redirected_country/australia";
-import Canada from "./pages/Services/UiComponents/country/Redirected_country/canada";
+
 import Uk from "./pages/Services/UiComponents/country/Redirected_country/uk";
-import Netherlands from "./pages/Services/UiComponents/country/Redirected_country/netherlands";
+import Netherlands from "./pages/Services/UiComponents/country/Redirected_country/slovania";
 import USA from "./pages/Services/UiComponents/country/Redirected_country/USA";
 import Sweden from "./pages/Services/UiComponents/country/Redirected_country/sweden";
 import NewZealand from "./pages/Services/UiComponents/country/Redirected_country/newzealand";
@@ -18,7 +18,7 @@ import Switzerland from "./pages/Services/UiComponents/country/Redirected_countr
 import Finland from "./pages/Services/UiComponents/country/Redirected_country/finland";
 import Italy from "./pages/Services/UiComponents/country/Redirected_country/italy";
 import Latvia from "./pages/Services/UiComponents/country/Redirected_country/latvia";
-import Malta from "./pages/Services/UiComponents/country/Redirected_country/malta";
+
 import Poland from "./pages/Services/UiComponents/country/Redirected_country/poland";
 import Slovakia from "./pages/Services/UiComponents/country/Redirected_country/slovakia";
 import Spain from "./pages/Services/UiComponents/country/Redirected_country/spain";
@@ -45,6 +45,7 @@ import News6 from "./pages/NewsAndEvents/DedicatedPage/News6";
 import News7 from "./pages/NewsAndEvents/DedicatedPage/News7";
 import News8 from "./pages/NewsAndEvents/DedicatedPage/News8";
 import Course from "./pages/Services/UiComponents/Course";
+import Canada from "./pages/Services/UiComponents/country/Redirected_country/canada";
  
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -69,17 +70,16 @@ function App() {
         <Route path="/services/education/country/germany" element={<Germany />} />
         <Route path="/services/education/country/france" element={<France />} />
         <Route path="/services/education/country/australia" element={<Australia />} />
-        <Route path="/services/education/country/canada" element={<Canada />} />
+        <Route path="/services/education/country/canada" element={<Canada/>} />
         <Route path="/services/education/country/uk" element={<Uk />} />
         <Route path="/services/education/country/usa" element={<USA />} />
-        <Route path="/services/education/country/netherlands" element={<Netherlands />} />
+        <Route path="/services/education/country/slovania" element={<Netherlands />} />
         <Route path="/services/education/country/new-zealand" element={<NewZealand />} />
         <Route path="/services/education/country/switzerland" element={<Switzerland />} />
         <Route path="/services/education/country/finland" element={<Finland />} />
         <Route path="/services/education/country/sweden" element={<Sweden />} />
         <Route path="/services/education/country/italy" element={<Italy />} />
         <Route path="/services/education/country/latvia" element={<Latvia />} />
-        <Route path="/services/education/country/malta" element={<Malta />} />
         <Route path="/services/education/country/poland" element={<Poland />} />
         <Route path="/services/education/country/slovakia" element={<Slovakia />} />
         <Route path="/services/education/country/spain" element={<Spain />} />

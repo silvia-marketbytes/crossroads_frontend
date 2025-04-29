@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Banner from "../../../../../components/Banner";
-import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
-import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
+import bannerImg from "../../../../../assets/Contrydetailpagebanners/Slovania_result.webp";
+import ContactSection from "../../../../Home/UiComponents/ContactSection";
 import germanyImage from "../../../../../assets/country/germany-education.webp";
-import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
+import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
@@ -11,7 +11,7 @@ import VirtualAssistance from "../../../../../components/CountryListing/VirtualA
 const Netherlands = () => {
   const bannerProps = {
     backgroundImage: bannerImg, 
-    title: "Study in Netherlands",
+    title: "Study in Slovania",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
     showDateTime: false,

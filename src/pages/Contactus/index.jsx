@@ -1,7 +1,7 @@
 
 import React, { Suspense } from "react";
 import Banner from "../../components/Banner";
-import bannerImg from "../../assets/ContactUs/CONTACTBANNER_result.webp";
+import bannerImg from "../../assets/ContactUs/Contact Us 2_result.webp";
 import ContactSection from "../../pages/Home/UiComponents/ContactSection";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 

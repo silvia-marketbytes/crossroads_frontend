@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import Banner from "../../../../components/Banner";
-import bannerImg from "../../../../assets/Services/languagelabbanner.webp";
+import bannerImg from "../../../../assets/Courses/Course Page_result.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
 import CourseSection from "../../../Home/UiComponents/CourseSection";
 import FreeEducationSection from "../../../Home/UiComponents/FreeEducationSection";
-import FindCourse from './FindCourse'; // Import the FindCourse component
+import FindCourse from './FindCourse';
 
 const Course = () => {
   const bannerProps = {

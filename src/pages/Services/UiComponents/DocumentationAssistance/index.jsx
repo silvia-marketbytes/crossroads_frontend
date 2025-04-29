@@ -7,7 +7,7 @@ import docSlide2 from "../../../../assets/Services/slide2.webp";
 import docSlide3 from "../../../../assets/Services/slide3.webp";
 import docSlide4 from "../../../../assets/Services/slide4.webp";
 import travelImage from "../../../../assets/Services/slide5.webp";
-import bannerImg from "../../../../assets/Services/banner png.webp";
+import bannerImg from "../../../../assets/Services/Documentation and travel_result.webp";
 import Banner from "../../../../components/Banner"; 
 
 const ContactSection = lazy(() => import("../../../Home/UiComponents/ContactSection"));

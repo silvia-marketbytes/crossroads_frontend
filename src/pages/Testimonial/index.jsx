@@ -2,7 +2,7 @@ import React, { Suspense, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
 import ContactSection from "../Home/UiComponents/ContactSection";
-import bannerImg from "../../assets/testimonials/our_sucess_story.webp";
+import bannerImg from "../../assets/testimonials/Testimonial_result.webp";
 import student1 from "../../assets/Students/Student1.png";
 import student2 from "../../assets/Students/Student2.png";
 import video1 from "../../assets/Students/Videos/Video1.mp4";

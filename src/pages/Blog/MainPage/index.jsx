@@ -1,7 +1,7 @@
 import { Suspense, useState, useRef } from "react";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
-import bannerImg from "../../../assets/blog/banner png_result.webp";
+import bannerImg from "../../../assets/blog/Blog_result.webp";
 import ContactSection from "../../../pages/Home/UiComponents/ContactSection";
 import postImage1 from "../../../assets/blog/Heading.webp";
 import postImage2 from "../../../assets/blog/I_result.webp";

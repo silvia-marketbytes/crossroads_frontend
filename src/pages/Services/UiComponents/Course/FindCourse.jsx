@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchForm from './SearchForm';
 import ResultsTable from './ResultsTable';
 
-// Sample data for demonstration
+
 const sampleCourses = [
   {
     id: 1,
@@ -33,7 +33,7 @@ const FindCourse = () => {
 
   return (
     <div className="w-full  bg-[#003050] text-white p-5">
-      <h1 className="text-3xl font-medium text-center mb-5">Find a course</h1>
+      <h2 className="text-1xl font-medium text-center mb-5">Find a course</h2>
 
       <SearchForm onSearch={handleSearch} />
 

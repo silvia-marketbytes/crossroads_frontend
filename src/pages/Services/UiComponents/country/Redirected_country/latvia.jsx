@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Banner from "../../../../../components/Banner";
-import bannerImg from "../../../../../assets/country/Germany-Banner.webp";
+import bannerImg from "../../../../../assets/Contrydetailpagebanners/Latvia_result.webp";
 import ContactSection from "../../../../../pages/Home/UiComponents/ContactSection";
 import germanyImage from "../../../../../assets/country/germany-education.webp";
 import CoursesOffered from "../../../../../../src/components/UiComponents/CoursesOffered";
