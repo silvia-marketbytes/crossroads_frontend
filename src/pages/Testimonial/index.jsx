@@ -1,5 +1,4 @@
-
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../components/Banner";
 import ContactSection from "../Home/UiComponents/ContactSection";
@@ -11,8 +10,7 @@ import video2 from "../../assets/Students/Videos/Video2.mp4";
 import flag1 from "../../assets/Flags/austria.png";
 import flag2 from "../../assets/Flags/germany.png";
 import flag3 from "../../assets/Flags/italy.png";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+ 
 const TESTIMONIALS_DATA = [
   {
     imageSrc: student1,
@@ -87,7 +85,7 @@ const TESTIMONIALS_DATA = [
     type: "image",
   },
 ];
-
+ 
 const VIDEO_TESTIMONIALS = [
   {
     videoSrc: video1,
@@ -144,25 +142,25 @@ const VIDEO_TESTIMONIALS = [
     type: "video",
   },
 ];
-
+ 
 const TestimonialCard = ({ item }) => {
   return (
-    <div className="w-[90%] h-[450px] sm:h-[500px] lg:h-[550px] bg-white overflow-hidden flex flex-col  hover:bg-gray-100 transition-colors duration-300 mx-auto">
+    <div className="w-[90%] h-[350px] sm:h-[350px] lg:h-[380px] bg-white overflow-hidden flex flex-col hover:bg-gray-100 rounded-lg transition-colors duration-300 mx-auto">
       {item.type === "image" ? (
         <img
           src={item.imageSrc}
           alt={item.name}
-          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover object-top "
+          className="w-full h-[180px] sm:h-[200px] lg:h-[220px] object-cover object-top"
         />
       ) : (
         <video
           src={item.videoSrc}
           controls
-          className="w-full h-[200px] sm:h-[250px] lg:h-[280px] object-cover rounded-2xl"
+          className="w-full h-[180px] sm:h-[200px] lg:h-[220px] object-cover rounded-2xl"
         />
       )}
-      <div className="flex flex-col p-4 flex-grow">
-        <div className="flex justify-between items-center mb-2">
+      <div className="flex flex-col px-3 py-2 flex-grow">
+        <div className="flex justify-between items-center mb-1">
           <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-800">
             {item.name}
           </h3>
@@ -174,61 +172,45 @@ const TestimonialCard = ({ item }) => {
             <img src={item.flag} alt="Country flag" className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
         </div>
-        <div className="h-[110px] sm:h-[120px] lg:h-[140px] overflow-y-auto text-xs sm:text-sm lg:text-sm text-gray-600 pr-1 scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-100 custom-scrollbar">
+        <div className="h-[100px] overflow-y-auto text-xs sm:text-sm lg:text-sm text-gray-600 pr-2 scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-100 custom-scrollbar line-clamp-4">
           <p>{item.description}</p>
         </div>
       </div>
     </div>
   );
 };
-
+ 
 const customScrollbarCSS = `
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
-
+ 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #F97316;
     border-radius: 10px;
   }
-
+ 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #E67E22;
   }
-
+ 
   .custom-scrollbar::-webkit-scrollbar-track {
     background-color: #f1f1f1;
   }
 `;
-
+ 
 if (typeof window !== "undefined") {
   const style = document.createElement("style");
   style.innerHTML = customScrollbarCSS;
   document.head.appendChild(style);
 }
-
+ 
 const Testimonials = () => {
   const [activeTab, setActiveTab] = useState("testimonials");
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [cardsPerSlide, setCardsPerSlide] = useState(6);
-
-  useEffect(() => {
-    const updateCardsPerSlide = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setCardsPerSlide(1);
-      } else if (width < 1024) {
-        setCardsPerSlide(2);
-      } else {
-        setCardsPerSlide(6);
-      }
-    };
-
-    updateCardsPerSlide();
-    window.addEventListener("resize", updateCardsPerSlide);
-    return () => window.removeEventListener("resize", updateCardsPerSlide);
-  }, []);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const sectionRef = useRef(null);
+  const cardsPerSlide = 6; // Fixed at 6 cards per page
+ 
   const chunkArray = (array, size) => {
     if (!array || array.length === 0) return [];
     const result = [];
@@ -237,20 +219,33 @@ const Testimonials = () => {
     }
     return result;
   };
-
+ 
   const testimonialSlides = chunkArray(TESTIMONIALS_DATA, cardsPerSlide);
   const videoTestimonialSlides = chunkArray(VIDEO_TESTIMONIALS, cardsPerSlide);
-
   const slides = activeTab === "testimonials" ? testimonialSlides : videoTestimonialSlides;
-
-  const goToPrev = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const totalPages = slides.length;
+ 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+ 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-
+ 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+ 
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Testimonials",
@@ -263,14 +258,14 @@ const Testimonials = () => {
     counterPosition: "overlay",
     subtitle: "Discover the journeys of individuals who transformed ambition into achievement...",
   };
-
+ 
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
         <Banner {...bannerProps} />
       </Suspense>
-
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+ 
+      <section ref={sectionRef} className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
@@ -281,7 +276,7 @@ const Testimonials = () => {
               Discover the journeys of individuals who transformed ambition into achievement with Crossroads.
             </p>
           </div>
-
+ 
           <div className="flex justify-center mb-8 gap-4 sm:gap-8">
             <button
               className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
@@ -291,7 +286,8 @@ const Testimonials = () => {
               }`}
               onClick={() => {
                 setActiveTab("testimonials");
-                setCurrentSlide(0);
+                setCurrentPage(1);
+                sectionRef.current.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               Testimonials
@@ -304,63 +300,78 @@ const Testimonials = () => {
               }`}
               onClick={() => {
                 setActiveTab("videoTestimonials");
-                setCurrentSlide(0);
+                setCurrentPage(1);
+                sectionRef.current.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               Video Testimonials
             </button>
           </div>
-
+ 
           <div className="relative">
             {slides.length > 0 ? (
               <>
                 <div className="overflow-hidden">
-                  <div
-                    className="flex transition-transform duration-500"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                  >
-                    {slides.map((slide, slideIndex) => (
-                      <div key={slideIndex} className="min-w-full px-2">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
-                          {slide.map((item, index) => (
-                            <TestimonialCard
-                              key={`${slideIndex}-${item.name}-${index}`}
-                              item={item}
-                            />
-                          ))}
-                          {slide.length < cardsPerSlide &&
-                            Array.from({ length: cardsPerSlide - slide.length }).map(
-                              (_, idx) => (
-                                <div
-                                  key={`placeholder-${slideIndex}-${idx}`}
-                                  className="w-full h-[450px] sm:h-[500px] lg:h-[550px] invisible"
-                                ></div>
-                              )
-                            )}
-                        </div>
-                      </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
+                    {slides[currentPage - 1].map((item, index) => (
+                      <TestimonialCard
+                        key={`${currentPage}-${item.name}-${index}`}
+                        item={item}
+                      />
                     ))}
+                    {slides[currentPage - 1].length < cardsPerSlide &&
+                      Array.from({ length: cardsPerSlide - slides[currentPage - 1].length }).map(
+                        (_, idx) => (
+                          <div
+                            key={`placeholder-${currentPage}-${idx}`}
+                            className="w-full h-[400px] sm:h-[420px] lg:h-[450px] invisible"
+                          ></div>
+                        )
+                      )}
                   </div>
                 </div>
-
-                <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
-                  <button
-                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    style={{ color: "#00334D" }}
-                    onClick={goToPrev}
-                    aria-label="Previous Slide"
-                  >
-                    <FaChevronLeft size={20} className="sm:w-6 sm:h-6" />
-                  </button>
-                  <button
-                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    style={{ color: "#00334D" }}
-                    onClick={goToNext}
-                    aria-label="Next Slide"
-                  >
-                    <FaChevronRight size={20} className="sm:w-6 sm:h-6" />
-                  </button>
-                </div>
+ 
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center mt-6 sm:mt-8 space-x-2">
+                    <button
+                      onClick={handlePrevPage}
+                      className={`px-3 py-1 rounded ${
+                        currentPage === 1
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "text-[#F9920A] hover:text-[#e07a00]"
+                      }`}
+                      disabled={currentPage === 1}
+                    >
+                      Prev
+                    </button>
+ 
+                    {pageNumbers.map((number) => (
+                      <button
+                        key={number}
+                        onClick={() => handlePageChange(number)}
+                        className={`px-3 py-1 rounded ${
+                          currentPage === number
+                            ? "bg-[#F9920A] text-white"
+                            : "text-[#F9920A] hover:text-[#e07a00]"
+                        }`}
+                      >
+                        {number}
+                      </button>
+                    ))}
+ 
+                    <button
+                      onClick={handleNextPage}
+                      className={`px-3 py-1 rounded ${
+                        currentPage === totalPages
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "text-[#F9920A] hover:text-[#e07a00]"
+                      }`}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </>
             ) : (
               <div className="text-center text-red-500">
@@ -370,12 +381,12 @@ const Testimonials = () => {
           </div>
         </div>
       </section>
-
+ 
       <ContactSection />
     </div>
   );
 };
-
+ 
 TestimonialCard.propTypes = {
   item: PropTypes.shape({
     imageSrc: PropTypes.string,
@@ -387,5 +398,5 @@ TestimonialCard.propTypes = {
     type: PropTypes.oneOf(["image", "video"]).isRequired,
   }).isRequired,
 };
-
+ 
 export default Testimonials;

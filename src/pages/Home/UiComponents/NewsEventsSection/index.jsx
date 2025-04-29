@@ -13,28 +13,28 @@ const newsData = [
     imageSrc: news1,
         title: 'UK Admission Day - Kochi',
         description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-        link: "/news/News-And-Events-1"
+        link: "/news/uk-admission-day-kochi"
   },
   {
     imageSrc: news2,
-    title: 'Positions such as medical officers',
+    title: 'international education fair delhi',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-      link: "/news/News-And-Events-2"
+      link: "/news/international-education-fair-delhi"
   },
   {
     imageSrc: news3,
-    title: 'Additionally, MBBS graduates',
+    title: 'international education fair trivandrum',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-      link: "/news/News-And-Events-3"
+      link: "/news/international-education-fair-trivandrum"
   },
   {
     imageSrc: news4,
-    title: 'Positions such as medical officers',
+    title: 'austria admission day kochi',
     description:
       'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-      link: "/news/News-And-Events-4"
+      link: "/news/austria-admission-day-kochi"
   },
   {
     imageSrc: news5,

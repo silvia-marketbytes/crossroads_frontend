@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/country/banner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
@@ -21,10 +20,9 @@ import maltaFlag from "../../../../assets/country/malta.webp";
 import polandFlag from "../../../../assets/country/poland.webp";
 import slovakiaFlag from "../../../../assets/country/slovakia.webp";
 import spainFlag from "../../../../assets/country/spain.webp";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Modal from '../../../../components/modal';
 import { AnimatePresence } from 'framer-motion';
-
+ 
 const countryData = [
   {
     name: "France",
@@ -145,82 +143,40 @@ const countryData = [
     path: "/services/education/country/spain",
   },
 ];
-
+ 
 const CountrySection = () => {
-  const sliderRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [chunkSize, setChunkSize] = useState(8);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setChunkSize(8); // Desktop
-      } else if (window.innerWidth >= 768) {
-        setChunkSize(6); // Tablet
-      } else {
-        setChunkSize(4); // Mobile
-      }
-    };
-
-    // Set initial size
-    handleResize();
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Clean up
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const cardsPerPage = 12; // 4 cards per row * 3 rows
+  const totalPages = Math.ceil(countryData.length / cardsPerPage);
+ 
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-
-  const chunkArray = (array, size) => {
-    const result = [];
-    for (let i = 0; i < array.length; i += size) {
-      result.push(array.slice(i, i + size));
-    }
-    return result;
+ 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
-
-  const slides = chunkArray(countryData, chunkSize);
-
-  const goToPrev = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
-    }
+ 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
-
-  const goToNext = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-    }
-  };
-
+ 
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+ 
+  // Calculate the cards to display for the current page
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const currentCards = countryData.slice(startIndex, startIndex + cardsPerPage);
+ 
+  // Split current cards into rows (4 cards per row)
+  const rows = [];
+  for (let i = 0; i < currentCards.length; i += 4) {
+    rows.push(currentCards.slice(i, i + 4));
+  }
+ 
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -233,107 +189,133 @@ const CountrySection = () => {
             Begin your academic journey in these welcoming study destinations.
           </p>
         </div>
-
+ 
         <div className="relative">
           {countryData.length > 0 ? (
             <>
-              <Slider ref={sliderRef} {...sliderSettings}>
-                {slides.map((slide, slideIndex) => (
-                  <div key={slideIndex} className="px-2">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-                      {slide.map((country, index) => (
-                        <div
-                          key={`${slideIndex}-${index}`}
-                          className="relative h-48 sm:h-56 md:h-60 lg:h-64 xl:h-72 bg-gray-100 rounded-lg md:rounded-xl shadow-md hover:shadow-lg overflow-hidden group transition-all duration-300"
-                          onMouseEnter={() =>
-                            setHoveredCard(slideIndex * chunkSize + index)
-                          }
-                          onMouseLeave={() => setHoveredCard(null)}
+              {/* Card Grid: 3 rows, 4 cards per row */}
+              {rows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-6"
+                >
+                  {row.map((country, index) => (
+                    <div
+                      key={`${rowIndex}-${index}`}
+                      className="relative h-48 sm:h-56 md:h-60 bg-gray-100 rounded-lg md:rounded-xl shadow-md hover:shadow-lg overflow-hidden group transition-all duration-300"
+                      onMouseEnter={() =>
+                        setHoveredCard(startIndex + rowIndex * 4 + index)
+                      }
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+                        <svg
+                          width="15"
+                          height="16"
+                          viewBox="0 0 23 23"
+                          fill="none"
+                          className="transition-all duration-300 group-hover:fill-white fill-[#00334D] group-hover:rotate-180"
                         >
-                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
-                            <svg
-                              width="15"
-                              height="16"
-                              viewBox="0 0 23 23"
-                              fill="none"
-                              className="transition-all duration-300 group-hover:fill-white fill-[#00334D] group-hover:rotate-180"
-                            >
-                              <path d="M17.3249 22.9103L17.3458 6.13748L0.572996 6.15845L0.58507 1.00038L22.5343 0.949003L22.4829 22.8982L17.3249 22.9103Z" />
-                            </svg>
-                          </div>
-
-                          <div
-                            className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${
-                              hoveredCard === slideIndex * chunkSize + index
-                                ? "opacity-0"
-                                : "opacity-100"
-                            }`}
-                          >
-                            <img
-                              src={country.flag}
-                              alt={`${country.name} flag`}
-                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 object-cover rounded-full mb-3 sm:mb-4 border-4 border-[#00334D]/10"
-                              loading="lazy"
-                            />
-                            <h3 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-bold text-[#00334D] text-center">
-                              {country.name}
-                            </h3>
-                          </div>
-
-                          <div
-                            className={`absolute inset-0 flex flex-col p-4 sm:p-5 bg-[#00334D] text-white transition-opacity duration-300 ${
-                              hoveredCard === slideIndex * chunkSize + index
-                                ? "opacity-100"
-                                : "opacity-0"
-                            }`}
-                          >
-                            <div className="flex items-center mb-3 sm:mb-4">
-                              <img
-                                src={country.flag}
-                                alt={`${country.name} flag`}
-                                className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full mr-2 sm:mr-3 border-2 border-white"
-                              />
-                              <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                                {country.name}
-                              </h3>
-                            </div>
-                            <p className="text-xs sm:text-sm md:text-sm mb-3 sm:mb-4 line-clamp-4">
-                              {country.description}
-                            </p>
-                            <div className="mt-auto">
-                              <Link
-                                to={country.path}
-                                className="text-[#F9920A] font-medium flex items-center hover:underline text-xs sm:text-sm md:text-base"
-                              >
-                                Know more <span className="ml-1 sm:ml-2">→</span>
-                              </Link>
-                            </div>
-                          </div>
+                          <path d="M17.3249 22.9103L17.3458 6.13748L0.572996 6.15845L0.58507 1.00038L22.5343 0.949003L22.4829 22.8982L17.3249 22.9103Z" />
+                        </svg>
+                      </div>
+ 
+                      <div
+                        className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${
+                          hoveredCard === startIndex + rowIndex * 4 + index
+                            ? "opacity-0"
+                            : "opacity-100"
+                        }`}
+                      >
+                        <img
+                          src={country.flag}
+                          alt={`${country.name} flag`}
+                          className="w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 object-cover rounded-full mb-3 sm:mb-4 border-4 border-[#00334D]/10"
+                          loading="lazy"
+                        />
+                        <h3 className="text-lg sm:text-xl md:text-xl font-bold text-[#00334D] text-center">
+                          {country.name}
+                        </h3>
+                      </div>
+ 
+                      <div
+                        className={`absolute inset-0 flex flex-col p-4 sm:p-5 bg-[#00334D] text-white transition-opacity duration-300 ${
+                          hoveredCard === startIndex + rowIndex * 4 + index
+                            ? "opacity-100"
+                            : "opacity-0"
+                        }`}
+                      >
+                        <div className="flex items-center mb-3 sm:mb-4">
+                          <img
+                            src={country.flag}
+                            alt={`${country.name} flag`}
+                            className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full mr-2 sm:mr-3 border-2 border-white"
+                          />
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                            {country.name}
+                          </h3>
                         </div>
-                      ))}
+                        <p className="text-xs sm:text-sm md:text-sm mb-3 sm:mb-4 line-clamp-4">
+                          {country.description}
+                        </p>
+                        <div className="mt-auto">
+                          <Link
+                            to={country.path}
+                            className="text-[#F9920A] font-medium flex items-center text-xs sm:text-sm md:text-base"
+                          >
+                            <span className=" hover:text-[#e07a00] transition-colors duration-200">
+                              Know more <span className="ml-1 sm:ml-2">→</span>
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
-
-              <div className="flex justify-center mt-6 sm:mt-8 space-x-4">
-                <button
-                  className="p-1 sm:p-2 transition-all duration-300 hover:bg-gray-100 rounded-full"
-                  style={{ color: "#00334D" }}
-                  onClick={goToPrev}
-                  aria-label="Previous Slide"
-                >
-                  <FaChevronLeft className="text-xl sm:text-2xl" />
-                </button>
-                <button
-                  className="p-1 sm:p-2 transition-all duration-300 hover:bg-gray-100 rounded-full"
-                  style={{ color: "#00334D" }}
-                  onClick={goToNext}
-                  aria-label="Next Slide"
-                >
-                  <FaChevronRight className="text-xl sm:text-2xl" />
-                </button>
-              </div>
+                  ))}
+                </div>
+              ))}
+ 
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center mt-8 space-x-2">
+                  <button
+                    onClick={handlePrevPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === 1
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === 1}
+                  >
+                    Prev
+                  </button>
+ 
+                  {pageNumbers.map((number) => (
+                    <button
+                      key={number}
+                      onClick={() => handlePageChange(number)}
+                      className={`px-3 py-1 rounded ${
+                        currentPage === number
+                          ? "bg-[#F9920A] text-white"
+                          : "text-[#F9920A] hover:text-[#e07a00]"
+                      }`}
+                    >
+                      {number}
+                    </button>
+                  ))}
+ 
+                  <button
+                    onClick={handleNextPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === totalPages
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <div className="text-center text-red-500">
@@ -345,18 +327,18 @@ const CountrySection = () => {
     </section>
   );
 };
-
+ 
 const Country = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Choose.Apply.Study",
@@ -368,7 +350,7 @@ const Country = () => {
     buttonText: "Apply Now",
     onButtonClick: openModal,
   };
-
+ 
   return (
     <div>
       <Banner {...bannerProps} />
@@ -380,5 +362,5 @@ const Country = () => {
     </div>
   );
 };
-
+ 
 export default Country;

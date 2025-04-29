@@ -8,7 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+ 
 const slides = [
   {
     id: 1,
@@ -35,20 +35,20 @@ const slides = [
     description: 'Discover opportunities to study medicine abroad with our expert guidance and support.',
   },
 ];
-
+ 
 const Hero = () => {
   const { width } = useWindowSize();
-  const heroHeight = width < 768 ? '60vh' : '80vh';
+  const heroHeight = width < 768 ? '40vh' : '80vh';
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const slickSettings = {
     dots: true,
     infinite: true,
@@ -56,7 +56,7 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     arrows: false,
     appendDots: (dots) => (
       <div style={{ position: 'absolute', bottom: '16px', textAlign: 'center' }}>
@@ -69,7 +69,7 @@ const Hero = () => {
       ></button>
     ),
   };
-
+ 
   return (
     <div
       className="relative bg-cover bg-center flex items-center w-full overflow-hidden"
@@ -79,7 +79,7 @@ const Hero = () => {
         {slides.map((slide) => (
           <div key={slide.id} className="w-full">
             <div
-              className="relative bg-cover bg-center flex items-center w-full h-[60vh] md:h-[80vh]"
+              className="relative bg-cover bg-center flex items-center w-full h-[40vh] md:h-[80vh]"
               style={{ backgroundImage: `url(${slide.background})` }}
             >
               <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -91,14 +91,14 @@ const Hero = () => {
                     <Button
                       label="Apply Now"
                       variant="primary"
-                      className="px-6 py-2 rounded-full text-white text-sm bg-[#00334D] hover:bg-[#00334D]/80 transition-all duration-300"
+                      className="px-6 py-2 rounded-full text-sm text-white hover:text-[#00334D] bg-[#00334D] hover:bg-[#fcfcfc] transition-all duration-300"
                       onClick={openModal}
                     />
-                    <Link to="/Contact-Us">
+                    <Link to="/contact-us">
                       <Button
                         label="Contact Us"
                         variant="secondary"
-                        className="px-6 py-2 rounded-full text-white text-sm bg-[#F9920A] hover:bg-[#F9920A]/80 transition-all duration-300"
+                        className="px-6 py-2 rounded-full text-sm text-white hover:text-[#F9920A] bg-[#F9920A] hover:bg-[#fcfcfc] transition-all duration-300"
                       />
                     </Link>
                   </div>
@@ -108,11 +108,11 @@ const Hero = () => {
           </div>
         ))}
       </Slider>
-
+ 
       <AnimatePresence>
         {isModalOpen && <Modal onClose={closeModal} />}
       </AnimatePresence>
-
+ 
       <style jsx>{`
         .px-6.py-3.rounded-full.text-white.bg-\\[#00334D\\]:hover {
           background-color: #00283A;
@@ -120,7 +120,7 @@ const Hero = () => {
         .px-6.py-3.rounded-full.text-white.bg-\\[#F9920A\\]:hover {
           background-color: #E08200;
         }
-
+ 
         .slick-dots li button:before {
           content: none !important;
         }
@@ -133,7 +133,7 @@ const Hero = () => {
         .slick-dots li.slick-active button {
           background-color: #F9920A !important;
         }
-
+ 
         @media (max-width: 767px) {
           .relative.z-10 {
             padding-left: 1rem;
@@ -186,5 +186,5 @@ const Hero = () => {
     </div>
   );
 };
-
+ 
 export default Hero;

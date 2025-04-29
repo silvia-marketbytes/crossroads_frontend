@@ -6,6 +6,11 @@ import CountryCard from "../../../../components/UiComponents/CountryCard";
 import worldMapBg from "../../../../assets/world-map-bg.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import flagSrcOne from "/src/assets/flags/austria.png";
+import flagSrcTwo from "/src/assets/flags/germany.png";
+import flagSrcThree from "/src/assets/flags/slovakia.png";
+import flagSrcFour from "/src/assets/flags/slovenia.png";
+import flagSrcFive from "/src/assets/flags/italy.png";
  
 const FreeEducationSection = () => {
   const sliderRef = useRef(null);
@@ -13,31 +18,31 @@ const FreeEducationSection = () => {
   const countries = [
     {
       name: "Austria",
-      flagSrc: "/src/assets/flags/austria.png",
+      flagSrc: flagSrcOne,
       borderOrientation: "to bottom",
       path: "/Freeeducation/Austria",
     },
     {
       name: "Germany",
-      flagSrc: "/src/assets/flags/germany.png",
+      flagSrc: flagSrcTwo,
       borderOrientation: "to right",
       path: "/Freeeducation/Germany",
     },
     {
       name: "Slovakia",
-      flagSrc: "/src/assets/flags/slovakia.png",
+      flagSrc: flagSrcThree,
       borderOrientation: "to top",
       path: "/Freeeducation/Slovakia",
     },
     {
       name: "Slovenia",
-      flagSrc: "/src/assets/flags/slovenia.png",
+      flagSrc: flagSrcFour,
       borderOrientation: "45deg",
       path: "/Freeeducation/Slovania",
     },
     {
       name: "Italy",
-      flagSrc: "/src/assets/flags/italy.png",
+      flagSrc: flagSrcFive,
       borderOrientation: "135deg",
       path: "/Freeeducation/Italy",
     },
@@ -107,7 +112,7 @@ const FreeEducationSection = () => {
         {/* Country Cards Section */}
         <div
           className="relative"
-          style={{ backgroundImage: `url(${worldMapBg})`, width: "100%" }}
+          style={{ backgroundImage: `url(${worldMapBg})`, width: "100%", position: "relative" }}
         >
           {/* Desktop: Grid Layout */}
           <div className="hidden lg:grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6 py-8 justify-items-center">
@@ -139,20 +144,20 @@ const FreeEducationSection = () => {
             </Slider>
             <div className="w-full flex justify-center items-center mt-8 gap-4">
               <div>
-              <button
-                onClick={goToPrev}
-                aria-label="Previous Slide"
-                className="p-2"
-              >
-                <FaChevronLeft className="w-6 h-6 text-gray-400 hover:text-[#00334D] transition-all duration-300" />
-              </button>
-              <button
-                onClick={goToNext}
-                aria-label="Next Slide"
-                className="p-2"
-              >
-                <FaChevronRight className="w-6 h-6 text-gray-400 hover:text-[#00334D] transition-all duration-300" />
-              </button>
+                <button
+                  onClick={goToPrev}
+                  aria-label="Previous Slide"
+                  className="p-2"
+                >
+                  <FaChevronLeft className="w-6 h-6 text-gray-400 hover:text-[#00334D] transition-all duration-300" />
+                </button>
+                <button
+                  onClick={goToNext}
+                  aria-label="Next Slide"
+                  className="p-2"
+                >
+                  <FaChevronRight className="w-6 h-6 text-gray-400 hover:text-[#00334D] transition-all duration-300" />
+                </button>
               </div>
             </div>
           </div>

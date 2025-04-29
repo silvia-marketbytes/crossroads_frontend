@@ -3,6 +3,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import SocialMedia from "../UiComponents/SocialMedia";
 
+// Component to handle countdown animation for numbers
+const NumberCounter = ({ target, duration = 2000 }) => {
+  const [count, setCount] = useState(0);
+
+  // Parse target (e.g., "+20k") to extract number and suffix
+  const match = target.match(/^([+-\s]*)([\d,]+)([kKmM]?)$/);
+  if (!match) return <span>{target}</span>;
+
+  const prefix = match[1]; // e.g., "+"
+  const numberStr = match[2].replace(/,/g, ""); // e.g., "20000"
+  const suffix = match[3]; // e.g., "k"
+  const targetNumber = parseInt(numberStr, 10) * (suffix.toLowerCase() === "k" ? 1000 : suffix.toLowerCase() === "m" ? 1000000 : 1);
+
+  useEffect(() => {
+    let start = 0;
+    const increment = targetNumber / (duration / 16); // 60 FPS (16ms per frame)
+    const animate = () => {
+      start += increment;
+      if (start >= targetNumber) {
+        setCount(targetNumber);
+        return;
+      }
+      setCount(Math.ceil(start));
+      requestAnimationFrame(animate);
+    };
+    const timer = setTimeout(() => requestAnimationFrame(animate), 100); // Slight delay to ensure visibility
+    return () => clearTimeout(timer);
+  }, [targetNumber, duration]);
+
+  // Format the number back to the original style (e.g., "+20k")
+  const formatNumber = () => {
+    if (suffix === "k") return `${prefix}${Math.floor(count / 1000)}${suffix}`;
+    if (suffix === "m") return `${prefix}${Math.floor(count / 1000000)}${suffix}`;
+    return `${prefix}${count}`;
+  };
+
+  return <span>{formatNumber()}</span>;
+};
+
 const Banner = ({
   backgroundImage,
   title,
@@ -106,7 +145,7 @@ const Banner = ({
                     }`}
                   >
                     <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                      {item.number}
+                      <NumberCounter target={item.number} />
                     </h3>
                     <p className="text-lg md:text-xl text-white font-medium">
                       {item.text}
@@ -165,7 +204,7 @@ const Banner = ({
               {counterData.map((item, index) => (
                 <div key={index} className="px-12 py-6 text-center">
                   <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    {item.number}
+                    <NumberCounter target={item.number} />
                   </h3>
                   <p className="text-lg md:text-xl text-gray-600 font-medium">
                     {item.text}

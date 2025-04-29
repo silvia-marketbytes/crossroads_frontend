@@ -1,13 +1,18 @@
-import React, { Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import Banner from "../../../components/Banner";
 import bannerImg from "../../../assets/FreeEducation/BANNER_result.webp";
 import ContactSection from "../../../pages/Home/UiComponents/ContactSection";
-
 import germanyImage from "../../../assets/FreeEducation/BANNER PNG_result.webp";
 import FeatureHighlightSection from "../../../components/FreeEducation/FeatureHighlightSection";
 import AffordableEducationOptions from "../../../components/FreeEducation/AffordableEducationOptions";
+import Modal from "../../../components/modal"; // Import the Modal component
 
 const FreeEducationGermany = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Free Education : Germany",
@@ -26,7 +31,7 @@ const FreeEducationGermany = () => {
     "Additional intakes (Feb/May/June) at some private universities.",
   ];
 
-  const IntakeSection = () => {
+  const IntakeSection = ({ openModal }) => {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-transparent z-20">
         <div className="bg-[#00334D]/80 p-6 w-full max-w-md rounded-lg shadow-md border border-white/20">
@@ -34,7 +39,10 @@ const FreeEducationGermany = () => {
             While tuition is free, students should plan to cover living expenses such as housing, food, and transportation, which can vary depending on the city and region. Make sure to budget accordingly to fully enjoy your international study experience.
           </p>
           <div className="mt-4">
-            <button className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors">
+            <button
+              className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors"
+              onClick={openModal}
+            >
               For more details click here
             </button>
           </div>
@@ -84,7 +92,6 @@ const FreeEducationGermany = () => {
       // Add more sections here if needed
     ];
 
-  
     dropdownSections.sort((a, b) => a.title.localeCompare(b.title));
 
     const shouldScroll = dropdownSections.length > 6;
@@ -103,7 +110,7 @@ const FreeEducationGermany = () => {
               <h3 className="text-2xl sm:text-3xl font-l mt-1 mb-16 text-white">
               Here's What You Need to <span className="text-[#F9920A]">Qualify</span>
               </h3>
-             
+
               <p className="text-white mb-8">
                 Germany offers world-class education with no tuition fees at public universities for international students.
               </p>
@@ -176,7 +183,7 @@ const FreeEducationGermany = () => {
               <div className="absolute inset-0 bg-black/50 z-10"></div>
               <img src={germanyImage} alt="Study in Germany" className="w-full h-full object-cover" />
             </div>
-            <IntakeSection />
+            <IntakeSection openModal={openModal} />
           </div>
         </div>
       </section>
@@ -253,6 +260,8 @@ const FreeEducationGermany = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
+
+      {isModalOpen && <Modal onClose={closeModal} />}
     </div>
   );
 };

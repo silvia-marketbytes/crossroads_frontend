@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from "react-router-dom"; 
+import { useLocation, Link } from "react-router-dom";
 import logo from "../../../../assets/logo-footer.webp";
 import SocialMedia from '../../../../components/UiComponents/SocialMedia';
 import shadow from "../../../../assets/shadow.webp";
 import { Like, Telephone } from '../../../../components/Icons';
-import Modal from '../../../../components/modal'; // Import the Modal component
-
+import Modal from '../../../../components/modal';
+ 
 const servicesData = {
   title: 'SERVICES',
   links: [
@@ -13,19 +13,19 @@ const servicesData = {
     { label: 'Job Assistance', href: '#' },
     { label: 'Documentation & Travel Assistance', href: '/services/documentation-assistance' },
     { label: 'Immigration', href: '#' },
-    { label: 'Gallery', href: '/Gallery' },
-    { label: 'Contact Us', href: '/Contact-Us' },
+    { label: 'Gallery', href: '/gallery' },
+    { label: 'Contact Us', href: '/contact-us' },
   ],
 };
-
+ 
 const FooterSection = () => {
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
-
+ 
   return (
     <>
       {showModal && <Modal onClose={() => setShowModal(false)} />}
-      
+     
       <footer className="bg-[#00334D] mt-8 sm:mt-8 lg:mt-20">
         <div className="relative -top-14 bg-white mx-0 md:mx-20 lg:mx-28 rounded-none sm:rounded-none md:rounded-full lg:md:rounded-full xl:md:rounded-full shadow-xl">
           <div className="py-8 px-4 md:px-20">
@@ -61,7 +61,7 @@ const FooterSection = () => {
             </div>
           </div>
         </div>
-
+ 
         <div className="container mx-auto px-4 -mt-2 sm:-mt-2 md:-mt-0 lg:-mt-0 xl:-mt-0">
           <div className="relative w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-0 sm:gap-0 md:gap-8 lg:gap-8 xl:gap-8 px-4 md:px-32">
             <div className="relative w-full flex flex-col items-center md:items-center lg:items-start space-y-8 p-4 md:pb-10">
@@ -69,16 +69,16 @@ const FooterSection = () => {
               <p className="text-gray-100 font-one font-normal text-lg lg:text-[16px] text-center md:text-center lg:text-left pr-0 md:pr-10 lg:pr-10 xl:pr-10">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
               </p>
-
+ 
               <div>
                 <SocialMedia />
               </div>
             </div>
-
+ 
             {/* Services section - Updated to use servicesData */}
             <div className="relative w-full flex flex-col items-center md:items-center lg:items-start space-y-4 p-4 md:pb-10">
               <div className='hidden md:hidden lg:block xl:block absolute -left-14 w-auto h-auto'>
-                <img src={shadow} className='w-auto h-56' />
+                <img src={shadow} className='w-auto h-64' />
               </div>
               <h2 className="text-gray-100 font-one text-3xl font-semibold text-center md:text-center lg:text-left">{servicesData.title}</h2>
               <div className="text-gray-100 font-one font-normal space-y-3">
@@ -93,11 +93,11 @@ const FooterSection = () => {
                 ))}
               </div>
             </div>
-
+ 
             {/* Contact Us section */}
             <div className="relative w-full flex flex-col items-center md:items-center lg:items-start space-y-4 p-4 md:pb-10">
               <div className='hidden md:hidden lg:block xl:block absolute -left-14 w-auto h-auto'>
-                <img src={shadow} className='w-auto h-56' />
+                <img src={shadow} className='w-auto h-64' />
               </div>
               <h2 className="text-gray-100 font-one text-3xl font-semibold text-center md:text-center lg:text-left">Contact Us</h2>
               <div className="text-gray-100 font-one font-normal text-lg lg:text-[16px]">
@@ -140,7 +140,7 @@ const FooterSection = () => {
             </div>
           </div>
         </div>
-
+ 
         {/* Footer bottom section */}
         <div className="border-t border-white mx-4 md:mx-20 mt-10 sm:mt-10 md:mt-0 lg:mt-0 xl:mt-0">
           <div className="block md:flex items-center justify-center text-center text-md text-gray-100 font-one py-6 mx-4">
@@ -158,5 +158,5 @@ const FooterSection = () => {
     </>
   );
 };
-
+ 
 export default FooterSection;

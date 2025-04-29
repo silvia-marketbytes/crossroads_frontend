@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState, useRef } from "react";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
 import bannerImg from "../../../assets/blog/banner png_result.webp";
@@ -122,7 +122,7 @@ const BlogPostHeadCard = ({ post }) => {
         <p className="text-gray-500 text-sm mb-4">{post.date}</p>
         <p className="text-gray-700 mb-6">{post.excerpt}</p>
         <a
-          href={`/Blogs/${slug}`} // Updated to match your route /Blogs/:slug
+          href={`/Blogs/${slug}`}
           className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
         >
           Continue Reading →
@@ -147,7 +147,7 @@ const BlogPostCard = ({ post }) => {
         <p className="text-gray-500 text-sm mb-3">{post.date}</p>
         <p className="text-gray-700 mb-4">{post.excerpt}</p>
         <a
-          href={`/Blogs/${slug}`} // Updated to match your route /Blogs/:slug
+          href={`/Blogs/${slug}`}
           className="text-[#F9920A] hover:text-[#e07a00] font-medium inline-flex items-center"
         >
           Continue Reading →
@@ -160,43 +160,49 @@ const BlogPostCard = ({ post }) => {
 const RecentUpdatesSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
+  const sectionRef = useRef(null);
 
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
-
   const handlePrevPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   console.log("Current Page:", currentPage);
-  console.log("Index of First Post:", indexOfFirstPost);
-  console.log("Index of Last Post:", indexOfLastPost);
+  console.log("Total Pages:", totalPages);
   console.log("Current Posts Length:", currentPosts.length);
 
   return (
-    <section className="recent-updates">
+    <section className="recent-updates" ref={sectionRef}>
       <div className="px-4 sm:px-4 lg:px-20 mt-14 sm:mt-14 lg:mt-10 mx-auto">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-1">Recent Updates</h2>
-          {blogPostsHead.map(post => (
-            <BlogPostHeadCard key={post.id} post={post} />
-          ))}
-        </div>
+        {currentPage === 1 && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-1">Recent Updates</h2>
+            {blogPostsHead.map(post => (
+              <BlogPostHeadCard key={post.id} post={post} />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="px-4 sm:px-4 lg:px-20 my-14 sm:my-14 lg:my-20 mx-auto">
@@ -206,35 +212,33 @@ const RecentUpdatesSection = () => {
           ))}
         </div>
 
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-8 space-x-2">
-            <button
-              onClick={handlePrevPage}
-              className={`px-3 py-1 rounded ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
-              disabled={currentPage === 1}
-            >
-              Prev
-            </button>
+        <div className="flex justify-center items-center mt-8 space-x-2">
+          <button
+            onClick={handlePrevPage}
+            className={`px-3 py-1 rounded ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
 
-            {pageNumbers.map(number => (
-              <button
-                key={number}
-                onClick={() => handlePageChange(number)}
-                className={`px-3 py-1 rounded ${currentPage === number ? 'bg-[#F9920A] text-white' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
-              >
-                {number}
-              </button>
-            ))}
-
+          {pageNumbers.map(number => (
             <button
-              onClick={handleNextPage}
-              className={`px-3 py-1 rounded ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
-              disabled={currentPage === totalPages} 
+              key={number}
+              onClick={() => handlePageChange(number)}
+              className={`px-3 py-1 rounded ${currentPage === number ? 'bg-[#F9920A] text-white' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
             >
-              Next
+              {number}
             </button>
-          </div>
-        )}
+          ))}
+
+          <button
+            onClick={handleNextPage}
+            className={`px-3 py-1 rounded ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-[#F9920A] hover:text-[#e07a00]'}`}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -245,7 +249,7 @@ const Blog = () => {
     backgroundImage: bannerImg,
     title: '<div style="margin-bottom: 1rem;">Blog Education News &</div>Study Abroad Updates',
     className: "px-1 relative",
-    classNameTitle: "relative -top-15 text-services-title",
+    classNameTitle: "relative -top-center text-services-title",
     backgroundPosition: "center",
     showDateTime: false,
     showSocialMedia: false,

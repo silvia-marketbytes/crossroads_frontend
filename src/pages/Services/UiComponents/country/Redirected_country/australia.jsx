@@ -46,11 +46,11 @@ const Australia = () => {
     { label: "Capital", value: "Canberra" },
     { label: "Population", value: "26 Million" },
     { label: "Language", value: "English" },
-    { label: "International Students", value: "700,000+" },
-    { label: "Currency", value: "Australian Dollar (AUD)" },
-    { label: "GDP", value: "$1.7 Trillion" },
-    { label: "Universities", value: "40+" },
-    { label: "International Students", value: "700,000+" },
+    { label: "International Students", value: "343,400" },
+    { label: "Currency", value: "Euro" },
+    { label: "GDP", value: "$2.9 Trillion" },
+    { label: "Universities", value: "250+" },
+    { label: "Scholarships Upto", value: "$2000/Month" },
   ];
 
   const dropdownSections = [

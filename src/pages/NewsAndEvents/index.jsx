@@ -27,49 +27,49 @@ export const newsData = [
     imageSrc: news1,
     title: 'UK Admission Day - Kochi', // Updated title to match News1
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link: "/news/News-And-Events-1"
+    link: "/news/uk-admission-day-kochi"
   },
   {
     imageSrc: news2,
-    title: 'Positions such as medical officers',
+    title: 'Internation Eduactional Fair Delhi',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link: "/news/News-And-Events-2"
+    link: "/news/international-education-fair-delhi"
   },
   {
     imageSrc: news3,
-    title: 'Additionally, MBBS graduates',
+    title: 'international Education Fair Trivandrum',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-3"
+    link:"/news/international-education-fair-trivandrum"
   },
   {
     imageSrc: news4,
-    title: 'Positions such as medical officers',
+    title: 'Austria Admission Day Kochi',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-4"
+    link:"/news/austria-admission-day-kochi"
   },
   {
     imageSrc: news5,
-    title: 'Medical colleges abroad are renowned',
+    title: 'International Education Fair Mumbai',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-5"
+    link:"/news/international-education-fair-mumbai"
   },
   {
     imageSrc: news6,
-    title: 'New Dummy News 6',
+    title: 'Italy Admission Day Kochi',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-6"
+    link:"/news/italy-admission-day-kochi"
   },
   {
     imageSrc: news7,
-    title: 'New Dummy News 7',
+    title: 'international education fair kerala',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-7"
+    link:"/news/international-education-fair-kerala"
   },
   {
     imageSrc: news8,
-    title: 'New Dummy News 8',
+    title: 'france admission day kochi',
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry.',
-    link:"/news/News-And-Events-8"
+    link:"/news/france-admission-day-kochi"
   },
 ];
 

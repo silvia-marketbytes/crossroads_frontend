@@ -1,6 +1,6 @@
 import React from "react";
 
-const IntakeSection = ({ intakes }) => {
+const IntakeSection = ({ intakes, openModal }) => {
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-transparent">
       <div className="bg-[#00334D]/30 p-6 w-full max-w-md rounded-lg shadow-md border border-white/20">
@@ -31,7 +31,10 @@ const IntakeSection = ({ intakes }) => {
           ))}
         </div>
         <div className="mt-4">
-          <button className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors">
+          <button
+            className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors"
+            onClick={openModal}
+          >
             For more details click here
           </button>
         </div>

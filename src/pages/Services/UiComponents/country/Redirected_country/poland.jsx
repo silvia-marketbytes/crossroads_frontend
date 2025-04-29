@@ -33,7 +33,7 @@ const Poland= () => {
     { label: "Currency", value: "Euro" },
     { label: "GDP", value: "$2.9 Trillion" },
     { label: "Universities", value: "250+" },
-    { label: "International Students", value: "343,400" },
+{ label: "Scholarships Upto", value: "$2000/Month" },
   ];
 
   const dropdownSections = [

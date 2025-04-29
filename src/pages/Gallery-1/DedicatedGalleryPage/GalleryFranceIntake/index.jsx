@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Banner from "../../../../components/Banner";
 import ContactSection from "../../../Home/UiComponents/ContactSection";
@@ -35,314 +35,49 @@ import video2 from "../../../../assets/Students/Videos/Video2.mp4";
 import flag1 from "../../../../assets/Flags/austria.png";
 import flag2 from "../../../../assets/Flags/germany.png";
 import flag3 from "../../../../assets/Flags/italy.png";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const TESTIMONIALS_DATA = [
-  {
-    imageSrc: student1,
-    name: "Anjali Krishnan",
-    flag: flag1,
-    rating: 5,
-    description:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    type: "image",
-  },
-  {
-    imageSrc: student2,
-    name: "Harikumar V.",
-    flag: flag2,
-    rating: 5,
-    description:
-      "Lorem Ipsum has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student3,
-    name: "Priya Sharma",
-    flag: flag3,
-    rating: 4,
-    description:
-      "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software.",
-    type: "image",
-  },
-  {
-    imageSrc: student4,
-    name: "Rahul Patel",
-    flag: flag1,
-    rating: 5,
-    description:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.",
-    type: "image",
-  },
-  {
-    imageSrc: student5,
-    name: "Sneha Gupta",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student6,
-    name: "Amit Singh",
-    flag: flag3,
-    rating: 5,
-    description:
-      "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.",
-    type: "image",
-  },
-  {
-    imageSrc: student7,
-    name: "Vikram Rao",
-    flag: flag1,
-    rating: 5,
-    description:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
-    type: "image",
-  },
-  {
-    imageSrc: student8,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student9,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student10,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student21,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student22,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student23,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student24,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student25,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student27,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student28,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student30,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student31,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student32,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student33,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student34,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student35,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student36,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student37,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student38,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
-  {
-    imageSrc: student39,
-    name: "Neha Verma",
-    flag: flag2,
-    rating: 4,
-    description:
-      "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    type: "image",
-  },
+  { imageSrc: student1, name: "Anjali Krishnan", flag: flag1, rating: 5, description: "Lorem Ipsum...", type: "image" },
+  { imageSrc: student2, name: "Harikumar V.", flag: flag2, rating: 5, description: "Lorem Ipsum...", type: "image" },
+  { imageSrc: student3, name: "Priya Sharma", flag: flag3, rating: 4, description: "It was popularised...", type: "image" },
+  { imageSrc: student4, name: "Rahul Patel", flag: flag1, rating: 5, description: "Lorem Ipsum...", type: "image" },
+  { imageSrc: student5, name: "Sneha Gupta", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student6, name: "Amit Singh", flag: flag3, rating: 5, description: "Lorem Ipsum...", type: "image" },
+  { imageSrc: student7, name: "Vikram Rao", flag: flag1, rating: 5, description: "Lorem Ipsum...", type: "image" },
+  { imageSrc: student8, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student9, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student10, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student21, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student22, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student23, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student24, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student25, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student27, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student28, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student30, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student31, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student32, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student33, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student34, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student35, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student36, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student37, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student38, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
+  { imageSrc: student39, name: "Neha Verma", flag: flag2, rating: 4, description: "It has survived...", type: "image" },
 ];
 
 const VIDEO_TESTIMONIALS = [
-    {
-      videoSrc: video1,
-      name: "Divya Ajith",
-      flag: flag3,
-      rating: 5,
-      description:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
-      type: "video",
-    },
-    {
-      videoSrc: video2,
-      name: "Rohan Mehta",
-      flag: flag1,
-      rating: 5,
-      description:
-        "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-      type: "video",
-    },
-    {
-      videoSrc: video1,
-      name: "Ananya Nair",
-      flag: flag2,
-      rating: 4,
-      description:
-        "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.",
-      type: "video",
-    },
-    {
-      videoSrc: video2,
-      name: "Kiran Desai",
-      flag: flag3,
-      rating: 5,
-      description:
-        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      type: "video",
-    },
-    {
-      videoSrc: video1,
-      name: "Meera Kapoor",
-      flag: flag1,
-      rating: 4,
-      description:
-        "It has survived not only five centuries, but also the leap into electronic typesetting.",
-      type: "video",
-    },
-    {
-      videoSrc: video2,
-      name: "Arjun Reddy",
-      flag: flag2,
-      rating: 5,
-      description:
-        "Lorem Ipsum was popularised in the 1960s with the release of Letraset sheets.",
-      type: "video",
-    },
-  ];
+  { videoSrc: video1, name: "Divya Ajith", flag: flag3, rating: 5, description: "Lorem Ipsum...", type: "video" },
+  { videoSrc: video2, name: "Rohan Mehta", flag: flag1, rating: 5, description: "It has survived...", type: "video" },
+  { videoSrc: video1, name: "Ananya Nair", flag: flag2, rating: 4, description: "Lorem Ipsum...", type: "video" },
+  { videoSrc: video2, name: "Kiran Desai", flag: flag3, rating: 5, description: "Lorem Ipsum...", type: "video" },
+  { videoSrc: video1, name: "Meera Kapoor", flag: flag1, rating: 4, description: "It has survived...", type: "video" },
+  { videoSrc: video2, name: "Arjun Reddy", flag: flag2, rating: 5, description: "Lorem Ipsum...", type: "video" },
+];
 
 const TestimonialCard = ({ item }) => {
   return (
-    <div className="w-full h-64 sm:h-72 lg:h-80 bg-white overflow-hidden flex flex-col shadow-md rounded-lg hover:bg-gray-100 transition-colors duration-300 mx-auto">
+    <div className="w-full h-[300px] bg-white overflow-hidden flex flex-col shadow-md rounded-lg hover:bg-gray-100 transition-colors duration-300 mx-auto">
       {item.type === "image" ? (
         <img
           src={item.imageSrc}
@@ -362,26 +97,36 @@ const TestimonialCard = ({ item }) => {
 
 const GalleryFranceIntake = () => {
   const [activeTab, setActiveTab] = useState("images");
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const cardsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(1);
+  const sectionRef = useRef(null);
+  const cardsPerPage = 12; // 4 images per row, 3 rows
 
   const data = activeTab === "images" ? TESTIMONIALS_DATA : VIDEO_TESTIMONIALS;
-  const totalSlides = Math.ceil(data.length / cardsPerPage);
+  const totalPages = Math.ceil(data.length / cardsPerPage);
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentCards = data.slice(indexOfFirstCard, indexOfLastCard);
 
-  const goToPrev = () => {
-    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : totalSlides - 1));
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : 0));
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : 0));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [totalSlides]);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const bannerProps = {
     backgroundImage: bannerImg,
@@ -402,7 +147,7 @@ const GalleryFranceIntake = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
+      <section ref={sectionRef} className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center mb-8 gap-4 sm:gap-8">
             <button
@@ -411,7 +156,11 @@ const GalleryFranceIntake = () => {
                   ? "bg-[#F9920A] text-white"
                   : "bg-gray-200 text-[#00334D] hover:bg-gray-300"
               }`}
-              onClick={() => setActiveTab("images")}
+              onClick={() => {
+                setActiveTab("images");
+                setCurrentPage(1);
+                sectionRef.current.scrollIntoView({ behavior: "smooth" });
+              }}
             >
               Images
             </button>
@@ -421,7 +170,11 @@ const GalleryFranceIntake = () => {
                   ? "bg-[#F9920A] text-white"
                   : "bg-gray-200 text-[#00334D] hover:bg-gray-300"
               }`}
-              onClick={() => setActiveTab("videos")}
+              onClick={() => {
+                setActiveTab("videos");
+                setCurrentPage(1);
+                sectionRef.current.scrollIntoView({ behavior: "smooth" });
+              }}
             >
               Videos
             </button>
@@ -430,36 +183,60 @@ const GalleryFranceIntake = () => {
           <div className="relative">
             {data.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-[600px]">
-                  {data
-                    .slice(currentSlide * cardsPerPage, (currentSlide + 1) * cardsPerPage)
-                    .map((item, index) => (
-                      <TestimonialCard key={index} item={item} />
-                    ))}
-                 
-                  {Array.from({ length: Math.max(0, cardsPerPage - data.slice(currentSlide * cardsPerPage, (currentSlide + 1) * cardsPerPage).length) }).map((_, index) => (
-                    <div key={`empty-${index}`} className="w-full h-64 sm:h-72 lg:h-80 bg-transparent"></div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {currentCards.map((item, index) => (
+                    <TestimonialCard key={`${currentPage}-${item.name}-${index}`} item={item} />
                   ))}
+                  {currentCards.length < cardsPerPage &&
+                    Array.from({ length: cardsPerPage - currentCards.length }).map((_, index) => (
+                      <div
+                        key={`empty-${currentPage}-${index}`}
+                        className="w-full h-[300px] bg-transparent"
+                      ></div>
+                    ))}
                 </div>
 
-                <div className="flex justify-center mt-6 sm:mt-8 lg:mt-20">
-                  <button
-                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    style={{ color: "#00334D" }}
-                    onClick={goToPrev}
-                    aria-label="Previous Slide"
-                  >
-                    <FaChevronLeft size={20} className="sm:w-6 sm:h-6" />
-                  </button>
-                  <button
-                    className="p-2 sm:p-3 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    style={{ color: "#00334D" }}
-                    onClick={goToNext}
-                    aria-label="Next Slide"
-                  >
-                    <FaChevronRight size={20} className="sm:w-6 sm:h-6" />
-                  </button>
-                </div>
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center mt-8 space-x-2">
+                    <button
+                      onClick={handlePrevPage}
+                      className={`px-3 py-1 rounded ${
+                        currentPage === 1
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "text-[#F9920A] hover:text-[#e07a00]"
+                      }`}
+                      disabled={currentPage === 1}
+                    >
+                      Prev
+                    </button>
+
+                    {pageNumbers.map((number) => (
+                      <button
+                        key={number}
+                        onClick={() => handlePageChange(number)}
+                        className={`px-3 py-1 rounded ${
+                          currentPage === number
+                            ? "bg-[#F9920A] text-white"
+                            : "text-[#F9920A] hover:text-[#e07a00]"
+                        }`}
+                      >
+                        {number}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={handleNextPage}
+                      className={`px-3 py-1 rounded ${
+                        currentPage === totalPages
+                          ? "text-gray-400 cursor-not-allowed"
+                          : "text-[#F9920A] hover:text-[#e07a00]"
+                      }`}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </>
             ) : (
               <div className="text-center text-red-500">

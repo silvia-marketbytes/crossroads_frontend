@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
+import {Link} from "react-router-dom"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import medicalStudentsImg from "../../../../assets/medical-students.png";
 import placeholderImg from "../../../../assets/medical-students.png";
@@ -106,16 +107,15 @@ const MBBSSection = () => {
                       {card.description}
                     </p>
                   </div>
-                  <a
-                    href="#"
-                    className="font-semibold flex items-center text-xs sm:text-sm md:text-base lg:text-lg"
+                  <Link to=""
+                    className="font-semibold flex items-center text-xs sm:text-sm md:text-base lg:text-sm"
                     style={{ color: '#F9920A' }}
                     onMouseEnter={(e) => (e.target.style.color = '#E08200')}
                     onMouseLeave={(e) => (e.target.style.color = '#F9920A')}
                   >
                     {card.linkText}
                     <svg
-                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 ml-2"
+                      className="w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-4 lg:h-4 ml-2"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -128,18 +128,18 @@ const MBBSSection = () => {
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </Slider>
-        <div className="flex justify-center mt-4 sm:mt-6 gap-4 sm:gap-6 px-4">
+        <div className="flex justify-center mt-8 sm:mt-8 gap-4 sm:gap-6 px-4">
           <button
             onClick={goToPrev}
             className="transition-all duration-300"
-            style={{ color: '#00334D' }}
-            onMouseEnter={(e) => (e.target.style.color = '#F9920A')}
+            style={{ color: '#d1d1cf' }}
+            onMouseEnter={(e) => (e.target.style.color = '#d1d1cf')}
             onMouseLeave={(e) => (e.target.style.color = '#00334D')}
             aria-label="Previous Slide"
           >
@@ -148,8 +148,8 @@ const MBBSSection = () => {
           <button
             onClick={goToNext}
             className="transition-all duration-300"
-            style={{ color: '#00334D' }}
-            onMouseEnter={(e) => (e.target.style.color = '#F9920A')}
+            style={{ color: '#d1d1cf' }}
+            onMouseEnter={(e) => (e.target.style.color = '#d1d1cf')}
             onMouseLeave={(e) => (e.target.style.color = '#00334D')}
             aria-label="Next Slide"
           >
@@ -162,4 +162,3 @@ const MBBSSection = () => {
 };
  
 export default MBBSSection;
- 

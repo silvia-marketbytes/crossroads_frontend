@@ -13,7 +13,7 @@ import postImage6 from "../../../assets/blog/F_result.webp";
 import postImage7 from "../../../assets/blog/G_result.webp";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../../../components/modal";
-
+ 
 const blogPostsHead = [
   {
     id: 1,
@@ -25,7 +25,7 @@ const blogPostsHead = [
     fullContent: "We share a wealth of resources, including study guides, practice questions, and sample papers. Our consultants provide personalized guidance to help you navigate the complex process of studying abroad, from selecting the right university to visa application assistance"
   },
 ];
-
+ 
 const blogPosts = [
   {
     id: 1,
@@ -109,25 +109,25 @@ const blogPosts = [
     fullContent: "Choosing the right consultant is crucial for your study abroad journey. Learn how our experts in Kochi can guide you through the process with tailored advice and resources."
   },
 ];
-
+ 
 const allPosts = [...blogPostsHead, ...blogPosts];
-
+ 
 const BlogDetail = () => {
   const { slug } = useParams();
   const post = allPosts.find(
     (p) => slugify(p.title, { lower: true, strict: true }) === slug
   );
-
+ 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const checklistContent = {
     "Start with Research": [
       "Google search for 'overseas education consultants in [your location]'.",
@@ -167,31 +167,31 @@ const BlogDetail = () => {
       "Pre-Departure Briefing: Guidance on what to expect before leaving."
     ]
   };
-
+ 
   const scrollRef = useRef(null);
   const contentRef = useRef(null);
   const sectionRefs = useRef([]);
   const [thumbTop, setThumbTop] = useState(0);
   const [thumbHeight, setThumbHeight] = useState(20);
   const [activeSection, setActiveSection] = useState(Object.keys(checklistContent)[0]);
-
+ 
   const updateThumbPosition = (activeIndex) => {
     const container = scrollRef.current;
     if (!container) return;
-
+ 
     const totalItems = Object.keys(checklistContent).length;
     const trackHeight = 400;
     const thumbSize = Math.max(trackHeight / totalItems, 20);
     const maxScroll = trackHeight - thumbSize;
     const thumbOffset = (activeIndex / (totalItems - 1)) * maxScroll;
-
+ 
     setThumbTop(thumbOffset);
     setThumbHeight(thumbSize);
   };
-
+ 
   useEffect(() => {
     sectionRefs.current = Array(Object.keys(checklistContent).length).fill().map((_, i) => sectionRefs.current[i] || null);
-
+ 
     const observers = Object.keys(checklistContent).map((sectionTitle, index) => {
       const section = sectionRefs.current[index];
       if (section) {
@@ -213,12 +213,12 @@ const BlogDetail = () => {
       }
       return null;
     });
-
+ 
     updateThumbPosition(0);
-
+ 
     return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
-
+ 
   if (!post) {
     return (
       <div className="px-4 sm:px-4 lg:px-20 my-14 mx-auto">
@@ -230,12 +230,12 @@ const BlogDetail = () => {
       </div>
     );
   }
-
+ 
   const recentPosts = allPosts
     .filter((p) => p.id !== post.id)
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 3);
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: post.title,
@@ -247,13 +247,13 @@ const BlogDetail = () => {
     showCounter: false,
     counterPosition: "overlay",
   };
-
+ 
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
         <Banner {...bannerProps} />
       </Suspense>
-
+ 
       <section className="px-4 sm:px-4 lg:px-20 my-6 mx-auto">
         <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-6 max-w-6xl mx-auto">
           <div className="w-full lg:w-1/4 h-full relative top-6 self-start">
@@ -298,7 +298,7 @@ const BlogDetail = () => {
                 </div>
               </div>
               <div className="flex flex-col items-center space-y-2 mt-10 mb-12">
-                <h3 className="text-lg font-semibold text-gray-800">Share This Article</h3>
+                <h3 className="text-lg font-semibold text-gray-800 pb-4">Share This Article</h3>
                 <div className="flex space-x-4">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black"/>
@@ -322,7 +322,7 @@ const BlogDetail = () => {
               </div>
             </div>
           </div>
-
+ 
           <div className="w-full lg:w-3/4">
             <div className="bg-white p-4 md:p-6 h-full">
               <div
@@ -339,10 +339,10 @@ const BlogDetail = () => {
                     className="mb-12 last:mb-0"
                     ref={(el) => (sectionRefs.current[index] = el)}
                   >
-                    <h2 className="text-xs md:text-xl font-l text-[#00334D] mb-4">{sectionTitle}</h2>
+                    <h3 className="text-xs md:text-xl font-medium text-[#00334D] mb-4">{sectionTitle}</h3>
                     <ul className="list-disc pl-5 space-y-3 text-gray-700 text-base md:text-lg">
                       {items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="leading-relaxed">
+                        <li key={itemIndex} className="text-[16px] leading-relaxed">
                           {item}
                         </li>
                       ))}
@@ -350,7 +350,7 @@ const BlogDetail = () => {
                   </div>
                 ))}
               </div>
-
+ 
               <div className="flex justify-between items-center">
                 <button
                   onClick={openModal}
@@ -369,7 +369,7 @@ const BlogDetail = () => {
           </div>
         </div>
       </section>
-
+ 
       <section className="py-10 bg-[#00334D] text-white">
         <div className="px-4 sm:px-4 lg:px-20 mx-auto max-w-8xl">
           <h2 className="text-xl font-bold mb-6">You Might Also Like</h2>
@@ -400,16 +400,16 @@ const BlogDetail = () => {
           </div>
         </div>
       </section>
-
+ 
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
-
+ 
       <AnimatePresence>
         {isModalOpen && <Modal onClose={closeModal} />}
       </AnimatePresence>
     </div>
   );
 };
-
+ 
 export default BlogDetail;

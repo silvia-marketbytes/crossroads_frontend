@@ -44,25 +44,27 @@ import News5 from "./pages/NewsAndEvents/DedicatedPage/News5";
 import News6 from "./pages/NewsAndEvents/DedicatedPage/News6";
 import News7 from "./pages/NewsAndEvents/DedicatedPage/News7";
 import News8 from "./pages/NewsAndEvents/DedicatedPage/News8";
-
+import Course from "./pages/Services/UiComponents/Course";
+ 
 function ScrollToTop() {
   const { pathname } = useLocation();
-
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
+ 
   return null;
 }
-
+ 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/Aboutus" element={<Aboutus />} />
+        <Route path="/about-us" element={<Aboutus />} />
         <Route path="/services/documentation-assistance" element={<Services />} />
         <Route path="/services/language-lab" element={<Languagelab />} />
+        <Route path="/services/education/course" element={<Course />} />
         <Route path="/services/education/country" element={<Country />} />
         <Route path="/services/education/country/germany" element={<Germany />} />
         <Route path="/services/education/country/france" element={<France />} />
@@ -82,39 +84,35 @@ function App() {
         <Route path="/services/education/country/slovakia" element={<Slovakia />} />
         <Route path="/services/education/country/spain" element={<Spain />} />
         <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/Blogs" element={<Blog />} />
-        <Route path="/Blogs/:slug" element={<BlogDetailed />} />
-        <Route path="/Gallery" element={<Gallery />} />
-        <Route path="/Gallery/Germany" element={<GalleryGermanyIntake/>} />
-        <Route path="/Gallery/France" element={<GalleryFranceIntake/>} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/blogs/:slug" element={<BlogDetailed />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/germany" element={<GalleryGermanyIntake/>} />
+        <Route path="/gallery/france" element={<GalleryFranceIntake/>} />
         <Route path="/news" element={<NewsAndEvents />} />
-        <Route path="/Contact-Us" element={<ContactUs/>} />
-        <Route path="/Freeeducation/Germany" element={<FreeEducationGermany/>} />
-        <Route path="/Freeeducation/Austria" element={<FreeEducationAustria/>} />
-        <Route path="/Freeeducation/Slovakia" element={<FreeEducationSlovakia/>} />
-        <Route path="/Freeeducation/Slovania" element={<FreeEducationSlovania/>} />
-        <Route path="/Freeeducation/Italy" element={<FreeEducationItaly/>} />
-        <Route path="/news/News-And-Events-1" element={<News1/>} />
-        <Route path="/news/News-And-Events-2" element={<News2/>} />
-        <Route path="/news/News-And-Events-3" element={<News3/>} />
-        <Route path="/news/News-And-Events-4" element={<News4/>} />
-        <Route path="/news/News-And-Events-5" element={<News5/>} />
-        <Route path="/news/News-And-Events-6" element={<News6/>} />
-        <Route path="/news/News-And-Events-7" element={<News7/>} />
-        <Route path="/news/News-And-Events-8" element={<News8/>} />
-
-
-
-
+        <Route path="/contact-us" element={<ContactUs/>} />
+        <Route path="/freeeducation/germany" element={<FreeEducationGermany/>} />
+        <Route path="/freeeducation/austria" element={<FreeEducationAustria/>} />
+        <Route path="/freeeducation/slovakia" element={<FreeEducationSlovakia/>} />
+        <Route path="/freeeducation/slovania" element={<FreeEducationSlovania/>} />
+        <Route path="/freeeducation/italy" element={<FreeEducationItaly/>} />
+        <Route path="/news/uk-admission-day-kochi" element={<News1/>} />
+        <Route path="/news/international-education-fair-delhi" element={<News2/>} />
+        <Route path="/news/international-education-fair-trivandrum" element={<News3/>} />
+        <Route path="/news/austria-admission-day-kochi" element={<News4/>} />
+        <Route path="/news/international-education-fair-mumbai" element={<News5/>} />
+        <Route path="/news/italy-admission-day-kochi" element={<News6/>} />
+        <Route path="/news/international-education-fair-kerala" element={<News7/>} />
+        <Route path="/news/france-admission-day-kochi" element={<News8/>} />
       </Route>
     )
   );
-
+ 
   return (
     <RouterProvider router={router}>
       <ScrollToTop />
     </RouterProvider>
   );
 }
-
+ 
 export default App;

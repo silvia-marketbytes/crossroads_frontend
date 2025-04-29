@@ -6,10 +6,10 @@ import course2 from "../../../assets/courses/Bachelors.webp";
 import course3 from "../../../assets/courses/Masters.webp";
 import course4 from "../../../assets/courses/Nursing.webp";
 import course5 from "../../../assets/courses/mbbs.png";
-
+ 
 const CoursesOffered = ({ title }) => {
   const sliderRef = useRef(null);
-
+ 
   const courses = [
     {
       image: course1,
@@ -37,7 +37,7 @@ const CoursesOffered = ({ title }) => {
       description: "Lorem ipsum is simply dummy text of the printing.",
     },
   ];
-
+ 
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -46,7 +46,7 @@ const CoursesOffered = ({ title }) => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 3000,
     rtl: true,
     responsive: [
       {
@@ -79,21 +79,21 @@ const CoursesOffered = ({ title }) => {
       },
     ],
   };
-
+ 
   const goToPrev = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
-    }
-  };
-
-  const goToNext = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
     }
   };
-
+ 
+  const goToNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+ 
   return (
-    <section className="w-full pb-2 mt-12 bg-white text-center">
+    <section className="w-full pb-2 mt-8 lg:mt-16 bg-white text-center">
       <div className="w-full">
         <h2 className="text-l sm:text-3xl mb-8 ">
           <span className="text-[#F9920A]">Courses</span>{" "}
@@ -150,5 +150,5 @@ const CoursesOffered = ({ title }) => {
     </section>
   );
 };
-
+ 
 export default CoursesOffered;

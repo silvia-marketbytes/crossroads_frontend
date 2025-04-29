@@ -45,10 +45,11 @@ const Uk = () => {
     { label: "Capital", value: "London" },
     { label: "Population", value: "67 Million" },
     { label: "Language", value: "English" },
-    { label: "International Students", value: "605,130" },
-    { label: "Currency", value: "Pound Sterling (GBP)" },
-    { label: "GDP", value: "$3.2 Trillion" },
-    { label: "Universities", value: "130+" },
+    { label: "International Students", value: "343,400" },
+    { label: "Currency", value: "Euro" },
+    { label: "GDP", value: "$2.9 Trillion" },
+    { label: "Universities", value: "250+" },
+    { label: "Scholarships Upto", value: "$2000/Month" },
   ];
 
   const dropdownSections = [
