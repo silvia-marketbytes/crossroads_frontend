@@ -29,9 +29,9 @@ const TickSVG = () => (
 
 const AboutMission = () => {
   return (
-    <section className="bg-white text-center">
-      <div className="container mx-auto">
-        <p className="text-lg md:text-xl text-gray-600 max-w-7xl mx-auto">
+    <section className="bg-white text-center py-8 md:py-12">
+      <div className="container mx-auto px-4 sm:px-6">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-7xl mx-auto">
           At Crossroads, we’ve been passionately committed to shaping the
           futures of students since our establishment in 2008. With over a
           decade of experience, we’ve remained steadfast in our mission to
@@ -52,56 +52,54 @@ const AboutMission = () => {
 
 const VisionMissionSection = () => {
   return (
-    <section className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20 md:pt-20">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-          {/* Video Section */}
-          <div className="w-full md:w-1/2 h-[600px] md:h-auto relative overflow-hidden">
-            <iframe
-              src="https://www.youtube.com/embed/e9PVe3bPGqw?autoplay=1&mute=1&controls=0&loop=1&playlist=e9PVe3bPGqw"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full object-cover"
-            ></iframe>
-          </div>
+    <section className="w-full mx-auto container px-4 sm:px-6 py-12 md:pt-20">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+        {/* Video Section */}
+        <div className="w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-auto relative overflow-hidden mb-6 md:mb-0">
+          <iframe
+            src="https://www.youtube.com/embed/e9PVe3bPGqw?autoplay=1&mute=1&controls=0&loop=1&playlist=e9PVe3bPGqw"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full object-cover"
+          ></iframe>
+        </div>
 
-          {/* Vision and Mission Section */}
-          <div className="w-full md:w-1/2 flex flex-col">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="w-full md:w-1/2 order-2">
-                <img
-                  src={visionImage}
-                  className="w-full h-auto"
-                  alt="Graduation ceremony"
-                />
-              </div>
-              <div className="w-full md:w-1/2 text-center p-8">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
-                  Our Vision
-                </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  To be a world leader in empowering students to achieve their academic and career aspirations by providing unparalleled guidance and access to world-class education opportunities across the globe.
-                </p>
-              </div>
+        {/* Vision and Mission Section */}
+        <div className="w-full md:w-1/2 flex flex-col">
+          <div className="flex flex-col md:flex-row items-center mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 text-center p-4 md:p-8 order-1 md:order-2">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
+                Our Mission
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                Our mission is to inspire and support students in their pursuit of international education, offering personalized guidance, comprehensive services, and dedicated support to ensure they are well-prepared for success in a globalized world.
+              </p>
             </div>
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="w-full md:w-1/2">
-                <img
-                  src={missionImage}
-                  className="w-full h-auto"
-                  alt="Students together"
-                />
-              </div>
-              <div className="w-full md:w-1/2 text-center p-8">
-                <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
-                  Our Mission
-                </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Our mission is to inspire and support students in their pursuit of international education, offering personalized guidance, comprehensive services, and dedicated support to ensure they are well-prepared for success in a globalized world.
-                </p>
-              </div>
+            <div className="w-full md:w-1/2 order-2 md:order-1">
+              <img
+                src={missionImage}
+                className="w-full h-auto"
+                alt="Students together"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="w-full md:w-1/2 text-center p-4 md:p-8 order-1 md:order-1">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4" style={{ color: "#F9920A" }}>
+                Our Vision
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                To be a world leader in empowering students to achieve their academic and career aspirations by providing unparalleled guidance and access to world-class education opportunities across the globe.
+              </p>
+            </div>
+            <div className="w-full md:w-1/2 order-2 md:order-2">
+              <img
+                src={visionImage}
+                className="w-full h-auto"
+                alt="Graduation ceremony"
+              />
             </div>
           </div>
         </div>
@@ -191,20 +189,15 @@ const Aboutus = () => {
       const clientHeight = list.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
 
-      // Prevent default to control inner scroll first
       event.preventDefault();
 
-      // Calculate new scroll position
       const newScrollTop = scrollTop + deltaY;
       if (newScrollTop >= 0 && newScrollTop <= maxScroll) {
-        // Scroll the inner container
         list.scrollTop = newScrollTop;
       } else if (newScrollTop < 0) {
-        // At top, scroll page up
         list.scrollTop = 0;
         window.scrollBy(0, deltaY);
       } else if (newScrollTop > maxScroll) {
-        // At bottom, scroll page down
         list.scrollTop = maxScroll;
         window.scrollBy(0, deltaY);
       }
@@ -281,19 +274,19 @@ const Aboutus = () => {
         <Banner {...bannerProps} />
       </Suspense>
 
-      <section className="bg-white text-center">
-        <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold mt-10">
+      <section className="bg-white text-center py-8 md:py-12">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-6 md:mt-10">
             <span style={{ color: "#00334D" }}>At </span>
             <span style={{ color: "#F9920A" }}>Crossroads</span>
           </h2>
           <h2
-            className="text-4xl md:text-5xl font-semibold mt-0"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold mt-2 md:mt-0"
             style={{ color: "#00334D" }}
           >
             we tailor our guidance
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-7xl mx-auto mt-10">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-7xl mx-auto mt-6 md:mt-10">
             We are a team of seasoned professionals who provide comprehensive
             educational support, from selecting the right study programs to
             assisting with job placements, both in India and internationally.
@@ -304,22 +297,22 @@ const Aboutus = () => {
         </div>
       </section>
 
-      <section className="py-12 bg-white">
-        <div className="relative mx-auto px-4 md:px-0">
+      <section className="py-8 md:py-12 bg-white">
+        <div className="relative mx-auto px-4 sm:px-6">
           <div ref={scrollContainerRef} className="grid grid-cols-1 md:grid-cols-2 w-full h-full">
-            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left p-4 md:pl-40 md:pr-20">
-              <h2 className="text-2xl md:text-4xl font-semibold mb-4">
+            <div className="relative bg-[#00334D] text-white flex flex-col items-start justify-center text-left p-6 md:p-4 md:pl-40 md:pr-20">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-semibold mb-4">
                 <span>Why </span>
                 <span style={{ color: "#F9920A" }}>Crossroads?</span>
               </h2>
-              <p className="text-base md:text-lg mb-6 md:mb-10">
+              <p className="text-sm sm:text-base md:text-lg mb-4 md:mb-6">
                 At Crossroads, we are committed to guiding students toward their
                 dreams with personalized support and expert advice. Our mission
                 is to simplify the complex journey of education and career
                 planning.
               </p>
 
-              <div className="relative">
+              <div className="relative w-full">
                 <div className="absolute left-0 top-0 h-full w-1 bg-white overflow-hidden md:block hidden">
                   <div
                     ref={lineRef}
@@ -337,12 +330,12 @@ const Aboutus = () => {
                         <TickSVG />
                         <div>
                           <h4
-                            className="font-bold text-base md:text-lg"
+                            className="font-bold text-sm sm:text-base md:text-lg"
                             style={{ color: "#F9920A" }}
                           >
                             {item.heading}
                           </h4>
-                          <p className="mt-1 text-sm md:text-base">{item.description}</p>
+                          <p className="mt-1 text-xs sm:text-sm md:text-base">{item.description}</p>
                         </div>
                       </li>
                     ))}
@@ -354,7 +347,7 @@ const Aboutus = () => {
               <img
                 src={rightSideImg}
                 alt="Crossroads Illustration"
-                className="w-full h-auto max-h-[600px] object-cover"
+                className="w-full h-auto max-h-[400px] sm:max-h-[500px] md:max-h-[600px] object-cover"
               />
             </div>
           </div>

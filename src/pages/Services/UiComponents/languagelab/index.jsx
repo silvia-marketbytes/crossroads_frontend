@@ -3,9 +3,9 @@ import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/Services/languagelabbanner.webp";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
 import rightSectionBg from "../../../../assets/Services/language-lab-bg.webp";
-import Modal from '../../../../components/modal';
-import { AnimatePresence } from 'framer-motion';
- 
+import Modal from "../../../../components/modal";
+import { AnimatePresence } from "framer-motion";
+
 const languageLabItems = [
   {
     id: 1,
@@ -32,50 +32,63 @@ const languageLabItems = [
       "The PTE is a computer-based academic English language test ideal for non-native English speakers planning to study abroad. PTE offers a range of tests each designed to assess proficiency in reading, writing, listening, and speaking. These scenario-based exams provide a comprehensive evaluation of English language skills. PTE's rigorous assessment is recognized by universities and employers worldwide, making it a value credential for students seeking international opportunities.",
   },
 ];
- 
+
 const Languagelab = () => {
   const [selectedItem, setSelectedItem] = useState(
     languageLabItems.length > 0 ? languageLabItems[0] : null
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
- 
+
   const openModal = () => {
     setIsModalOpen(true);
   };
- 
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
- 
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Language Lab",
-    className: "px-10 relative bg-gradient-to-r from-black/70 via-black/50 to-transparent",
+    className:
+      "px-10 relative bg-gradient-to-r from-black/70 via-black/50 to-transparent",
     classNameTitle: "text-services-title",
     showDateTime: false,
     showSocialMedia: false,
   };
- 
+
   return (
     <div>
       <Suspense fallback={<div></div>}>
         <Banner {...bannerProps} />
       </Suspense>
- 
-      <section className="py-6 sm:py-8 lg:py-12 sm:px-12 lg:px-25 flex justify-center">
+
+      <section className="py-5 sm:py-8 lg:py-12 sm:px-12 lg:px-25 flex justify-center">
         <div className="w-full">
           <p
-            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
+            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed px-6 sm:px-0"
             style={{ textAlign: "justify" }}
           >
-            Languages are the foundation of human communication, bridging cultures and fostering understanding across diverse communities. Mastery of multiple languages opens doors to global opportunities, enhances cognitive abilities, and deepens cultural appreciation. In an increasingly interconnected world, knowing different languages is essential for personal and professional growth, enabling individuals to connect with others, access a broader range of knowledge, and participate more fully in the global economy. Crossroads provides opportunities for an interactive learning environment designed to enhance language acquisition through technology-driven tools and resources. Learners can practice pronunciation, listening, speaking, and comprehension skills in a structured and engaging manner.
+            Languages are the foundation of human communication, bridging
+            cultures and fostering understanding across diverse communities.
+            Mastery of multiple languages opens doors to global opportunities,
+            enhances cognitive abilities, and deepens cultural appreciation. In
+            an increasingly interconnected world, knowing different languages is
+            essential for personal and professional growth, enabling individuals
+            to connect with others, access a broader range of knowledge, and
+            participate more fully in the global economy. Crossroads provides
+            opportunities for an interactive learning environment designed to
+            enhance language acquisition through technology-driven tools and
+            resources. Learners can practice pronunciation, listening, speaking,
+            and comprehension skills in a structured and engaging manner.
           </p>
         </div>
       </section>
- 
+
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-10">
         <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-8 min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
-          <div className="w-full md:w-1/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col  overflow-hidden">
+          {/* Left Section: Tabs */}
+          <div className="w-full md:w-1/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col overflow-hidden">
             <div className="flex flex-col p-3 sm:p-4 lg:p-6">
               {languageLabItems.map((item, index) => (
                 <div
@@ -87,7 +100,7 @@ const Languagelab = () => {
                   }
                 >
                   <button
-                    className={`w-full text-left px-4 py-4 sm:px-5 sm:py-6 lg:py-6 text-xs sm:text-sm lg:text-base font-medium  transition-all duration-300 ${
+                    className={`w-full text-left px-4 py-4 sm:px-5 sm:py-6 lg:py-6 text-xs sm:text-sm lg:text-base font-medium transition-all duration-300 ${
                       selectedItem?.id === item.id
                         ? "bg-[#00334D] text-white shadow-md mt-4"
                         : "text-gray-600 hover:bg-gray-50"
@@ -96,18 +109,44 @@ const Languagelab = () => {
                   >
                     {item.title}
                   </button>
+
+                  {selectedItem?.id === item.id && (
+                    <div className="md:hidden p-4 bg-[#00334D] border border-white/20 mt-2">
+                      <div className="mb-6">
+                        <h2
+                          className="font-semibold text-white font-['Poppins'] mb-4"
+                          style={{ fontSize: "20px" }}
+                        >
+                          {selectedItem.title}
+                        </h2>
+                        <p
+                          className="mt-5 leading-relaxed text-white font-['Poppins']"
+                          style={{ fontSize: "14px" }}
+                        >
+                          {selectedItem.description}
+                        </p>
+                      </div>
+                      <button
+                        className="bg-[#F9920A] text-white text-sm px-6 py-2 rounded-full font-medium hover:bg-[#00334D] transition-colors duration-300"
+                        onClick={openModal}
+                      >
+                        Enquire Now
+                      </button>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
- 
+
+          {/* Right Section: Content (Visible only on md and above) */}
           <div
-            className="w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex flex-col  overflow-hidden"
+            className="hidden md:flex w-full md:w-2/3 min-h-[200px] sm:min-h-[250px] md:min-h-full flex-col overflow-hidden"
             style={{
               backgroundImage: `url(${rightSectionBg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
             }}
           >
             <div className="p-4 flex-1 flex flex-col justify-between overflow-y-auto mx-10 my-10 bg-[#00334D]/70 border border-white/20">
@@ -116,13 +155,13 @@ const Languagelab = () => {
                   <div className="mb-6">
                     <h2
                       className="font-semibold text-white font-['Poppins'] mb-4"
-                      style={{ fontSize: '30px' }}
+                      style={{ fontSize: "30px" }}
                     >
                       {selectedItem.title}
                     </h2>
                     <p
                       className="mt-5 leading-relaxed text-white font-['Poppins']"
-                      style={{ fontSize: '15px' }}
+                      style={{ fontSize: "15px" }}
                     >
                       {selectedItem.description}
                     </p>
@@ -145,11 +184,11 @@ const Languagelab = () => {
           </div>
         </div>
       </div>
- 
+
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
- 
+
       {/* Modal */}
       <AnimatePresence>
         {isModalOpen && <Modal onClose={closeModal} />}
@@ -157,5 +196,5 @@ const Languagelab = () => {
     </div>
   );
 };
- 
+
 export default Languagelab;

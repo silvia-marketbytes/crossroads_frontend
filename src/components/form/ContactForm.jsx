@@ -205,11 +205,11 @@ const ContactForm = ({ isNewsEvents = false, isCourseApply = false, eventTitle, 
           <label className="text-gray-200 text-sm font-medium">
             How Can We Help You
           </label>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Education" }))}
-              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+              className={`flex-1 p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
                 formData.helpOption === "Education"
                   ? "bg-amber-500 border-amber-500"
                   : "hover:bg-amber-500 hover:border-amber-500"
@@ -220,7 +220,7 @@ const ContactForm = ({ isNewsEvents = false, isCourseApply = false, eventTitle, 
             <button
               type="button"
               onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Job Assistance" }))}
-              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+              className={`flex-1 p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
                 formData.helpOption === "Job Assistance"
                   ? "bg-amber-500 border-amber-500"
                   : "hover:bg-amber-500 hover:border-amber-500"
@@ -231,7 +231,7 @@ const ContactForm = ({ isNewsEvents = false, isCourseApply = false, eventTitle, 
             <button
               type="button"
               onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Migration" }))}
-              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+              className={`flex-1 p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
                 formData.helpOption === "Migration"
                   ? "bg-amber-500 border-amber-500"
                   : "hover:bg-amber-500 hover:border-amber-500"

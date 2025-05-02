@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
-
 import { courses, tabContent, whyChoose } from "./data";
-
 import Banner from "../../../components/Banner";
-
 import ContactSection from "../../Home/UiComponents/ContactSection";
-
 import Modal from "../../../components/modal";
 
 const TickSVG = () => (
@@ -35,8 +30,6 @@ const CoursePage = ({ courseId }) => {
 
   const tabs = tabContent[course?.title]?.map((item) => item.tab) || [];
 
-  // Set the first tab as the initial active tab, or fallback to an empty string if tabs is empty
-
   const [activeTab, setActiveTab] = useState(tabs[0] || "");
 
   const openModal = () => {
@@ -44,7 +37,7 @@ const CoursePage = ({ courseId }) => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
   };
 
   if (!course) {
@@ -57,8 +50,6 @@ const CoursePage = ({ courseId }) => {
     );
 
     if (!activeTabData) return null;
-
-    // Split content into groups of 3
 
     const contentGroups = [];
 
@@ -234,7 +225,7 @@ const CoursePage = ({ courseId }) => {
       </div>
 
       <AnimatePresence>
-        {isModalOpen && <ModalNews onClose={closeModal} />}
+        {isModalOpen && <Modal onClose={closeModal} />}
       </AnimatePresence>
     </>
   );

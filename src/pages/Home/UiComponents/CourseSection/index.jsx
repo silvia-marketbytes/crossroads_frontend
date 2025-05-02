@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 // Slick CSS for slider
@@ -63,7 +64,7 @@ const CourseSection = ({ showViewMore = false, onViewMore, showPagination = fals
     },
     {
       title: 'HealthCare Programs',
-      description: 'Specialized healthcare training programs.',
+      description: 'Specialized healthcare training programs for advanced healthcare roles.',
       imageSrc: healthcareImg,
       category: 'Professional',
       navigateTo: '/services/education/course',
@@ -114,8 +115,29 @@ const CourseSection = ({ showViewMore = false, onViewMore, showPagination = fals
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    centerMode: true,
-    centerPadding: '20px',
+  };
+
+  // Framer Motion variants for animations
+  const tabVariants = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } },
+  };
+
+  const cardVariants = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+    exit: { opacity: 0, x: -100, transition: { duration: 0.4 } },
+  };
+
+  const remainingTabsVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3, staggerChildren: 0.1 },
+    },
+    exit: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
 
   return (
@@ -132,67 +154,147 @@ const CourseSection = ({ showViewMore = false, onViewMore, showPagination = fals
           </h2>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-4 sm:gap-y-4 justify-center sm:space-x-4 mt-6">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
+        {/* Mobile View: Selected Tab, Cards, Other Tabs */}
+        <div className="block sm:hidden mt-6">
+          {/* Selected Tab */}
+          <AnimatePresence mode="wait">
+            <motion.button
+              key={activeTab}
+              variants={tabVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
               onClick={() => {
-                setActiveTab(tab);
+                setActiveTab(activeTab);
                 setCurrentPage(1);
                 if (sectionRef.current) {
                   sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 w-full sm:w-auto ${
-                activeTab === tab
-                  ? 'bg-[#F9920A] text-white'
-                  : 'bg-transparent text-[#00334D] border border-[#F9920A] hover:bg-[#F9920A] hover:text-white'
-              }`}
+              className="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 w-full bg-[#F9920A] text-white"
             >
-              {tab}
-            </button>
-          ))}
+              {activeTab}
+            </motion.button>
+          </AnimatePresence>
+
+          {/* Course Cards Slider */}
+          <div className="mt-4">
+            {displayedCourses.length > 0 ? (
+              <Slider {...sliderSettings}>
+                {displayedCourses.map((course, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="px-2"
+                  >
+                    <CourseCard
+                      title={course.title}
+                      description={course.description}
+                      imageSrc={course.imageSrc}
+                      navigateTo={course.navigateTo}
+                    />
+                  </motion.div>
+                ))}
+              </Slider>
+            ) : (
+              <div className="text-center text-gray-500 py-8">
+                <p className="text-lg font-semibold">No courses available</p>
+                <p className="mt-2">Check back later for updates!</p>
+              </div>
+            )}
+          </div>
+
+          {/* Other Tabs */}
+          <motion.div
+            className="flex flex-col gap-y-4 mt-6"
+            variants={remainingTabsVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            {tabs
+              .filter((tab) => tab !== activeTab)
+              .map((tab) => (
+                <motion.button
+                  key={tab}
+                  variants={tabVariants}
+                  onClick={() => {
+                    setActiveTab(tab);
+                    setCurrentPage(1);
+                    if (sectionRef.current) {
+                      sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 w-full bg-transparent text-[#00334D] border border-[#F9920A] hover:bg-[#F9920A] hover:text-white"
+                >
+                  {tab}
+                </motion.button>
+              ))}
+          </motion.div>
         </div>
 
-        {/* Course Cards or No Data Message */}
-        <div className="mt-14">
-          {displayedCourses.length > 0 ? (
-            <>
-              {/* Mobile Slider View */}
-              <div className="block sm:hidden">
-                <Slider {...sliderSettings}>
-                  {displayedCourses.map((course, index) => (
-                    <div key={index} className="px-2">
-                      <CourseCard
-                        title={course.title}
-                        description={course.description}
-                        imageSrc={course.imageSrc}
-                        navigateTo={course.navigateTo}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-              {/* Desktop Grid View */}
-              <div className="hidden sm:grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Desktop View: All Tabs, Then Cards */}
+        <div className="hidden sm:block">
+          {/* Tabs */}
+          <div className="flex flex-row flex-wrap gap-y-4 justify-center space-x-4 mt-6">
+            {tabs.map((tab) => (
+              <motion.button
+                key={tab}
+                variants={tabVariants}
+                initial="initial"
+                animate="animate"
+                onClick={() => {
+                  setActiveTab(tab);
+                  setCurrentPage(1);
+                  if (sectionRef.current) {
+                    sectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200 w-auto ${
+                  activeTab === tab
+                    ? 'bg-[#F9920A] text-white'
+                    : 'bg-transparent text-[#00334D] border border-[#F9920A] hover:bg-[#F9920A] hover:text-white'
+                }`}
+              >
+                {tab}
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Course Cards Grid */}
+          <div className="mt-14">
+            {displayedCourses.length > 0 ? (
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.5 } }}
+              >
                 {displayedCourses.map((course, index) => (
-                  <CourseCard
+                  <motion.div
                     key={index}
-                    title={course.title}
-                    description={course.description}
-                    imageSrc={course.imageSrc}
-                    navigateTo={course.navigateTo}
-                  />
+                    variants={cardVariants}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <CourseCard
+                      title={course.title}
+                      description={course.description}
+                      imageSrc={course.imageSrc}
+                      navigateTo={course.navigateTo}
+                    />
+                  </motion.div>
                 ))}
+              </motion.div>
+            ) : (
+              <div className="col-span-full text-center text-gray-500 py-8">
+                <p className="text-lg font-semibold">No courses available</p>
+                <p className="mt-2">Check back later for updates!</p>
               </div>
-            </>
-          ) : (
-            <div className="col-span-full text-center text-gray-500 py-8">
-              <p className="text-lg font-semibold">No courses available</p>
-              <p className="mt-2">Check back later for updates!</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Pagination or View More Button */}

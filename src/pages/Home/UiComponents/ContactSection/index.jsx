@@ -76,10 +76,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-10 bg-white" style={{ zIndex: "10" }}>
+    <section className="py-6 sm:py-10 bg-white" style={{ zIndex: "10" }}>
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className="relative text-white rounded-3xl p-6 md:p-14 flex flex-col md:flex-row items-center overflow-hidden"
+          className="relative text-white rounded-3xl p-4 sm:p-6 md:p-14 flex flex-col md:flex-row items-center overflow-hidden"
           style={{ backgroundColor: "#00334D" }}
         >
           <div className="absolute -top-52 left-28 hidden md:block">
@@ -87,25 +87,25 @@ const ContactSection = () => {
           </div>
 
           {/* Left Section: Contact Info */}
-          <div className="w-full md:w-1/2 p-3 md:p-6 z-10">
-            <h2 className="text-3xl font-bold text-white mb-2 flex flex-col">
+          <div className="w-full md:w-1/2 p-3 sm:p-6 z-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 flex flex-col">
               <span>Contact</span>
               <span className="block">Information</span>
             </h2>
-            <p className="text-gray-300 text-base">
+            <p className="text-gray-300 text-sm sm:text-base">
               Any question or remarks? Just write us a message!
             </p>
           </div>
 
           {/* Right Section: Form */}
-          <div className="w-full md:w-1/2 p-3 md:p-6 z-10">
+          <div className="w-full md:w-1/2 p-3 sm:p-6 z-10">
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
             >
               {/* Name */}
               <div className="flex flex-col">
-                <label htmlFor="name" className="text-white text-xs mb-1">
+                <label htmlFor="name" className="text-white text-xs sm:text-sm mb-1">
                   Name
                 </label>
                 <input
@@ -124,7 +124,7 @@ const ContactSection = () => {
 
               {/* Email */}
               <div className="flex flex-col">
-                <label htmlFor="email" className="text-white text-xs mb-1">
+                <label htmlFor="email" className="text-white text-xs sm:text-sm mb-1">
                   Email
                 </label>
                 <input
@@ -143,7 +143,7 @@ const ContactSection = () => {
 
               {/* Phone */}
               <div className="flex flex-col">
-                <label htmlFor="phone" className="text-white text-xs mb-1">
+                <label htmlFor="phone" className="text-white text-xs sm:text-sm mb-1">
                   Phone Number
                 </label>
                 <input
@@ -162,7 +162,7 @@ const ContactSection = () => {
 
               {/* Location */}
               <div className="flex flex-col">
-                <label htmlFor="location" className="text-white text-xs mb-1">
+                <label htmlFor="location" className="text-white text-xs sm:text-sm mb-1">
                   Location
                 </label>
                 <input
@@ -181,14 +181,14 @@ const ContactSection = () => {
 
               {/* How Can We Help You */}
               <div className="md:col-span-2 flex flex-col space-y-2">
-                <label className="text-white text-xs">
+                <label className="text-white text-xs sm:text-sm">
                   How Can We Help You
                 </label>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-nowrap gap-2 sm:gap-3 overflow-x-auto pb-2">
                   <button
                     type="button"
                     onClick={() => handleHelpOption("Education")}
-                    className={`p-2 rounded-lg border border-gray-400 text-white transition-colors text-sm ${
+                    className={`flex-shrink-0 p-2 rounded-lg border border-gray-400 text-white transition-colors text-xs sm:text-sm ${
                       formData.helpOption === "Education"
                         ? "bg-[#F9920A] border-[#F9920A]"
                         : "hover:bg-[#F9920A] hover:border-[#F9920A]"
@@ -199,7 +199,7 @@ const ContactSection = () => {
                   <button
                     type="button"
                     onClick={() => handleHelpOption("Job Assistance")}
-                    className={`p-2 rounded-lg border border-gray-400 text-white transition-colors text-sm ${
+                    className={`flex-shrink-0 p-2 rounded-lg border border-gray-400 text-white transition-colors text-xs sm:text-sm ${
                       formData.helpOption === "Job Assistance"
                         ? "bg-[#F9920A] border-[#F9920A]"
                         : "hover:bg-[#F9920A] hover:border-[#F9920A]"
@@ -210,7 +210,7 @@ const ContactSection = () => {
                   <button
                     type="button"
                     onClick={() => handleHelpOption("Migration")}
-                    className={`p-2 rounded-lg border border-gray-400 text-white transition-colors text-sm ${
+                    className={`flex-shrink-0 p-2 rounded-lg border border-gray-400 text-white transition-colors text-xs sm:text-sm ${
                       formData.helpOption === "Migration"
                         ? "bg-[#F9920A] border-[#F9920A]"
                         : "hover:bg-[#F9920A] hover:border-[#F9920A]"
@@ -226,7 +226,7 @@ const ContactSection = () => {
 
               {/* Message */}
               <div className="md:col-span-2 flex flex-col">
-                <label htmlFor="message" className="text-white text-xs mb-1">
+                <label htmlFor="message" className="text-white text-xs sm:text-sm mb-1">
                   Message
                 </label>
                 <textarea
@@ -251,9 +251,9 @@ const ContactSection = () => {
                   name="acceptPrivacyPolicy"
                   checked={formData.acceptPrivacyPolicy}
                   onChange={handleCheckboxChange}
-                  className="mr-2 p-2 rounded-lg border border-gray-400 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F9920A] text-sm"
+                  className="mr-2 h-4 w-4 rounded border-gray-400 text-[#F9920A] focus:ring-[#F9920A]"
                 />
-                <label htmlFor="acceptPrivacyPolicy" className="text-white text-xs">
+                <label htmlFor="acceptPrivacyPolicy" className="text-white text-xs sm:text-sm">
                   I agree to the{" "}
                   <a href="/terms&conditions" className="text-blue-500 underline">
                     Terms and Conditions
@@ -274,7 +274,7 @@ const ContactSection = () => {
               <div className="md:col-span-2 flex justify-start">
                 <button
                   type="submit"
-                  className="text-white font-semibold py-2 px-6 rounded-full transition-colors text-sm hover:bg-[#e07b00]"
+                  className="text-white font-semibold py-2 px-6 rounded-full transition-colors text-sm sm:text-base hover:bg-[#e07b00]"
                   style={{ backgroundColor: "#F9920A" }}
                 >
                   Submit

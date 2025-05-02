@@ -34,7 +34,6 @@ const Navbar = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isEducationButtonHovered, setIsEducationButtonHovered] = useState(false);
-  const [isSearchHovered, setIsSearchHovered] = useState(false);
 
   const location = useLocation();
 
@@ -91,10 +90,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-2">
               <Mail className="bg-[#00334D] p-[4px] rounded-full" />
               <div>
-                <span
-                  className="block font-bold text-xs"
-                  style={{ color: "#00334D" }}
-                >
+                <span className="block font-bold text-xs" style={{ color: "#00334D" }}>
                   Email
                 </span>
                 <a
@@ -108,10 +104,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-2">
               <Call className="bg-[#00334D] p-[4px] rounded-full" />
               <div>
-                <span
-                  className="block font-bold text-xs"
-                  style={{ color: "#00334D" }}
-                >
+                <span className="block font-bold text-xs" style={{ color: "#00334D" }}>
                   Call
                 </span>
                 <a
@@ -131,10 +124,7 @@ const Navbar = () => {
         </nav>
 
         {/* Main Navigation Bar */}
-        <nav
-          className="flex items-center w-full py-5"
-          style={{ backgroundColor: "#00334D" }}
-        >
+        <nav className="flex items-center w-full py-5" style={{ backgroundColor: "#00334D" }}>
           <div className="flex w-full items-center justify-between px-4 sm:px-6 md:px-10 py-1">
             {/* Left Navigation Links */}
             <div className="hidden md:flex w-1/2 items-center justify-end space-x-4 lg:space-x-[100px]">
@@ -378,7 +368,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="fixed top-0 left-0 right-0 grid items-center justify-start space-y-4 p-4 text-gray-100 w-full md:hidden z-40"
+            className="fixed top-12 left-0 right-0 grid items-center justify-start space-y-4 p-4 text-gray-100 w-full md:hidden z-40"
             style={{ backgroundColor: "#00334D" }}
             onMouseLeave={() => {
               setIsMenuOpen(false);
@@ -583,15 +573,15 @@ const Navbar = () => {
                 })
               }
               className="px-4 py-2 w-full text-left text-sm text-[#fcfcfc] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
-              onMouseEnter={() => setHoveredLink("mobile-blogs")}
+              onMouseEnter={() => setHoveredLink("mobile-find-a-course")}
               onMouseLeave={() => setHoveredLink(null)}
               onClick={toggleMenu}
             >
-              Blogs
+              Find a Course
             </NavLink>
             <NavLink
               to="/admin-login"
-              style={() =>
+              style={({ isActive }) =>
                 navLinkStyles({
                   isActive: isAdminLoginActive,
                   isHovered: hoveredLink === "mobile-admin-login",
@@ -609,7 +599,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               to="/candidate-login"
-              style={() =>
+              style={({ isActive }) =>
                 navLinkStyles({
                   isActive: isCandidateLoginActive,
                   isHovered: hoveredLink === "mobile-candidate-login",
@@ -625,14 +615,7 @@ const Navbar = () => {
             >
               Candidate Login
             </NavLink>
-            <NavLink
-              to="/contact-us"
-              style={({ isActive }) =>
-                navLinkStyles({
-                  isActive,
-                  isHovered: hoveredLink === "mobile-contact-us",
-                })
-              }
+            <button
               className="px-4 py-2 w-full text-left text-sm text-[#fcfcfc] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
               onMouseEnter={() => setHoveredLink("mobile-contact-us")}
               onMouseLeave={() => setHoveredLink(null)}
@@ -642,15 +625,8 @@ const Navbar = () => {
               }}
             >
               Contact Us
-            </NavLink>
-            <NavLink
-              to="/email"
-              style={({ isActive }) =>
-                navLinkStyles({
-                  isActive,
-                  isHovered: hoveredLink === "mobile-email",
-                })
-              }
+            </button>
+            <button
               className="px-4 py-2 w-full text-left text-sm text-[#fcfcfc] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
               onMouseEnter={() => setHoveredLink("mobile-email")}
               onMouseLeave={() => setHoveredLink(null)}
@@ -660,15 +636,8 @@ const Navbar = () => {
               }}
             >
               Email: info@crossroadsge.com
-            </NavLink>
-            <NavLink
-              to="/call"
-              style={({ isActive }) =>
-                navLinkStyles({
-                  isActive,
-                  isHovered: hoveredLink === "mobile-call",
-                })
-              }
+            </button>
+            <button
               className="px-4 py-2 w-full text-left text-sm text-[#fcfcfc] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
               onMouseEnter={() => setHoveredLink("mobile-call")}
               onMouseLeave={() => setHoveredLink(null)}
@@ -678,7 +647,7 @@ const Navbar = () => {
               }}
             >
               Call: +91 95396 88800
-            </NavLink>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

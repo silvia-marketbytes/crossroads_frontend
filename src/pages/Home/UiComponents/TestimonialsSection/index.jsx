@@ -224,7 +224,7 @@ const TestimonialsSection = () => {
           <div className="grid lg:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
             <div className="w-full flex flex-col items-center justify-center px-8">
               <h3 className="text-[20px] font-normal text-center text-[#00334D] pb-4">
-                Free <span className="font-semibold text-[#F9920A]">Education</span>
+                What Our <span className="font-semibold text-[#F9920A]"> Students Says</span>
               </h3>
               <p className="text-lg text-gray-600 text-center">
                 We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs to assisting with job placements, both in India and internationally.
