@@ -47,7 +47,7 @@ const CoursesOffered = ({ title }) => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
-    rtl: true,
+    rtl: false,
     responsive: [
       {
         breakpoint: 1280,

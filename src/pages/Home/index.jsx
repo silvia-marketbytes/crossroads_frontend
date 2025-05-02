@@ -8,11 +8,17 @@ import MBBSSection from './UiComponents/MBBSSection';
 import NewsEventsSection from './UiComponents/NewsEventsSection';
 import TestimonialsSection from './UiComponents/TestimonialsSection';
 import ContactSection from './UiComponents/ContactSection';
-
+import { useNavigate } from 'react-router-dom';
+ 
 const Home = () => {
   const [slides, setSlides] = useState([]);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
+ 
+  const handleViewMoreCourses = () => {
+    navigate('/services/education/course');
+  };
+ 
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
@@ -25,7 +31,7 @@ const Home = () => {
         <AboutSection />
       </Suspense>
       <Suspense fallback={<div>Loading...</div>}>
-        <CourseSection />
+        <CourseSection showViewMore={true} onViewMore={handleViewMoreCourses} />
       </Suspense>
       <Suspense fallback={<div>Loading...</div>}>
         <FreeEducationSection />
@@ -46,5 +52,5 @@ const Home = () => {
     </div>
   );
 };
-
+ 
 export default Home;

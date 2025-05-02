@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "../../components/form/ContactForm";
-
+ 
 const CloseIcon = ({ className = "", onClick }) => (
-  <svg
+<svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
@@ -15,19 +15,19 @@ const CloseIcon = ({ className = "", onClick }) => (
     strokeLinejoin="round"
     className={className}
     onClick={onClick}
-  >
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
+>
+<line x1="18" y1="6" x2="6" y2="18" />
+<line x1="6" y1="6" x2="18" y2="18" />
+</svg>
 );
-
-const Modal = ({ onClose }) => {
+ 
+const Modal = ({ onClose, isNewsEvents = false, isCourseApply = false, eventTitle, courseCode }) => {
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
     exit: { opacity: 0 },
   };
-
+ 
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: {
@@ -37,45 +37,49 @@ const Modal = ({ onClose }) => {
     },
     exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3 } },
   };
-
+ 
   useEffect(() => {
-   
     document.body.style.overflow = 'hidden';
-    
-    
     return () => {
       document.body.style.overflow = '';
     };
   }, []);
-
+ 
   return (
-    <motion.div
+<motion.div
       className="fixed inset-0 backdrop-brightness-50 z-[100] flex items-center justify-center p-4"
       variants={backdropVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
       onClick={onClose}
-    >
-      <motion.div
+>
+<motion.div
         className="scale-[0.80] bg-[#00334D] rounded-lg p-4 w-full max-w-lg shadow-xl relative"
         variants={modalVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
         onClick={(e) => e.stopPropagation()}
-      >
-        <button
+>
+<button
           className="absolute top-3 right-3 text-gray-200 hover:text-gray-400"
           onClick={onClose}
-        >
-          <CloseIcon className="w-5 h-5" />
-        </button>
-        <h2 className="text-xl font-bold text-gray-200 mb-3">Get in Touch</h2>
-        <ContactForm />
-      </motion.div>
-    </motion.div>
+>
+<CloseIcon className="w-5 h-5" />
+</button>
+<h2 className="text-xl font-bold text-gray-200 mb-3">
+          {isNewsEvents ? 'News and Events Registration' : isCourseApply ? 'Apply for Course' : 'Get in Touch'}
+</h2>
+<ContactForm
+          isNewsEvents={isNewsEvents}
+          isCourseApply={isCourseApply}
+          eventTitle={eventTitle}
+          courseCode={courseCode}
+        />
+</motion.div>
+</motion.div>
   );
 };
-
+ 
 export default Modal;

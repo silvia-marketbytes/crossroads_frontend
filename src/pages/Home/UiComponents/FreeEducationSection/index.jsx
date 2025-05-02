@@ -20,31 +20,31 @@ const FreeEducationSection = () => {
       name: "Austria",
       flagSrc: flagSrcOne,
       borderOrientation: "to bottom",
-      path: "/Freeeducation/Austria",
+      path: "/Freeeducation/austria",
     },
     {
       name: "Germany",
       flagSrc: flagSrcTwo,
       borderOrientation: "to right",
-      path: "/Freeeducation/Germany",
+      path: "/Freeeducation/germany",
     },
     {
       name: "Slovakia",
       flagSrc: flagSrcThree,
       borderOrientation: "to top",
-      path: "/Freeeducation/Slovakia",
+      path: "/Freeeducation/slovakia",
     },
     {
       name: "Slovenia",
       flagSrc: flagSrcFour,
       borderOrientation: "45deg",
-      path: "/Freeeducation/Slovania",
+      path: "/Freeeducation/slovania",
     },
     {
       name: "Italy",
       flagSrc: flagSrcFive,
       borderOrientation: "135deg",
-      path: "/Freeeducation/Italy",
+      path: "/Freeeducation/italy",
     },
   ];
  

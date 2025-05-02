@@ -10,7 +10,7 @@ import video2 from "../../assets/Students/Videos/Video2.mp4";
 import flag1 from "../../assets/Flags/austria.png";
 import flag2 from "../../assets/Flags/germany.png";
 import flag3 from "../../assets/Flags/italy.png";
- 
+
 const TESTIMONIALS_DATA = [
   {
     imageSrc: student1,
@@ -85,7 +85,7 @@ const TESTIMONIALS_DATA = [
     type: "image",
   },
 ];
- 
+
 const VIDEO_TESTIMONIALS = [
   {
     videoSrc: video1,
@@ -142,7 +142,7 @@ const VIDEO_TESTIMONIALS = [
     type: "video",
   },
 ];
- 
+
 const TestimonialCard = ({ item }) => {
   return (
     <div className="w-[90%] h-[350px] sm:h-[350px] lg:h-[380px] bg-white overflow-hidden flex flex-col hover:bg-gray-100 rounded-lg transition-colors duration-300 mx-auto">
@@ -179,38 +179,38 @@ const TestimonialCard = ({ item }) => {
     </div>
   );
 };
- 
+
 const customScrollbarCSS = `
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
- 
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #F97316;
     border-radius: 10px;
   }
- 
+
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #E67E22;
   }
- 
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background-color: #f1f1f1;
   }
 `;
- 
+
 if (typeof window !== "undefined") {
   const style = document.createElement("style");
   style.innerHTML = customScrollbarCSS;
   document.head.appendChild(style);
 }
- 
+
 const Testimonials = () => {
   const [activeTab, setActiveTab] = useState("testimonials");
   const [currentPage, setCurrentPage] = useState(1);
   const sectionRef = useRef(null);
   const cardsPerSlide = 6; // Fixed at 6 cards per page
- 
+
   const chunkArray = (array, size) => {
     if (!array || array.length === 0) return [];
     const result = [];
@@ -219,33 +219,33 @@ const Testimonials = () => {
     }
     return result;
   };
- 
+
   const testimonialSlides = chunkArray(TESTIMONIALS_DATA, cardsPerSlide);
   const videoTestimonialSlides = chunkArray(VIDEO_TESTIMONIALS, cardsPerSlide);
   const slides = activeTab === "testimonials" ? testimonialSlides : videoTestimonialSlides;
   const totalPages = slides.length;
- 
+
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
       sectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
- 
+
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
       sectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
- 
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     sectionRef.current.scrollIntoView({ behavior: 'smooth' });
   };
- 
+
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
- 
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Testimonials",
@@ -258,13 +258,13 @@ const Testimonials = () => {
     counterPosition: "overlay",
     subtitle: "Discover the journeys of individuals who transformed ambition into achievement...",
   };
- 
+
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
         <Banner {...bannerProps} />
       </Suspense>
- 
+
       <section ref={sectionRef} className="py-8 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
@@ -276,7 +276,7 @@ const Testimonials = () => {
               Discover the journeys of individuals who transformed ambition into achievement with Crossroads.
             </p>
           </div>
- 
+
           <div className="flex justify-center mb-8 gap-4 sm:gap-8">
             <button
               className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 ${
@@ -307,7 +307,7 @@ const Testimonials = () => {
               Video Testimonials
             </button>
           </div>
- 
+
           <div className="relative">
             {slides.length > 0 ? (
               <>
@@ -324,54 +324,52 @@ const Testimonials = () => {
                         (_, idx) => (
                           <div
                             key={`placeholder-${currentPage}-${idx}`}
-                            className="w-full h-[400px] sm:h-[420px] lg:h-[450px] invisible"
+                            className="w-full h-[400px] sm drought:h-[420px] lg:h-[450px] invisible"
                           ></div>
                         )
                       )}
                   </div>
                 </div>
- 
-                {totalPages > 1 && (
-                  <div className="flex justify-center items-center mt-6 sm:mt-8 space-x-2">
+
+                <div className="flex justify-center items-center mt-6 sm:mt-8 space-x-2">
+                  <button
+                    onClick={handlePrevPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === 1
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === 1}
+                  >
+                    Prev
+                  </button>
+
+                  {pageNumbers.map((number) => (
                     <button
-                      onClick={handlePrevPage}
+                      key={number}
+                      onClick={() => handlePageChange(number)}
                       className={`px-3 py-1 rounded ${
-                        currentPage === 1
-                          ? "text-gray-400 cursor-not-allowed"
+                        currentPage === number
+                          ? "bg-[#F9920A] text-white"
                           : "text-[#F9920A] hover:text-[#e07a00]"
                       }`}
-                      disabled={currentPage === 1}
                     >
-                      Prev
+                      {number}
                     </button>
- 
-                    {pageNumbers.map((number) => (
-                      <button
-                        key={number}
-                        onClick={() => handlePageChange(number)}
-                        className={`px-3 py-1 rounded ${
-                          currentPage === number
-                            ? "bg-[#F9920A] text-white"
-                            : "text-[#F9920A] hover:text-[#e07a00]"
-                        }`}
-                      >
-                        {number}
-                      </button>
-                    ))}
- 
-                    <button
-                      onClick={handleNextPage}
-                      className={`px-3 py-1 rounded ${
-                        currentPage === totalPages
-                          ? "text-gray-400 cursor-not-allowed"
-                          : "text-[#F9920A] hover:text-[#e07a00]"
-                      }`}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </button>
-                  </div>
-                )}
+                  ))}
+
+                  <button
+                    onClick={handleNextPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === totalPages
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>
               </>
             ) : (
               <div className="text-center text-red-500">
@@ -381,12 +379,12 @@ const Testimonials = () => {
           </div>
         </div>
       </section>
- 
+
       <ContactSection />
     </div>
   );
 };
- 
+
 TestimonialCard.propTypes = {
   item: PropTypes.shape({
     imageSrc: PropTypes.string,
@@ -398,5 +396,5 @@ TestimonialCard.propTypes = {
     type: PropTypes.oneOf(["image", "video"]).isRequired,
   }).isRequired,
 };
- 
+
 export default Testimonials;

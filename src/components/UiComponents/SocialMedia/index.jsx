@@ -7,17 +7,17 @@ import {
   faYoutube,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
-
+ 
 const SocialMedia = () => {
   return (
     <div className="flex justify-center items-center gap-4">
       <a
-        href="https://www.facebook.com/CrossroadsTechnologies"
+        href="https://www.facebook.com/CrossroadsOverseasEducation"
         target="_blank"
         rel="noopener noreferrer"
         className="z-10 flex justify-center items-center w-7 h-7 bg-white rounded-full text-primary-two hover:bg-gray-200 transition-transform transform hover:scale-110"
       >
-        <FontAwesomeIcon icon={faFacebookF} className="w-4 h-4 -z-10" />
+        <FontAwesomeIcon icon={faFacebookF} className="w-4 h-4 -z-10 text-[#00334D]" />
       </a>
       <a
         href="https://www.instagram.com/crossroads_ge/"
@@ -25,15 +25,15 @@ const SocialMedia = () => {
         rel="noopener noreferrer"
         className="z-10 flex justify-center items-center w-7 h-7 bg-white rounded-full text-primary-two hover:bg-gray-200 transition-transform transform hover:scale-110"
       >
-        <FontAwesomeIcon icon={faInstagram} className="w-4 h-4 -z-10" />
+        <FontAwesomeIcon icon={faInstagram} className="w-4 h-4 -z-10 text-[#00334D]" />
       </a>
       <a
-        href="https://www.linkedin.com/company/crossroads-career-consultants-pvt-ltd/posts/?feedView=all"
+        href="https://www.linkedin.com/company/crossroads-career-consultants-pvt-ltd/"
         target="_blank"
         rel="noopener noreferrer"
         className="z-10 flex justify-center items-center w-7 h-7 bg-white rounded-full text-primary-two hover:bg-gray-200 transition-transform transform hover:scale-110"
       >
-        <FontAwesomeIcon icon={faLinkedinIn} className="w-4 h-4 -z-10" />
+        <FontAwesomeIcon icon={faLinkedinIn} className="w-4 h-4 -z-10 text-[#00334D]" />
       </a>
       <a
         href="https://www.youtube.com/@CrossroadsGE"
@@ -41,7 +41,7 @@ const SocialMedia = () => {
         rel="noopener noreferrer"
         className="z-10 flex justify-center items-center w-7 h-7 bg-white rounded-full text-primary-two hover:bg-gray-200 transition-transform transform hover:scale-110"
       >
-        <FontAwesomeIcon icon={faYoutube} className="w-4 h-4 -z-10" />
+        <FontAwesomeIcon icon={faYoutube} className="w-4 h-4 -z-10 text-[#00334D]" />
       </a>
       <a
         href="https://wa.me/+919539588800"
@@ -49,10 +49,10 @@ const SocialMedia = () => {
         rel="noopener noreferrer"
         className="z-10 flex justify-center items-center w-7 h-7 bg-white rounded-full text-primary-two hover:bg-gray-200 transition-transform transform hover:scale-110"
       >
-        <FontAwesomeIcon icon={faWhatsapp} className="w-4 h-4 -z-10" />
+        <FontAwesomeIcon icon={faWhatsapp} className="w-4 h-4 -z-10 text-[#00334D]" />
       </a>
     </div>
   );
 };
-
+ 
 export default SocialMedia;

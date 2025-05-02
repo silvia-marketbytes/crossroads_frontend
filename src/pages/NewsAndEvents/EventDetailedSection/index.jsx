@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const EventDetailsSection = ({
   imageSrc,
@@ -11,8 +12,10 @@ const EventDetailsSection = ({
   lat,
   lng,
   onJoinEvent,
+  eventType = 'upcoming' // Default to upcoming if not provided
 }) => {
   const [activeTab, setActiveTab] = useState('overview');
+  const secondTabLabel = eventType === 'past' ? 'Summary' : 'More Info';
 
   const mapLocation = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${lat}%2C${lng}!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin&q=${lat},${lng}&z=15&markers=color:red%7Clabel:P%7C${lat},${lng}`;
   const googleMapsUrl = `https://www.google.com/maps/place/${lat},${lng}/@${lat},${lng},15z`;
@@ -30,7 +33,7 @@ const EventDetailsSection = ({
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex items-start ">
+        <div className="w-full lg:w-1/2 flex items-start">
           <div className="flex flex-col w-full p-4 md:p-8 bg-white">
             <div>
               <h2 className="text-2xl md:text-4xl font-bold text-[#00334D] mb-4">{title}</h2>
@@ -49,13 +52,13 @@ const EventDetailsSection = ({
                 </div>
                 <div
                   className={`text-base md:text-lg font-medium cursor-pointer transition-all duration-300 min-w-max ${
-                    activeTab === 'moreInfo'
+                    activeTab === 'secondTab'
                       ? 'text-[#F9920A] border-b-2 border-[#F9920A]'
                       : 'text-gray-600 hover:text-[#F9920A] hover:border-b-2 hover:border-[#F9920A]'
                   }`}
-                  onClick={() => setActiveTab('moreInfo')}
+                  onClick={() => setActiveTab('secondTab')}
                 >
-                  MORE INFO
+                  {secondTabLabel.toUpperCase()}
                 </div>
               </div>
 
@@ -76,8 +79,12 @@ const EventDetailsSection = ({
                     </li>
                   </ul>
                 )}
-                {activeTab === 'moreInfo' && (
-                  <p className="text-gray-600 text-base md:text-lg">{description}</p>
+                {activeTab === 'secondTab' && (
+                  <p className="text-gray-600 text-base md:text-lg">
+                    {eventType === 'past'
+                      ? 'This is a summary of the past event. Key highlights and outcomes of the event can be described here.'
+                      : 'Additional information about the upcoming event. This section can include details such as agenda, speakers, or registration information.'}
+                  </p>
                 )}
               </div>
             </div>
@@ -104,42 +111,47 @@ const EventDetailsSection = ({
                   ></iframe>
                 </a>
                 <p className="mt-6 text-base">Here’s how to get to the event venue</p>
-
-               
               </div>
             </div>
 
             <div className="w-full lg:w-1/2 px-0 md:px-20">
               <h3 className="text-xl md:text-2xl font-semibold mb-6">Your Global Journey Starts Here - Join the Event!</h3>
-              <form className="space-y-6">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
-                />
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
-                />
-                <select className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg">
-                  <option value="">Choose your qualification</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                </select>
-                <button
-                  type="button"
-                  onClick={onJoinEvent}
-                  className="w-full bg-[#F9920A] text-white p-3 rounded-full mt-4 text-base md:text-lg"
-                >
-                  Join Event
-                </button>
-              </form>
+              {eventType === 'upcoming' ? (
+                <form className="space-y-6">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone Number"
+                    className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Message"
+                    className="w-full p-3 border rounded bg-white text-[#00334D] text-base md:text-lg"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={onJoinEvent}
+                    className="w-full bg-[#F9920A] text-white p-3 rounded-full mt-4 text-base md:text-lg"
+                  >
+                    Join Event
+                  </button>
+                </form>
+              ) : (
+                <p className="text-base md:text-lg">
+                  This event has concluded. Check out our upcoming events for more opportunities!
+                </p>
+              )}
             </div>
           </div>
         </div>

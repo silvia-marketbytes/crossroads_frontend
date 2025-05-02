@@ -18,7 +18,7 @@ const AboutSection = () => {
           <p className="text-lg text-gray-600 mb-6">
             We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs to assisting with job placements, both in India and internationally. Our experts are with our students every step of the way, ensuring that they reach their educational goals and embark on successful careers.
           </p>
-          <Link to="/Aboutus" className="text-[#00334D] hover:text-[#F9920A] transition-all duration-300 text-md">Read More →</Link>
+          <Link to="/about-us" className="text-[#00334D] hover:text-[#F9920A] transition-all duration-300 text-md">Read More →</Link>
         </div>
       </div>
  
@@ -31,7 +31,7 @@ const AboutSection = () => {
         <p className="text-lg text-gray-600 mb-6 text-center">
           We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs to assisting with job placements, both in India and internationally. Our experts are with our students every step of the way, ensuring that they reach their educational goals and embark on successful careers.
         </p>
-        <Link to="/Aboutus" className="text-[#00334D] hover:text-[#F9920A] transition-all duration-300 text-md">Read More →</Link>
+        <Link to="/about-us" className="text-[#00334D] hover:text-[#F9920A] transition-all duration-300 text-md">Read More →</Link>
       </div>
     </div>
     </section>

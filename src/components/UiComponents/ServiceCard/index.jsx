@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router';
- 
-const ServiceCard = ({ title, description, imageSrc, url }) => {
+import { Link } from 'react-router-dom'; // Correct import
+
+const ServiceCard = ({ title, description, imageSrc, navigateTo }) => {
   return (
-    <Link to={url} className="flex flex-col max-w-full lg:max-w-[280px] mx-auto relative group">
+    <Link to={navigateTo} className="flex flex-col max-w-full lg:max-w-[280px] mx-auto relative group">
       <div className="relative overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-[10px_10px_15px_rgba(0,0,0,0.2)]">
         <img
           src={imageSrc}
@@ -59,5 +59,5 @@ const ServiceCard = ({ title, description, imageSrc, url }) => {
     </Link>
   );
 };
- 
+
 export default ServiceCard;

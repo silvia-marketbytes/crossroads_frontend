@@ -7,22 +7,21 @@ import germanyImage from "../../../../../assets/country/germany-education.webp";
 import CoursesOffered from "../../../../../components/UiComponents/CoursesOffered";
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
-import IntakeSection from "../../../../../components/CountryListing/IntakeSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Modal from "../../../../../components/modal";
-
+ 
 const Australia = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Study in Australia",
@@ -34,14 +33,14 @@ const Australia = () => {
     buttonText: "Talk to an Expert",
     onButtonClick: openModal, // Changed to trigger modal
   };
-
+ 
   const countryDescription = `
-    Australia, officially known as the Commonwealth of Australia, is a country in the Southern Hemisphere 
-    comprising the mainland of the Australian continent, the island of Tasmania, and numerous smaller islands. 
-    Its capital, Canberra, is known for its planned design, while cities like Sydney and Melbourne are famous 
+    Australia, officially known as the Commonwealth of Australia, is a country in the Southern Hemisphere
+    comprising the mainland of the Australian continent, the island of Tasmania, and numerous smaller islands.
+    Its capital, Canberra, is known for its planned design, while cities like Sydney and Melbourne are famous
     for their vibrant culture, iconic landmarks such as the Sydney Opera House, and world-class education systems.
   `;
-
+ 
   const countryDetails = [
     { label: "Capital", value: "Canberra" },
     { label: "Population", value: "26 Million" },
@@ -52,7 +51,7 @@ const Australia = () => {
     { label: "Universities", value: "250+" },
     { label: "Scholarships Upto", value: "$2000/Month" },
   ];
-
+ 
   const dropdownSections = [
     {
       title: "Prestigious education system",
@@ -79,13 +78,13 @@ const Australia = () => {
       content: "Australia is a leader in innovation and research-driven education.",
     },
   ];
-
+ 
   const intakes = [
     "February/March",
     "July/August",
     "Some institutions offer additional intakes in November.",
   ];
-
+ 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
@@ -113,7 +112,7 @@ const Australia = () => {
       description: "Study cutting-edge engineering programs with practical focus.",
     },
   ];
-
+ 
   return (
     <div>
       <Banner {...bannerProps} />
@@ -133,5 +132,5 @@ const Australia = () => {
     </div>
   );
 };
-
+ 
 export default Australia;

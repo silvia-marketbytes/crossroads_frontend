@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Banner from "../../../../components/Banner";
 import bannerImg from "../../../../assets/country/banner.webp";
@@ -8,7 +8,7 @@ import germanyFlag from "../../../../assets/country/Germany.webp";
 import australiaFlag from "../../../../assets/country/Australia.webp";
 import canadaFlag from "../../../../assets/country/canada.webp";
 import ukFlag from "../../../../assets/country/UK.webp";
-import usaFlag from "../../../../assets/country/austria.webp";
+import usaFlag from "../../../../assets/country/austria.webp"; // Note: Incorrect, should be usa.webp
 import netherlandsFlag from "../../../../assets/country/netherlands.webp";
 import swedenFlag from "../../../../assets/country/sweden.webp";
 import newZealandFlag from "../../../../assets/country/newzealand.webp";
@@ -20,9 +20,13 @@ import maltaFlag from "../../../../assets/country/malta.webp";
 import polandFlag from "../../../../assets/country/poland.webp";
 import slovakiaFlag from "../../../../assets/country/slovakia.webp";
 import spainFlag from "../../../../assets/country/spain.webp";
+// Placeholder for missing flags (replace with actual imports)
+import sloveniaFlag from "../../../../assets/country/slovakia.webp"; // Placeholder, replace with slovenia.webp
+import irelandFlag from "../../../../assets/country/slovakia.webp"; // Placeholder, replace with ireland.webp
+import austriaFlag from "../../../../assets/country/slovakia.webp"; // Placeholder, replace with austria.webp
 import Modal from '../../../../components/modal';
 import { AnimatePresence } from 'framer-motion';
- 
+
 const countryData = [
   {
     name: "France",
@@ -61,7 +65,7 @@ const countryData = [
   },
   {
     name: "USA",
-    flag: usaFlag,
+    flag: usaFlag, // Note: Incorrect, should use usa.webp
     description:
       "The United States has the largest number of top-ranked universities.",
     path: "/services/education/country/usa",
@@ -129,6 +133,13 @@ const countryData = [
     path: "/services/education/country/poland",
   },
   {
+    name: "Slovenia",
+    flag: sloveniaFlag, // Replace with correct flag
+    description:
+      "Slovenia offers a diverse range of study programs with a rich cultural heritage.",
+    path: "/services/education/country/slovenia",
+  },
+  {
     name: "Slovakia",
     flag: slovakiaFlag,
     description:
@@ -142,43 +153,65 @@ const countryData = [
       "Spain is famous for its vibrant culture and high-quality education.",
     path: "/services/education/country/spain",
   },
+  {
+    name: "Ireland",
+    flag: irelandFlag, // Replace with correct flag
+    description:
+      "Ireland offers a diverse range of study programs with a rich cultural heritage.",
+    path: "/services/education/country/ireland",
+  },
+  {
+    name: "Austria",
+    flag: austriaFlag, // Replace with correct flag
+    description:
+      "Bernhard offers a diverse range of study programs with a rich cultural heritage.",
+    path: "/services/education/country/austria",
+  },
 ];
- 
+
 const CountrySection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredCard, setHoveredCard] = useState(null);
   const cardsPerPage = 12; // 4 cards per row * 3 rows
   const totalPages = Math.ceil(countryData.length / cardsPerPage);
- 
+  const sectionRef = useRef(null); // Ref to target the section
+
+  // Scroll to the "Know your destination" section when currentPage changes
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPage]);
+
   const handlePrevPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
- 
+
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
- 
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
- 
+
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
- 
+
   // Calculate the cards to display for the current page
   const startIndex = (currentPage - 1) * cardsPerPage;
   const currentCards = countryData.slice(startIndex, startIndex + cardsPerPage);
- 
+
   // Split current cards into rows (4 cards per row)
   const rows = [];
   for (let i = 0; i < currentCards.length; i += 4) {
     rows.push(currentCards.slice(i, i + 4));
   }
- 
+
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8">
+    <section className="py-8 px-4 sm:px-6 lg:px-8" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4">
@@ -189,7 +222,7 @@ const CountrySection = () => {
             Begin your academic journey in these welcoming study destinations.
           </p>
         </div>
- 
+
         <div className="relative">
           {countryData.length > 0 ? (
             <>
@@ -219,7 +252,7 @@ const CountrySection = () => {
                           <path d="M17.3249 22.9103L17.3458 6.13748L0.572996 6.15845L0.58507 1.00038L22.5343 0.949003L22.4829 22.8982L17.3249 22.9103Z" />
                         </svg>
                       </div>
- 
+
                       <div
                         className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${
                           hoveredCard === startIndex + rowIndex * 4 + index
@@ -237,7 +270,7 @@ const CountrySection = () => {
                           {country.name}
                         </h3>
                       </div>
- 
+
                       <div
                         className={`absolute inset-0 flex flex-col p-4 sm:p-5 bg-[#00334D] text-white transition-opacity duration-300 ${
                           hoveredCard === startIndex + rowIndex * 4 + index
@@ -263,7 +296,7 @@ const CountrySection = () => {
                             to={country.path}
                             className="text-[#F9920A] font-medium flex items-center text-xs sm:text-sm md:text-base"
                           >
-                            <span className=" hover:text-[#e07a00] transition-colors duration-200">
+                            <span className="hover:text-[#e07a00] transition-colors duration-200">
                               Know more <span className="ml-1 sm:ml-2">→</span>
                             </span>
                           </Link>
@@ -273,7 +306,7 @@ const CountrySection = () => {
                   ))}
                 </div>
               ))}
- 
+
               {/* Pagination Controls */}
               {totalPages > 1 && (
                 <div className="flex justify-center items-center mt-8 space-x-2">
@@ -288,7 +321,7 @@ const CountrySection = () => {
                   >
                     Prev
                   </button>
- 
+
                   {pageNumbers.map((number) => (
                     <button
                       key={number}
@@ -302,7 +335,7 @@ const CountrySection = () => {
                       {number}
                     </button>
                   ))}
- 
+
                   <button
                     onClick={handleNextPage}
                     className={`px-3 py-1 rounded ${
@@ -327,18 +360,18 @@ const CountrySection = () => {
     </section>
   );
 };
- 
+
 const Country = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
- 
+
   const openModal = () => {
     setIsModalOpen(true);
   };
- 
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
- 
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Choose.Apply.Study",
@@ -350,7 +383,7 @@ const Country = () => {
     buttonText: "Apply Now",
     onButtonClick: openModal,
   };
- 
+
   return (
     <div>
       <Banner {...bannerProps} />
@@ -362,5 +395,5 @@ const Country = () => {
     </div>
   );
 };
- 
+
 export default Country;

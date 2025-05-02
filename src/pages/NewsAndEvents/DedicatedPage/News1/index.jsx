@@ -1,16 +1,20 @@
 import React, { Suspense } from "react";
+import { useLocation } from 'react-router-dom';
 import Banner from "../../../../components/Banner";
 import ContactSection from "../../../../pages/Home/UiComponents/ContactSection";
 import NewsCard from "../../../../components/UiComponents/NewsCard";
 import bannerImg from "../../../../assets/News/news1_result.webp";
-import eventImage from "../../../../assets/News/news1_result.webp";
 import EventDetailsSection from "../../EventDetailedSection";
 import { newsData } from "../../../../pages/NewsAndEvents/index";
 
 const News1 = () => {
+  const { state } = useLocation();
+  const event = state?.event || newsData.find(e => e.title === "UK Admission Day - Kochi");
+  const eventType = state?.eventType || 'upcoming';
+
   const bannerProps = {
     backgroundImage: bannerImg,
-    title: "UK Admission Day - Kochi",
+    title: event.title,
     className: "px-1 relative",
     classNameTitle: "relative center text-services-title",
     backgroundPosition: "center",
@@ -26,7 +30,7 @@ const News1 = () => {
   };
 
   const otherEvents = newsData.filter(
-    (event) => event.title !== "UK Admission Day - Kochi"
+    (e) => e.title !== event.title
   );
 
   const displayedEvents = otherEvents.slice(0, 4);
@@ -41,16 +45,17 @@ const News1 = () => {
       </Suspense>
 
       <EventDetailsSection
-        imageSrc={eventImage}
-        title="UK Admission Day - Kochi"
-        description="Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum is simply dummy text of the printing and typesetting industry."
-        date="Oct 24, 2024"
-        time="10:00 Am - 01:00 Pm"
-        location="Oberon Mall Parking, NH Bye Pass, Padivattom, Edappally, Ernakulam, Kerala 682024"
-        category="Events"
-        lat={9.9907}
-        lng={76.3169} 
+        imageSrc={event.imageSrc}
+        title={event.title}
+        description={event.description}
+        date={event.date}
+        time={event.time}
+        location={event.location}
+        category={event.category}
+        lat={event.lat}
+        lng={event.lng}
         onJoinEvent={handleJoinEvent}
+        eventType={eventType}
       />
 
       <section className="py-16 px-4 sm:px-8 lg:px-12 bg-white">

@@ -46,6 +46,12 @@ import News7 from "./pages/NewsAndEvents/DedicatedPage/News7";
 import News8 from "./pages/NewsAndEvents/DedicatedPage/News8";
 import Course from "./pages/Services/UiComponents/Course";
 import Canada from "./pages/Services/UiComponents/country/Redirected_country/canada";
+import MBBS from "./pages/Services/Courses/MBBS";    
+import PrivacyPolicy from "./pages/privacypolicy";
+import TermsAndConditions from "./pages/termsandconditions";
+import Ausbildung from "./pages/Services/Courses/Ausbildung";
+import News9 from "./pages/NewsAndEvents/DedicatedPage/News9";
+
  
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -104,6 +110,12 @@ function App() {
         <Route path="/news/italy-admission-day-kochi" element={<News6/>} />
         <Route path="/news/international-education-fair-kerala" element={<News7/>} />
         <Route path="/news/france-admission-day-kochi" element={<News8/>} />
+        <Route path="/news/past-event-1" element={<News9/>} />
+       
+        <Route path="/services/education/course/mbbs" element={<MBBS/>} />
+        <Route path="/services/education/course/ausbildung" element={<Ausbildung/>} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+        <Route path="/terms&conditions" element={<TermsAndConditions/>} />
       </Route>
     )
   );

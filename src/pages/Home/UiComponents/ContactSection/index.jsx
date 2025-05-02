@@ -255,7 +255,7 @@ const ContactSection = () => {
                 />
                 <label htmlFor="acceptPrivacyPolicy" className="text-white text-xs">
                   I agree to the{" "}
-                  <a href="/terms-and-conditions" className="text-blue-500 underline">
+                  <a href="/terms&conditions" className="text-blue-500 underline">
                     Terms and Conditions
                   </a>{" "}
                   and{" "}

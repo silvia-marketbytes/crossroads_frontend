@@ -1,13 +1,94 @@
-import React, { Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import Banner from "../../../components/Banner";
 import bannerImg from "../../../assets/FreeEducation/slovakiafree_result.webp";
 import ContactSection from "../../../pages/Home/UiComponents/ContactSection";
-
-import germanyImage from "../../../assets/FreeEducation/BANNER PNG_result.webp";
+import slovakiaImage from "../../../assets/FreeEducation/BANNER PNG_result.webp";
 import FeatureHighlightSection from "../../../components/FreeEducation/FeatureHighlightSection";
 import AffordableEducationOptions from "../../../components/FreeEducation/AffordableEducationOptions";
+import { motion } from "framer-motion";
 
-const FreeEducationSlovakia= () => {
+
+const CloseIcon = ({ className = "", onClick }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    onClick={onClick}
+  >
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+
+const Modal = ({ onClose, isNewsEvents = false, eventTitle }) => {
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", stiffness: 300, damping: 30 },
+    },
+    exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3 } },
+  };
+
+  React.useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed inset-0 backdrop-brightness-50 z-[100] flex items-center justify-center p-4"
+      variants={backdropVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      onClick={onClose}
+    >
+      <motion.div
+        className="scale-[0.80] bg-[#00334D] rounded-lg p-4 w-full max-w-lg shadow-xl relative"
+        variants={modalVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute top-3 right-3 text-gray-200 hover:text-gray-400"
+          onClick={onClose}
+        >
+          <CloseIcon className="w-5 h-5" />
+        </button>
+        <h2 className="text-xl font-bold text-gray-200 mb-3">
+          {isNewsEvents ? "News and Events Registration" : "Get in Touch"}
+        </h2>
+        <ContactForm isNewsEvents={isNewsEvents} eventTitle={eventTitle} />
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const FreeEducationSlovakia = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Free Education : Slovakia",
@@ -20,16 +101,21 @@ const FreeEducationSlovakia= () => {
     counterPosition: "overlay",
   };
 
-  
   const IntakeSection = () => {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-transparent z-20">
         <div className="bg-[#00334D]/80 p-6 w-full max-w-md rounded-lg shadow-md border border-white/20">
           <p className="text-white">
-            While tuition is free, students should plan to cover living expenses such as housing, food, and transportation, which can vary depending on the city and region. Make sure to budget accordingly to fully enjoy your international study experience.
+            While tuition is free, students should plan to cover living expenses
+            such as housing, food, and transportation, which can vary depending on
+            the city and region. Make sure to budget accordingly to fully enjoy
+            your international study experience.
           </p>
           <div className="mt-4">
-            <button className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors">
+            <button
+              className="bg-[#F9920A] hover:bg-[#e08309] text-white font-medium py-2 px-4 rounded-full transition-colors"
+              onClick={openModal}
+            >
               For more details click here
             </button>
           </div>
@@ -54,7 +140,7 @@ const FreeEducationSlovakia= () => {
       {
         title: "Application Deadlines:",
         content:
-          "For bachelor’s and diploma programs, students must register by September 5 for the winter semester and February 5 for the summer semester.",
+          "For bachelor’s and master’s programs, deadlines typically fall between March and June for the fall semester, varying by university.",
       },
       {
         title: "English Proficiency:",
@@ -64,34 +150,41 @@ const FreeEducationSlovakia= () => {
       {
         title: "High School Diploma:",
         content:
-          "Applicants must hold an A-level or high school diploma that is equivalent to the Slovakia Matura examination certification.",
+          "Applicants must hold a high school diploma equivalent to the Slovakian Maturita examination certification.",
       },
-      
-      // Add more sections here if needed
     ];
 
-  
     dropdownSections.sort((a, b) => a.title.localeCompare(b.title));
 
     const shouldScroll = dropdownSections.length > 6;
 
     return (
       <section className="mt-16 w-full py-16 relative">
-        <div className="flex flex-col lg:flex-row w-full" style={{ height: "800px" }}>
-          <div className="lg:w-1/2 w-full flex flex-col" style={{ backgroundColor: "#00334D" }}>
+        <div
+          className="flex flex-col lg:flex-row w-full"
+          style={{ height: "800px" }}
+        >
+          <div
+            className="lg:w-1/2 w-full flex flex-col"
+            style={{ backgroundColor: "#00334D" }}
+          >
             <div
-              className={`p-6 ml-24 flex-grow ${shouldScroll ? 'overflow-y-auto' : ''}`}
+              className={`p-6 ml-24 flex-grow ${
+                shouldScroll ? "overflow-y-auto" : ""
+              }`}
               style={{ maxHeight: "calc(100vh - 100px)", paddingBottom: "50px" }}
             >
               <h3 className="text-2xl sm:text-3xl font-l mt-16 mb-1 text-white">
                 Want Free Education in Slovakia?
               </h3>
               <h3 className="text-2xl sm:text-3xl font-l mt-1 mb-16 text-white">
-              Here's What You Need to <span className="text-[#F9920A]">Qualify</span>
+                Here's What You Need to{" "}
+                <span className="text-[#F9920A]">Qualify</span>
               </h3>
-             
               <p className="text-white mb-8">
-                Germany offers world-class education with no tuition fees at public universities for international students.
+                Slovakia offers world-class education with no tuition fees at
+                public universities for international students studying in the
+                Slovak language.
               </p>
               <div className="space-y-3 flex-grow">
                 {dropdownSections.map((section, index) => (
@@ -160,7 +253,11 @@ const FreeEducationSlovakia= () => {
           <div className="lg:w-1/2 w-full relative" style={{ height: "100%" }}>
             <div className="h-full overflow-hidden relative">
               <div className="absolute inset-0 bg-black/50 z-10"></div>
-              <img src={germanyImage} alt="Study in Germany" className="w-full h-full object-cover" />
+              <img
+                src={slovakiaImage}
+                alt="Study in Slovakia"
+                className="w-full h-full object-cover"
+              />
             </div>
             <IntakeSection />
           </div>
@@ -178,44 +275,50 @@ const FreeEducationSlovakia= () => {
           "Norway: Offers completely tuition-free education for all students, regardless of nationality or level of study.",
           "Denmark, Sweden, Finland: Free education available only to EU/EEA & Swiss students for bachelor's and master's programs.",
           "Non-EU/EEA students must pay tuition fees in Denmark, Sweden, and Finland.",
-          "PhD programs across these countries are fully funded, often including a stipend."
-        ]
+          "PhD programs across these countries are fully funded, often including a stipend.",
+        ],
       },
       {
         heading: "Scholarship Friendly Countries",
         points: [
           "Countries like Greece, Japan, China, Switzerland, the Netherlands, and South Korea offer full scholarships for international students.",
-          "Note: Scholarship availability and criteria vary by institution, so checking details is crucial."
-        ]
-      }
-    ]
+          "Note: Scholarship availability and criteria vary by institution, so checking details is crucial.",
+        ],
+      },
+    ],
   };
 
   const features = [
     {
       title: "No Tuition Fees",
-      description: "Students must satisfy the academic prerequisites for their chosen program."
+      description:
+        "Students must satisfy the academic prerequisites and study in the Slovak language to qualify for free tuition.",
     },
     {
       title: "A Global Student Hub",
-      description: "Germany attracts thousands of international students, including many from India, with its affordable, high-quality education."
+      description:
+        "Slovakia attracts international students with its affordable, high-quality education and welcoming environment.",
     },
     {
       title: "Investing in Tomorrow's Leaders",
-      description: "The tuition-free model reflects Germany's commitment to building a future-ready, globally aware generation."
+      description:
+        "Slovakia's tuition-free model supports a future-ready, globally aware generation.",
     },
     {
       title: "Equal Access for All",
-      description: "Regardless of where you're from, Germany ensures equal opportunities for academic success."
+      description:
+        "Regardless of where you're from, Slovakia promotes equal opportunities for academic success.",
     },
     {
       title: "World-Class Standards",
-      description: "Free doesn't mean easy — German universities maintain rigorous academic standards and a strong focus on excellence."
+      description:
+        "Slovakian universities maintain rigorous academic standards and a strong focus on excellence.",
     },
     {
       title: "Research Opportunities",
-      description: "Students have access to cutting-edge research facilities and collaborations with industry leaders."
-    }
+      description:
+        "Students have access to cutting-edge research facilities and collaborations with industry leaders.",
+    },
   ];
 
   return (
@@ -239,6 +342,8 @@ const FreeEducationSlovakia= () => {
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
+
+      {isModalOpen && <Modal onClose={closeModal} />}
     </div>
   );
 };

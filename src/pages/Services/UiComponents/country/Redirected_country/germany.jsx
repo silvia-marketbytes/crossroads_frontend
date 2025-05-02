@@ -10,18 +10,18 @@ import IntakeSection from "../../../../../components/CountryListing/IntakeSectio
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../../../../../components/modal";
-
+ 
 const Germany = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Study in Germany",
@@ -33,7 +33,7 @@ const Germany = () => {
     buttonText: "Talk to an Expert",
     onButtonClick: openModal, // Added to trigger modal
   };
-
+ 
   const countryDetails = [
     { label: "Capital", value: "Berlin" },
     { label: "Population", value: "83 Million" },
@@ -44,7 +44,7 @@ const Germany = () => {
     { label: "Universities", value: "400+" },
     { label: "Scholarships Upto", value: "$2000/Month" },
   ];
-
+ 
   const dropdownSections = [
     {
       title: "Germany Excels with Top Universities",
@@ -76,13 +76,13 @@ const Germany = () => {
       content: "Benefit from excellent healthcare and working conditions.",
     },
   ];
-
+ 
   const intakes = [
     "Winter-Sept/Oct",
     "Summer-March/April",
     "Additional intakes (Feb/May/June) at some private universities.",
   ];
-
+ 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
@@ -110,7 +110,7 @@ const Germany = () => {
       description: "Lorem ipsum is simply dummy text of the printing.",
     },
   ];
-
+ 
   return (
     <div className="">
       <Banner {...bannerProps} />
@@ -130,5 +130,6 @@ const Germany = () => {
     </div>
   );
 };
-
+ 
 export default Germany;
+ 

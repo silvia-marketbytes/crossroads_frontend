@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../../../components/Button';
 import Modal from '../../../../components/modal';
-import heroBg from '/src/assets/hero-bg.png';
+import heroBgFirst from '/src/assets/hero-bg.png';
+import heroBgSecond from '/src/assets/Ausbildung Banner/ausbildung b_result.webp';
 import useWindowSize from '/src/Hooks/useWindowSize';
 import { AnimatePresence } from 'framer-motion';
 import Slider from 'react-slick';
@@ -12,7 +13,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const slides = [
   {
     id: 1,
-    background: heroBg,
+    background: heroBgFirst,
     title: (
       <>
         Let your <span className="font-bold text-7xl" style={{ color: '#F9920A' }}>MBBS</span>{' '}
@@ -21,18 +22,20 @@ const slides = [
       </>
     ),
     description: 'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the',
+    link: '/services/education/course/mbbs',
   },
   {
     id: 2,
-    background: heroBg,
+    background: heroBgSecond,
     title: (
       <>
-        Discover <span className="font-bold text-7xl" style={{ color: '#F9920A' }}>MBBS</span>{' '}
+        Discover <span className="font-bold text-7xl" style={{ color: '#F9920A' }}>Ausbildung</span>{' '}
         <span className="block">Dreams Take Wings</span>
         <span className="block">Beyond Borders</span>
       </>
     ),
     description: 'Discover opportunities to study medicine abroad with our expert guidance and support.',
+    link: '/services/education/course/ausbildung',
   },
 ];
  
@@ -94,9 +97,9 @@ const Hero = () => {
                       className="px-6 py-2 rounded-full text-sm text-white hover:text-[#00334D] bg-[#00334D] hover:bg-[#fcfcfc] transition-all duration-300"
                       onClick={openModal}
                     />
-                    <Link to="/contact-us">
+                    <Link to={slide.link}>
                       <Button
-                        label="Contact Us"
+                        label="Learn More"
                         variant="secondary"
                         className="px-6 py-2 rounded-full text-sm text-white hover:text-[#F9920A] bg-[#F9920A] hover:bg-[#fcfcfc] transition-all duration-300"
                       />

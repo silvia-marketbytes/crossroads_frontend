@@ -196,47 +196,45 @@ const GalleryFranceIntake = () => {
                     ))}
                 </div>
 
-                {totalPages > 1 && (
-                  <div className="flex justify-center items-center mt-8 space-x-2">
+                <div className="flex justify-center items-center mt-8 space-x-2">
+                  <button
+                    onClick={handlePrevPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === 1
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === 1}
+                  >
+                    Prev
+                  </button>
+
+                  {pageNumbers.map((number) => (
                     <button
-                      onClick={handlePrevPage}
+                      key={number}
+                      onClick={() => handlePageChange(number)}
                       className={`px-3 py-1 rounded ${
-                        currentPage === 1
-                          ? "text-gray-400 cursor-not-allowed"
+                        currentPage === number
+                          ? "bg-[#F9920A] text-white"
                           : "text-[#F9920A] hover:text-[#e07a00]"
                       }`}
-                      disabled={currentPage === 1}
                     >
-                      Prev
+                      {number}
                     </button>
+                  ))}
 
-                    {pageNumbers.map((number) => (
-                      <button
-                        key={number}
-                        onClick={() => handlePageChange(number)}
-                        className={`px-3 py-1 rounded ${
-                          currentPage === number
-                            ? "bg-[#F9920A] text-white"
-                            : "text-[#F9920A] hover:text-[#e07a00]"
-                        }`}
-                      >
-                        {number}
-                      </button>
-                    ))}
-
-                    <button
-                      onClick={handleNextPage}
-                      className={`px-3 py-1 rounded ${
-                        currentPage === totalPages
-                          ? "text-gray-400 cursor-not-allowed"
-                          : "text-[#F9920A] hover:text-[#e07a00]"
-                      }`}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </button>
-                  </div>
-                )}
+                  <button
+                    onClick={handleNextPage}
+                    className={`px-3 py-1 rounded ${
+                      currentPage === totalPages
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-[#F9920A] hover:text-[#e07a00]"
+                    }`}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>
               </>
             ) : (
               <div className="text-center text-red-500">

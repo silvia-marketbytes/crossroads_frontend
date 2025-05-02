@@ -219,4 +219,21 @@ p {
   animation: none;
   transition: background 0.3s ease;
 }
-
+.gradient-button:hover {
+  background: linear-gradient(45deg, #F9920A, #ffbb00);
+  background-size: 200% 200%;
+  animation: none;
+  transition: background 0.3s ease;
+}
+ 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

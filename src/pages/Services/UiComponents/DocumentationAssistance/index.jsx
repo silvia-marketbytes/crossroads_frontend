@@ -8,10 +8,10 @@ import docSlide3 from "../../../../assets/Services/slide3.webp";
 import docSlide4 from "../../../../assets/Services/slide4.webp";
 import travelImage from "../../../../assets/Services/slide5.webp";
 import bannerImg from "../../../../assets/Services/Documentation and travel_result.webp";
-import Banner from "../../../../components/Banner"; 
-
+import Banner from "../../../../components/Banner";
+ 
 const ContactSection = lazy(() => import("../../../Home/UiComponents/ContactSection"));
-
+ 
 const documentationItems = [
   {
     id: 1,
@@ -42,7 +42,7 @@ const documentationItems = [
     image: docSlide4,
   },
 ];
-
+ 
 const travelItems = [
   {
     id: 1,
@@ -50,29 +50,40 @@ const travelItems = [
     description:
       "Travel assistance involves offering support, services, and guidance to our students to ensure their journey is safe, convenient, and enjoyable. This includes various aspects such as transportation, accommodation, travel information, and emergency assistance. Our dedicated team ensures that students experience a smooth and secure trip from the start of their journey until they safely arrive at their chosen university",
     image: travelImage,
-  }
+  },
 ];
-
+ 
+// Preload images to reduce loading delays
+const preloadImages = (items) => {
+  items.forEach((item) => {
+    const img = new Image();
+    img.src = item.image;
+  });
+};
+ 
+preloadImages([...documentationItems, ...travelItems]);
+ 
 const Services = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [selectedItem, setSelectedItem] = useState(documentationItems[0]);
   const sliderRef = useRef(null);
-
+ 
   const sliderSettings = {
     dots: activeTab === 1,
     infinite: activeTab === 1,
-    speed: 200, // Reduced for smoother transition
+    speed: 300, // Slightly increased for smoother transitions
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: activeTab === 1,
     autoplaySpeed: 3000,
-    afterChange: (current) => {
+    beforeChange: (oldIndex, newIndex) => {
       const activeItems = activeTab === 1 ? documentationItems : travelItems;
-      setSelectedItem(activeItems[current] || activeItems[0]);
+      setSelectedItem(activeItems[newIndex] || activeItems[0]);
     },
     arrows: false,
+    fade: true, // Added fade effect for smoother image transitions
   };
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Documentation and Travel Assistance",
@@ -81,23 +92,26 @@ const Services = () => {
     showDateTime: false,
     showSocialMedia: false,
   };
-
+ 
   const activeItems = activeTab === 1 ? documentationItems : travelItems;
-
+ 
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
         <Banner {...bannerProps} />
       </Suspense>
-
+ 
       <section className="py-6 sm:py-8 lg:py-12 px-10 sm:px-12 lg:px-16 flex justify-center">
         <div className="w-full">
-          <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed" style={{ textAlign: 'justify' }}>
+          <p
+            className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed"
+            style={{ textAlign: "justify" }}
+          >
             We provide comprehensive Travel & Documentation Assistance to ensure a smooth and hassle-free experience. From certificate attestation and visa document preparation to certified translations and appointment scheduling, our expert team handles every detail with efficiency and accuracy. Additionally, we offer reliable travel support, including transportation, accommodation, and essential guidance, ensuring a safe and stress-free journey. With our dedicated services, students and professionals can confidently navigate their travel and documentation needs with ease.
           </p>
         </div>
       </section>
-
+ 
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
         <div className="w-full flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 bg-gray-100 flex flex-col">
@@ -126,7 +140,7 @@ const Services = () => {
                 />
               ))}
             </div>
-
+ 
             <div className="flex-1 flex flex-col justify-start">
               {activeTab && activeItems.length > 0 ? (
                 activeItems.length > 1 ? (
@@ -164,7 +178,7 @@ const Services = () => {
                 </div>
               )}
             </div>
-
+ 
             {activeTab === 1 && activeItems.length > 1 && (
               <div className="pb-4 flex justify-center space-x-2">
                 <button
@@ -206,7 +220,7 @@ const Services = () => {
               </div>
             )}
           </div>
-
+ 
           <div className="w-full md:w-1/2 flex flex-col justify-center">
             <div className="bg-white flex items-center justify-center h-full">
               {selectedItem && selectedItem.image ? (
@@ -214,22 +228,22 @@ const Services = () => {
                   src={selectedItem.image}
                   alt={selectedItem.title}
                   className="w-full h-full object-cover"
+                  loading="lazy" // Added lazy loading
                 />
               ) : (
-                <div className="text-center text-[#00334D]">
-                  No image available
-                </div>
+                <div className="text-center text-[#00334D]">No image available</div>
               )}
             </div>
           </div>
         </div>
       </div>
-
+ 
       <Suspense fallback={<div>Loading...</div>}>
         <ContactSection />
       </Suspense>
     </div>
   );
 };
-
+ 
 export default Services;
+ 

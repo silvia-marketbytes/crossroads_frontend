@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const ContactForm = () => {
+const ContactForm = ({ isNewsEvents = false, isCourseApply = false, eventTitle, courseCode }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -8,23 +8,30 @@ const ContactForm = () => {
     location: "",
     helpOption: "",
     message: "",
-    acceptPrivacyPolicy: true, 
+    acceptPrivacyPolicy: true,
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (isNewsEvents && eventTitle) {
+      setFormData((prevData) => ({
+        ...prevData,
+        helpOption: eventTitle,
+      }));
+    } else if (isCourseApply && courseCode) {
+      setFormData((prevData) => ({
+        ...prevData,
+        helpOption: courseCode,
+      }));
+    }
+  }, [isNewsEvents, eventTitle, isCourseApply, courseCode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
-
-  const handleHelpOption = (option) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      helpOption: option,
     }));
   };
 
@@ -44,7 +51,8 @@ const ContactForm = () => {
       newErrors.email = "Email is invalid";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.location.trim()) newErrors.location = "Location is required";
-    if (!formData.helpOption) newErrors.helpOption = "Please select an option";
+    if ((isNewsEvents || isCourseApply) && !formData.helpOption.trim())
+      newErrors.helpOption = isNewsEvents ? "Event selection is required" : "Course code is required";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     if (!formData.acceptPrivacyPolicy)
       newErrors.acceptPrivacyPolicy = "You must accept the privacy policy";
@@ -61,22 +69,20 @@ const ContactForm = () => {
 
     setErrors({});
     console.log("Form submitted:", formData);
-    // Add your form submission logic here (e.g., API call)
     setFormData({
       name: "",
       email: "",
       phone: "",
       location: "",
-      helpOption: "",
+      helpOption: (isNewsEvents && eventTitle) || (isCourseApply && courseCode) ? formData.helpOption : "",
       message: "",
-      acceptPrivacyPolicy: true, // Reset to checked
+      acceptPrivacyPolicy: true,
     });
     alert("Form submitted successfully!");
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      
       <div className="flex flex-col">
         <label htmlFor="name" className="text-gray-200 text-sm font-medium mb-1">
           Name
@@ -95,7 +101,6 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* Email */}
       <div className="flex flex-col">
         <label htmlFor="email" className="text-gray-200 text-sm font-medium mb-1">
           Email
@@ -114,7 +119,6 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* Phone */}
       <div className="flex flex-col">
         <label htmlFor="phone" className="text-gray-200 text-sm font-medium mb-1">
           Phone Number
@@ -133,7 +137,6 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* Location */}
       <div className="flex flex-col">
         <label
           htmlFor="location"
@@ -155,52 +158,94 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* How Can We Help You */}
-      <div className="flex flex-col space-y-2">
-        <label className="text-gray-200 text-sm font-medium">
-          How Can We Help You
-        </label>
-        <div className="flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={() => handleHelpOption("Education")}
-            className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
-              formData.helpOption === "Education"
-                ? "bg-amber-500 border-amber-500"
-                : "hover:bg-amber-500 hover:border-amber-500"
-            }`}
+      {isNewsEvents ? (
+        <div className="flex flex-col">
+          <label
+            htmlFor="helpOption"
+            className="text-gray-200 text-sm font-medium mb-1"
           >
-            Education
-          </button>
-          <button
-            type="button"
-            onClick={() => handleHelpOption("Job Assistance")}
-            className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
-              formData.helpOption === "Job Assistance"
-                ? "bg-amber-500 border-amber-500"
-                : "hover:bg-amber-500 hover:border-amber-500"
-            }`}
-          >
-            Job Assistance
-          </button>
-          <button
-            type="button"
-            onClick={() => handleHelpOption("Migration")}
-            className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
-              formData.helpOption === "Migration"
-                ? "bg-amber-500 border-amber-500"
-                : "hover:bg-amber-500 hover:border-amber-500"
-            }`}
-          >
-            Migration
-          </button>
+            News and Events
+          </label>
+          <input
+            type="text"
+            id="helpOption"
+            name="helpOption"
+            value={formData.helpOption}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+            placeholder="Enter event name"
+          />
+          {errors.helpOption && (
+            <p className="text-red-400 text-xs mt-1">{errors.helpOption}</p>
+          )}
         </div>
-        {errors.helpOption && (
-          <p className="text-red-400 text-xs">{errors.helpOption}</p>
-        )}
-      </div>
+      ) : isCourseApply ? (
+        <div className="flex flex-col">
+          <label
+            htmlFor="helpOption"
+            className="text-gray-200 text-sm font-medium mb-1"
+          >
+            Course Code
+          </label>
+          <input
+            type="text"
+            id="helpOption"
+            name="helpOption"
+            value={formData.helpOption}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+            placeholder="Enter course code"
+          />
+          {errors.helpOption && (
+            <p className="text-red-400 text-xs mt-1">{errors.helpOption}</p>
+          )}
+        </div>
+      ) : (
+        <div className="flex flex-col space-y-2">
+          <label className="text-gray-200 text-sm font-medium">
+            How Can We Help You
+          </label>
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Education" }))}
+              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+                formData.helpOption === "Education"
+                  ? "bg-amber-500 border-amber-500"
+                  : "hover:bg-amber-500 hover:border-amber-500"
+              }`}
+            >
+              Education
+            </button>
+            <button
+              type="button"
+              onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Job Assistance" }))}
+              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+                formData.helpOption === "Job Assistance"
+                  ? "bg-amber-500 border-amber-500"
+                  : "hover:bg-amber-500 hover:border-amber-500"
+              }`}
+            >
+              Job Assistance
+            </button>
+            <button
+              type="button"
+              onClick={() => setFormData((prev) => ({ ...prev, helpOption: "Migration" }))}
+              className={`p-2 rounded-lg border border-gray-300 text-white transition-colors text-sm ${
+                formData.helpOption === "Migration"
+                  ? "bg-amber-500 border-amber-500"
+                  : "hover:bg-amber-500 hover:border-amber-500"
+              }`}
+            >
+              Migration
+            </button>
+          </div>
+          {errors.helpOption && (
+            <p className="text-red-400 text-xs">{errors.helpOption}</p>
+          )}
+        </div>
+      )}
 
-      {/* Message */}
       <div className="flex flex-col">
         <label
           htmlFor="message"
@@ -222,7 +267,6 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* Privacy Policy Checkbox */}
       <div className="flex items-center">
         <input
           type="checkbox"
@@ -252,7 +296,6 @@ const ContactForm = () => {
         )}
       </div>
 
-      {/* Submit Button */}
       <div className="flex justify-start">
         <button
           type="submit"

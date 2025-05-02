@@ -3,7 +3,7 @@ import educationImg from '../../../../assets/Services/education.png';
 import jobAssistanceImg from '../../../../assets/Services/job-assistance.jpeg';
 import migrationImg from '../../../../assets/Services/migration.png';
 import ServiceCard from '../../../../components/UiComponents/ServiceCard';
- 
+
 const ServicesSection = () => {
   const services = [
     {
@@ -11,21 +11,24 @@ const ServicesSection = () => {
       description:
         'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry’s',
       imageSrc: educationImg,
+      navigateTo: '/services/education/course',
     },
     {
       title: 'Job Assistance',
       description:
         'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry’s',
       imageSrc: jobAssistanceImg,
+      navigateTo: '/services/job-assistance',
     },
     {
       title: 'Migration',
       description:
         'Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry’s',
       imageSrc: migrationImg,
+      navigateTo: '/services/migration',
     },
   ];
- 
+
   return (
     <section className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
@@ -37,6 +40,7 @@ const ServicesSection = () => {
                 title={service.title}
                 description={service.description}
                 imageSrc={service.imageSrc}
+                navigateTo={service.navigateTo}
               />
             ))}
           </div>
@@ -49,5 +53,5 @@ const ServicesSection = () => {
     </section>
   );
 };
- 
+
 export default ServicesSection;

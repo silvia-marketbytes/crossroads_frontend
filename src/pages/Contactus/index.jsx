@@ -55,13 +55,13 @@ const ContactUs = () => {
               <h3 className="text-lg font-semibold mb-2 text-[#00334D]">Call us</h3>
               <p className="text-gray-600">
                 <a
-                  href="tel:+919539688800"
+                  href="tel:+91 95396 88800"
                   className="hover:text-[#F9920A] transition-all duration-300 block"
                 >
                   +91 95396 88800
                 </a>
                 <a
-                  href="tel:+919539688800"
+                  href="tel:+91 95396 88800"
                   className="hover:text-[#F9920A] transition-all duration-300 block"
                 >
                   +91 95396 88800

@@ -8,8 +8,6 @@ import TestimonialsSection from "../Home/UiComponents/TestimonialsSection";
 import rightSideImg from "../../assets/aboutus/about_whychooseus.webp";
 import visionImage from "../../assets/aboutus/ourvision.webp";
 import missionImage from "../../assets/aboutus/ourmision.webp";
-import videoFile from "../../assets/aboutus/dummyvideo.mp4";
-import leftImage from "../../assets/aboutus/videothumpnail.webp";
 
 const TickSVG = () => (
   <svg
@@ -53,82 +51,20 @@ const AboutMission = () => {
 };
 
 const VisionMissionSection = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
-
-  const handlePlayClick = () => {
-    setIsPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  };
-
-  useEffect(() => {
-    const handleVideoEnd = () => setIsPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.addEventListener("ended", handleVideoEnd);
-    }
-    return () => {
-      if (videoRef.current) {
-        videoRef.current.removeEventListener("ended", handleVideoEnd);
-      }
-    };
-  }, []);
-
   return (
     <section className="w-full mx-auto container flex flex-col md:flex-row h-full pt-20 md:pt-20">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           {/* Video Section */}
-          <div className="w-full md:w-1/2 h-[400px] md:h-full relative overflow-hidden">
-            {isPlaying ? (
-              <video
-                ref={videoRef}
-                src={videoFile}
-                controls
-                className="w-full h-auto object-cover"
-              />
-            ) : (
-              <>
-                <img
-                  src={leftImage}
-                  className="w-full h-auto object-cover"
-                  alt="Students in discussion"
-                />
-                <button
-                  onClick={handlePlayClick}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-opacity-70 rounded-full hover:bg-opacity-90 transition-all duration-300"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="189.524"
-                    height="189.524"
-                    viewBox="0 0 189.524 189.524"
-                  >
-                    <g id="play" opacity="0.46">
-                      <g id="Group_564" data-name="Group 564">
-                        <path
-                          id="Path_6387"
-                          data-name="Path 6387"
-                          d="M94.762,180.048A85.286,85.286,0,1,0,9.476,94.762,85.286,85.286,0,0,0,94.762,180.048Zm0,9.476A94.762,94.762,0,1,0,0,94.762,94.763,94.763,0,0,0,94.762,189.524Z"
-                          fill="#fff"
-                          fillRule="evenodd"
-                        />
-                      </g>
-                      <g id="Group_565" data-name="Group 565">
-                        <path
-                          id="Path_6388"
-                          data-name="Path 6388"
-                          d="M119.386,94.762,75.809,65.711v58.1Zm8.8-5.519a6.633,6.633,0,0,1,0,11.039L76.645,134.646a6.634,6.634,0,0,1-10.313-5.52V60.4A6.633,6.633,0,0,1,76.645,54.88Z"
-                          fill="#fff"
-                          fillRule="evenodd"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </button>
-              </>
-            )}
+          <div className="w-full md:w-1/2 h-[600px] md:h-auto relative overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/e9PVe3bPGqw?autoplay=1&mute=1&controls=0&loop=1&playlist=e9PVe3bPGqw"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full object-cover"
+            ></iframe>
           </div>
 
           {/* Vision and Mission Section */}
@@ -249,7 +185,7 @@ const Aboutus = () => {
     const handleWheel = (event) => {
       if (!list) return;
 
-      const { deltaY } = event;
+      const deltaY = event.deltaY;
       const scrollTop = list.scrollTop;
       const scrollHeight = list.scrollHeight;
       const clientHeight = list.clientHeight;
@@ -278,7 +214,7 @@ const Aboutus = () => {
       if (!list) return;
 
       event.preventDefault();
-      const delta = event.deltaY > 0 ? 50 : -50; // Adjust scroll speed
+      const delta = event.deltaY > 0 ? 50 : -50;
       list.scrollTop += delta;
     };
 

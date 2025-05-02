@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import medicalStudentsImg from "../../../../assets/medical-students.png";
 import placeholderImg from "../../../../assets/medical-students.png";
@@ -41,6 +41,7 @@ const MBBSSection = () => {
       description:
         "Medical colleges abroad are renowned for their high-quality education, advanced technology, and cutting-edge infrastructure. These institutions provide students with hands-on experience and a solid foundation in practical knowledge, which can greatly enhance their medical expertise. Additionally, MBBS graduates from foreign universities have the opportunity to explore diverse career paths beyond clinical practice, such as research, teaching, and various administrative roles within the healthcare sector.",
       linkText: "Read More",
+      link: "/services/education/course/mbbs",
     },
     {
       imageSrc: placeholderImg,
@@ -48,6 +49,7 @@ const MBBSSection = () => {
       description:
         "MBBS graduates from foreign universities have the opportunity to explore diverse career paths beyond clinical practice, such as research, teaching, and various administrative roles within the healthcare sector. Positions like medical officers and health inspectors await.",
       linkText: "Learn More",
+      link: "/services/education/course/ausbildung",
     },
   ];
  
@@ -107,7 +109,8 @@ const MBBSSection = () => {
                       {card.description}
                     </p>
                   </div>
-                  <Link to=""
+                  <Link
+                    to={card.link}
                     className="font-semibold flex items-center text-xs sm:text-sm md:text-base lg:text-sm"
                     style={{ color: '#F9920A' }}
                     onMouseEnter={(e) => (e.target.style.color = '#E08200')}

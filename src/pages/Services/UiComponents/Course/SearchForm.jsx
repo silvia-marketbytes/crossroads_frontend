@@ -71,7 +71,7 @@ const SearchForm = ({ onSearch }) => {
           name="location"
           value={filters.location}
           onChange={handleChange}
-          className="px-8 py-2 border border-gray-300 rounded-md bg-[#003050] text-white w-full appearance-none"
+          className="px-10 py-2 border border-gray-300 rounded-md bg-[#003050] text-white w-full appearance-none"
         >
           <option value="">Study where?</option>
           <option value="usa">USA</option>

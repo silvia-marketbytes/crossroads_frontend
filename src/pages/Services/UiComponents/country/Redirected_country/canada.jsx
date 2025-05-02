@@ -10,18 +10,18 @@ import IntakeSection from "../../../../../components/CountryListing/IntakeSectio
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../../../../../components/modal";
-
+ 
 const Canada = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+ 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+ 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+ 
   const bannerProps = {
     backgroundImage: bannerImg,
     title: "Study in Canada",
@@ -33,14 +33,14 @@ const Canada = () => {
     buttonText: "Talk to an Expert",
     onButtonClick: openModal,
   };
-
+ 
   const countryDescription = `
-    Canada is a country in North America known for its stunning natural landscapes, 
-    multicultural cities, and high-quality education system. Its capital, Ottawa, is a hub for 
-    government and culture, while cities like Toronto, Vancouver, and Montreal are renowned for 
+    Canada is a country in North America known for its stunning natural landscapes,
+    multicultural cities, and high-quality education system. Its capital, Ottawa, is a hub for
+    government and culture, while cities like Toronto, Vancouver, and Montreal are renowned for
     their diversity and world-class universities.
   `;
-
+ 
   const countryDetails = [
     { label: "Capital", value: "Ottawa" },
     { label: "Population", value: "40 Million" },
@@ -51,7 +51,7 @@ const Canada = () => {
     { label: "Universities", value: "250+" },
     { label: "Scholarships Upto", value: "$2000/Month" },
   ];
-
+ 
   const dropdownSections = [
     {
       title: "World-class education system",
@@ -78,13 +78,13 @@ const Canada = () => {
       content: "Access cutting-edge research opportunities in various fields.",
     },
   ];
-
+ 
   const intakes = [
     "September (Fall)",
     "January (Winter)",
     "May (Summer, limited programs)",
   ];
-
+ 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
@@ -112,7 +112,7 @@ const Canada = () => {
       description: "Develop skills in management, finance, and leadership.",
     },
   ];
-
+ 
   return (
     <div>
       <Banner {...bannerProps} />
@@ -132,5 +132,6 @@ const Canada = () => {
     </div>
   );
 };
-
+ 
 export default Canada;
+ 

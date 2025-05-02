@@ -7,9 +7,9 @@ import { Like, Telephone } from '../../../../components/Icons';
 import Modal from '../../../../components/modal';
  
 const servicesData = {
-  title: 'SERVICES',
+  title: 'Services',
   links: [
-    { label: 'Education', href: '#' },
+    { label: 'Education', href: '/services/education/course' },
     { label: 'Job Assistance', href: '#' },
     { label: 'Documentation & Travel Assistance', href: '/services/documentation-assistance' },
     { label: 'Immigration', href: '#' },
@@ -54,7 +54,7 @@ const FooterSection = () => {
                     <Telephone />
                   </span>
                   <span className='ml-4 text-[#00334D] group-hover:text-[#F9920A] transition-colors duration-300'>
-                    <a href="tel:+91 9539688800">+91 9539688800</a>
+                    <a href="tel:+91 95396 88800">+91 95396 88800</a>
                   </span>
                 </span>
               </div>
@@ -107,16 +107,16 @@ const FooterSection = () => {
                   <span className='text-lg lg:text-[16px]'>Edapally, Kochi – 682 024, Kerala</span>
                 </p>
                 <div className='pt-4 text-center md:text-center lg:text-left'>
-                  <a className="hover:text-[#F9920A]" href="tel:+91 9539688800">+91 9539688800</a>
+                  <a className="hover:text-[#F9920A]" href="tel:+91 9539688800">+91 95396 88800</a>
                 </div>
                 <div className='text-center md:text-center lg:text-left'>
-                  <a href="mailto:info@crossroadsgce.com" className="text-center md:text-center lg:text-left hover:text-[#F9920A] transition-all duration-300">
+                  <a href="mailto:info@crossroadsge.com" className="text-center md:text-center lg:text-left hover:text-[#F9920A] transition-all duration-300">
                     info@crossroadsge.com
                   </a>
                 </div>
                 <div className="flex justify-center space-x-10  mt-10">
                 <Link
-                  to="/terms-and-conditions"
+                  to="/terms&conditions"
                   className={`text-white hover:text-[#F9920A] transition-colors duration-300 ${
                     location.pathname === "/terms-and-conditions"
                       ? "text-[#F9920A]"

@@ -7,10 +7,22 @@ import CoursesOffered from "../../../../../components/UiComponents/CoursesOffere
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
-
+import Modal from "../../../../../components/modal";
+import { AnimatePresence } from "framer-motion";
+ 
 const Netherlands = () => {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+   
+      const openModal = () => {
+        setIsModalOpen(true);
+      };
+   
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
+ 
   const bannerProps = {
-    backgroundImage: bannerImg, 
+    backgroundImage: bannerImg,
     title: "Study in Slovania",
     className: "",
     classNameTitle: "text-white text-3xl sm:text-4xl lg:text-5xl font-bold",
@@ -18,13 +30,14 @@ const Netherlands = () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
-
+ 
   const countryDescription = `
     France, officially known as the French Republic, is a country predominantly situated in Western Europe.
     Its capital, Paris, is famous for its high-end fashion, iconic landmarks such as the Eiffel Tower,
   `;
-
+ 
   const countryDetails = [
     { label: "Capital", value: "Paris" },
     { label: "Population", value: "67 Million" },
@@ -35,7 +48,7 @@ const Netherlands = () => {
     { label: "Universities", value: "250+" },
 { label: "Scholarships Upto", value: "$2000/Month" },
   ];
-
+ 
   const dropdownSections = [
     {
       title: "Prestigious education system",
@@ -67,13 +80,13 @@ const Netherlands = () => {
       content: "Benefit from excellent healthcare and working conditions.",
     },
   ];
-
+ 
   const intakes = [
     "Winter-Sept/Oct",
     "Summer-March/April",
     "Additional intakes (Feb/May/June) at some private universities.",
   ];
-
+ 
   const courses = [
     {
       image: "https://via.placeholder.com/150",
@@ -101,13 +114,13 @@ const Netherlands = () => {
       description: "Lorem ipsum is simply dummy text of the printing.",
     },
   ];
-
+ 
   return (
     <div className="">
       <Banner {...bannerProps} />
       <CountryDetails details={countryDetails} description={countryDescription} />
       <WhyChooseSection
-        image={germanyImage} 
+        image={germanyImage}
         dropdownSections={dropdownSections}
         intakes={intakes}
         countryName="Netherlands"
@@ -115,8 +128,13 @@ const Netherlands = () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+     
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };
-
+ 
 export default Netherlands;
+ 

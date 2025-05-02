@@ -5,7 +5,6 @@ import { Call, Mail, MenuDots } from "../Icons";
 import Button from "../Button";
 import logo from "/src/assets/logo.png";
 import Modal from "../modal";
-import { useNavigate } from "react-router-dom";
 
 const hoverTransition = {
   transition: "all 0.3s ease",
@@ -26,25 +25,6 @@ const navLinkDropdownStyles = ({ isActive, isHovered }) => ({
   textDecoration: "none",
   ...hoverTransition,
 });
-
-const SearchInput = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('services/education/course'); 
-  };
-
-  return (
-    <input
-      type="text"
-      placeholder="Find a course"
-      className="px-2 py-1.5 rounded-full border border-[#fcfcfc] focus:outline-none text-[#fcfcfc] placeholder-[#fcfcfc] text-sm"
-      style={{ backgroundColor: "#00334D" }}
-      onClick={handleClick}
-      readOnly 
-    />
-  );
-};
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,7 +68,6 @@ const Navbar = () => {
     },
   };
 
-  // Define routes for external links to simulate active state
   const isAdminLoginActive = location.pathname === "/admin-login";
   const isCandidateLoginActive = location.pathname === "/candidate-login";
 
@@ -139,7 +118,7 @@ const Navbar = () => {
                   href="tel:+919539688800"
                   className="text-[#00334D] text-xs hover:text-[#F9920A] transition-all duration-300"
                 >
-                  +91 9539688800
+                  +91 95396 88800
                 </a>
               </div>
             </div>
@@ -153,7 +132,7 @@ const Navbar = () => {
 
         {/* Main Navigation Bar */}
         <nav
-          className="flex items-center w-full"
+          className="flex items-center w-full py-5"
           style={{ backgroundColor: "#00334D" }}
         >
           <div className="flex w-full items-center justify-between px-4 sm:px-6 md:px-10 py-1">
@@ -229,7 +208,7 @@ const Navbar = () => {
                       onMouseEnter={() => setIsServicesOpen(true)}
                       onMouseLeave={() => setIsServicesOpen(false)}
                     >
-                      <NavLink
+                      <button
                         onMouseEnter={() => {
                           setIsEducationHover(true);
                           setIsEducationButtonHovered(true);
@@ -245,7 +224,7 @@ const Navbar = () => {
                         }}
                       >
                         EDUCATION
-                      </NavLink>
+                      </button>
                       <NavLink
                         to="/services/documentation-assistance"
                         style={({ isActive }) =>
@@ -356,35 +335,17 @@ const Navbar = () => {
               >
                 Blogs
               </NavLink>
-
-              {/* Search Input */}
-              <div className="flex items-center">
-                <SearchInput />
-                <button
-                  className="text-[#fcfcfc] px-2 py-4 rounded-full relative right-12 hover:text-[#F9920A] transition-all duration-300"
-                  onMouseEnter={() => setIsSearchHovered(true)}
-                  onMouseLeave={() => setIsSearchHovered(false)}
-                  style={{
-                    color: isSearchHovered ? "#F9920A" : "#fcfcfc",
-                    ...hoverTransition,
-                  }}
-                >
-                  <svg
-                    className="w-7 h-7"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <NavLink
+                to="/services/education/course"
+                style={({ isActive }) =>
+                  navLinkStyles({ isActive, isHovered: hoveredLink === "/services/education/course" })
+                }
+                className="text-[#fcfcfc] hover:text-[#F9920A] transform transition-all duration-300"
+                onMouseEnter={() => setHoveredLink("/services/education/course")}
+                onMouseLeave={() => setHoveredLink(null)}
+              >
+                Find a Course
+              </NavLink>
             </div>
 
             {/* Mobile Menu Button */}
@@ -397,10 +358,13 @@ const Navbar = () => {
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
               >
-                <MenuDots className="w-8 h-8" style={{
-                  color: hoveredLink === "menudots" ? "#F9920A" : "#fcfcfc",
-                  ...hoverTransition,
-                }} />
+                <MenuDots
+                  className="w-8 h-8"
+                  style={{
+                    color: hoveredLink === "menudots" ? "#F9920A" : "#fcfcfc",
+                    ...hoverTransition,
+                  }}
+                />
               </button>
             </div>
           </div>
@@ -416,6 +380,10 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="fixed top-0 left-0 right-0 grid items-center justify-start space-y-4 p-4 text-gray-100 w-full md:hidden z-40"
             style={{ backgroundColor: "#00334D" }}
+            onMouseLeave={() => {
+              setIsMenuOpen(false);
+              setIsServicesOpen(false);
+            }}
           >
             <NavLink
               to="/"
@@ -486,10 +454,15 @@ const Navbar = () => {
                     className="w-full ml-10 mt-2 shadow-md bg-[#fcfcfc]"
                   >
                     <button
-                      onClick={() => setIsEducationHover(!isEducationHover)}
-                      className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
-                      onMouseEnter={() => setIsEducationButtonHovered(true)}
-                      onMouseLeave={() => setIsEducationButtonHovered(false)}
+                      onMouseEnter={() => {
+                        setIsEducationHover(true);
+                        setIsEducationButtonHovered(true);
+                      }}
+                      onMouseLeave={() => {
+                        setIsEducationHover(false);
+                        setIsEducationButtonHovered(false);
+                      }}
+                      className="block px-4 py-2 text-[#00334D] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300 w-full text-left"
                       style={{
                         color: isEducationButtonHovered ? "#F9920A" : "#00334D",
                         ...hoverTransition,
@@ -602,6 +575,21 @@ const Navbar = () => {
               Blogs
             </NavLink>
             <NavLink
+              to="/services/education/course"
+              style={({ isActive }) =>
+                navLinkStyles({
+                  isActive,
+                  isHovered: hoveredLink === "mobile-find-a-course",
+                })
+              }
+              className="px-4 py-2 w-full text-left text-sm text-[#fcfcfc] hover:text-[#F9920A] hover:bg-[#F9920A]/10 transition-all duration-300"
+              onMouseEnter={() => setHoveredLink("mobile-blogs")}
+              onMouseLeave={() => setHoveredLink(null)}
+              onClick={toggleMenu}
+            >
+              Blogs
+            </NavLink>
+            <NavLink
               to="/admin-login"
               style={() =>
                 navLinkStyles({
@@ -689,7 +677,7 @@ const Navbar = () => {
                 toggleMenu();
               }}
             >
-              Call: +91 9539688800
+              Call: +91 95396 88800
             </NavLink>
           </motion.div>
         )}
@@ -697,7 +685,7 @@ const Navbar = () => {
 
       <Button
         label="Get in Touch"
-        className="fixed top-1/2 -right-12 transform -translate-y-1/2 text-white hover:text-[#00334D] text-md font-normal bg-[#ff9914] hover:bg-[#fcfcfc] animate-pulse hover:animate-none scale-[1.0] hover:scale-[1.03] transition-all duration-300 -rotate-90 px-6 py-4 shadow-lg z-50"
+        className="gradient-button text-sm text-[#fcfcfc] -rotate-90 shadow-lg z-50 fixed top-1/2 py-3 px-8 -right-13.5 transform -translate-y-1/2"
         onClick={openModal}
       />
 

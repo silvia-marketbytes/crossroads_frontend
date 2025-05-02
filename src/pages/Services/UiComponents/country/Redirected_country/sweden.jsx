@@ -7,8 +7,20 @@ import CoursesOffered from "../../../../../../src/components/UiComponents/Course
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import Modal from "../../../../../components/modal";
+import { AnimatePresence } from "framer-motion";
 
 const Sweden= () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
+    const openModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
+  
   const bannerProps = {
     backgroundImage: bannerImg, 
     title: "Study in Sweden",
@@ -18,6 +30,7 @@ const Sweden= () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
 
   const countryDescription = `
@@ -115,6 +128,10 @@ const Sweden= () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };

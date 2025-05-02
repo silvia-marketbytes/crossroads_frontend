@@ -1,4 +1,4 @@
-import { Suspense, useState, useRef } from "react";
+import { Suspense, useState } from "react";
 import slugify from "slugify";
 import Banner from "../../../components/Banner";
 import bannerImg from "../../../assets/blog/Blog_result.webp";
@@ -160,7 +160,6 @@ const BlogPostCard = ({ post }) => {
 const RecentUpdatesSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
-  const sectionRef = useRef(null);
 
   const totalPages = Math.ceil(blogPosts.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
@@ -170,30 +169,26 @@ const RecentUpdatesSection = () => {
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  console.log("Current Page:", currentPage);
-  console.log("Total Pages:", totalPages);
-  console.log("Current Posts Length:", currentPosts.length);
-
   return (
-    <section className="recent-updates" ref={sectionRef}>
+    <section className="recent-updates">
       <div className="px-4 sm:px-4 lg:px-20 mt-14 sm:mt-14 lg:mt-10 mx-auto">
         {currentPage === 1 && (
           <div className="mb-12">
@@ -247,7 +242,7 @@ const RecentUpdatesSection = () => {
 const Blog = () => {
   const bannerProps = {
     backgroundImage: bannerImg,
-    title: '<div style="margin-bottom: 1rem;">Blog Education News &</div>Study Abroad Updates',
+    title: 'Blogs',
     className: "px-1 relative",
     classNameTitle: "relative -top-center text-services-title",
     backgroundPosition: "center",

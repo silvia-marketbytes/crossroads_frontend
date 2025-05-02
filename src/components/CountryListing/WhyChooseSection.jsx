@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import IntakeSection from "./IntakeSection";
-
+ 
 const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
-
+ 
   const toggleDropdown = (index) => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
-
+ 
   return (
-    <section className="mt-16 w-full py-16 relative">
+    <section className=" w-full py-20 relative">
       <div className="flex flex-col lg:flex-row w-full" style={{ height: "800px" }}>
         <div className="lg:w-1/2 w-full" style={{ backgroundColor: "#00334D", height: "100%" }}>
           <div className="p-6 ml-12 overflow-hidden" style={{ height: "100%" }}>
@@ -82,7 +82,7 @@ const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => 
             </div>
           </div>
         </div>
-
+ 
         {/* Right Side - Image with Intake Overlay */}
         <div className="lg:w-1/2 w-full relative" style={{ height: "100%" }}>
           <div className="h-full overflow-hidden">
@@ -94,5 +94,6 @@ const WhyChooseSection = ({ image, dropdownSections, intakes, countryName }) => 
     </section>
   );
 };
-
+ 
 export default WhyChooseSection;
+ 

@@ -7,8 +7,19 @@ import CoursesOffered from "../../../../../../src/components/UiComponents/Course
 import CountryDetails from "../../../../../components/CountryListing/CountryDetails";
 import WhyChooseSection from "../../../../../components/CountryListing/WhyChooseSection";
 import VirtualAssistance from "../../../../../components/CountryListing/VirtualAssistance";
+import Modal from "../../../../../components/modal";
+import { AnimatePresence } from "framer-motion";
 
 const Switzerland= () => {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+    
+      const openModal = () => {
+        setIsModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
   const bannerProps = {
     backgroundImage: bannerImg, 
     title: "Study in Switzerland",
@@ -18,6 +29,7 @@ const Switzerland= () => {
     showSocialMedia: false,
     showApplyButton: true,
     buttonText: "Talk to an Expert",
+    onButtonClick: openModal,
   };
 
   const countryDescription = `
@@ -115,6 +127,10 @@ const Switzerland= () => {
       <VirtualAssistance />
       <CoursesOffered title="Courses offered" courses={courses} />
       <ContactSection />
+
+      <AnimatePresence>
+        {isModalOpen && <Modal onClose={closeModal} />}
+      </AnimatePresence>
     </div>
   );
 };
