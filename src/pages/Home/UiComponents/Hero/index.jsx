@@ -41,7 +41,7 @@ const slides = [
  
 const Hero = () => {
   const { width } = useWindowSize();
-  const heroHeight = width < 768 ? '40vh' : '80vh';
+  const heroHeight = width < 768 ? '45vh' : '80vh';
   const [isModalOpen, setIsModalOpen] = useState(false);
  
   const openModal = () => {
@@ -59,7 +59,7 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     arrows: false,
     appendDots: (dots) => (
       <div style={{ position: 'absolute', bottom: '16px', textAlign: 'center' }}>
@@ -82,7 +82,7 @@ const Hero = () => {
         {slides.map((slide) => (
           <div key={slide.id} className="w-full">
             <div
-              className="relative bg-cover bg-center flex items-center w-full h-[40vh] md:h-[80vh]"
+              className="relative bg-cover bg-center flex items-center w-full h-[60vh] md:h-[80vh]"
               style={{ backgroundImage: `url(${slide.background})` }}
             >
               <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -191,3 +191,4 @@ const Hero = () => {
 };
  
 export default Hero;
+ 

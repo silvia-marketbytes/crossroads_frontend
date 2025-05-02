@@ -59,12 +59,12 @@ const Card = ({ item }) => {
 
   return (
     <div className="px-2">
-      <div className="card bg-white rounded-lg overflow-hidden w-full max-w-[380px] mx-auto flex flex-col h-auto">
+      <div className="card bg-white rounded-lg overflow-hidden w-full max-w-[380px] mx-auto flex flex-col h-auto min-h-[350px] sm:min-h-[400px]">
         {item.type === "image" ? (
           <img
             src={item.imageSrc}
             alt={item.name}
-            className="w-full h-[200px] sm:h-[250px] object-cover rounded-2xl"
+            className="w-full h-[200px] sm:h-[250px] object-cover rounded-t-2xl"
             onError={(e) => {
               e.target.src = "https://via.placeholder.com/350x250?text=Image+Not+Found";
               console.error(`Failed to load image: ${item.imageSrc}`);
@@ -73,7 +73,7 @@ const Card = ({ item }) => {
         ) : (
           <video
             controls
-            className="w-full h-[200px] sm:h-[250px] object-cover rounded-2xl"
+            className="w-full h-[200px] sm:h-[250px] object-cover rounded-t-2xl"
             src={item.videoSrc}
             onError={(e) => {
               console.error(`Failed to load video: ${item.videoSrc}`);
@@ -82,7 +82,7 @@ const Card = ({ item }) => {
             Your browser does not support the video tag.
           </video>
         )}
-        <div className="p-4 flex flex-col flex-1">
+        <div className="p-3 sm:p-4 flex flex-col flex-1">
           <div className="flex justify-between items-center mb-2">
             <h4
               className="text-base sm:text-lg font-semibold"
@@ -109,7 +109,7 @@ const Card = ({ item }) => {
           </div>
           <div className="flex-1">
             <p
-              className={`text-gray-600 text-xs sm:text-sm text-justify ${
+              className={`text-gray-600 text-xs sm:text-sm text-justify md:text-left ${
                 isExpanded ? "" : "line-clamp-3"
               }`}
             >
@@ -145,7 +145,7 @@ const TestimonialsSection = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -173,9 +173,9 @@ const TestimonialsSection = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          vertical: true,
-          verticalSwiping: true,
+          padsToScroll: 1,
+          vertical: false,
+          verticalSwiping: false,
         },
       },
       {
@@ -222,11 +222,11 @@ const TestimonialsSection = () => {
           </div>
 
           <div className="grid lg:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
-            <div className="w-full flex flex-col items-center justify-center px-8">
+            <div className="w-full flex flex-col items-center justify-center px-2">
               <h3 className="text-[20px] font-normal text-center text-[#00334D] pb-4">
                 What Our <span className="font-semibold text-[#F9920A]"> Students Says</span>
               </h3>
-              <p className="text-lg text-gray-600 text-center">
+              <p className="text-base sm:text-lg text-gray-600 text-center">
                 We are a team of seasoned professionals who provide comprehensive educational support, from selecting the right study programs to assisting with job placements, both in India and internationally.
               </p>
             </div>
@@ -247,7 +247,7 @@ const TestimonialsSection = () => {
           </div>
           <div className="w-full lg:w-1/3 mt-4 lg:mt-0">
             {videosData.length > 0 ? (
-              <Slider ref={videoSliderRef} {...videoSliderSettings} className="w-full min-h-[300px]">
+              <Slider ref={videoSliderRef} {...videoSliderSettings} className="w-full min-h-[350px] sm:min-h-[400px]">
                 {videosData.map((item, index) => (
                   <Card key={index} item={item} />
                 ))}
